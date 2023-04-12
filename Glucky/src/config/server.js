@@ -14,21 +14,20 @@ app.use(express.static(path.join(__dirname,'../app/public')));
 app.use(session({
     secret: 'culosnegros123',
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
+    saveUninitialized: false,
   }));
 app.use(bodyParser.urlencoded({extended: false}));
 //
 
 //importar rutas
 const Principal = require('../app/routers/Principal');
-//const Pacientes = require('../app/routers/Pacientes');
-//const Doctores = require('../app/routers/Doctores');
+const Pacientes = require('../app/routers/Pacientes');
+const Doctores = require('../app/routers/Doctores');
 
 //rutas
-app.use('/',Principal);
-//app.use('/Pacientes',Pacientes);
-//app.use('/Doctores',Doctores);
+app.use('/Glucky/',Principal);
+app.use('/Glucky/Pacientes/',Pacientes);
+app.use('/Glucky/Doctores/',Doctores);
 
 
 module.exports = app;

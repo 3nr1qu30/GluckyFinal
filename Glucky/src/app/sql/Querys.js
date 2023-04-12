@@ -28,7 +28,7 @@ const db={};
 
 //Consultar info
 db.buscarPaciente = (CurpForm,callback)=>{
-  con.query(`SELECT * FROM paciente WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
+  con.query(`SELECT * FROM paciente natural join persona WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
     if(error){
       console.error('Error al buscar en la base de datos', error);
       callback(error, null);
@@ -45,7 +45,7 @@ db.buscarPaciente = (CurpForm,callback)=>{
 };
 
 db.buscarDoctor =(CedulaForm,callback)=>{
-  con.query(`SELECT * FROM medico WHERE cedula_med = '${CedulaForm}'`,(error,fila)=>{
+  con.query(`SELECT * FROM medico natural join persona WHERE cedula_med = '${CedulaForm}'`,(error,fila)=>{
     if(error){
       console.error('Error al buscar en la base de datos', error);
       callback(error, null);

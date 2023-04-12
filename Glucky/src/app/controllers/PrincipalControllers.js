@@ -1,6 +1,7 @@
 const Controllers={};
 const querys = require('../sql/Querys');
 const encriptar = require('../helpers/EncriptarContraseñas');
+const session = require('express-session');
 
 //rutas get
 Controllers.index = (req, res, next) => {
@@ -79,5 +80,49 @@ Controllers.registroDocPost=(req,res,next)=>{
         }
       }
     });
-}
+};
+
+Controllers.iniciosesionPost=(req,res,next)=>{
+  const{UserForm,PassForm} = req.body;
+  if(UserForm.length===18){
+    querys.buscarPaciente(UserForm, async (error,paciente)=>{
+      if(error){
+        console.log(error);
+      }
+      else if(paciente==='no existe'){
+        console.log('El paciente no esta registrado');
+      }
+      else if(paciente){
+        if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){
+          req.session.curp=paciente[0].curp_pacien;
+          req.session.nombre=`${paciente[0].nom_pers} ${paciente[0].apellidos_pers}`;
+          req.session.correo=paciente[0].email_pers;
+          res.redirect('/Glucky/Pacientes/Dashboard');
+        }
+        else{
+          console.log('Contraseña incorrecta');
+        }
+      }
+    });
+  }
+  else if(UserForm.length===8){
+    querys.buscarDoctor(UserForm, async (error,doctor)=>{
+      if(error){
+        console.log(error);
+      }
+      else if(doctor==='no existe'){
+        console.log('El doctor no esta registrado')
+      }
+      else if(doctor){
+        if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){
+          req.session.cedula=doctor[0].cedula_med;
+          req.session.nombre=`${doctor[0].nom_pers} ${doctor[0].apellidos_pers}`;
+          req.session.correo=doctor[0].email_pers;
+          res.redirect('/Glucky/Doctores/Dashboard');
+        }
+      }
+    });
+  }
+};
+
 module.exports = Controllers;
