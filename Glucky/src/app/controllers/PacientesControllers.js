@@ -5,5 +5,5 @@ Controllers.dashboardPacientes=(req,res,next)=>{
     const nombre = req.session.nombre;
     const correo = req.session.correo;
     res.render('dashboardPacientes',{curp,nombre,correo});
-  }
+  };
 module.exports = Controllers;
