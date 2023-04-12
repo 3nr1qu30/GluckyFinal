@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glucky registro</title>
+
+
+     <!-- Primary Meta Tags -->
+<meta name="title" content="Glucky Principal">
+<meta name="description" content="Gratuita - Aplicación para gestionar tu diabetes de manera inteligente">
+
+    <!--====== Favicon Icon ======-->
+      <!--====== Favicon Icon ======-->
+      <link
+      rel="shortcut icon"
+      href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+      type="image/svg"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- ===== All CSS files ===== -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/animate.css" />
+    <link rel="stylesheet" href="/css/lineicons.css" />
+    <link rel="stylesheet" href="/css/ud-styles.css" />
+    <link rel="stylesheet" href="/css/RegistroPaciente.css" />
+  </head>
+  <body>
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="/Glucky/">
+                <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="Logo" />
+              </a>
+              <button class="navbar-toggler">
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+              </button>
+
+              <div class="navbar-collapse">
+                <ul id="nav" class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                    <a class="ud-menu-scroll" href="/Glucky/">Principal</a>
+                  </li>
+
+                 
+                 
+                  <li class="nav-item nav-item-has-children">
+                    <a href="javascript:void(0)"> Páginas </a>
+                    <ul class="ud-submenu">
+                      <li class="ud-submenu-item">
+                        <a href="/Glucky/IniciodeSesion" class="ud-submenu-link">
+                          Inicio de sesión
+                        </a>
+                      </li>
+                      <li class="ud-submenu-item">
+                        <a href="/Glucky/Registros" class="ud-submenu-link">
+                          Registro
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="navbar-btn d-none d-sm-inline-block">
+                <a href="/Glucky/Registros" class="ud-main-btn ud-login-btn">
+                  Registro
+                </a>
+                <a class="ud-main-btn ud-white-btn" href="/Glucky/IniciodeSesion">
+                  Iniciar sesión
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Banner Start ====== -->
+    <section class="ud-page-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-banner-content">
+              <h1>Registro de pacientes</h1>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Banner End ====== -->
+
+       <!-- ====== Contact Start ====== -->
+       <section id="contact" class="ud-contact">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xl-8 col-lg-7">
+              <div class="ud-contact-content-wrapper">
+                <div class="ud-contact-title">
+                  <span>COMIENZA A CREAR UNA CUENTA</span>
+                  <h2>
+                    Solo necesitas pocos datos <br />
+                    para registrarte como paciente <br>
+                  </h2>
+                  <br>
+                  Registrarse en nuestra aplicación es rápido y fácil, solo necesitas proporcionar pocos datos y dedicar un momento a completar el proceso ¡Únete hoy y disfruta de una experiencia única y personalizada!
+                  <h1 style="color: rgb(0, 0, 0);">...</h1>
+                </div>
+
+                
+              </div>
+            </div>
+
+<form action="/Glucky/Registros/Paciente" method="post">
+            <div class="row">
+              <div class="column1" style="background-color:rgb(255, 255, 255);">
+                <div class="">
+                  <div class="juaja" id="style-2">
+                    <div
+                      class="ud-contact-form-wrapper wow fadeInDown"
+                      data-wow-delay=".1003s"
+                    >
+                      <h3 class="ud-contact-form-title" style="text-align: center;">Registrate como paciente</h3>
+                      <h6 class="cuaosa" style="text-align: center;">Necesitas una clave CURP</h6>
+
+                      <br>
+                      <form class="ud-contact-form">
+                        <div class="ud-form-group">
+                          <label for="fullName">Nombre*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Nombre" 
+                              required
+                              maxlength="50"
+                              name="NombreForm"
+                              pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ']{2,25}){2,25}" 
+                              required>
+                        </div>
+                        <div class="ud-form-group">
+                          <label for="email">Apellidos*</label>
+                          <input 
+                          type="text" 
+                          placeholder="Apellidos" 
+                          required
+                          name="ApellidosForm"
+                          maxlength="60" 
+                          pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ']{2,25})+([ ]{1})+([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ']{2,25})" 
+                          required>
+                        </div>
+                        <div class="ud-form-group">
+                          <label for="phone">E-mail*</label>
+                          <input 
+                          type="email" 
+                          placeholder="Ejemplo@gmail.com"  
+                          name="EmailForm" 
+                          required>
+                        </div>
+                        <div class="ud-form-group">
+                          <label for="message">Edad*</label>
+                          <input 
+                              type="number" 
+                              placeholder="Ejemplo (34)" 
+                              required
+                              name="EdadForm" 
+                              pattern="[0,9]{2}" 
+                              required>
+                        </div>
+                        <div class="ud-form-group">
+                          <label for="message">Teléfono*</label>
+                          <input 
+                          type="text" 
+                          placeholder="Ejemplo (5544667788)" 
+                          name="TelefonoForm" 
+                          maxlength="10" 
+                          minlength="10" 
+                          pattern="([0-9]{10})" 
+                          required>
+                        </div>
+                       
+                        <div class="ud-form-group">
+                          <label for="message" style="font: bolder;">CURP*</label>
+                          <input 
+                          type="text" 
+                          placeholder="Escribe tu clave CURP válida" 
+                          name="CurpForm"  
+                          required>
+                        </div>
+      
+                        <div class="ud-form-group">
+                          <label for="message">Genero*</label>
+                          <select name="GeneroForm" class="sexo">
+                            <option value="">Selecciona tu genero</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="PND">Prefiero no decirlo</option>
+                          </select>
+                        </div>
+      
+                        <h4 class="ud-contact-form-title">Tipo de diabetes</h4>
+                        <h6 class="aviso">*Antes de registrarte en nuestra aplicación, es importante que revises qué tipo de diabetes tienes para asegurarte de que nuestro servicio sea el adecuado para ti.*</h6>
+                        <div class="ud-form-group">
+                            <label for="message">Tipo de diabetes*</label>
+                            <select name="TipoDiabetes" class="sexo">
+                              <option value="">Selecciona tu tipo de diabetes</option>
+                              <option value="1">Tipo 1</option>
+                              <option value="2">Tipo 2</option>
+                              <option value="3">Tipo gestacional</option>
+                            </select>
+                          </div>
+      
+                        <h4 class="ud-contact-form-title">Contraseña</h4>
+      
+                        <div class="ud-form-group">
+                          <label for="message">Contraseña segura*</label>
+                          <input 
+                              type="password" 
+                              name="PassForm" 
+                              placeholder=*********** " 
+                              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  
+                              required>
+                        </div>
+      
+                        <div class="ud-form-group mb-0">
+                          <button type="submit" class="ud-main-btn">
+                            Enviar
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="column2" style="background-color:#bbb;">
+                
+                <h3 class="achetresss">Sea bienvenido a </h3>
+                <br>
+                <a class="navbar-brand" href="/Glucky/">
+                  <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="Logo" />
+                </a>
+                <br>
+                <br>
+                <h6 class="acheseiss">Regístrate con tu CURP para convertirte en un paciente dentro de la aplicación.</h6>
+                <h3 style="color: white;">...</h3>
+                
+              </div>
+            </div>
+
+        </form>
+            
+       
+           
+
+
+
+          
+          </div>
+        </div>
+      </section>
+      <!-- ====== Contact End ====== -->
+
+    <!-- ====== Footer Start ====== -->
+    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
+      <div class="shape shape-1">
+        <img src="images/footer/shape-1.svg" alt="shape" />
+      </div>
+      <div class="shape shape-2">
+        <img src="images/footer/shape-2.svg" alt="shape" />
+      </div>
+      <div class="shape shape-3">
+        <img src="images/footer/shape-3.svg" alt="shape" />
+      </div>
+      <div class="ud-footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="ud-widget">
+                <a href="/Glucky/" class="ud-footer-logo">
+                  <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="logo" />
+                </a>
+                <p class="ud-widget-desc">
+                  Ofrecemos un servicio para todos los tipos de diabetes
+                </p>
+                <ul class="ud-widget-socials">
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-facebook-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-twitter-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-instagram-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-linkedin-original"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Colaboradores</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Montoya Rodriguez Isaac</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Negrete Gonzalez Roberto</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Varillas Figueroa Enrique</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Sandoval Vasquez Gonzalo</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Nieves Bartolo Marco Antonio</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Características</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Doctores</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Pacientes</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Agenda</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Monitoreo</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+           
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ud-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <ul class="ud-footer-bottom-left">
+                <li>
+                  <a href="javascript:void(0)">Privacidad</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Apoyanos</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Terminos de servicio</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <p class="ud-footer-bottom-right">
+                Diseñado y desarrollado por
+                <a href="https://uideck.com" rel="nofollow">ECLYS</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/main.js"></script>
+  </body>
+</html>
