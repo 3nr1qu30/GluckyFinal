@@ -60,6 +60,7 @@ db.buscarDoctor =(CedulaForm,callback)=>{
     }
 });
 };
+
 db.desplegarDoctores=(callback)=>{
   con.query(`SELECT * FROM medico NATURAL JOIN persona NATURAL JOIN consultoriomedico NATURAL JOIN consultorio`),(error,Doctores)=>{
     if(error){

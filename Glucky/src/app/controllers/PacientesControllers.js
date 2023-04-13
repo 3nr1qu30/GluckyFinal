@@ -8,6 +8,7 @@ Controllers.dashboardPacientes=(req,res,next)=>{
   };
 
   Controllers.solicitudesPaciente = (req,res,next)=>{
+ 
     res.render('solicitudesPaciente');
   };
-module.exports = Controllers;
+module.exports = Controllers; 
