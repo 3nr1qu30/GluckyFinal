@@ -1735,12 +1735,14 @@ table td {
   padding: .625em;
   text-align: left;
   border-radius: 10px;
+  height: fit-content;
 }
 
 table th {
   font-size: .85em;
   letter-spacing: .1em;
   text-transform: uppercase;
+
 }
 
 
@@ -1939,7 +1941,7 @@ table th {
  
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 99900px) {
   table {
     border: 0;
   }
@@ -2351,3 +2353,17 @@ section.active .show-modal {
   
 }
 
+
+.textoSimple {
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}

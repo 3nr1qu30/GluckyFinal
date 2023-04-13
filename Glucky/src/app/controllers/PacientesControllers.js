@@ -8,6 +8,7 @@ Controllers.dashboardPacientes=(req,res,next)=>{
   };
 
   Controllers.solicitudesPaciente = (req,res,next)=>{
+    console.log(req.body);
     querys.desplegarDoctores((error,Doctores)=>{
       if(Doctores){
         console.log(Doctores);

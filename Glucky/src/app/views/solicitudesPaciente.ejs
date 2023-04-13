@@ -180,14 +180,18 @@
                         <table id="style-2">
 
                           <% for(var i=0;i<datos.length;i++){%>
+                            <form action="/Glucky/IniciodeSesion" method="post"></from>
                             <tr class="bab">
+
                                 <td scope="row" data-label="Nombre"><b><%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%></b></td>
                                 <td data-label="Dirección">Calle:<%=datos[i].calle_cons%> <br> Num:<%=datos[i].num_cons%> <br> CP:<%=datos[i].cp_cons%> <br> Colonia:<%=datos[i].col_cons%> <br> Del o Mun:<%=datos[i].del_cons%> <br> Estado o Ciudad:<%=datos[i].edo_cons%></td>
-                                <td data-label="Tipo-diabetes"><div class="Tipo-1">Endocrinologo</div></td>
-                                <td data-label="Cédula profesional"><%=datos[i].cedula_med%></td>
+                                <td data-label="Doctor"><div class="Tipo-1">Endocrinologo</div></td>
+                                <td data-label="Cédula profesional"> <input type="text" value="<%=datos[i].cedula_med%>" class="textoSimple" readonly> </td>
                                 <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
-                                <td data-label="Aplicar"><button class="BotSolicitud" id="BotSolicitud">Aplicar solicitud</button></td>
-                            </tr>
+                                <td data-label="Aplicar"><button class="BotSolicitud" id="BotSolicitud" type="submit">Aplicar solicitud</button></td>
+                              </tr>
+                           </form>
+
                             
                           <%}%>
                         
@@ -216,7 +220,5 @@
 
     
     <script src="js/peticionesDoctor.js"></script>
-  
-    
 </body>
 </html>
