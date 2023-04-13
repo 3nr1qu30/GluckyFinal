@@ -2313,3 +2313,41 @@ section.active .show-modal {
     display: block;
 }
 
+.recuadroimg{
+  background-color: #007bff;
+  height: 200px;
+  width: 97%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+   /* Ajustamos la posición y el margen */
+   position: relative;
+   margin: 20px auto;
+ 
+   /* Ponemos la imagen de fondo */
+   background-image: url('https://images.pexels.com/photos/6941884/pexels-photo-6941884.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center center;
+}
+
+.tituloListaDoc{
+  padding: 5px;
+  font-size: 20px;
+  width: 97.3%;
+  height: auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transform: translate(10px);
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 7px;
+}
+
+.blues{
+  color: #2c38df;
+  font-size: 15px;
+  transform: translateY(-10px);
+  
+}
+

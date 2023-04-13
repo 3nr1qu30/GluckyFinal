@@ -6,4 +6,8 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const correo = req.session.correo;
     res.render('dashboardDoctores',{cedula,nombre,correo});
   };
+
+  Controllers.peticionesDoctor = (req,res,next)=>{
+    res.render('peticionesDoctor');
+  };
 module.exports = Controllers;
