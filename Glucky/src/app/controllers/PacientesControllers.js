@@ -1,5 +1,6 @@
 const Controllers={};
 const querys = require('../sql/Querys');
+//get
 Controllers.dashboardPacientes=(req,res,next)=>{
     const curp = req.session.curp;
     const nombre = req.session.nombre;
@@ -19,4 +20,6 @@ Controllers.dashboardPacientes=(req,res,next)=>{
       }
     });
   };
+  //post
+  
 module.exports = Controllers; 
