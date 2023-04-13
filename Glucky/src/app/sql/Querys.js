@@ -60,6 +60,17 @@ db.buscarDoctor =(CedulaForm,callback)=>{
     }
 });
 };
+db.desplegarDoctores=(callback)=>{
+  con.query(`SELECT * FROM medico natural join persona`),(error,Doctores)=>{
+    if(error){
+      console.error('Error al buscar Doctores ', error);
+      callback(error,null);
+    }
+    else{
+      callback(null,Doctores);
+    }
+  };
+};
 
 //insertar registros a la base
 
