@@ -128,8 +128,8 @@
                     </div>
               
                     <div class="buttons">
-                      <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Cuenta</>
+                      <button class="button" onclick="toggleNotifi2()">Cerrar</button>
+                      <button class="button">Cuenta</button>
                     </div>
               
                     <div class="analytics">
@@ -178,20 +178,29 @@
                        
                       
                         <table id="style-2">
+
+                          <% for(var i=0;i<datos.length;i++){%>
                             <tr class="bab">
-                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM </b></td>
-                                <td data-label="Dirección">Dirección parseada</td>
+                                <td scope="row" data-label="Nombre"><b><%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%></b></td>
+                                <td data-label="Dirección">Calle:<%=datos[i].calle_cons%> <br> Num:<%=datos[i].num_cons%> <br> CP:<%=datos[i].cp_cons%> <br> Colonia:<%=datos[i].col_cons%> <br> Del o Mun:<%=datos[i].del_cons%> <br> Estado o Ciudad:<%=datos[i].edo_cons%></td>
                                 <td data-label="Tipo-diabetes"><div class="Tipo-1">Endocrinologo</div></td>
-                                <td data-label="Cédula profesional">Cédula</td>
-                                <td data-label="E-MAIL">email@mail.com</td>
+                                <td data-label="Cédula profesional"><%=datos[i].cedula_med%></td>
+                                <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
                                 <td data-label="Aplicar"><button class="BotSolicitud" id="BotSolicitud">Aplicar solicitud</button></td>
                             </tr>
+                            
+                          <%}%>
+                        
+
 
                             
                         </div>
+                        
                      
                         
                         </table>
+
+                        
 
                         <div class="void">
                             

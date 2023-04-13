@@ -8,7 +8,14 @@ Controllers.dashboardPacientes=(req,res,next)=>{
   };
 
   Controllers.solicitudesPaciente = (req,res,next)=>{
- 
-    res.render('solicitudesPaciente');
+    querys.desplegarDoctores((error,Doctores)=>{
+      if(Doctores){
+        console.log(Doctores);
+        res.render('solicitudesPaciente',{datos:Doctores});
+      }
+      else{
+        console.log(error);
+      }
+    });
   };
 module.exports = Controllers; 

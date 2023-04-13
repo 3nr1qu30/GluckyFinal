@@ -7,7 +7,7 @@ function connect(){
         host: "localhost",
         port: "3306",
         user: "root",
-        password: "n0m3l0",
+        password: "n0m3l0", 
         database:"glucky3",
         charset: "utf8"
     });
@@ -62,7 +62,7 @@ db.buscarDoctor =(CedulaForm,callback)=>{
 };
 
 db.desplegarDoctores=(callback)=>{
-  con.query(`SELECT * FROM medico NATURAL JOIN persona NATURAL JOIN consultoriomedico NATURAL JOIN consultorio`),(error,Doctores)=>{
+  con.query(`SELECT * FROM medico NATURAL JOIN persona NATURAL JOIN consultoriomedico NATURAL JOIN consultorio`,(error,Doctores)=>{
     if(error){
       console.error('Error al buscar Doctores ', error);
       callback(error,null);
@@ -70,7 +70,7 @@ db.desplegarDoctores=(callback)=>{
     else{
       callback(null,Doctores);
     }
-  };
+  });
 };
 
 //insertar registros a la base
