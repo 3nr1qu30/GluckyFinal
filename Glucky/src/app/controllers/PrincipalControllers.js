@@ -21,6 +21,7 @@ Controllers.registroDocGet=(req,res,next)=>{
 };
 
 Controllers.iniciosesion=(req,res,next)=>{
+  req.session.destroy();
   res.render('iniciosesion');
 }
 //rutas post
