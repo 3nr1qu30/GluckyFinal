@@ -5,5 +5,5 @@ const PacienteControllers = require('../controllers/PacientesControllers');
 router.get('/Dashboard',PacienteControllers.dashboardPacientes);
 router.get('/Solicitudes',PacienteControllers.solicitudesPaciente);
 
-router.post('/Solicitudes',PacienteControllers.solicitudesPaciente);
+router.post('/Solicitudes',PacienteControllers.solicitudesPacientePost);
 module.exports= router;

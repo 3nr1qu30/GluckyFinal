@@ -21,5 +21,16 @@ Controllers.dashboardPacientes=(req,res,next)=>{
     });
   };
   //post
-  
+  Controllers.solicitudesPacientePost = (req,res,next)=>{
+    const{CedulaForm} = req.body;
+    const curp = req.session.curp;
+    querys.enlazarDoctoresPacientes(curp,CedulaForm,(error,enlaze)=>{
+      if(enlaze){
+        console.log('solicitud enviada');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
 module.exports = Controllers; 

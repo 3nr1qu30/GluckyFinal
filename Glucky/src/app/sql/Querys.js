@@ -44,6 +44,17 @@ db.buscarPaciente = (CurpForm,callback)=>{
 });
 };
 
+db.verPeticionesDoctor = (Cedula,callback)=>{
+  con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona n WHERE cedula_med  = '${Cedula} AND id_edosol = 1`, (error,peticiones)=>{
+   if(error){
+      console.error('No hay solicitudes', error);
+   }else{
+     callback(null,peticiones);
+   }
+  });
+ };
+ 
+
 db.buscarDoctor =(CedulaForm,callback)=>{
   con.query(`SELECT * FROM medico natural join persona WHERE cedula_med = '${CedulaForm}'`,(error,fila)=>{
     if(error){
@@ -105,8 +116,18 @@ db.registrarDoctor = async(NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoF
         callback(null,'Doctor registrado');
       }
     });
-  }
+  };
 
+db.enlazarDoctoresPacientes = (Curp,CedulaForm,callback)=>{
+  con.query(`INSERT INTO pacientemedico VALUES(default,${CedulaForm},'${Curp}',1)`,(error,enlaze)=>{
+    if(error){
+      callback(error,null);
+    }
+    else if(enlaze){
+      callback(null,'Solicitud de enlaze enviada');
+    }
+  });
+} 
 //modificar registros
 
 //eliminar registros
