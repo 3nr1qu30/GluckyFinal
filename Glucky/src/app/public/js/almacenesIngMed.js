@@ -1,6 +1,3 @@
-
-
-
 const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
@@ -74,4 +71,45 @@ function toggleNotifi2(){
 		down = false;
 	}
 }
+
+
+
+const elementos = document.querySelectorAll(".elemento");
+
+elementos.forEach((elemento) => {
+  let botonesVisibles = false;
+  elemento.addEventListener("click", () => {
+    const botones = elemento.querySelector(".botones-elemento");
+    if (botonesVisibles) {
+      botones.style.display = "none";
+      botonesVisibles = false;
+    } else {
+      botones.style.display = "flex";
+      botonesVisibles = true;
+    }
+  });
+});
+
+
+const buscar = document.getElementById("buscar");
+buscar.addEventListener("input", () => {
+  const valorBusqueda = buscar.value.toLowerCase().trim();
+  const elementos = document.querySelectorAll(".elemento");
+  elementos.forEach((elemento) => {
+    const inputs = elemento.querySelectorAll(".textoSimple");
+    let encontrado = false;
+    inputs.forEach((input) => {
+      const valorInput = input.getAttribute("value").toLowerCase();
+      if (valorInput.includes(valorBusqueda)) {
+        encontrado = true;
+      }
+    });
+    if (encontrado) {
+      elemento.style.display = "block";
+    } else {
+      elemento.style.display = "none";
+    }
+  });
+});
+
 

@@ -2164,15 +2164,15 @@ section.active .show-modal {
 
 .citas{
     width: 98%;
-    height: 110%
+    height: 110%;
     background-color: #0E4BF1;
 }
 
 
 .columna1 {
     float: left;
-    width: 32%;
-    height: 510px;
+    width: 45%;
+    height: 520px;
     background-color: #f0f0f0;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -2181,8 +2181,8 @@ section.active .show-modal {
 
   .columna2 {
     float: left;
-    width: 68%;
-    height: 510px; 
+    width: 55%;
+    height: 520px; 
     background: linear-gradient(890deg, rgb(82, 166, 231) 10%, rgb(47, 41, 228) 100%);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -2251,7 +2251,7 @@ section.active .show-modal {
   }
 
   .contenecitas{
-    height: 320px;
+    height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
     transform: translate(-5px, 0px);
@@ -2277,10 +2277,16 @@ section.active .show-modal {
     font-weight: bolder;
   }
 
+  .dosss{
+    font-size: 20px;
+    margin-top: 10px;
+    color: #777;
+  }
 
-  .izquierdaborr{
-    text-align: right;
-    margin-right: 4px;
+
+  .izquierdaborr {
+    display: flex;
+    align-items: center;
   }
 
   /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
@@ -2330,25 +2336,6 @@ section.active .show-modal {
     transition: opacity 1s;
   }
   
-  .izquierdaborr .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -2px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent rgb(255, 255, 255) transparent transparent;
-    transition: .2s;
-    transition: opacity 1s;
-  }
-  
-  .izquierdaborr:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-    transition: .2s;
-    transition: opacity 1s;
-  }
 
 .curso{
     height: 88%;
@@ -2571,4 +2558,64 @@ font-weight: 700;
 }
 .button button.send:hover{
   background: #275df1;
+}
+
+
+
+.borrarcita{
+  background-color: #ffffff;
+  border: none;
+  width: auto;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #cc0808;
+  color: white;
+  font-weight: bold;
+  padding-right: 4px;
+  padding-left: 4px;
+  height: auto;
+}
+
+.aceptarCita{
+  background-color: #ffffff;
+  border: none;
+  width: auto;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding-right: 4px;
+  padding-left: 4px;
+  height: auto;
+  background-color: rgba(17, 228, 87, 0.767);
+}
+
+
+.izquierdaborr .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -2px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent rgb(255, 255, 255) transparent transparent;
+  transition: .2s;
+  transition: opacity 1s;
+}
+
+.izquierdaborr:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transition: .2s;
+  transition: opacity 1s;
+}
+
+
+.recuadropetit{
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: -7px;
+  margin-top: 5px;
 }

@@ -15,7 +15,6 @@ Controllers.dashboardPacientes=(req,res,next)=>{
         if(solicitud.length===0){
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
-              console.log(Doctores);
               res.render('solicitudesPaciente',{datos:Doctores});
             }
             else{
@@ -33,7 +32,6 @@ Controllers.dashboardPacientes=(req,res,next)=>{
           console.log('su solicitud fue denegada');
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
-              console.log(Doctores);
               res.render('solicitudesPaciente',{datos:Doctores});
             }
             else{

@@ -2898,7 +2898,7 @@ section.active .show-modal {
     z-index: 1000;
     width: 50%;
     transition: all ease 1s;
-    display: none;
+    display: block;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
     }
 
@@ -2937,7 +2937,7 @@ section.active .show-modal {
       z-index: 1000;
       width: 50%;
       transition: all ease 1s;
-      display: none;
+      display: block;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
     }
 
@@ -3715,4 +3715,24 @@ border-radius: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
     color: black;
+  }
+
+  .normalText{
+    background-color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 5px;
+    width: 100%;
+    
+  }
+
+
+  .noback{
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+  }
+
+  .nobacks{
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(0, 0, 0);
   }

@@ -2882,91 +2882,7 @@ section.active .show-modal {
     align-items: center;
   }
   
-  .overlaycard {
-    max-height: 80%;
-    overflow: auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-    transition: all ease .5s;
-    overflow-y: auto;
-    background-color: #82aedb;
-    height: auto;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    width: 50%;
-    transition: all ease 1s;
-    display: none;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
-    }
-
-    .overlaycardDIET{
-      max-height: 80%;
-      overflow: auto;
-      border-radius: 10px;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-      transition: all ease .5s;
-      overflow-y: auto;
-      height: auto;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-      width: 50%;
-      transition: all ease 1s;
-      display: none;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
-    }
-
-
-    .overlaycardCITA{
-      max-height: 80%;
-      overflow: auto;
-      border-radius: 10px;
-      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
-      transition: all ease .5s;
-      overflow-y: auto;
-      height: auto;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1000;
-      width: 50%;
-      transition: all ease 1s;
-      display: none;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
-    }
-
-  @media (max-width: 1150px) {
-    .overlaycard{
-      width: 60%;
-    }
-
-    .overlaycardDIET{
-      width: 60%;
-    }
-
-    .overlaycardCITA{
-      width: 60%;
-    }
-  }
-
   
-  @media (max-width: 650px) {
-    .overlaycard {
-      width: 80%;
-    }
-    .overlaycardDIET{
-      width: 80%;
-    }
-    .overlaycardCITA{
-      width: 80%;
-    }
-  }
 
 
   .overlay-title {
@@ -3000,11 +2916,12 @@ section.active .show-modal {
 
   .dispTexto{
     width: 93%;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
     padding: 15px;
-    height: auto;
+    max-height: auto;
     font-size:16px;
+
 
   }
 
@@ -3327,7 +3244,7 @@ label{
 }
 
 .flexlistIngredientes{
-  height: 63%;
+  height: 50%;
   padding: 10px;
   border-radius: 10px;
   padding: 5px;
@@ -3402,7 +3319,7 @@ label{
 
 .dietas-seleccionados{
   background-color: #F3F3F3;
-  height: 160px;
+  height: 140px;
   width: 100%;
   padding: 11px;
   border: solid;
@@ -3417,20 +3334,104 @@ label{
 }
 
 
+
+.overlaycard {
+    max-height: 80%;
+    overflow: auto;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    transition: all ease .5s;
+    overflow-y: auto;
+    background-color: #82aedb;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 50%;
+    transition: all ease 1s;
+    display: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
+    }
+
+    .overlaycardDIET{
+        overflow: auto;
+        border-radius: 10px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+        transition: all ease .5s;
+        overflow-y: auto;
+        height: auto;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-95%, -50%);
+        z-index: 1000;
+        transition: all ease 1s;
+        display: block;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
+        overflow: visible; /* Nueva propiedad */
+        height: 345px;
+        margin-right: 10px;
+        width: 25%;
+
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px ;
+      }
+
+
+    .overlaycardCITA{
+      max-height: 80%;
+      overflow: auto;
+      border-radius: 10px;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      transition: all ease .5s;
+      overflow-y: auto;
+      height: auto;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-40%, -50%);
+      z-index: 1000;
+      width: 50%;
+      transition: all ease 1s;
+      display: none;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgba(51, 51, 51, 0.63) 0px 0px 0px 9999999px;
+    }
+
+
+   
+  
+
+
+
+
+
+
+
 .tratamientodiv {
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #ffffff;
-  z-index: 9999; /* Ajusta el valor según sea necesario */
-  transform: translate(110%);
-  transition: all ease 1s;
-  width: 250px;
-  height: 400px;
-  border-radius: 10px;
-  box-shadow: #91919149 0px 0px 0px 3px;
-  padding: 15px;
-}
+    position: fixed; /* Cambio de absolute a fixed */
+    top: 0;
+    right: -100%;
+    background-color: #ffffff;
+    z-index: 9999;
+    transition: all ease 1s;
+    width: 100%;
+    height: 345px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px ;
+    padding: 15px;
+    
+    
+  }
+  
+  .tratamientodiv.active {
+    right: 0;
+  }
+  
+  .tratamientodiv.active {
+    right: 0; /* Muestra el elemento */
+  }
 
 
 
@@ -3442,38 +3443,13 @@ label{
   transition: all ease 1s;
 }
 
-@media (max-width: 1200px) {
 
-  .translated{
-    transform: scale(.9) translate(-40%);
-  }
   
-}
 
-@media (max-width: 800px) {
 
-  .translated {
-    transform: scale(.7) translate(0%, -25%);
-  }
 
-  .tratamientodiv {
-   transform: translate(0, 210%);
-   width: 380px;
-   height: 200px;
-  }
 
-  .flexlistMedicamentos{
-    height: 70px;
-    overflow-y: auto;
-  }
 
-  .flexlistIngredientes{
-    height: 70px;
-    overflow-y: auto;
-  }
-  
-  
-}
 
 .time {
   display: none;
@@ -3614,7 +3590,7 @@ border-radius: 10px;
     margin-bottom: 10px;
     width: 89.2%;
     max-height: 70px;
-    overflow-y: auto;
+    overflow-y: hidden;
     font-weight: bold;
     color: rgb(255, 255, 255);
   }
@@ -3638,10 +3614,6 @@ border-radius: 10px;
     overflow-y: auto;
   }
 
-  @media (max-width: 900px) {
-    .contenido{
-    }
-  }
 
 
 
@@ -3715,4 +3687,34 @@ border-radius: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
     color: black;
+  }
+
+
+  .textoSimple {
+    border: none;
+    background-color: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+            color: rgb(0, 0, 0);
+            background-color: white;
+            padding: 5px;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            margin-bottom: 10px;
+  }
+
+
+  
+
+  @media (max-width: 99999px) {
+    overlaycardDIET{
+      width: 50%;
+    }
   }
