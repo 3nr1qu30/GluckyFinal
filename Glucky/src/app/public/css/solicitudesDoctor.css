@@ -2295,3 +2295,22 @@ section.active .show-modal {
 .acep{
   background-color: rgb(37, 101, 238);
 }
+
+
+.textoSimple {
+  border: none;
+  background-color: transparent;
+  font-size: inherit;
+  font-family: inherit;
+  text-align: right;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+                            
+.sinDisplay{
+  display: none;
+}

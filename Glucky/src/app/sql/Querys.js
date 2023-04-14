@@ -45,7 +45,7 @@ db.buscarPaciente = (CurpForm,callback)=>{
 };
 
 db.verPeticionesDoctor = (Cedula,callback)=>{
-  con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona n WHERE cedula_med  = '${Cedula} AND id_edosol = 1`, (error,peticiones)=>{
+  con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona natural join tipodiabetes n WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
       console.error('No hay solicitudes', error);
    }else{
@@ -54,6 +54,26 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
  
+ db.aceptarPeticiones = (Cedula,CurpForm,callback)=>{
+  con.query(`update pacientemedico set id_edosol=2 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,acepta)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,acepta);
+   }
+  });
+ };
+
+ db.declinarPeticiones = (Cedula,CurpForm,callback)=>{
+  con.query(`update pacientemedico set id_edosol=3 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,declina)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,declina);
+   }
+  });
+ };
+
 
 db.buscarDoctor =(CedulaForm,callback)=>{
   con.query(`SELECT * FROM medico natural join persona WHERE cedula_med = '${CedulaForm}'`,(error,fila)=>{

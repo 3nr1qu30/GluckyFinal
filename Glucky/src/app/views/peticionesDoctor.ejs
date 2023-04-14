@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/peticionesDoctor.css">
+    <link rel="stylesheet" href="/css/solicitudesDoctor.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <title>Peticiones</title> 
+    <title>Dashboard doctor</title> 
         <!--====== Favicon Icon ======-->
         <link
         rel="shortcut icon"
@@ -31,7 +30,7 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="#">
+                <li><a href="/Glucky/Doctores/Dashboard">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
@@ -51,6 +50,14 @@
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Citas</span>
                 </a></li>
+                <li><a href="#">
+                    <i class="uil uil-restaurant"></i>
+                    <span class="link-name">Alimentos</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-capsule"></i>
+                    <span class="link-name">Medicamentos</span>
+                </a></li>
             </ul>
             
             <ul class="logout-mode">
@@ -62,7 +69,7 @@
                 <li class="mode">
                     <a href="#">
                         <i class="uil uil-x"></i>
-                    <span class="link-name">Borrar cuenta</span>
+                    <span class="link-name">Ajustes de cuenta</span>
                 </a>
 
                 <div class="mode-toggle">
@@ -82,6 +89,7 @@
                 <input type="text" placeholder="Aplicación glucky para doctores" disabled>
             </div>
 
+
                 <div class="icon" onclick="toggleNotifi()">
 			        <div class="noti">17</div>
 		        </div>
@@ -91,12 +99,12 @@
                     <div class="notifi-item">
                         <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
                         <div class="text">
-                           <h4>Elias Abdurrahman</h4>
-                           <p>@lorem ipsum dolor sit amet</p>
-                        </div> 
+                            <h4>Notificaciones</h4>
+                            <p>Descripción de la notificación</p>
+                         </div> 
                     </div>
         
-                    
+                
         
                 </div>
 
@@ -108,10 +116,9 @@
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
                     <div class="text-data">
-                      <span class="name">Nombre completito jeje</span>
-                      <span class="job">Email@cum.com</span>
+                      <span class="name">Nombre completo </span>
+                      <span class="job">Email@mail.com</span>
                       <span class="job">Doctor</span>
-                      <span class="job">Dirección??</span>
                     </div>
               
                     <div class="media-buttons">
@@ -123,7 +130,7 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Privacidad</>
+                      <button class="button">Cuenta</>
                     </div>
               
                     <div class="analytics">
@@ -147,109 +154,198 @@
         </div>
 
         <div class="dash-content">
-           
-              
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-abacus"></i>
+                    <span class="text">Solicitudes de pacientes</span>
+                </div>
 
-                
-      
+                <div class="home-content">
+
+                    
+                    <div class="overview-boxes">
+                        <div class="box">
+                            <div class="right-side">
+                            <div class="box-topic">Solicitudes</div>
+                            <div class="number">2.00</div>
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                <span class="text">Solicitudes de doctor</span>
+                            </div>
+                            </div>
+                            <i class='bx bx-paper-plane plane plane'></i>
+                        </div>
+                        <div class="box imgg">
+                            <div class="right-side">
+                            <div class="tituloPage">
+                                Acciones
+                            </div>
+                            <br>
+                            <div class="box-topic">Solicitudes</div>
+                           
+                            <div class="indicator">
+                                <i class='bx bx-up-arrow-alt'></i>
+                                <span class="text">Pedes ver tus solicitudes 
+
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="box imgg">
+                            <div class="right-side">
+                            <div class="tituloPage declin">
+                                Declinar
+                            </div>
+                            <br>
+                            <div class="box-topic">Solicitudes</div>
+                           
+                            <div class="indicator">
+                                <i class='bx bx-arrow-to-bottom'></i>
+                                <span class="text">Pedes declinar tus solicitudes 
+
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="box imgg">
+                            <div class="right-side">
+                            <div class="tituloPage acep">
+                                Aceptar
+                            </div>
+                            <br>
+                            <div class="box-topic">Solicitudes</div>
+                           
+                            <div class="indicator">
+                                <i class='bx bx-arrow-to-right'></i>
+                                <span class="text">Pedes aceptar tus solicitudes 
+
+                                </span>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                </div>
+            </div>
+
+            <br>
 
             
                 <div class="title" id="pacientesjeje">
-                    <i class="uil uil-eye" ></i>
-                    <span class="text">Lista de peticiones</span>
+                    <i class="uil uil-book" ></i>
+                    <span class="text">Futuros pacientes</span>
                 </div>
 
-            
-
+              
                     <div class="select-menu">
                         <div class="select-btn">
-                            <span class="sBtn-text">Filtros de búsqueda de peticiones...</span>
+                            <span class="sBtn-text">Filtros de búsqueda...</span>
                             <i class="bx bx-chevron-down"></i>
                         </div>
                     
                         <ul class="options">
                             <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput" onkeyup="myFunction()" placeholder="Busca alguna petición por numeración." title="Escribe" name="search">
-                                <div class="span" style="background-color: #3de8ff; color:white;">
-                                    <i class="fa fa-warning"></i>
+                                <input type="search" class="search-bar" id="myInput" onkeyup="myFunction()" placeholder="Busca algún paciente por nombre." title="Escribe" name="search">
+                                <div class="span2 ico1">
+                                    <i class="fa fa-search"></i>
                                 </div>
                             </div>   
                             <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput2" onkeyup="myFunction2()" placeholder="Busca alguna petición por nombre." title="Escribe" name="search">
-                                <div class="span2" style="background-color: #ff3d3d; color:white;"> 
-                                    <i class="fa fa-address-book"></i>
-                                </div>
-                            </div>   
-                            <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput3" onkeyup="myFunction3()" placeholder="Busca alguna petición por tipo de diabetes." title="Escribe" name="search">
-                                <div class="span2" style="background-color: #4a3dff;">
+                                <input type="search" class="search-bar" id="myInput3" onkeyup="myFunction3()" placeholder="Busca por tipo de diabetes." title="Escribe" name="search">
+                                <div class="span2 ico3" >
                                     <i class="fa fa-arrow-up"></i>
                                 </div>
                             </div>
                             <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput4" onkeyup="myFunction4()" placeholder="Busca alguna petición por sexo." title="Escribe" name="search">
-                                <div class="span2" style="background-color: #8B3DFF;">
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </div>
-                            </div>
-                            <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput5" onkeyup="myFunction5()" placeholder="Busca alguna petición por CURP." title="Escribe" name="search">
-                                <div class="span2" style="background-color: #43ff3d; color:white;">
+                                <input type="search" class="search-bar" id="myInput4" onkeyup="myFunction4()" placeholder="Busca por CURP." title="Escribe" name="search">
+                                <div class="span2 ico4" >
                                     <i class="fa fa-archive"></i>
                                 </div>
                             </div>
                             <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput6" onkeyup="myFunction6()" placeholder="Busca alguna petición por E-mail." title="Escribe" name="search">
-                                <div class="span2" style="background-color: #ffec3d; color:white;">
+                                <input type="search" class="search-bar" id="myInput5" onkeyup="myFunction5()" placeholder="Busca por E-mail." title="Escribe" name="search">
+                                <div class="span2 ico5" >
                                     <i class="fa fa-at"></i>
-                                </div>
-                            </div>
-                            <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput7" onkeyup="myFunction7()" placeholder="Busca alguna petición por teléfono." title="Escribe" name="search">
-                                <div class="span2" style="background-color: #ff943d; color:white;">
-                                    <i class="fa fa-phone"></i>
                                 </div>
                             </div>
                         </ul>
                     </div>
 
                 <div class="limite" id="style-2">
+
+                    <!--INICIO DE LA TABLA DE PACIENTES-->
                     <div class="tablacentrada">
                         <div class="tabla">
                             <table id="style-2">
-                                      
-                            <tr>
-                                <td scope="row" data-label="Numeración"><b>1</b></td>
-                                <td scope="row" data-label="Nombre"><b> Robertinilho Gonzalez Gonzalez</b></td>
-                                <td data-label="Tipo-diabetes"><div class="Gestacional">Gestacional</div></td>
-                                <td data-label="Sexo">Masculino</td>
-                                <td data-label="CURP">CULONES1288HDA6</td>
-                                <td data-label="E-MAIL">robert@gmail.cum</td>
-                                <td data-label="teléfono">55555555555</td>
-                                <td data-label="Aceptar o eliminar">
-                                    <div class="botones">
-                                     <div class="botCancel">Eliminar</div>
-                                     <div class="botAcept">Aceptar</div>
-                                    </div>
-                                </td>
+                     <% for(var i=0;i<datos.length;i++){%>
+
+                            <tr class="header"  id="style-2">
+                                <th scope="col">Nombre</th>
+                                    <th scope="col">Tipo-diabetes</th>
+                                    <th scope="col">CURP</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Acciones</th>
+                    
                             </tr>
+
+
+                           
+
+                     
+                            <tr>
+                                <!-- INICIO DEL FORM PARA ACEPTAR-->
+                                <form action="/Glucky/Doctores/Peticiones" method="post">
+                                    <td scope="row" data-label="Nombre"><b><%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%></b></td>
+                                    <td data-label="Tipo-diabetes"><div class="Tipo-1"><%=datos[i].nom_tipdiabts%></div></td>
+                                    <td data-label="CURP"><input type="text" name="CurpForm" value="<%=datos[i].curp_pacien%>" class="textoSimple" readonly> </td>
+                                    <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
+                                    <td data-label="Aceptar o declinar solicitud">
+                                        <div class="AccionesBots">
+                                            <button type="submit" class="AceptarBot">Aceptar</button>
+                                        </form>
+                                <!-- FIN DEL FORM PARA ACEPTAR-->
+                                <!-- INICIO DEL FORM PARA DECLINAR-->
+                                        <form action="/Glucky/Doctores/Peticion" method="post">
+                                            <!-- Datos de tipo hidden que ocupen para declinar-->
+                                            <input type="hidden" name="CurpForm" value="<%=datos[i].curp_pacien%>">
+                                            <!-- Datos de tipo hidden que ocupen para declinar-->
+                                            <button type="submit" class="DeclinarBot">Declinar</button>
+                                        </div>
+                                    </td>
+                                </form>
+                                <!-- FIN DEL FORM PARA DECLINAR-->
+                            </tr>
+
+                            <%}%>
+
+                            
                             </table>
-                        </div>
-                    </div>
-                </div>
+
+                            <div class="void">
+                                
+                            </div>
 
 
-            
-            
+                    <!--FIN DE LA TABLA DE PACIENTES-->
+                   
+
+
+
+                    
+                
+         
+
         </div>
-   
+    </div>
 </div>
 
 
-  
+  <br>
 
     <script src="js/dashboardDoctor.js"></script>
-       
+    
     
 </body>
 </html>
