@@ -1,4 +1,3 @@
-<%if(typeof cedula !== "undefined"){%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,15 +42,21 @@
                     <i class="uil uil-chat"></i>
                     <span class="link-name">Chats</span>
                 </a></li>
-
-                <li><a href="/Glucky/Doctores/Peticiones">
+                <li><a href="#">
                     <i class="uil uil-plus-circle"></i>
                     <span class="link-name">Peticiones</span>
                 </a></li>
-
                 <li><a href="#">
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Citas</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-restaurant"></i>
+                    <span class="link-name">Alimentos</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-capsule"></i>
+                    <span class="link-name">Medicamentos</span>
                 </a></li>
             </ul>
             
@@ -91,6 +96,7 @@
 
                 <div class="notifi-box" id="box">
                     <h2>Notificaciones: <span>17</span></h2>
+                    
                     <div class="notifi-item">
                         <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
                         <div class="text">
@@ -105,15 +111,14 @@
 
             <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
 
-            <div class="notifi-box2" id="box2" style="height: auto; opacity: 1;">
+            <div class="notifi-box2" id="box2">
                 <div class="profile-card">
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
                     <div class="text-data">
-                      <span class="name"><%=nombre%></span>
-                      <span class="job"><%=cedula%></span>
-                      <span class="job"><%=correo%></span>
+                      <span class="name">Nombre completo </span>
+                      <span class="job">Email@mail.com</span>
                       <span class="job">Doctor</span>
                     </div>
               
@@ -292,60 +297,59 @@
                     
                             </tr>
                             <tr>
+                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
+                                <form action="">
                                 <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM </b></td>
-                                <td data-label="Estado"><div class="estadouno">Regular</div></td>
+                                <td data-label="Estado"><div class="estadodos">Medio</div></td>
                                 <td data-label="Tipo-diabetes"><div class="Tipo-1">Tipo-1</div></td>
-                                <td data-label="CURP">CLAVE CURP</td>
+                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
                                 <td data-label="E-MAIL">email@mail.com</td>
                                 <td data-label="Ver detalles paciente">
-                                    <div class="botisimo">
-                                        <div class="botver">
-                                            <button class="botonver" style="font-size:24px"> <i class="bx bxs-circle"></i></button>
-                                            
-                                        </div>
-                                    </div>
+                                        <button type="submit" class="btndetalles">Ver detalles</button>
+                                </form>
+                                 <!--FIN DE REDIRECCIÓN A DETALLES-->
                                 </td>
                             </tr>
                             <tr>
+                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
+                                <form action="">
                                 <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM</b></td>
                                 <td data-label="Estado"><div class="estadodos">Medio</div></td>
                                 <td data-label="Tipo-diabetes"><div class="Tipo-2">Tipo-2</div></td>
-                                <td data-label="CURP">CLAVE CURP</td>
+                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
                                 <td data-label="E-MAIL">email@mail.com</td>
                                 <td data-label="Detalles">
-                                    <div class="botisimo">
-                                        <div class="botver">
-                                            <button class="botonver" style="font-size:24px"> <i class="bx bxs-circle"></i></button>
-                                        </div>
-                                    </div>
+                                        <button type="submit" class="btndetalles">Ver detalles</button>
+                                </form>
+                                <!--FIN DE REDIRECCIÓN A DETALLES-->
                                 </td>
                             </tr>
                             <tr>
+                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
+                                <form action="">
                                 <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM</b></td>
                                 <td data-label="Estado"><div class="estadotres">Mal</div></td>
                                 <td data-label="Tipo-diabetes"><div class="Gestacional">Gestacional</div></td>
-                                <td data-label="CURP">CLAVE CURP</td>
+                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
                                 <td data-label="E-MAIL">email@mail.com</td>
                                 <td data-label="Detalles">
-                                    <div class="botisimo">
-                                        <div class="botver">
-                                            <button class="botonver" style="font-size:24px"> <i class="bx bxs-circle"></i></button>
-                                        </div>
-                                    </div>
+                                        <button type="submit" class="btndetalles">Ver detalles</button>
+                                </form>
+                                <!--FIN DE REDIRECCIÓN A DETALLES-->
                                 </td>
                             </tr>
                             <tr>
+                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
+                                <form action="">
                                 <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM</b></td>
                                 <td data-label="Estado"><div class="estadocero">Bien</div></td>
                                 <td data-label="Tipo-diabetes"><div class="Gestacional">Gestacional</div></td>
-                                <td data-label="CURP">CLAVE CURP</td>
+                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
                                 <td data-label="E-MAIL">email@mail.com</td>
                                 <td data-label="Detalles">
-                                    <div class="botisimo">
-                                        <div class="botver">
-                                            <button class="botonver" style="font-size:24px"> <i class="bx bxs-circle"></i></button>
-                                        </div>
-                                    </div>
+                                        <button type="submit" class="btndetalles">Ver detalles</button>
+                                </form>    
+                                <!--FIN DE REDIRECCIÓN A DETALLES-->
                                 </td>
                             </tr>
                             </table>
@@ -403,21 +407,8 @@
 
   <br>
 
-    <script src="js/dashboardDoctor.js"></script>
+    <script src="/js/dashboardDoctor.js"></script>
     
     
 </body>
 </html>
-<%}else{%>
-    <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Error - Debes Iniciar Sesión</title>
-    </head>
-    <body>
-      <h1>Error - Debes Iniciar Sesión</h1>
-      <p>Lo sentimos, no puedes acceder a esta página sin iniciar sesión primero.</p>
-      <a href="/Glucky/IniciodeSesion">Iniciar Sesión</a>
-    </body>
-  </html>
-  <%}%>
