@@ -1,3 +1,4 @@
+<%if(typeof cedula !== "undefined"){%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +43,7 @@
                     <i class="uil uil-chat"></i>
                     <span class="link-name">Chats</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="/Glucky/Doctores/Peticiones">
                     <i class="uil uil-plus-circle"></i>
                     <span class="link-name">Peticiones</span>
                 </a></li>
@@ -61,7 +62,7 @@
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="/Glucky/IniciodeSesion">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Salir</span>
                 </a></li>
@@ -117,8 +118,9 @@
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
                     <div class="text-data">
-                      <span class="name">Nombre completo </span>
-                      <span class="job">Email@mail.com</span>
+                      <span class="name"><%=nombre%></span>
+                      <span class="job"><%=cedula%></span>
+                      <span class="job"><%=correo%></span>
                       <span class="job">Doctor</span>
                     </div>
               
@@ -363,44 +365,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-                    
-                
-         
-<br>
-
-            <div class="title">
-                <i class="uil uil-clock-three"></i>
-                <span class="text">Chats</span>
-            </div>
-
-    <div class="home-content">
-        <div class="sales-boxes">
-            <div class="top-sales box">
-                <div class="title">Mensajes recientes</div>
-                <ul class="top-sales-details">
-                <li>
-                  <a href="#">
-                    <img src="https://acortar.link/IiApJj" alt="">
-                    <span class="product">Nombre ApellidoP ApellidoM</span>
-                  </a>
-                  <span class="price">Mensaje en cuestión</span>
-                </li>
-                <li>
-                    <a href="#">
-                      <img src="https://acortar.link/IiApJj" alt="">
-                      <span class="product">Nombre ApellidoP ApellidoM</span>
-                    </a>
-                    <span class="price">Mensaje en cuestión </span>
-                  </li>
-                
-                </ul>
-              </div>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -412,3 +376,16 @@
     
 </body>
 </html>
+<%}else{%>
+    <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Error - Debes Iniciar Sesión</title>
+    </head>
+    <body>
+      <h1>Error - Debes Iniciar Sesión</h1>
+      <p>Lo sentimos, no puedes acceder a esta página sin iniciar sesión primero.</p>
+      <a href="/Glucky/IniciodeSesion">Iniciar Sesión</a>
+    </body>
+  </html>
+  <%}%>

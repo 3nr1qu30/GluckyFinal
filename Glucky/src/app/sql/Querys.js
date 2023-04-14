@@ -84,6 +84,18 @@ db.desplegarDoctores=(callback)=>{
   });
 };
 
+db.buscarSolicitud=(curp,callback)=>{
+  con.query(`SELECT * FROM pacientemedico WHERE curp_pacien = '${curp}'`,(error,solicitud)=>{
+    if(error){
+      console.error('Error al buscar la solicitud', error);
+      callback(error,null);
+    }
+    else{
+      callback(null,solicitud);
+    }
+  });
+};
+
 //insertar registros a la base
 
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
@@ -127,8 +139,19 @@ db.enlazarDoctoresPacientes = (Curp,CedulaForm,callback)=>{
       callback(null,'Solicitud de enlaze enviada');
     }
   });
-} 
+}; 
 //modificar registros
-
+db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
+  con.query(`UPDATE pacientemedico SET cedula_med='${Cedula}', id_edosol=1 WHERE curp_pacien ='${Curp}'`,(error,actualizacion)=>{
+    if(error){
+      console.log('Error al actualizar la petición: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('actualizacion realizada');
+      callback(null,actualizacion);
+    }
+  });
+}
 //eliminar registros
 module.exports= db;
