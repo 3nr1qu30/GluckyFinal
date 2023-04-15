@@ -2,6 +2,7 @@ const Controllers={};
 const querys = require('../sql/Querys');
 const encriptar = require('../helpers/EncriptarContraseñas');
 const session = require('express-session');
+const doctorNoRegistrado = require("../public/js/plantillaAlertas");
 
 //rutas get
 Controllers.index = (req, res, next) => {
@@ -83,6 +84,8 @@ Controllers.registroDocPost=(req,res,next)=>{
     });
 };
 
+let doctorNoExiste = false;
+
 Controllers.iniciosesionPost=(req,res,next)=>{
   const{UserForm,PassForm} = req.body;
   if(UserForm.length===18){
@@ -114,6 +117,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
       }
       else if(doctor==='no existe'){
         console.log('El doctor no esta registrado')
+        doctorNoExiste = true;
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){
@@ -127,4 +131,6 @@ Controllers.iniciosesionPost=(req,res,next)=>{
   }
 };
 
+
+module.exports = {doctorNoExiste};
 module.exports = Controllers;
