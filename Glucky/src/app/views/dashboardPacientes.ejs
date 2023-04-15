@@ -235,7 +235,7 @@
                         <div id="glucosa-modal" class="modal">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h2>Ingresa el valor de glucosa</h2>
+                              <h2>Ingresa el valor de glucosa y presión</h2>
                              
                               <span class="close">&times;</span>
                             </div>
@@ -245,12 +245,16 @@
                             <div class="modal-body">
                               <!--INICIO DEL FORM DE GLUCOSA-->
                               <form class="glucosaNormalForm">
-                                <label for="glucosaNormal">Ingresa el nivel de glucosa:</label>
+                                <label for="glucosaNormal">Ingresa el nivel de glucosa y presión</label>
                                 <input class="Glucnor" type="number" id="glucosaNormal" name="glucosaNormal" placeholder="Ingresa el valor aquí...">
                                 <select class="btn-submit tipode" id="medicion" name="medicion">
                                   <option value="ayunas">Medición en ayunas</option>
                                   <option value="normal">Medición normal</option>
                                 </select>
+                                ingresa el valor de presión
+                              <input class="Glucnor" type="number" id="glucosaNormal" name="glucosaNormal" placeholder="Sistolica..">
+                              <input class="Glucnor" type="number" id="glucosaNormal" name="glucosaNormal" placeholder="Diastolica..">
+
                                 <button type="submit" class="btn-submit">Enviar</button>
                               </form>
                                <!--FIN DEL FORM DE GLUCOSA-->
