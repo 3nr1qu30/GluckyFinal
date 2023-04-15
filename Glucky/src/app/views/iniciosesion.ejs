@@ -111,7 +111,32 @@
               <div class="ud-login-logo">
                 <img src="https://i.ibb.co/kQt7vqD/730-sin-t-tulo-20221215201908.png" alt="logo" />
               </div>
-              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form">
+              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
+                <div class="ud-form-group" id="grupo__cedula">
+                  <input
+                    type="text"
+                    placeholder="Usuario (Cédula o CURP)"
+                    name="UserForm" 
+                  />
+                  <p class="form_input_error1"> La cédula debe tener 8 dígitos </p>
+                  <p class="form_input_error2"> El CURP debe tener 18 carácteres </p>
+                </div>
+                <div class="ud-form-group" id="grupo__password">
+                  <input
+                  type="password"
+                  name="PassForm"
+                  placeholder="*********"
+                  />
+                  <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
+                </div>
+                <div class="ud-form-group" id="grupo_enviar">
+                  <button type="submit" class="ud-main-btn w-100">Inicia sesión</button>
+                  <p class="form_input_error4"> Por favor, rellene bien los datos</p>
+                </div>
+              </form>
+
+              <!--
+                <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
                 <div class="ud-form-group">
                   <input
                     type="text"
@@ -125,7 +150,6 @@
                   <input
                     type="password"
                     placeholder="Ingresa tu contraseña"
-                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
                     name="PassForm" 
                     maxlength="30"
                     required
@@ -135,6 +159,7 @@
                   <button type="submit" class="ud-main-btn w-100">Inicia sesión</button>
                 </div>
               </form>
+              -->
 
               <a class="forget-pass" href="javascript:void(0)">
                 Registro
@@ -284,6 +309,7 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/wow.min.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/loginValidacion.js"></script>
     <script src="/js/plantillaAlertas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
