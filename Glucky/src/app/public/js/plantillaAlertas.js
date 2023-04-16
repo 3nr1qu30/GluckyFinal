@@ -1,4 +1,4 @@
-const { doctorNoExiste, Controllers } = require('../../controllers/PrincipalControllers');
+const { doctorNoExiste} = require('../../controllers/PrincipalControllers');
 const Swal = require('sweetalert2');
 
 if (doctorNoExiste) {

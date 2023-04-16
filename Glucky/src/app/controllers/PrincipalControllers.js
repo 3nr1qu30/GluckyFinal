@@ -84,7 +84,7 @@ Controllers.registroDocPost=(req,res,next)=>{
     });
 };
 
-let doctorNoExiste = false;
+var doctorNoExiste = false;
 
 Controllers.iniciosesionPost=(req,res,next)=>{
   const{UserForm,PassForm} = req.body;
