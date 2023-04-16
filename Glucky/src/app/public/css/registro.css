@@ -292,3 +292,13 @@ input[type=number] { -moz-appearance:textfield; }
 .ud-page-banner{
   background: linear-gradient(890deg, rgb(90, 169, 233) 10%, rgb(19, 12, 183) 100%);
 }
+
+.form_input_error1, .form_input_error2, .form_input_error3, .form_input_error4{
+  display: none;
+}
+
+.form_input_error1-activo, .form_input_error2-activo, .form_input_error3-activo, .form_input_error4-activo{
+  color: red;
+  display: block;
+}
+

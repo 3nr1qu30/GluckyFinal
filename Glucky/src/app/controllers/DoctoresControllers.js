@@ -26,7 +26,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const{CurpForm} = req.body;
     querys.aceptarPeticiones(Cedula,CurpForm,(error,cambio)=>{
       if(cambio){
-        console.log('pues va');
+        console.log('Petición aceptada');
       }
       else{
         console.log(error);
@@ -39,7 +39,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const{CurpForm} = req.body;
     querys.declinarPeticiones(Cedula,CurpForm,(error,cambio)=>{
       if(cambio){
-        console.log('pues va');
+        console.log('Petición declinada');
       }
       else{
         console.log(error);

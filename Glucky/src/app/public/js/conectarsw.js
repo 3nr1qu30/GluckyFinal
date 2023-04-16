@@ -1,1 +1,1 @@
-navigator.serviceWorker.register('/Glucky/src/app/sw.js')
+navigator.serviceWorker.register('/js/sw.js')

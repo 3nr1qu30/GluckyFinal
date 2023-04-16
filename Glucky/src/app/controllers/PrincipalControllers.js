@@ -2,6 +2,7 @@ const Controllers={};
 const querys = require('../sql/Querys');
 const encriptar = require('../helpers/EncriptarContraseñas');
 const session = require('express-session');
+const Swal = require('sweetalert2');
 
 //rutas get
 Controllers.index = (req, res, next) => {
@@ -83,6 +84,7 @@ Controllers.registroDocPost=(req,res,next)=>{
     });
 };
 
+
 Controllers.iniciosesionPost=(req,res,next)=>{
   const{UserForm,PassForm} = req.body;
   if(UserForm.length===18){
@@ -91,13 +93,16 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(paciente==='no existe'){
-        console.log('El paciente no esta registrado');
+        let error ='El paciente no esta registrado';
+        console.log(error);
+        res.render('iniciosesion',{error});
       }
       else if(paciente){
         if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){
           req.session.curp=paciente[0].curp_pacien;
           req.session.nombre=`${paciente[0].nom_pers} ${paciente[0].apellidos_pers}`;
           req.session.correo=paciente[0].email_pers;
+          req.session.tipodia=paciente[0].nom_tipdiabts;
           res.redirect('/Glucky/Pacientes/Dashboard');
         }
         else{
@@ -112,7 +117,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(doctor==='no existe'){
-        console.log('El doctor no esta registrado')
+        let docNoExiste ='El doctor no esta registrado';
+        console.log(docNoExiste);
+        res.render('iniciosesion',{docNoExiste});
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){

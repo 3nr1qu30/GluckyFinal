@@ -225,4 +225,288 @@ let circle = document.querySelector(".color-option");
 
 
 
-                
+      const listamedicamentos = document.querySelector('#listamedicamentos');
+      const listaSeleccionados = document.querySelector('#medicamentos-seleccionados');
+      const searchInput = document.querySelector('#search');
+      const times = document.querySelectorAll('#tiempo');
+      
+      listamedicamentos.addEventListener('change', (event) => {
+        const checkbox = event.target;
+        const time = checkbox.parentNode.querySelector('input[type="time"]');
+      
+        if (checkbox.checked) {
+          const span = document.createElement('span');
+          span.innerText = checkbox.value + " ";
+          span.classList.add('seleccionadodos');
+          listaSeleccionados.appendChild(span);
+      
+          // Mostrar el input de tipo time
+          time.style.display = 'inline-block';
+          time.disabled = false; // Desbloquear el input
+        } else {
+          const spans = listaSeleccionados.getElementsByTagName('span');
+          for (let i = 0; i < spans.length; i++) {
+            if (spans[i].innerText.trim() === checkbox.value) {
+              listaSeleccionados.removeChild(spans[i]);
+              break;
+            }
+          }
+      
+          // Ocultar el input de tipo time
+          time.style.display = 'none';
+          time.disabled = true; // Bloquear el input
+        }
+      });
+      
+      
+      searchInput.addEventListener('input', () => {
+        const searchText = searchInput.value.toLowerCase();
+        listamedicamentos.querySelectorAll('.checkbox').forEach((checkbox) => {
+          checkbox.style.display = checkbox.querySelector('label').innerText.toLowerCase().includes(searchText) ? 'block' : 'none';
+        });
+      });
+
+
+
+
+      const listadietas = document.querySelector('#listadietas');
+      const listaSeleccionadosdietas = document.querySelector('#dietas-seleccionados');
+      const searchInputdietas = document.querySelector('#searchdietas');
+      
+      listadietas.addEventListener('change', (event) => {
+        const checkbox = event.target;
+        const descrip = checkbox.parentNode.querySelector('input[type="text"]');
+      
+        if (checkbox.checked) {
+          const span = document.createElement('span');
+          span.innerText = checkbox.value + " ";
+          span.classList.add('seleccionado');
+          listaSeleccionadosdietas.appendChild(span);
+      
+          // Mostrar el input de tipo descrip
+          descrip.style.display = 'inline-block';
+          descrip.disabled = false; // Desbloquear el input
+        } else {
+          const spans = listaSeleccionadosdietas.getElementsByTagName('span');
+          for (let i = 0; i < spans.length; i++) {
+            if (spans[i].innerText.trim() === checkbox.value) {
+              listaSeleccionadosdietas.removeChild(spans[i]);
+              break;
+            }
+          }
+      
+          // Ocultar el input de tipo descrip
+          descrip.style.display = 'none';
+          descrip.disabled = true; // Bloquear el input
+        }
+      });
+      
+      
+      searchInputdietas.addEventListener('input', () => {
+        const searchText =  searchInputdietas.value.toLowerCase();
+        listadietas.querySelectorAll('.checkbox').forEach((checkbox) => {
+          checkbox.style.display = checkbox.querySelector('label').innerText.toLowerCase().includes(searchText) ? 'block' : 'none';
+        });
+      });
+
+
+
+
+
+
+      var modal = document.getElementById("myModal");
+      var modal2 = document.getElementById("myModal2");
+      var modal3 = document.getElementById("myModal3");
+      
+      
+      var btn = document.getElementById("myBtn");
+      var btn2 = document.getElementById("myBtn2");
+      var btn3 = document.getElementById("myBtn3");
+      
+      var span = document.getElementsByClassName("cancel")[0];
+      var span2 = document.getElementsByClassName("cancel2")[0];
+      var span3 = document.getElementsByClassName("cancel3")[0];
+      
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      btn2.onclick = function() {
+        modal2.style.display = "block";
+      }
+      btn3.onclick = function() {
+        modal3.style.display = "block";
+      }
+      
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      span2.onclick = function() {
+        modal2.style.display = "none";
+      }
+      span3.onclick = function() {
+        modal3.style.display = "none";
+      }
+      
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+      }
+      }
+      
+      window.onclick = function(event) {
+        if (event.target == modal2) {
+          modal2.style.display = "none";
+      }
+      
+      }
+      window.onclick = function(event) {
+        if (event.target == modal3) {
+          modal3.style.display = "none";
+      }
+      }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // Obtener todas las cards
+      const cards = document.querySelectorAll('.card');
+        
+      // Obtener el overlay de tratamientos
+      const overlayTRATAM = document.getElementById('overcardTRATAM');
+
+      // Obtener el overlay de dietas
+      const overcardDIET = document.getElementById('overcardDIET');
+
+      // Obtener el overlat de citas
+      const overcardCITA = document.getElementById('overcardCITA');
+      
+      
+      // Agregar evento de clic a cada card
+      cards.forEach(card => {
+        card.addEventListener('click', () => {
+          // Obtener los elementos h4 y h6 dentro de la card clickeada
+          const titulo = card.querySelector('h4').textContent;
+          const fecha = card.querySelector('h6').textContent;
+          const detalles = card.querySelector('p').textContent;
+          const consultorio = document.getElementById('consultorio');
+           // Obtener la clase de la card clickeada
+           const clase = card.classList[1];
+           // Obtener el titulo
+          const overcardTRATAM = document.getElementById('overcardTRATAM');
+      
+           // Mostrar la información en el overlay
+           const overlaycard = document.getElementById('overlaycard');
+          if (clase === 'amarillosC') {
+            overcardTRATAM.classList.add('amarillosC');
+            document.getElementById("tituloTratamiento").innerHTML = titulo;
+            document.getElementById("contenidoTratamiento").innerHTML = detalles;
+            document.getElementById("fechaTratamiento").innerHTML = fecha;
+
+            overcardTRATAM.classList.add(clase);
+            // Mostrar el overlay
+            overlayTRATAM.style.display = 'block';
+
+            
+
+          // Obtener el botón de cerrar overlay
+            const cerrarOverlay = document.querySelector('.overlay-close');
+            
+            // Agregar evento de clic al botón de cerrar overlay
+            cerrarOverlay.addEventListener('click', () => {
+              // Ocultar el overlay
+              const overlayTRATAM = document.querySelector('.overlaycard');
+              overlayTRATAM.style.display = 'none';
+            
+              // Remover la clase de overcardcolor
+              const overcardTRATAM = document.getElementById('overcardTRATAM');
+              const clase = overcardTRATAM.classList[1];
+              overcardTRATAM.classList.remove(clase);
+            });
+            
+            // Agregar evento de clic al documento
+            document.addEventListener('mousedown', (event) => {
+              // Verificar si el clic fue fuera del overlay
+              if (event.target !== overlayTRATAM && !overlayTRATAM.contains(event.target)) {
+                // Ocultar el overlay
+                overlayTRATAM.style.display = 'none';
+            
+                // Remover la clase de overcardcolor
+                const overcardTRATAM = document.getElementById('overcardTRATAM');
+                const clase = overcardTRATAM.classList[1];
+                overcardTRATAM.classList.remove(clase);
+              }
+            });
+
+            
+          } else if (clase === 'verdesC'){
+
+            document.getElementById("tituloDiet").innerHTML = titulo;
+            document.getElementById("contenidoDiet").innerHTML = detalles;
+            document.getElementById("fechaDiet").innerHTML = fecha;
+
+            // Mostrar el overlay
+            overcardDIET.style.display = 'block';
+
+            
+
+          // Obtener el botón de cerrar overlay
+            const cerrarOverlay = document.getElementById("overlay-closeDIet")
+            
+            // Agregar evento de clic al botón de cerrar overlay
+            cerrarOverlay.addEventListener('click', () => {
+              // Ocultar el overlay
+              const overlayDIET = document.querySelector('.overlaycardDIET');
+              overlayDIET.style.display = 'none';
+            
+              // Remover la clase de overcardcolor
+              const overcardDIET = document.getElementById('overcardDIET');
+            });
+          
+
+          } else if (clase == 'azulesC') {
+            document.getElementById("tituloCITA").innerHTML = titulo;
+            document.getElementById("contenidoCITA").innerHTML = detalles;
+            document.getElementById("fechaCITA").innerHTML = fecha;
+
+            // Mostrar el overlay
+            overcardCITA.style.display = 'block';
+
+            
+
+          // Obtener el botón de cerrar overlay
+            const cerrarOverlays = document.getElementById("overlay-closeCITA")
+            
+            // Agregar evento de clic al botón de cerrar overlay
+            cerrarOverlays.addEventListener('click', () => {
+              // Ocultar el overlay
+              const overlayCITA = document.querySelector('.overlaycardCITA');
+              overlayCITA.style.display = 'none';
+            
+              // Remover la clase de overcardcolor
+              const overcardCITA = document.getElementById('overcardCITA');
+            });
+
+
+          }
+
+          
+          
+        });
+      });
+
+    
+
+
+      
+     
