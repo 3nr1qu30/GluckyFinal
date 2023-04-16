@@ -118,6 +118,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
       else if(doctor==='no existe'){
         console.log('El doctor no esta registrado')
         doctorNoExiste = true;
+        //variable de tipo y mensaje 
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){
@@ -130,7 +131,6 @@ Controllers.iniciosesionPost=(req,res,next)=>{
     });
   }
 };
-
 
 module.exports = {doctorNoExiste};
 module.exports = Controllers;
