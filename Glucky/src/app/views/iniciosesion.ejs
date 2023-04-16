@@ -102,9 +102,12 @@
       </div>
     </section>
     <!-- ====== Banner End ====== -->
-    <%if (typeof error !== "undefined"){%>
+
+  
+    <!-- <%if (typeof error !== "undefined"){%>
       <div class="alert alert-danger"><%= error %></div>
-      <%}%>
+      <%}%> -->
+
     <!-- ====== Login Start ====== -->
     <section class="ud-login">
       <div class="container">
@@ -133,10 +136,11 @@
                   <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                 </div>
                 <div class="ud-form-group" id="grupo_enviar">
-                  <button type="submit" class="ud-main-btn w-100">Inicia sesión</button>
+                  <button type="submit" class="ud-main-btn w-100" onclick="rellenoDatos(), verificarDoctor()">Inicia sesión</button>
                   <p class="form_input_error4"> Por favor, rellene bien los datos</p>
-                </div>
+                    </div>
               </form>
+              <script src="/js/plantillaAlertas.js"></script>
               <script src="/js/loginValidacion.js"></script>
               <a class="forget-pass" href="javascript:void(0)">
                 Registro
@@ -286,7 +290,15 @@
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/wow.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/plantillaAlertas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <%
+    if (typeof docNoExiste !== "undefined"){
+      docNoExiste = "undefined"
+      %>
+      <script>
+        verificarDoctor()
+      </script>
+      <% } else{
+      }%>
   </body>
 </html>

@@ -84,7 +84,6 @@ Controllers.registroDocPost=(req,res,next)=>{
     });
 };
 
-var doctorNoExiste = false;
 
 Controllers.iniciosesionPost=(req,res,next)=>{
   const{UserForm,PassForm} = req.body;
@@ -94,7 +93,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(paciente==='no existe'){
-        console.log('El paciente no esta registrado');
+        let error ='El paciente no esta registrado';
+        console.log(error);
+        res.render('iniciosesion',{error});
       }
       else if(paciente){
         if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){
@@ -116,9 +117,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(doctor==='no existe'){
-        let error ='El doctor no esta registrado';
-        console.log(error);
-        res.render('iniciosesion',{error});
+        let docNoExiste ='El doctor no esta registrado';
+        console.log(docNoExiste);
+        res.render('iniciosesion',{docNoExiste});
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){
@@ -132,5 +133,4 @@ Controllers.iniciosesionPost=(req,res,next)=>{
   }
 };
 
-module.exports = {doctorNoExiste};
 module.exports = Controllers;

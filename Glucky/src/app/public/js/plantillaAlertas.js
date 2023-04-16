@@ -1,10 +1,18 @@
-const { doctorNoExiste} = require('../../controllers/PrincipalControllers');
-const Swal = require('sweetalert2');
-
-if (doctorNoExiste) {
+function rellenoDatos() {
   Swal.fire({
     icon: 'error',
     title: 'Error',
-    text: 'El doctor no está registrado',
+    text: 'Por favor, rellene bien los datos',
   });
+}
+
+function verificarDoctor(e) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'El doctor no existe',
+  });
+  setTimeout(function(e){
+    document.getElementById('formulario').submit();
+  }, 10000)
 }
