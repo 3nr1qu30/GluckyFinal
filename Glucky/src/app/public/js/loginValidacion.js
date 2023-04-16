@@ -78,10 +78,10 @@ inputs.forEach((input) => {
 })
 
 formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
     if (campos.UserForm && campos.PassForm) {
-        
+        console.log(`Esa madre q we`);
     } else {
+        e.preventDefault();
         document.querySelector('#grupo_enviar .form_input_error4').classList.add('form_input_error4-activo');
     }
 });
