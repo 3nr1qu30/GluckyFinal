@@ -116,6 +116,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(doctor==='no existe'){
+        const noexistedoctorfuncion = () => {}
         console.log('El doctor no esta registrado')
         doctorNoExiste = true;
         //variable de tipo y mensaje 
