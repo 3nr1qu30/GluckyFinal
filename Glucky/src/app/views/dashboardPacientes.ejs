@@ -1,446 +1,514 @@
 <%if(typeof curp !== "undefined"){%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/peticionesDoctor.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
-      <!-- Swiper CSS -->
-      <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
-
-      <!-- CSS -->
-      <link rel="stylesheet" href="/css/slider.css" />
-
-    <title>Peticiones</title> 
-        <!--====== Favicon Icon ======-->
-        <link
-        rel="shortcut icon"
-        href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
-        type="image/svg"
-      />
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/css/peticionesDoctor.css">
+      <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   
-</head>
-<body>
-    <nav>
-        <div class="logo-name">
-            <div class="logo-image">
-                <img src="https://i.ibb.co/8bjZVfw/731-sin-t-tulo-20221215205600.png" alt="">
-            </div>
-
-            <span class="logo_name">Glucky</span>
-        </div>
-
-        <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="#">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Casa</span>
-                </a></li>
-                <li><a href="/Glucky/Pacientes/Solicitudes">
-                    <i class="uil uil-chart"></i>
-                    <span class="link-name">Doctor</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-chat"></i>
-                    <span class="link-name">Chats</span>
-                </a></li>
-                <li><a href="#">
-                    <i class="uil uil-plus-circle"></i>
-                    <span class="link-name">Asignaciones</span>
-                </a></li>
-                <li><a href="#">
-                  <i class="uil uil-user"></i>
-                  <span class="link-name">Personal</span>
-                </a></li>
-            </ul>
-            
-            <ul class="logout-mode">
-                <li><a href="/Glucky/IniciodeSesion">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Salir</span>
-                </a></li>
-
-                <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-x"></i>
-                    <span class="link-name">Ajustes de cuenta</span>
-                </a>
-
-                <div class="mode-toggle">
-                 
-                </div>
-            </li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="dashboard">
-        <div class="top">
-            <i class="uil uil-bars sidebar-toggle"></i>
-
-            <div class="search-box">
-                <i class="uil uil-circle"></i>
-                <input type="text" placeholder="Aplicación glucky para pacientes" disabled>
-            </div>
-
-                <div class="icon" onclick="toggleNotifi()">
-			        <div class="noti">17</div>
-		        </div>
-
-                <div class="notifi-box" id="box">
-                    <h2>Notificaciones: <span>17</span></h2>
-                    <div class="notifi-item">
-                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
-                        <div class="text">
-                           <h4>Elias Abdurrahman</h4>
-                           <p>@lorem ipsum dolor sit amet</p>
-                        </div> 
-                    </div>
-        
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
+  
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/slider.css" />
+  
+      <title>Pacientes</title> 
+          <!--====== Favicon Icon ======-->
+          <link
+          rel="shortcut icon"
+          href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+          type="image/svg"
+        />
+    
+  </head>
+  <body>
+      <nav>
+          <div class="logo-name">
+              <div class="logo-image">
+                  <img src="https://i.ibb.co/8bjZVfw/731-sin-t-tulo-20221215205600.png" alt="">
+              </div>
+  
+              <span class="logo_name">Glucky</span>
+          </div>
+  
+          <div class="menu-items">
+              <ul class="nav-links">
+                  <li><a >
+                      <i class="uil uil-estate"></i>
+                      <span class="link-name">Casa</span>
+                  </a></li>
+                  <li><a href="/Glucky/Pacientes/Solicitudes">
+                      <i class="uil uil-chart"></i>
+                      <span class="link-name">Doctor</span>
+                  </a></li>
+                  <li><a href="#">
+                      <i class="uil uil-chat"></i>
+                      <span class="link-name">Chats</span>
+                  </a></li>
+                  <li><a href="#">
+                      <i class="uil uil-plus-circle"></i>
+                      <span class="link-name">Asignaciones</span>
+                  </a></li>
+                  <li><a href="#">
+                    <i class="uil uil-user"></i>
+                    <span class="link-name">Personal</span>
+                  </a></li>
+              </ul>
+              
+              <ul class="logout-mode">
+                  <li><a href="#">
+                      <i class="uil uil-signout"></i>
+                      <span class="link-name">Salir</span>
+                  </a></li>
+  
+                  <li class="mode">
+                      <a href="#">
+                          <i class="uil uil-x"></i>
+                      <span class="link-name">Ajustes de cuenta</span>
+                  </a>
+  
+                  <div class="mode-toggle">
                    
-        
-                </div>
-
-            <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
-
-            <div class="notifi-box2" id="box2">
-                <div class="profile-card">
-                    <div class="image">
-                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
-                    </div>
-                    <div class="text-data">
-                      <span class="name"><%=nombre%></span>
-                      <span class="job"><%=curp%></span>
-                      <span class="job"><%=correo%></span>
-                      <span class="job">Paciente</span>
-                    </div>
-              
-                    <div class="media-buttons">
-                      <a href="#" style="background: #a1a1a136" class="link">
-                        <i class="bx bx-plus-medical"></i>
-                      </a>
-                    
-                    </div>
-              
-                    <div class="buttons">
-                      <button class="button" onclick="toggleNotifi2()">Cerrar</button>
-                      <button class="button">Cuenta</button>
-                    </div>
-              
-                    <div class="analytics">
-                      <div class="data">
-                        <i class="bx bx-circle"></i>
-                        <span class="number">Glucky</span>
-                      </div>
-                      <div class="data">
-                        <i class="bx bx-heart"></i>
-                        <span class="number">Paciente</span>
-                      </div>
-                      <div class="data">
-                        <i class="bx bx-award"></i>
-                        <span class="number">...</span>
-                      </div>
-                    </div>
                   </div>
-    
-            </div>
-        
-        </div>
-
-        <div class="dash-content">
-           
-              <br>
-
-
-                <div class="row">
-                    <div class="dashboardPac" >
-
-                      <div class="base">
-                        <div class="vistaCitas">
-                          <div class="mesC">Diciembre</div>
-                          <div class="diaC">23</div>
-                          <div class="citaC"></div>
-                        </div>
-                        <div class="otrosDivs">
-                          <div class="otro2 colOtro1" id="GlucosaAyunasForm">
-                            <!-- Contenido del div otro1 -->
-                            <div class="titulo4">
-                              <i class="fa fa-certificate iconoBase trC"></i>
-                              <a class="tipo1">Glucosa</a> 
-                            </div>
-                            <div class="numero">123 dL</div>
-                            <div class="fecha">Hace x días</div>
-                            <div class="hover-message">
-                              <p>Da clic para agregar un registro</p>
-                            </div>
-                          </div>
-                          <div class="otro2" id="glucosaNormalForm">
-                            <!-- Contenido del div otro1 -->
-                            <div class="titulo4">
-                              <i class="fa fa-coffee iconoBase cuC"></i>
-                              <a class="tipo1">Glucosa <h6>ayunas</h6> </a> 
-                            </div>
-                            <div class="numero ayunas">123</div>
-                            <div class="fecha ayunas">Hace x días</div>
-                            <div class="hover-message">
-                              <p>Da clic para agregar un registro</p>
-                            </div>
-                          </div>
-                          <div class="otro3">
-                            <!-- Contenido del div otro1 -->
-                            <div class="titulo4">
-                              <i class="fa fa-heart iconoBase caC"></i>
-                              <a class="tipo1">Presión</a> 
-                            </div>
-                            <div class="numero">123 </div>
-                            <div class="fecha">Hace x días</div>
-                          </div>
-                          <div class="otro4">
-                             <!-- Contenido del div otro1 -->
-                             <div class="titulo4">
-                              <i class="fa fa-circle iconoBase CiC"></i>
-                              <a class="tipo1">Citas</a> 
-                            </div>
-                            <div class="numero numeroAjustable">12 Citas</div>
-                            <div class="fecha">Hace x días</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div id="glucosa-modal" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h2>Ingresa el valor de glucosa en ayunas</h2>
-                           
-                            <span class="close">&times;</span>
-                          </div>
-                          <div class="modal-header2">
-                            <h5 class="expandable-text">La medición de la glucosa en ayunas es esencial
-                               para monitorear los niveles de azúcar en la sangre y... detectar cualquier 
-                               posible problema de salud relacionado con la diabetes. El examen de la 
-                               glucemia en ayunas se realiza después de un período de al menos ocho horas 
-                               de ayuno y es utilizado como una herramienta para evaluar el riesgo de 
-                               desarrollar diabetes tipo 2 y prevenir complicaciones relacionadas con la 
-                               diabetes.</h5>
-                          </div>
-                          <div class="modal-body">
-                            <form class="glucosaNormalForm">
-                              <label for="glucosaNormal">Ingresa el nivel de glucosa:</label>
-                              <input class="Glucnor" type="number" id="glucosaNormal" name="glucosaNormal" placeholder="Ingresa el valor aquí...">
-                              <button type="submit" class="btn-submit">Enviar</button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-
-
-                      <div id="glucosa-modal2" class="modal2">
-                        <div class="modal-content2">
-                          <div class="modal-header2">
-                            <h2>Ingresa el valor de glucosa</h2>
-                           
-                            <span class="close2">&times;</span>
-                          </div>
-                          <div class="modal-header2">
-                            <h5>La medición de la glucosa es importante para controlar
-                               el nivel de azúcar en la sangre y detectar cualquier 
-                               posible problema de salud relacionado con la diabetes</h5>
-                          </div>
-                          <div class="modal-body2">
-                            <form class="glucosaNormalForm2">
-                              <label for="glucosaNormal2">Ingresa el nivel de glucosa:</label>
-                              <input type="number" class="Glucayun" id="glucosaNormal" name="glucosaNormal2" placeholder="Ingresa el valor aquí...">
-                              <button type="submit" class="btn-submit2">Enviar</button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-
-                      
-
-                      <div class="base base2">
-                        <div class="vistaCitas vistaGrafica">
-                          <!-- Contenido del div vistaCitas -->
-                        </div>
-                        <div class="otro3 otroA">
-                          <i class="fa fa-certificate iconoBase dosic unC"></i>
-                          <h4 class="glucniv">Niveles de glucosa</h4>
-                          <h2 class="nivelRegistrado">123 dL</h2>
-                          <H6 class="contextoGlucosa unn">Glucosa al dia</H6>
-                        </div>
-                        <div class="otro3 otroB">
-                          <i class="fa fa-coffee iconoBase dosic doC"></i>
-                          <h4 class="glucniv">Glucosa en ayunas</h4>
-                          <h2 class="nivelRegistrado">123 dL</h2>
-                          <H6 class="contextoGlucosa dnn">Glucosa al dia</H6>
-                        </div>
-                      </div>
-
-                      <div class="base base2">
-                        <div class="vistaCitas vistaGrafica vistaGrafica2">
-                          <!-- Contenido del div vistaCitas -->
-                        </div>
-                        <div class="otro3 otroA otroC">
-                          <i class="fa fa-heart  iconoBase dosic caC2"></i>
-                          <h4 class="glucniv">Niveles de presión</h4>
-                          <h2 class="nivelRegistrado">123</h2>
-                          <H6 class="contextoGlucosa">Presión al dia</H6>
-                        </div>
-                     
-                      </div>
-
-
-                      
-                      
-                      
-                    </div>
-
-                 <form action="">
-                    <div class="AccionesPac">
-                      <div class="Accion">
-                        <h3>Agendar una cita</h3>
-                        <h5>Necesitas un doctor</h5>
-                        <div class="verDoc">
-                          <a class="verDoc2" href="#">🛈 Ver ajustes de doctor</a>
-                        </div>
-                        <!-- Modal -->
-                        <div class="modal4" id="doctorModal">
-                          <div class="modal-doctor">
-                            <span class="close">&times;</span>
-                            <h2>Dr. John Doe</h2>
-                            <p>Cédula profesional: XXXXXXX</p>
-                            <p>Consultorio: Av. Principal #123</p>
-                            <p>Teléfono: (555) 555-5555</p>
-                            <span>Horarios de atención:</span>
-                            <p>Lunes a viernes: 9am a 2pm y 4pm a 7pm</p>
-                            <div class="button-container">
-                              <button class="btn-ajustes btn">Ajustes Avanzados</button>
-                              <button class="btn-baja btn">Dar de Baja</button>
-                            </div>
-                          </div>
-
-                        </div>       
-                          <div class="formcita">
-                            <input type="date">
-                            <input type="time" name="" id="">
-                            <button type="submit" class="enviaCita"><i class="uil uil-circle"></i></button>
-                          </div>
-                        <button class="agendaCita">Agendar cita</button>
-                      </div>
-                    </div>
-                  </form>
-
-                  
-                    <div class="AccionesPac2">
-                      <div class="Accion2">
-                        <h3><i class="fas fa-circle"></i> Estado</h3>
-                        <div class="estadoInfo">
-                          <div class="cuadrado rojo">
-                            <i class="fas fa-exclamation"></i>
-                            </div>
-                            <div class="color">
-                            <p>Tu estado es de color Rojo</p>
-                            <p class="EST">Rojo es mal</p>
-                            </div>
-                        </div>
-                        <div class="estadoInfo">
-                          <div class="cuadrado rojo azul">
-                            <i class="fas fa-user"></i>
-                            </div>
-                            <div class="color">
-                            <p>Tu endocrinologo</p>
-                            <p class="EST">Nombre del doc</p>
-                            </div>
-                        </div>
-                        <div class="estadoInfo">
-                          <div class="cuadrado rojo tipo-2">
-                            <i class="fas fa-arrow-up"></i>
-                            </div>
-                            <div class="color">
-                            <p>Tu tipo de diabetes</p>
-                            <p class="EST">Tipo 2</p>
-                            </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-
-                    <div class="tareasPac" >
-                      <h3 class="contexto"> <h3>Asignaciones</h3></h3>
-                      
-                      <div class="asignacion asignacion-1">
-                        <div class="clase">
-                          Dieta
-                        </div> 
-                        <div class="titulo">
-                          Título de la dieta asignada
-                        </div> 
-                        <div class="titulo2" id="style-2">
-                          Detalles de la dieta asignada
-                        </div>
-                        <div class="observa"><i class="bx bx-circle" id="iconoVer"></i></div>
-                    </div>
-                      
-                    <div class="asignacion asignacion-2">
-                        <div class="clase">
-                          Tienes una cita asignada
-                        </div> 
-                        <div class="titulo">
-                          El dia 
-                        </div> 
-                        <div class="titulo2">
-                          A las   
-                        </div> 
-                    </div>
-                      
-                    <div class="asignacion asignacion-3">
-                        <div class="clase">
-                          Título del tratamiento asignado
-                        </div> 
-                        <div class="titulo">
-                          tratamientos
-                        </div>
-                        <div class="titulo2">
-                          Detalles del tratamiento asignado
-                        </div>
-                    </div>
-                      
-                    <div class="asignacion">
-                      ⠀⠀⠀⠀
-                    </div>
-                
-                     
-
-                 
-                </div>
-                  <script src="js/swiper-bundle.min.js"></script>
-                  <script src="js/slider.js"></script>
-            
-
-                  
-
-
-            
-            
-        </div>
-   
-</div>
-
-
+              </li>
+              </ul>
+          </div>
+      </nav>
   
+      <section class="dashboard">
+          <div class="top">
+              <i class="uil uil-bars sidebar-toggle"></i>
+  
+              <div class="search-box">
+                  <i class="uil uil-circle"></i>
+                  <input type="text" placeholder="Aplicación glucky para pacientes" disabled>
+              </div>
+  
+                  <div class="icon" onclick="toggleNotifi()">
+                <div class="noti">17</div>
+              </div>
+  
+                  <div class="notifi-box" id="box">
+                      <h2>Notificaciones: <span>17</span></h2>
+                      <div class="notifi-item">
+                          <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
+                          <div class="text">
+                             <h4>Elias Abdurrahman</h4>
+                             <p>@lorem ipsum dolor sit amet</p>
+                          </div> 
+                      </div>
+          
+                     
+          
+                  </div>
+  
+              <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
+  
+              <div class="notifi-box2" id="box2">
+                  <div class="profile-card">
+                      <div class="image">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
+                      </div>
+                      <div class="text-data">
+                        <span class="name"><%=nombre%></span>
+                        <span class="job"><%=correo%></span>
+                        <span class="job">Paciente</span>
+                      </div>
+                
+                      <div class="media-buttons">
+                        <a href="#" style="background: #a1a1a136" class="link">
+                          <i class="bx bx-plus-medical"></i>
+                        </a>
+                      
+                      </div>
+                
+                      <div class="buttons">
+                        <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
+                        <button class="button">Cuenta</>
+                      </div>
+                
+                      <div class="analytics">
+                        <div class="data">
+                          <i class="bx bx-circle"></i>
+                          <span class="number">Glucky</span>
+                        </div>
+                        <div class="data">
+                          <i class="bx bx-heart"></i>
+                          <span class="number">Paciente</span>
+                        </div>
+                        <div class="data">
+                          <i class="bx bx-award"></i>
+                          <span class="number">...</span>
+                        </div>
+                      </div>
+                    </div>
+      
+              </div>
+          
+          </div>
+  
+          <div class="dash-content">
+             
+                <br>
+  
+  
+                  <div class="row">
+                      <div class="dashboardPac" >
+  
+                        <!--CALENDARIO-->
+                        <div class="base">
+                          <div class="vistaCitas">
+                            <div class="mesC">Diciembre</div>
+                            <div class="diaC">23</div>
+                            <div class="citaC"></div>
+                          </div>
+                          <div class="otrosDivs">
+                        <!--FIN CALENDARIO-->
+  
+                        <!--Inicio Glucosa-->
+                            <div class="otro2 moradin marg" id="GlucosaAyunasForm">
+                              <div class="titulo4">
+                                <i class="fa fa-certificate iconoBase trC"></i>
+                                <a class="tipo1">Glucosa</a> 
+                              </div>
+                              <div class="numero">123 dL</div>
+                              <div class="fecha">Hoy</div>
+                              <div class="hover-message">
+                                <p>De clic para agregar un registro</p>
+                              </div>
+                            </div>
+                          <!--Fin Glucosa -->   
+                        
+                            <!--Inicio Presión-->
+                            <div class="otro2" id="glucosaNormalForm">
+                              <div class="titulo4">
+                                <i class="fa fa-coffee iconoBase cuC"></i>
+                                <a class="tipo1">Presión <h6>arterial</h6> </a> 
+                              </div>
+                              <div class="numero ayunas">123</div>
+                              <div class="fecha ayunas">Hoy</div>
+                              <div class="hover-message">
+                                <p>De clic para agregar un registro</p>
+                              </div>
+                            </div>
+                            <!--Fin Presión-->
+  
+                            <!--Inicio Glucosa-->
+                            <div class="otro3">
+                              <div class="titulo4">
+                                <i class="fa fa-heart iconoBase caC"></i>
+                                <a class="tipo1">Glucosa <h6>ayunas</h6> </a> 
+                              </div>
+                              <div class="numero ayunas">123 </div>
+                              <div class="fecha ayunas">Hoy</div>
+                            </div>
+                             <!--Fin Glucosa-->
+  
+                             <!--Inicio Citas-->
+                            <div class="otro2 otro4" id="formCitaNueva">
+                               <div class="titulo4">
+                                <i class="fa fa-circle iconoBase CiC"></i>
+                                <a class="tipo1">Citas</a> 
+                              </div>
+                              <div class="numero numeroAjustable">12 Citas</div>
+                              <div class="fecha">Hoy</div>
+                              <div class="hover-message">
+                                <p>De clic para solicitar una cita</p>
+                              </div>
+                            </div>
+                             <!--Fin citas-->
+  
+                       
+  
+                            
+                          </div>
+                        </div>
+  
+  
+                        <!--FORM GLUCOSA-->
+  
+                        <div id="glucosa-modal" class="modal">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h2>Ingresa el valor de glucosa</h2>
+                             
+                              <span class="close">&times;</span>
+                            </div>
+                            <div class="modal-header2">
+                              <h5 class="expandable-text">Las mediciones de ayunas o normal en los análisis de sangre son importantes porque pueden proporcionar información valiosa sobre la salud del paciente. En algunos casos, la ingesta de alimentos puede afectar los resultados de ciertas pruebas, como el nivel de azúcar en la sangre y los lípidos.</h5>
+                            </div>
+                            <div class="modal-body">
+                              <!--INICIO DEL FORM DE GLUCOSA-->
+                              <form class="glucosaNormalForm">
+                                <label for="glucosaNormal">Ingresa el nivel de glucosa:</label>
+                                <input class="Glucnor" type="number" id="glucosaNormal" name="glucosaNormal" placeholder="Ingresa el valor aquí...">
+                                <select class="btn-submit tipode" id="medicion" name="medicion">
+                                  <option value="ayunas">Medición en ayunas</option>
+                                  <option value="normal">Medición normal</option>
+                                </select>
+                                <button type="submit" class="btn-submit">Enviar</button>
+                              </form>
+                               <!--FIN DEL FORM DE GLUCOSA-->
+                            </div>
+                          </div>
+                        </div>
+                    <!--FORM GLUCOSA-->
+  
+                    <!--FORM PRESIÓN-->
+                        <div id="glucosa-modal2" class="modal2">
+                          <div class="modal-content2">
+                            <div class="modal-header2">
+                              <h2>Ingresa el valor de presión</h2>
+                             
+                              <span class="close2">&times;</span>
+                            </div>
+                            <div class="modal-header2">
+                              <h5>La medición de la presión arterial es importante para llevar un seguimiento de tu padecimiento</h5>
+                            </div>
+                            <div class="modal-body2">
+                              <!--INICIO DEL FORM DE PRESIÓN-->
+                              <form class="glucosaNormalForm2">
+                                <label for="glucosaNormal2">Ingresa el nivel de presión:</label>
+                                <input type="number" class="Glucayun" id="glucosaNormal" name="glucosaNormal2" placeholder="Ingresa el valor aquí...">
+                                <button type="submit" class="btn-submit2">Enviar</button>
+                              </form>
+                              <!--FIN DEL FORM DE GLUCOSA-->
+                            </div>
+                          </div>
+                        </div>
+                        <!--FORM PRESIÓN-->
+  
+                      <!--FORM SOLICITUD DE CITA-->
+                        <div id="glucosa-modal3" class="modal2">
+                          <div class="modal-content2">
+                            <div class="modal-header2">
+                              <h2>Ingresa tu solicitud de cita</h2>
+                             
+                              <span class="close3">&times;</span>
+                            </div>
+                            <div class="modal-header2">
+                              <h5>Podrás hacer solicitudes de citas para un doctor</h5>
+                            </div>
+                            <div class="modal-body2">
 
-    <script src="/js/peticionesDoctor.js"></script>
-    
-</body>
-</html>
+                              <!--INICIO DEL FORM DE CITA-->
+                              <form class="glucosaNormalForm2" action="/Glucky/Pacientes/Dashboard" method="post">
+                                <label for="glucosaNormal2" class="labeltipo">Ingresa el dia y hora de la cita</label>
+                                <input type="date" class="Glucayun colorblue" id="glucosaNormal" name="FechaForm" placeholder="Ingresa el valor aquí...">
+                                <label for="glucosaNormal2" class="labeltipo2">Ingresa la hora</label>
+                                <input type="time" class="Glucayun colorblue" id="glucosaNormal" name="HoraForm" placeholder="Ingresa el valor aquí...">
+                                <button type="submit" class="btn-submit3">Enviar solicitud</button>
+                              </form>
+                              <!--FIN DEL FORM DE CITA-->
+                            </div>
+                          </div>
+                        </div>
+                       <!--FORM SOLICITUD DE CITA-->
+  
+                        
+  
+                        <div class="base base2">
+                          <div class="vistaCitas vistaGrafica">
+                      <!-- Contenido niveles de glucosa -->
+                          </div>
+                          <div class="otro3 otroA">
+                            <i class="fa fa-certificate iconoBase dosic unC"></i>
+                            <h4 class="glucniv">Niveles de glucosa</h4>
+                            <h2 class="nivelRegistrado">123 dL</h2>
+                            <H6 class="contextoGlucosa unn">Glucosa al dia</H6>
+                          </div>
+                      <!-- Contenido niveles de glucosa -->   
+  
+                      <!-- Contenido niveles de glucosa -->
+                          <div class="otro3 otroB">
+                            <i class="fa fa-coffee iconoBase dosic doC"></i>
+                            <h4 class="glucniv">Glucosa en ayunas</h4>
+                            <h2 class="nivelRegistrado">123 dL</h2>
+                            <H6 class="contextoGlucosa dnn">Glucosa al dia</H6>
+                          </div>
+                      <!-- Contenido niveles de glucosa -->
+                        </div>
+  
+                        <div class="base base2">
+                          <div class="vistaCitas vistaGrafica vistaGrafica2">
+                      <!-- Contenido niveles de presión -->
+                          </div>
+                          <div class="otro3 otroA otroC">
+                            <i class="fa fa-heart  iconoBase dosic caC2"></i>
+                            <h4 class="glucniv">Niveles de presión</h4>
+                            <h2 class="nivelRegistrado">123</h2>
+                            <H6 class="contextoGlucosa">Presión al dia</H6>
+                          </div>
+                      <!-- Contenido niveles de presión -->
+                       
+                        </div>
+                      </div>
+  
+  
+  
+  
+  
+                   
+  
+  
+  
+  
+  
+                    
+                      <div class="AccionesPac2">
+                        <div class="Accion2">
+                          <h3><i class="fas fa-circle"></i> Estado</h3>
+                          <div class="estadoInfo">
+  
+                            <!-- Contenido niveles del paciente -->
+                            <div class="cuadrado rojo">
+                              <i class="fas fa-exclamation"></i>
+                              </div>
+                              <div class="color">
+                              <p>Tu estado es de color Rojo</p>
+                              <p class="EST">Rojo es mal</p>
+                              </div>
+                             <!--Fin Contenido niveles del paciente -->
+  
+  
+                          </div>
+                          <div class="estadoInfo">
+                            <div class="cuadrado rojo azul">
+                              <i class="fas fa-user"></i>
+                              </div>
+  
+                           <!-- Contenido niveles del Endocrinologo --> 
+                              <div class="color">
+                              <p>Tu endocrinologo</p>
+                              <p class="EST">Nombre del doc</p>
+                              </div>
+                           <!-- Contenido niveles del Endocrinologo --> 
+  
+                           
+                          </div>
+                          <div class="estadoInfo">
+  
+                            <!-- Contenido tipo de diabetes --> 
+                            <div class="cuadrado rojo tipo-2">
+                              <i class="fas fa-arrow-up"></i>
+                              </div>
+                              <div class="color">
+                              <p>Tu tipo de diabetes</p>
+                              <p class="EST">Tipo 2</p>
+                              </div>
+                           <!--Fin Contenido tipo de diabetes --> 
+  
+  
+                          </div>
+                          
+                        </div>
+                      </div>
+  
+                      <div class="tareasPac" >
+  
+  
+                        
+                        <h3 class="contexto"> <h3>Detalles y citas</h3></h3>
+  
+                      <!--CONSULTORIO --> 
+                        <div class="asignacion asignacion-1">
+                          <div class="clase">
+                            Consultorio
+                          </div> 
+                          <div class="titulo">
+                            Dirección del consultorio de tu doctor
+                          </div> 
+                          <div class="titulo2" id="style-2">
+                           Detalles del consultorio
+                          </div>
+                      </div>
+                      <!--CONSULTORIO --> 
+  
+                        
+                
+                        
+                 
+                      <!--CITA ACEPTADA --> 
+                        <div class="asignacion asignacion-1 moradin2">
+                          <div class="clase backgrounds">
+                            Aceptada
+                          </div> 
+                          <div class="titulo">
+                            Cita
+                          </div>
+                          <div class="titulo2">
+                            Tienes una cita el dia XX-XX-XXX a las XX-XX am
+                          </div>
+                            <form action="">
+                              <input type="hidden" name="" id="">
+                              <button class="AceptarBtm" type="submit">
+                                Aceptar
+                              </button>
+                            </form>
+                      </div>
+                      <!--CITA ACEPTADA --> 
+  
+                      <!--CITA DENEGADA --> 
+                      <div class="asignacion asignacion-3">
+                        <div class="clase backgrounds">
+                          Denegada
+                        </div> 
+                        <div class="titulo">
+                          Cita
+                        </div>
+                        <div class="titulo2">
+                          Solicitaste una cita el dia XX-XX-XXX a las XX-XX am
+                        </div>
+                          <form action="">
+                            <input type="hidden" name="" id="">
+                            <button class="AceptarBtm" type="submit">
+                              Volver a intentar
+                            </button>
+                          </form>
+                      </div>
+                       <!--CITA DENEGADA --> 
+  
+                      
+                      <!--CITA NORMAL --> 
+                        <div class="asignacion asignacion-2">
+                          <div class="clase">
+                            Tienes una cita asignada
+                          </div> 
+                          <div class="titulo">
+                            El dia 
+                          </div> 
+                          <div class="titulo2">
+                            A las   
+                          </div> 
+                      </div>
+                      <!--CITA NORMAL --> 
+  
+                        
+                       
+  
+                 
+                        
+                     
+                  
+                       
+  
+                   
+                  </div>
+                    <script src="/js/slider.js"></script>
+                    <script src="/js/peticionesDoctor.js"></script>
+          </div>
+     
+  </div>
+  
+  </body>
+  </html>
 <%}else{%>
   <!DOCTYPE html>
 <html>

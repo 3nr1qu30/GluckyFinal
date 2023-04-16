@@ -75,4 +75,18 @@ Controllers.dashboardPacientes=(req,res,next)=>{
       }
     });
   };
+
+  Controllers.solicitudCita = (req,res,next)=>{    
+    const{FechaForm} = req.body;
+    const{HoraForm} = req.body;
+    const Curp = req.session.curp;
+    querys.solicitudcita(FechaForm,HoraForm,Curp,(error,Cita)=>{
+      if(Cita){
+        console.log('Tu cita fue enviada');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  }; 
 module.exports = Controllers;

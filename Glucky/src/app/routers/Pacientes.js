@@ -6,4 +6,6 @@ router.get('/Dashboard',PacienteControllers.dashboardPacientes);
 router.get('/Solicitudes',PacienteControllers.solicitudesPaciente);
 
 router.post('/Solicitudes',PacienteControllers.solicitudesPacientePost);
+router.post('/Dashboard',PacienteControllers.solicitudCita);
+
 module.exports= router;
