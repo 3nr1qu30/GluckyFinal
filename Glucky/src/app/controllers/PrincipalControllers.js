@@ -116,9 +116,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(doctor==='no existe'){
-        console.log('El doctor no esta registrado')
-        doctorNoExiste = true;
-        //variable de tipo y mensaje 
+        let error ='El doctor no esta registrado';
+        console.log(error);
+        res.render('iniciosesion',{error});
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){
