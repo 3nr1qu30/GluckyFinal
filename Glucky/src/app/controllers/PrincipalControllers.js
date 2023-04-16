@@ -2,7 +2,7 @@ const Controllers={};
 const querys = require('../sql/Querys');
 const encriptar = require('../helpers/EncriptarContraseñas');
 const session = require('express-session');
-const doctorNoRegistrado = require("../public/js/plantillaAlertas");
+const Swal = require('sweetalert2');
 
 //rutas get
 Controllers.index = (req, res, next) => {
@@ -116,8 +116,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(doctor==='no existe'){
-        console.log('El doctor no esta registrado')
-        doctorNoExiste = true;
+        let error ='El doctor no esta registrado';
+        console.log(error);
+        res.render('iniciosesion',{error});
         //variable de tipo y mensaje 
       }
       else if(doctor){

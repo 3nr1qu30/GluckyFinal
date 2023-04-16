@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="/css/registro.css" />
   </head>
   <body>
+    
     <!-- ====== Header Start ====== -->
     <header class="ud-header">
       <div class="container">
@@ -101,7 +102,9 @@
       </div>
     </section>
     <!-- ====== Banner End ====== -->
-
+    <%if (typeof error !== "undefined"){%>
+      <div class="alert alert-danger"><%= error %></div>
+      <%}%>
     <!-- ====== Login Start ====== -->
     <section class="ud-login">
       <div class="container">
