@@ -129,6 +129,17 @@ db.solicitudAceptadaDoctor=(curp,callback)=>{
   });
 };
 
+db.buscarDatosmedicos=(curp,callback)=>{
+  con.query(`SELECT * FROM datosmedicos where curp_pacien='${curp}'`,(error,datosmedicos)=>{
+  if(error){
+    console.error('Error al buscar los datos glucosa y presión', error);
+    callback(error,null);
+  }
+  else{
+    callback(null,datosmedicos);
+  }
+});
+};
 //insertar registros a la base
 
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
@@ -193,6 +204,16 @@ db.solicitudcita=(FechaForm,HoraForm,Curp,callback)=>{
   });
 };
 
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callback)=>{
+  con.query(`INSERT INTO datosmedicos VALUES(default,'${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}'`,(error,registro)=>{
+    if(error){
+      console.log('Error al insertar meición: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,'Niveles registrados');
+    }
+  });
+};
 
 //modificar registros
 db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
