@@ -101,10 +101,12 @@ Controllers.dashboardPacientes=(req,res,next)=>{
     querys.solicitudcita(FechaForm,HoraForm,Curp,(error,Cita)=>{
       if(Cita){
         console.log('Tu cita fue enviada');
+        res.redirect("/Glucky/Pacientes/Dashboard");
       }
       else{
         console.log(error);
       }
     });
   }; 
+  
 module.exports = Controllers;
