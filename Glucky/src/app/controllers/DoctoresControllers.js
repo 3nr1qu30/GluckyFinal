@@ -56,7 +56,10 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CurpForm} = req.body;
 
-    querys.buscarPaciente(Cedula, CurpForm, (error, consulta) => {
+    querys.mostrarDatosDoctorPaciente(Cedula, CurpForm, (error, consulta) => {
+      const Cedula = req.session.cedula;
+      const{CurpForm} = req.body;
+      
       if(consulta) {
         console.log('Consultado exitosamente');
         res.render('pacienteDoctor');
