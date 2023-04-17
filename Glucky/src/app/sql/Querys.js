@@ -208,6 +208,4 @@ db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
   });
 }
 //eliminar registros
-
-
 module.exports= db;
