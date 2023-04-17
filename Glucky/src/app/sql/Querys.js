@@ -44,6 +44,19 @@ db.buscarPaciente = (CurpForm,callback)=>{
 });
 };
 
+db.mostrarDatosDoctorPaciente = (CurpForm, callback)=> {
+  con.query(`SELECT paciente.curp_pacien, persona.nom_pers, persona.apellido_pers, persona.email_pers tipodiabetes.nomtipdiabts FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
+    if(error){
+      console.error('No hay registro', error);
+      callback(error, null);
+    } else {
+      if (fila) {
+        callback(null, fila);
+      }
+    }
+  });
+}
+
 db.verPeticionesDoctor = (Cedula,callback)=>{
   con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona natural join tipodiabetes n WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
@@ -54,6 +67,16 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
  
+ db.PeticionesCita = (Cedula,callback)=>{
+  con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
+   if(error){
+      console.error('No hay solicitudes', error);
+   }else{
+     callback(null,peticiones);
+   }
+  });
+ };
+
 
  db.aceptarPeticiones = (Cedula,CurpForm,callback)=>{
   con.query(`update pacientemedico set id_edosol=2 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,acepta)=>{
@@ -64,6 +87,47 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
    }
   });
  };
+
+/*  db.verCita = (IdCita,callback)=>{
+  con.query(`select id_cita from citamedica natural join solicitarcita where id_edosol = "${IdCita}`, (error,consultar)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,consultar);
+   }
+  });
+ }; */
+
+/*  db.borrarCita = (IdCita,IdConsmed,callback)=>{
+  con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,borrar)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,borrar);
+   }
+  });
+ }; */
+
+db.aceptarcita = (IdCita,IdConsmed,callback)=>{
+  con.query(`update solicitarcita set id_edosol=2 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,acepta)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,acepta);
+   }
+  });
+ }; 
+
+ db.declinarcita = (IdCita,IdConsmed,callback)=>{
+  con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,declina)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,declina);
+   }
+  });
+ };
+
 
  db.declinarPeticiones = (Cedula,CurpForm,callback)=>{
   con.query(`update pacientemedico set id_edosol=3 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,declina)=>{
@@ -129,6 +193,17 @@ db.solicitudAceptadaDoctor=(curp,callback)=>{
   });
 };
 
+db.buscarDatosmedicos=(curp,callback)=>{
+  con.query(`SELECT * FROM datosmedicos where curp_pacien='${curp}'`,(error,datosmedicos)=>{
+  if(error){
+    console.error('Error al buscar los datos glucosa y presión', error);
+    callback(error,null);
+  }
+  else{
+    callback(null,datosmedicos);
+  }
+});
+};
 //insertar registros a la base
 
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
@@ -193,6 +268,16 @@ db.solicitudcita=(FechaForm,HoraForm,Curp,callback)=>{
   });
 };
 
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callback)=>{
+  con.query(`INSERT INTO datosmedicos VALUES(default,'${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}'`,(error,registro)=>{
+    if(error){
+      console.log('Error al insertar meición: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,'Niveles registrados');
+    }
+  });
+};
 
 //modificar registros
 db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{

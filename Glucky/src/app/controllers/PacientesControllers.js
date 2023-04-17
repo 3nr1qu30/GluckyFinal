@@ -1,32 +1,89 @@
 const Controllers={};
 const querys = require('../sql/Querys');
 //get
-Controllers.dashboardPacientes=(req,res,next)=>{
-    const curp = req.session.curp;
-    const nombre = req.session.nombre;
-    const correo = req.session.correo;
-    const tipodia= req.session.tipodia;
-    let direccion;
-    let solicituda;
-    querys.solicitudAceptadaDoctor(curp,(error,solicitud)=>{
-      if(error){
-        console.error(error);
+Controllers.dashboardPacientes = (req, res, next) => {
+  const curp = req.session.curp;
+  const nombre = req.session.nombre;
+  const correo = req.session.correo;
+  const tipodia = req.session.tipodia;
+  let direccion;
+  let solicituda;
+  let glucosa = 0;
+  let sistolica = 0;
+  let diastolica = 0;
+
+
+  querys.buscarDatosmedicos(curp, (error, datosmedicos) => {
+    if (error) {
+      console.log(error);
+    } else if (datosmedicos) {
+      for (var i = 0; i < datosmedicos.length; i++) {
+        glucosa += parseInt(datosmedicos[i].gluc_datmed);
+        sistolica += parseInt(datosmedicos[i].presis_datmed);
+        diastolica += parseInt(datosmedicos[i].predia_datmed);
       }
-      else{
-        if(solicitud.length===0){
-          solicituda='Aun no te has enlazado a un doctor';
-          direccion='Aun no te has enlazado a un doctor';
-          res.render('dashboardPacientes',{curp,nombre,correo,solicituda,direccion,tipodia});
+      glucosa /= datosmedicos.length;
+      sistolica /= datosmedicos.length;
+      diastolica /= datosmedicos.length;
+
+      querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
+        if (error) {
+          console.error(error);
+        } else {
+          if (solicitud.length === 0) {
+            solicituda = 'Aun no te has enlazado a un doctor';
+            direccion = 'Aun no te has enlazado a un doctor';
+            res.render('dashboardPacientes', {
+              curp,
+              nombre,
+              correo,
+              solicituda,
+              direccion,
+              tipodia,
+              datosmedicos,
+              glucosa,
+              sistolica,
+              diastolica
+            });
+          } else {
+            solicituda =
+              solicitud[0].nom_pers + ' ' + solicitud[0].apellidos_pers;
+            direccion =
+              'Calle:' +
+              solicitud[0].calle_cons +
+              ' Num:' +
+              solicitud[0].num_cons +
+              '\n' +
+              ' CP:' +
+              solicitud[0].cp_cons +
+              '\n' +
+              ' Colonia:' +
+              solicitud[0].col_cons +
+              '\n' +
+              ' Del o Mun:' +
+              solicitud[0].del_cons +
+              '\n' +
+              ' Estado o Ciudad:' +
+              solicitud[0].edo_cons;
+            res.render('dashboardPacientes', {
+              curp,
+              nombre,
+              correo,
+              solicituda,
+              direccion,
+              tipodia,
+              datosmedicos,
+              glucosa,
+              sistolica,
+              diastolica
+            });
+          }
         }
-        else{
-          solicituda=solicitud[0].nom_pers +" "+ solicitud[0].apellidos_pers;
-          direccion='Calle:'+solicitud[0].calle_cons+ ' Num:' +solicitud[0].num_cons+'\n'+' CP:'+solicitud[0].cp_cons+'\n'+' Colonia:'+solicitud[0].col_cons+'\n'+
-           ' Del o Mun:'+solicitud[0].del_cons+'\n'+' Estado o Ciudad:'+solicitud[0].edo_cons;
-          res.render('dashboardPacientes',{curp,nombre,correo,solicituda,direccion,tipodia});
-        }
-      }
-    });
-  };
+      });
+    }
+  });
+};
+
 
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const curp = req.session.curp;
@@ -109,4 +166,23 @@ Controllers.dashboardPacientes=(req,res,next)=>{
     });
   }; 
   
-module.exports = Controllers;
+  Controllers.registroNiveles = (req,res,next)=>{
+    const{glucosa,sistolica,diastolica,medicion}=req.body
+    const Curp = req.session.curp;
+    let fechaActual = new Date();
+    let anio = fechaActual.getFullYear();
+    let mes = fechaActual.getMonth() + 1;
+    let dia = fechaActual.getDate();
+    let fecha = `${anio}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
+    let horaActual = new Date();
+    let hora = horaActual.toLocaleTimeString();
+    querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,(error,registro)=>{
+      if(registro){
+        console.log('Tu registro fue enviado');
+        res.redirect("/Glucky/Pacientes/Dashboard");
+      }
+    });
+  };
+
+
+  module.exports = Controllers;
