@@ -6,9 +6,10 @@ router.get('/Dashboard',DoctoresControllers.dashboardDoctores);
 router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/Citas',DoctoresControllers.peticionesCita);
 
+// router.post('/CitaConsultar',DoctoresControllers.citasDoctorConsultar);
+// router.post('/CitasBorrar',DoctoresControllers.citasDoctorBorrar);
 router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
 router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);
-
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
 router.post('/Peticion',DoctoresControllers.peticionesDoctorDeclina);
 

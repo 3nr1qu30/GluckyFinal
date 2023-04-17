@@ -50,6 +50,31 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   };
 
+/*   Controllers.citasDoctorConsultar = (req,res,next)=>{    
+    const{IdCita} = "2";
+    querys.verCita(IdCita,(error,consultar)=>{
+      if(consultar){
+        console.log('consultado exitosamente');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  }; */
+
+/*   Controllers.citasDoctorBorrar = (req,res,next)=>{    
+    const{IdCita} = req.body;
+    const{IdConsmed} = req.body;
+    querys.borrarCita(IdCita,IdConsmed,(error,borrar)=>{
+      if(borrar){
+        console.log('cita borrada');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+ */
   Controllers.citasDoctorAcepta = (req,res,next)=>{    
     const{IdCita} = req.body;
     const{IdConsmed} = req.body;
@@ -97,10 +122,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CurpForm} = req.body;
 
-    querys.mostrarDatosDoctorPaciente(Cedula, CurpForm, (error, consulta) => {
-      const Cedula = req.session.cedula;
-      const{CurpForm} = req.body;
-      
+    querys.buscarPaciente(Cedula, CurpForm, (error, consulta) => {
       if(consulta) {
         console.log('Consultado exitosamente');
         res.render('pacienteDoctor');
