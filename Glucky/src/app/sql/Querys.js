@@ -174,9 +174,10 @@ db.enlazarDoctoresPacientes = (Curp,CedulaForm,callback)=>{
   });
 }; 
 
-db.solicitudcita = (FechaForm,HoraForm,Curp,callback)=>{
-  
-  con.query(`INSERT INTO solicitarcita VALUES(1,${FechaForm},${HoraForm},,${Curp},)`,(error,cita)=>{
+/* db.solicitudcita = (FechaForm,HoraForm,Curp,callback)=>{
+  let IdConsul = toString(con.query(`select id_consmed from pacientemedico natural join consultoriomedico where curp_pacien='${Curp}'`));
+  let EstadoSolicitud = toString(con.query(`select id_edosol from pacientemedico where curp_pacien='${Curp}'`));
+  con.query(`INSERT INTO solicitarcita VALUES(default,${FechaForm},${HoraForm},${EstadoSolicitud},${Curp},${IdConsul})`,(error,cita)=>{
     if(error){
       callback(error,null);
     }
@@ -185,6 +186,27 @@ db.solicitudcita = (FechaForm,HoraForm,Curp,callback)=>{
     }
   });
 }; 
+ */
+db.solicitudcita = (FechaForm,HoraForm,Curp,callback)=>{
+let IdConsul = con.query(`select id_consmed from pacientemedico natural join consultoriomedico where curp_pacien='${Curp}'`);
+let id_consmed = 0;
+if (IdConsul.next()) {
+  id_consmed = IdConsul.getInt("id_consmed"); // o IdConsul.getString("id_consmed")
+}
+let EstadoSolicitud = con.query(`select id_edosol from pacientemedico where curp_pacien='${Curp}'`);
+let id_edosol = 0;
+if (EstadoSolicitud.next()) {
+  id_edosol = EstadoSolicitud.getInt("id_edosol"); // o EstadoSolicitud.getString("id_edosol")
+}
+con.query(`INSERT INTO solicitarcita VALUES(default, '${FechaForm}', '${HoraForm}', ${id_edosol}, '${Curp}', ${id_consmed})`, (error, cita) => {
+  if(error){
+    callback(error,null);
+  }
+  else if(cita){
+    callback(null,'Solicitud de Cita enviada');
+  }
+});
+}
 
 //modificar registros
 db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
