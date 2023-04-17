@@ -11,4 +11,5 @@ router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);
 
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
 router.post('/Peticion',DoctoresControllers.peticionesDoctorDeclina);
+
 module.exports= router;

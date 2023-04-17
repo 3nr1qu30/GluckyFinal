@@ -44,6 +44,19 @@ db.buscarPaciente = (CurpForm,callback)=>{
 });
 };
 
+db.mostrarDatosDoctorPaciente = (CurpForm, callback)=> {
+  con.query(`SELECT paciente.curp_pacien, persona.nom_pers, persona.apellido_pers, persona.email_pers tipodiabetes.nomtipdiabts FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
+    if(error){
+      console.error('No hay registro', error);
+      callback(error, null);
+    } else {
+      if (fila) {
+        callback(null, fila);
+      }
+    }
+  });
+}
+
 db.verPeticionesDoctor = (Cedula,callback)=>{
   con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona natural join tipodiabetes n WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
@@ -160,6 +173,17 @@ db.solicitudAceptadaDoctor=(curp,callback)=>{
   });
 };
 
+db.buscarDatosmedicos=(curp,callback)=>{
+  con.query(`SELECT * FROM datosmedicos where curp_pacien='${curp}'`,(error,datosmedicos)=>{
+  if(error){
+    console.error('Error al buscar los datos glucosa y presión', error);
+    callback(error,null);
+  }
+  else{
+    callback(null,datosmedicos);
+  }
+});
+};
 //insertar registros a la base
 
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
@@ -224,6 +248,16 @@ db.solicitudcita=(FechaForm,HoraForm,Curp,callback)=>{
   });
 };
 
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callback)=>{
+  con.query(`INSERT INTO datosmedicos VALUES(default,'${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}'`,(error,registro)=>{
+    if(error){
+      console.log('Error al insertar meición: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,'Niveles registrados');
+    }
+  });
+};
 
 //modificar registros
 db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
