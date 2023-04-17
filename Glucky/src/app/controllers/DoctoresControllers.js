@@ -1,4 +1,5 @@
 const Controllers={};
+const { query } = require('express');
 const querys = require('../sql/Querys');
 Controllers.dashboardDoctores=(req,res,next)=>{
     const cedula = req.session.cedula;
@@ -50,6 +51,19 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   Controllers.citasDoctor = (req,res,next)=>{
     res.render('citasDoctor');
   };
-  
-module.exports = Controllers; 
+ 
+  Controllers.detallesPaciente = (req, res, next) => {
+    const Cedula = req.session.cedula;
+    const{CurpForm} = req.body;
 
+    querys.buscarPaciente(Cedula, CurpForm, (error, consulta) => {
+      if(consulta) {
+        console.log('Consultado exitosamente');
+        res.render('pacienteDoctor');
+      } else {
+        console.log(error);
+      }
+    });
+  }
+
+module.exports = Controllers;

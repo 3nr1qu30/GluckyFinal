@@ -44,6 +44,19 @@ db.buscarPaciente = (CurpForm,callback)=>{
 });
 };
 
+db.mostrarDatosDoctorPaciente = (CurpForm, callback)=> {
+  con.query(`SELECT paciente.curp_pacien, persona.nom_pers, persona.apellido_pers, persona.email_pers tipodiabetes.nomtipdiabts FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
+    if(error){
+      console.error('No hay registro', error);
+      callback(error, null);
+    } else {
+      if (fila) {
+        callback(null, fila);
+      }
+    }
+  });
+}
+
 db.verPeticionesDoctor = (Cedula,callback)=>{
   con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona natural join tipodiabetes n WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
