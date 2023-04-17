@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,35 +206,31 @@
                             <h1 class="citasgrande dosss">Tus peticiones</h1>
 
                             <div class="contenecitas">
+                                <form action="/Glucky/Doctores/CitasAcepta" method="post">
+                                <% for(var i=0;i<datos.length;i++){%>
+                                <div class="cuadrocitas">
+                                    <%var date = datos[i].date_solcita%>
+                                    <h5 class="grandato"><input type="text" name="HoraForm" value="<%=datos[i].hour_solcita%>" class="textoSimple" readonly></h5>
+                                    <h5 class="minidato"><input type="text" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>" class="textoSimple" readonly></h5>
+                                    <h5 class="minidato"><input type="text" name="NombreForm" value="<%=datos[i].nom_pers%>" class="textoSimple" readonly></h5> 
+                                    <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
+                                    <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
+                                    <div class="izquierdaborr">
+                                        <span class="tooltiptext">Aceptar o declinar</span>                       
+                                            <button type="submit" class="aceptarCita">Aceptar</button> 
+                                        </form>
 
-                                <div class="cuadrocitas">
-                                    <h5 class="grandato">10:00 am</h5>
-                                    <h5 class="minidato">5 de Enero del 2020</h5>
-                                    <h5 class="minidato">Isaac Montoya</h5> 
-                                    <div class="izquierdaborr">
-                                        <span class="tooltiptext">Aceptar o declinar</span>
-                                        <form action="">
+                                        <form action="/Glucky/Doctores/CitasDeclina" method="post">
+                                            <input type="hidden" name="HoraForm" value="<%=datos[i].hour_solcita%>">
+                                            <input type="hidden" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>">
+                                            <input type="hidden" name="NombreForm" value="<%=datos[i].nom_pers%>">
+                                            <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
+                                            <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
                                             <button type="submit" class="borrarcita">Declinar</button> 
-                                        </form>
-                                        <form action="">
-                                            <button type="submit" class="aceptarCita">Aceptar</button> 
                                         </form>
                                     </div>
                                 </div>
-                                <div class="cuadrocitas">
-                                    <h5 class="grandato">10:00 am</h5>
-                                    <h5 class="minidato">5 de Enero del 2020</h5>
-                                    <h5 class="minidato">Isaac Montoya</h5> 
-                                    <div class="izquierdaborr">
-                                        <span class="tooltiptext">Aceptar o declinar</span>
-                                        <form action="">
-                                            <button type="submit" class="borrarcita">Declinar</button> 
-                                        </form>
-                                        <form action="">
-                                            <button type="submit" class="aceptarCita">Aceptar</button> 
-                                        </form>
-                                    </div>
-                                </div>
+                            <%}%>
 
                             </div> 
                         </div>  

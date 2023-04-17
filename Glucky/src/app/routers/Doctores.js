@@ -4,10 +4,11 @@ const DoctoresControllers = require('../controllers/DoctoresControllers');
 //rutas get
 router.get('/Dashboard',DoctoresControllers.dashboardDoctores);
 router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
-router.get('/Citas',DoctoresControllers.citasDoctor);
-router.get('/DetallesPaciente', DoctoresControllers.detallesPaciente);
+router.get('/Citas',DoctoresControllers.peticionesCita);
 
-//rutas post
+router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
+router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);
+
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
 router.post('/Peticion',DoctoresControllers.peticionesDoctorDeclina);
 
