@@ -46,5 +46,10 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     });
   };
+
+  Controllers.citasDoctor = (req,res,next)=>{
+    res.render('citasDoctor');
+  };
+  
 module.exports = Controllers; 
 

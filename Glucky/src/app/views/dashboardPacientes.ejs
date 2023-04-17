@@ -16,7 +16,7 @@
   
        
   
-      <title>Peticiones</title> 
+      <title>Paciente</title> 
           <!--====== Favicon Icon ======-->
           <link
           rel="shortcut icon"
@@ -66,7 +66,7 @@
                   </a></li>
   
                   <li class="mode">
-                      <a href="#">
+                      <a href="perfilPaciente.ejs">
                           <i class="uil uil-x"></i>
                       <span class="link-name">Ajustes de cuenta</span>
                   </a>
@@ -129,7 +129,7 @@
                 
                       <div class="buttons">
                         <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                        <button class="button">Cuenta</>
+                        <button class="button">Cuenta</button>
                       </div>
                 
                       <div class="analytics">
@@ -193,7 +193,6 @@
                               <div class="numero ayunas">123</div>
                               <div class="fecha ayunas">Hoy</div>
                               <div class="hover-message">
-                                <p>De clic para agregar un registro</p>
                               </div>
                             </div>
                             <!--Fin Presión-->
@@ -299,12 +298,13 @@
                               <h5>Podrás hacer solicitudes de citas para un doctor</h5>
                             </div>
                             <div class="modal-body2">
+
                               <!--INICIO DEL FORM DE CITA-->
-                              <form class="glucosaNormalForm2">
+                              <form class="glucosaNormalForm2" action="/Glucky/Pacientes/Citas" method="post">
                                 <label for="glucosaNormal2" class="labeltipo">Ingresa el dia y hora de la cita</label>
-                                <input type="date" class="Glucayun colorblue" id="glucosaNormal" name="glucosaNormal2" placeholder="Ingresa el valor aquí...">
+                                <input type="date" class="Glucayun colorblue" id="glucosaNormal" name="FechaForm" placeholder="Ingresa el valor aquí...">
                                 <label for="glucosaNormal2" class="labeltipo2">Ingresa la hora</label>
-                                <input type="time" class="Glucayun colorblue" id="glucosaNormal" name="glucosaNormal2" placeholder="Ingresa el valor aquí...">
+                                <input type="time" class="Glucayun colorblue" id="glucosaNormal" name="HoraForm" placeholder="Ingresa el valor aquí...">
                                 <button type="submit" class="btn-submit3">Enviar solicitud</button>
                               </form>
                               <!--FIN DEL FORM DE CITA-->

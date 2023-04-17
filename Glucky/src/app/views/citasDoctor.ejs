@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/citasDoctor.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Citas</title> 
+        <!--====== Favicon Icon ======-->
+        <link
+        rel="shortcut icon"
+        href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+        type="image/svg"
+      />
+  
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="https://i.ibb.co/8bjZVfw/731-sin-t-tulo-20221215205600.png" alt="">
+            </div>
+
+            <span class="logo_name">Glucky</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="#pacientesjeje">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Pacientes</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chat"></i>
+                    <span class="link-name">Chats</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-plus-circle"></i>
+                    <span class="link-name">Peticiones</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-schedule"></i>
+                    <span class="link-name">Citas</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Salir</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-x"></i>
+                    <span class="link-name">Borrar cuenta</span>
+                </a>
+
+                <div class="mode-toggle">
+                 
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-circle"></i>
+                <input type="text" placeholder="Aplicación glucky para doctores" disabled>
+            </div>
+
+
+                <div class="icon" onclick="toggleNotifi()">
+			        <div class="noti">17</div>
+		        </div>
+
+                <div class="notifi-box" id="box">
+                    <h2>Notificaciones: <span>17</span></h2>
+                    <div class="notifi-item">
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
+                        <div class="text">
+                           <h4>Elias Abdurrahman</h4>
+                           <p>@lorem ipsum dolor sit amet</p>
+                        </div> 
+                    </div>
+                    
+                </div>
+
+            <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
+
+            <div class="notifi-box2" id="box2">
+                <div class="profile-card">
+                    <div class="image">
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
+                    </div>
+                    <div class="text-data">
+                      <span class="name">Nombre completito jeje</span>
+                      <span class="job">Email@cum.com</span>
+                      <span class="job">Doctor</span>
+                      <span class="job">Dirección??</span>
+                    </div>
+              
+                    <div class="media-buttons">
+                      <a href="#" style="background: #a1a1a136" class="link">
+                        <i class="bx bx-plus-medical"></i>
+                      </a>
+                    
+                    </div>
+              
+                    <div class="buttons">
+                      <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
+                      <button class="button">Privacidad</>
+                    </div>
+              
+                    <div class="analytics">
+                      <div class="data">
+                        <i class="bx bx-circle"></i>
+                        <span class="number">Glucky</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-heart"></i>
+                        <span class="number">Doctor</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-award"></i>
+                        <span class="number">...</span>
+                      </div>
+                    </div>
+                  </div>
+    
+            </div>
+        
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Citas médicas</span>
+                </div>
+
+                <div class="home-content">
+
+                    
+                   
+                <div class="citas">
+                        <div class="columna1">
+                        <h6 class="citasmini">CITAS</h6>
+                        <h1 class="citasgrande">Tus Citas Generales</h1>
+                        <h4 class="citascantidad">5 Citas</h1>
+                            <div class="contenecitas">
+                                
+                           
+
+                                <div class="cuadrocitas">
+                                    <h5 class="grandato">10:00 am</h5>
+                                    <h5 class="minidato">5 de Enero del 2020</h5>
+                                    <h5 class="minidato">Isaac Montoya</h5> 
+                                    <div class="izquierdaborr">
+
+                                        <form action="">
+                                            <button type="submit" class="borrarcita">Borrar</button> 
+                                        </form>
+                                       
+                                    </div>
+                                </div>
+                                <div class="cuadrocitas">
+                                    <h5 class="grandato">10:00 am</h5>
+                                    <h5 class="minidato">5 de Enero del 2020</h5>
+                                    <h5 class="minidato">Isaac Montoya</h5> 
+                                    <div class="izquierdaborr">
+                                        <form action="">
+                                            <button type="submit" class="borrarcita">Borrar</button> 
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="cuadrocitas">
+                                    <h5 class="grandato">10:00 am</h5>
+                                    <h5 class="minidato">5 de Enero del 2020</h5>
+                                    <h5 class="minidato">Isaac Montoya</h5> 
+                                    <div class="izquierdaborr">
+                                        <form action="">
+                                            <button type="submit" class="borrarcita">Borrar</button> 
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                               
+                            </div>
+
+                        <div class="recuadropetit">
+
+                            <h1 class="citasgrande dosss">Tus peticiones</h1>
+
+                            <div class="contenecitas">
+
+                                <div class="cuadrocitas">
+                                    <h5 class="grandato">10:00 am</h5>
+                                    <h5 class="minidato">5 de Enero del 2020</h5>
+                                    <h5 class="minidato">Isaac Montoya</h5> 
+                                    <div class="izquierdaborr">
+                                        <span class="tooltiptext">Aceptar o declinar</span>
+                                        <form action="">
+                                            <button type="submit" class="borrarcita">Declinar</button> 
+                                        </form>
+                                        <form action="">
+                                            <button type="submit" class="aceptarCita">Aceptar</button> 
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="cuadrocitas">
+                                    <h5 class="grandato">10:00 am</h5>
+                                    <h5 class="minidato">5 de Enero del 2020</h5>
+                                    <h5 class="minidato">Isaac Montoya</h5> 
+                                    <div class="izquierdaborr">
+                                        <span class="tooltiptext">Aceptar o declinar</span>
+                                        <form action="">
+                                            <button type="submit" class="borrarcita">Declinar</button> 
+                                        </form>
+                                        <form action="">
+                                            <button type="submit" class="aceptarCita">Aceptar</button> 
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div> 
+                        </div>  
+
+                          
+
+                        </div>
+                        <div class="columna2">
+                            <h1 class="ff">HOY</h1>
+                            <h6 class="ff">Citas en curso</h6>
+
+                            <div class="curso">
+                              <h1 class="fecha"> 08 </h1>
+                              <h1 class="mes">Febrero</h1>
+                                <h4 class="cantidad"> 3 Citas hoy</h4>
+                            
+                            </div>
+                        </div>
+                </div>
+
+                <br>
+                ⠀⠀⠀⠀
+                <br>
+
+        
+
+               </div>
+                </div>
+
+                </div>
+</div>
+
+    <script src="js/citasDoctor.js"></script>
+    
+</body>
+</html>

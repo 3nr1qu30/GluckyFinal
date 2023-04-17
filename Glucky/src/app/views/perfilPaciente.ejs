@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/perfilPaciente.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+      <!-- Swiper CSS -->
+      <link rel="stylesheet" href="css/swiper-bundle.min.css" />
+
+
+
+    <title>Peticiones</title> 
+        <!--====== Favicon Icon ======-->
+        <link
+        rel="shortcut icon"
+        href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+        type="image/svg"
+      />
+  
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="https://i.ibb.co/8bjZVfw/731-sin-t-tulo-20221215205600.png" alt="">
+            </div>
+
+            <span class="logo_name">Glucky</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Casa</span>
+                </a></li>
+                <li><a href="#pacientesjeje">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Doctor</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chat"></i>
+                    <span class="link-name">Chats</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-plus-circle"></i>
+                    <span class="link-name">Asignaciones</span>
+                </a></li>
+                <li><a href="#">
+                  <i class="uil uil-user"></i>
+                  <span class="link-name">Personal</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Salir</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-x"></i>
+                    <span class="link-name">Ajustes de cuenta</span>
+                </a>
+
+                <div class="mode-toggle">
+                 
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-circle"></i>
+                <input type="text" placeholder="Aplicación glucky para pacientes" disabled>
+            </div>
+
+                <div class="icon" onclick="toggleNotifi()">
+			        <div class="noti">17</div>
+		        </div>
+
+                <div class="notifi-box" id="box">
+                    <h2>Notificaciones: <span>17</span></h2>
+                    <div class="notifi-item">
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
+                        <div class="text">
+                           <h4>Elias Abdurrahman</h4>
+                           <p>@lorem ipsum dolor sit amet</p>
+                        </div> 
+                    </div>
+        
+                   
+        
+                </div>
+
+            <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
+
+            <div class="notifi-box2" id="box2">
+                <div class="profile-card">
+                    <div class="image">
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
+                    </div>
+                    <div class="text-data">
+                      <span class="name">Nombre completito jeje</span>
+                      <span class="job">Email@cum.com</span>
+                      <span class="job">Paciente</span>
+                    </div>
+              
+                    <div class="media-buttons">
+                      <a href="#" style="background: #a1a1a136" class="link">
+                        <i class="bx bx-plus-medical"></i>
+                      </a>
+                    
+                    </div>
+              
+                    <div class="buttons">
+                      <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
+                      <button class="button">Cuenta</>
+                    </div>
+              
+                    <div class="analytics">
+                      <div class="data">
+                        <i class="bx bx-circle"></i>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-heart"></i>
+                        <span class="number">Paciente</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-award"></i>
+                        <span class="number">...</span>
+                      </div>
+                    </div>
+                  </div>
+    
+            </div>
+        
+        </div>
+
+        <div class="dash-content">
+
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-user"></i>
+                    <span class="text">Cuenta</span>
+                </div>
+            </div>
+
+        
+
+            <div class="Titulo">
+               Tu cuenta
+            </div>
+
+            <form action="">
+
+            <div class="Info">
+                <div class="infoEdit">
+                  <h5 class="infoDoc">Nombre</h5>  
+                  <h6 class="nomDoc">
+                    <input type="text"  id="edText" class="formdato" name="#" value="Isaac">
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+
+            <div class="Info">
+                <div class="infoEdit" >
+                  <h5 class="infoDoc">Apellidos</h5>
+                  <h6 class="nomDoc">
+                    <input type="text"  id="edText" class="formdato" name="#" value="Montoya Rodriguez">
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+
+            <div class="Info">
+                <div class="infoEdit" ">
+                  <h5 class="infoDoc">CURP</h5> 
+                  <h6 class="alerta_no">
+                    🛈 no puedes editar tu CURP personal
+                  </h6>
+                  <h6 class="nomDoc">
+                    <input type="text" id="edText" class="formdato" name="#" value="nose" style="font-weight: bold; color: #000000a6;" disabled>
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+            
+
+            <div class="Info">
+                <div class="infoEdit" ">
+                  <h5 class="infoDoc">Tipo de diabetes</h5> 
+                  <h6 class="alerta_no">
+                    🛈 no puedes editar tu tipo de diabetes
+                  </h6>
+                  <h6 class="nomDoc">
+                    <input type="text" id="edText" class="formdato" name="#" value="nose" style="font-weight: bold; color: #000000a6;" disabled>
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+
+            <div class="Info">
+                <div class="infoEdit" ">
+                  <h5 class="infoDoc">Email de contacto</h5>
+                  <h6 class="alerta_no">
+                    🛈 no puedes editar tu e-mail de contacto
+                  </h6>
+                  <h6 class="nomDoc">
+                    <input type="email"  id="edText" class="formdato" name="#" value="isaacmontoyar@gmail.com" disabled>
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+
+            <div class="Info">
+                <div class="infoEdit" ">
+                  <h5 class="infoDoc">Edad</h5>
+                  <h6 class="nomDoc">
+                    <input type="number"  id="edText" class="formdato" name="#" value="17">
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+
+            <div class="Info">
+                <div class="infoEdit" ">
+                  <h5 class="infoDoc">Teléfono de contacto</h5>
+                  <h6 class="nomDoc">
+                    <input type="text"  id="edText" class="formdato" name="#" value="(55)88082838">
+                  </h6>
+                </div>
+                <div class="botonEdit">
+               
+                </div>
+            </div>
+
+            <div class="Info">
+                <div class="infoEdit" ">
+                  <h5 class="infoDoc">Sexo</h5>
+                  <h6 class="nomDoc">
+                    <select name="#" class="formdato">
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                      </select>
+                  </h6>
+                </div>
+                <div class="botonEdit2">
+                    <input type="submit" value="Actualizar" class="botonFormEdit">
+                </div>
+            </div>
+
+          </form>
+
+          <div class="Info borderds">
+              <h5 class="infoDoc">Opciones</h5>
+              <h6 class="nomDoc borrarcuenta">
+                <input type="submit" value="Borrar cuenta" class="botonFormEdit">
+                <input type="submit" value="Cerrar sesión" class="botonFormEdit">
+              </h6>
+              
+           
+        </div>
+
+          
+
+            <div class="Info2">
+              <div class="recuadroInfo">
+                <h6 class="letra">
+                Estamos personalizando tu experiencia para que se adapte mejor a tus necesidades.
+                 Puedes cambiar esta configuración en cualquier momento.
+                </h6>
+              </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-bag"></i>
+                    <span class="text">Doctor asignado</span>
+                </div>
+            </div>
+
+            <div class="doctorC">
+                <div class="flexos">
+                    <div class="logos"> <i class="uil uil-user"></i></div>
+                    <h5 class="TituloDoc">Información de tu doctor asignado</h5>
+                </div>
+                <h5 class="TituloDoc2"> <b class="black"> Nombre:</b> Nombre ApellidoP ApellidoM </h5>
+                <div class="TituloDoc3">
+                    <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> XXXXXXXXXXXXXX</h5>
+                    <h5 class="tit"> <b class="black"> Cédula profesional:</b> XXXXXXXXXXXXXX</h5>
+                    <h5 class="tit"> <b class="black"> Dirección particular del consultorio:</b> XXXXXXXXXXXXXX</h5>
+                    <h5 class="tit"> <b class="black"> Email de contacto:</b> XXXXXXXXXXXXXX</h5>
+                    <h5 class="tit"> <b class="black"> Teléfono de contacto:</b> XXXXXXXXXXXXXX</h5>
+                </div>
+                <button class="btm">Desvincular doctor</button>
+            </div>
+
+
+            <br>
+            <br>
+
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-keyboard"></i>
+                    <span class="text">Contraseña</span>
+                </div>
+            </div>
+           
+
+            <form action="">
+            <div class="renovarContra">
+                <h4 class="achecuatro">Cambiar contraseña</h4>
+                
+                
+
+                <div class="seguridad">
+                    <h5> 
+                        Seguridad de la contraseña: 
+                    </h5>
+                    <h6 class="acheseis"> Utiliza 8 caracteres como mínimo. No utilices una contraseña 
+                        de otro sitio ni un término que sea demasiado obvio, 
+                        como el nombre de tu mascota
+                    </h6>
+                </div>
+
+                <input type="password" value="" id="myInput2" class="contraria">
+                <input type="checkbox" onclick="mostrar2()" class="chequeado"> Mostrar 
+                <br>
+                
+                
+
+                <input type="submit" class="contrasenaNueva" value="Cambiar la contraseña">
+            </div>
+          </form>
+<br>
+
+            
+            <script>
+         
+            </script>
+</div>
+    <script src="js/perfilDoctor.js"></script>
+    
+    
+</body>
+</html>

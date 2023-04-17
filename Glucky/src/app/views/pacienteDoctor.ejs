@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pacienteDoctor2.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Ver paciente</title> 
+
+        <!--====== Favicon Icon ======-->
+        <link
+        rel="shortcut icon"
+        href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+        type="image/svg"
+      />
+  
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="https://i.ibb.co/8bjZVfw/731-sin-t-tulo-20221215205600.png" alt="">
+            </div>
+
+            <span class="logo_name">Glucky</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="#pacientesjeje">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Pacientes</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chat"></i>
+                    <span class="link-name">Chats</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-plus-circle"></i>
+                    <span class="link-name">Peticiones</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-schedule"></i>
+                    <span class="link-name">Citas</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Salir</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-x"></i>
+                    <span class="link-name">Borrar cuenta</span>
+                </a>
+
+                <div class="mode-toggle">
+                 
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-circle"></i>
+                <input type="text" placeholder="Aplicación glucky para doctores" disabled>
+            </div>
+
+
+                <div class="icon" onclick="toggleNotifi()">
+			        <div class="noti">17</div>
+		        </div>
+
+                <div class="notifi-box" id="box">
+                    <h2>Notificaciones: <span>17</span></h2>
+                    <div class="notifi-item">
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
+                        <div class="text">
+                           <h4>Elias Abdurrahman</h4>
+                           <p>@lorem ipsum dolor sit amet</p>
+                        </div> 
+                    </div>
+                </div>
+
+            <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
+
+            <div class="notifi-box2" id="box2">
+                <div class="profile-card">
+                    <div class="image">
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
+                    </div>
+                    <div class="text-data">
+                      <span class="name">Nombre completito jeje</span>
+                      <span class="job">Email@cum.com</span>
+                      <span class="job">Doctor</span>
+                      <span class="job">Dirección??</span>
+                    </div>
+              
+                    <div class="media-buttons">
+                      <a href="#" style="background: #a1a1a136" class="link">
+                        <i class="bx bx-plus-medical"></i>
+                      </a>
+                    
+                    </div>
+              
+                    <div class="buttons">
+                      <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
+                      <button class="button">Privacidad</>
+                    </div>
+              
+                    <div class="analytics">
+                      <div class="data">
+                        <i class="bx bx-circle"></i>
+                        <span class="number">Glucky</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-heart"></i>
+                        <span class="number">Doctor</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-award"></i>
+                        <span class="number">...</span>
+                      </div>
+                    </div>
+                  </div>
+    
+            </div>
+        
+        </div>
+
+        <div class="dash-content">
+           
+
+            
+
+            
+                <div class="title" id="pacientesjeje">
+                    <i class="uil uil-cell" ></i>
+                    <span class="text">Paciente (Nombre)</span>
+                </div>
+                
+
+
+            
+
+    
+
+                    <div class="select-menu">
+                        <div class="select-btn">
+                            <span class="sBtn-text" style="font-size:15px ;">Mostrando paciente individual...</span>
+                            <i class="bx bx-chevron-down"></i>
+                        </div>
+                    </div>
+
+
+                    <div class="tablacentrada">
+                        <div class="tabla">
+                            <table>
+                       
+                            <tr>
+                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM </b></td>
+                                <td data-label="Estado"><div class="estadouno">Regular</div></td>
+                                <td data-label="Tipo-diabetes"><div class="Tipo-1">Tipo-1</div></td>
+                                <td data-label="CURP">MAMAMAMA</td>
+                                <td data-label="E-MAIL">robert@gmail.cum</td>
+                                <td data-label="Ver detalles y acciones paciente">
+                                    <div class="botisimo">
+                                        <div class="botver">
+                                            <button class="botonver"> Acciones </button>
+                                            <!-- #SECCIÓN PARA ACCIONES DEL PACIENTE -->
+                                            <section>
+                                            
+                                                <span class="overlay"></span>
+                                                
+                                                <div class="modal-box2"  id="style-2">
+                                                <div class="product-card">
+                                                    <div class="logo-cart">
+                                                    <img src="https://i.ibb.co/c3TW9nN/731-sin-t-tulo-20221217204419.png" alt="logo">
+                                                    <i class='bx bxs-circle'></i>
+                                                    </div>
+                                                    <div class="main-images">
+                                                    <img id="blue" class="blue active" src="https://i.ibb.co/mCN1Khp/733-sin-t-tulo-20221217222900.png" alt="blue">
+                                                    <img id="pink" class="pink" src="https://i.ibb.co/Jz3MFsb/733-sin-t-tulo-20221217222904.png" alt="blue">
+                                                    <img id="yellow" class="yellow" src="https://i.ibb.co/gVKvRVL/733-sin-t-tulo-20221217222908.png" alt="blue">
+                                                    <img id="yellow2" class="yellow2" src="https://i.ibb.co/HC8cWnK/733-sin-t-tulo-20221217222913.png" alt="blue">
+                                                    </div>
+                                                    <div class="shoe-details">
+                                                    <span class="shoe_name" style="text-align:left;">Paciente Glucky</span>
+                                                        <div class="nombrepaciente">
+                                                            Nombre paciente
+                                                        </div>
+                                                    
+                                                    <p>Apartado para realizar acciones con tus pacientes,
+                                                        entre las cuales se encuentran Agendar citas médicas,
+                                                        proponer tratamientos y más.</p>
+                                                    <div class="stars">
+                                                        <i class='bx bxs-heart' ></i>
+                                                        <i class='bx bxs-food-menu' ></i>
+                                                        <i class='bx bxs-alarm' ></i>
+                                                        <i class='bx bxs-happy' ></i>
+                                                        <i class='bx bx-plus-medical' ></i>
+                                                    </div>
+                                                    </div>
+                                                    <div class="color-price">
+                                                    <div class="color-option">
+                                                        <span class="color">Estados:</span>
+                                                        <div class="circles">
+                                                        <span class="circle blue active"  id="blue"></span>
+                                                        <span class="circle pink " id="pink"></span>
+                                                        <span class="circle yellow " id="yellow"></span>
+                                                        <span class="circle yellow2 " id="yellow2"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="price">
+                                                        <span class="price_num">Colores</span>
+                                                        <span class="price_letter">Delimita el estado de su paciente</span>
+                                                    </div>
+                                                    </div>
+                                                     <!-- Trigger/Open The Modal -->
+                                                    
+                                                 
+
+                                                    <div class="buttonNUE">
+                                                    <div class="button-layerC"></div>
+                                                    <button id="myBtn2" class="botonNUE">
+                                                        <i class='bx bxs-alarm' style="font-size:25px; margin-right: 10px; "></i>
+                                                        Agendar cita
+                                                    </button>
+                                                    </div>
+                                                    
+                                                    <div class="buttonNUE">
+                                                    <div class="button-layerT"></div>
+                                                    <button id="myBtn3" class="botonNUE">
+                                                        <i class='bx bx-plus-medical' style="font-size:25px; margin-right: 10px; "></i>
+                                                        Agendar tratamiento
+                                                    </button>
+                                                    </div>
+
+                                                    <div class="buttonNUE">
+                                                        <div class="button-layerD"></div>
+                                                        <button id="myBtn" class="botonNUE">
+                                                            <i class='bx bxs-coffee' style="font-size:25px; margin-right: 10px; "></i>
+                                                            Agendar dieta
+                                                        </button>
+                                                        </div>
+
+                                               
+                                                    <div class="buttonNUE">
+                                                    <div class="button-layer3 negcol"></div>
+                                                    <button class="button-layer32">
+                                                        <i class='bx bx-x' style="font-size:25px; margin-right: 10px; "></i>
+                                                        Cerrar ventana
+                                                    </button>
+                                                    </div>
+                                                
+                                                    <br><br>
+                                                
+                                                    <div class="tablacentradados">
+
+                                                        
+                                                    </div>
+                                                    <div class="buttonNUE">
+                                                    <div class="button-layer4"></div>
+                                                    <form action="">
+                                                        <button type="submit" class="centrado">
+                                                            <i class='bx bxs-skull' style="font-size:25px; margin-right: 10px; margin-top: 13px;"></i>
+                                                            <h4 class="cent">Dar de baja a paciente</h4>
+                                                        </button>
+                                                    </form>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </section>
+                                            <!-- #FIN SECCIÓN PARA ACCIONES DEL PACIENTE -->
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                         
+                            
+                          
+                            </table>
+                        </div>
+                    </div>
+          
+
+              
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+
+                     <!-- Modal content -->
+                    <div class="modal-content">
+                       
+                        <section class="seccione">
+                        <div class="popup-outer">
+                            <div class="popup-box translated" style="box-shadow: #91919149 0px 0px 0px 3px;">
+                               
+                                <div class="profile-text">
+                                    <img src="https://i.ibb.co/YLddykt/731-sin-t-tulo-20230412145209.png" alt=""> 
+                                    <div class="text">
+                                        <span class="name">Nombre del paciente</span>
+                                         <span class="profession">En este formulario podrás agendar una nueva dieta para su
+                                            paciente </span>
+                                    </div>
+                                </div>
+
+                                <!--Inicio del formulario de dietas-->
+                                <form action="#">
+                                    <input spellcheck="false" type="text" class="titulo" placeholder="Inserta el título de la dieta..." required>
+
+                                    
+                                    <div class="tratamientodiv dops">
+                                        <h1>Lista de ingredientes</h1>
+                                        <b class="infos">Da clic a un ingrediente para agregarlo</b> 
+                                        <input type="text" class="buscamedic" id="searchdietas" placeholder="Buscar ingrediente...">
+                                        <form action="">
+                                        <div id="listadietas" class="flexlistIngredientes">
+                                            <div class="checkbox">
+                                              <input type="checkbox" id="1d" value="Coco" >
+                                              <label for="1d">Coco</label>
+                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
+                                            </div>
+         
+                                            <div class="checkbox">
+                                              <input type="checkbox" id="2d" value="Jamon">
+                                              <label for="2d">Jamon</label>
+                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
+                                            </div>
+         
+                                            <div class="checkbox">
+                                              <input type="checkbox" id="3d" value="Pierna">
+                                              <label for="3d">Pierna</label>
+                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
+                                            </div>
+         
+                                            <div class="checkbox">
+                                              <input type="checkbox" id="4d" value="Comida">
+                                              <label for="4d">Comida</label>
+                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
+                                            </div>
+                                          </div>
+                                     </div>
+         
+                                        
+                                        <div id="dietas-seleccionados" class="dietas-seleccionados">
+                                         Los ingredientes que agregues son los siguientes:
+                                         <br>
+                                         <br>
+                                        </div>
+
+
+
+                                    <div class="button">
+                                        <button id="closem" class="cancel">Cancelar</button>
+                                        <button class="send">¡Enviar!</button>
+                                    </div>
+                                </form>
+
+                                <!--Fin del formulario de dietas-->
+                            </div>
+                        </div>
+                        </section>
+                    </div>
+
+                </div>
+
+
+                <!-- The Modal -->
+                <div id="myModal2" class="modal">
+
+                    <!-- Modal content -->
+                   <div class="modal-content">
+                      
+                       <section class="seccione">
+                       <div class="popup-outer">
+                           <div class="popup-box" id="popu2" style="box-shadow: #91919149 0px 0px 0px 3px;   height: 320px;">
+                              
+                               <div class="profile-text">
+                                   <img src="https://i.ibb.co/W6CrCWm/731-sin-t-tulo-20230412145236.png" alt=""> 
+                                   <div class="text">
+                                       <span class="name">Nombre del paciente</span>
+                                        <span class="profession">En este formulario podrás agendar una nueva cita para su
+                                           paciente </span>
+                                   </div>
+                               </div>
+                               <form action="#">
+                                   <input spellcheck="false" type="time" class="titulo" placeholder="Inserta el título de la cita..." required>
+                                   <input type="date" spellcheck="false" type="text" class="titulo" placeholder="Inserta la fecha..." required>
+                                   <div class="button">
+                                       <button id="closem" class="cancel2">Cancelar</button>
+                                       <button class="send">¡Enviar!</button>
+                                   </div>
+                               </form>
+                           </div>
+                       </div>
+                       </section>
+                   </div>
+
+               </div>
+
+
+               <!-- The Modal -->
+               <div id="myModal3" class="modal">
+
+                <!-- Modal content -->
+               <div class="modal-content">
+                  
+                   <section class="seccione">
+                   <div class="popup-outer">
+                       <div class="popup-box translated" id="pupu3" style="box-shadow: #91919149 0px 0px 0px 3px;">
+                          
+                           <div class="profile-text">
+                               <img src="https://i.ibb.co/vQQ72rh/731-sin-t-tulo-20230412145300.png" alt=""> 
+                               <div class="text">
+                                   <span class="name">Nombre del paciente</span>
+                                    <span class="profession">En este formulario podrás agendar un nuevo tratamiento para su
+                                       paciente </span>
+                               </div>
+                           </div>
+
+                           <!--Comienzo del form de medicamentos-->
+                           <form action="#">
+                               <input spellcheck="false" type="text" class="titulo" placeholder="Inserta el título del tratamiento..." required>
+                               
+                               
+                            <div class="tratamientodiv">
+                               <h1>Lista de medicamentos</h1>
+                               <b class="infos">Da clic a un medicamento para agregarlo</b> 
+                               <input type="text" class="buscamedic" id="search" placeholder="Buscar medicamento...">
+                               <form action="">
+                               <div id="listamedicamentos" class="flexlistMedicamentos">
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="1" value="Paracetamol" >
+                                     <label for="1">Paracetamol</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
+
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="2" value="Gluco coso">
+                                     <label for="2">Gluco coso</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
+
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="3" value="Medicina">
+                                     <label for="3">Medicina</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
+
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="4" value="Glucometro">
+                                     <label for="4">Glucometro</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
+                                 </div>
+                            </div>
+
+                               
+                               <div id="medicamentos-seleccionados" class="medicamentos-seleccionados">
+                                Los medicamentos que agregues son los siguientes; no te olvides de agregarles fecha
+                                <br>
+                                <br>
+                               </div>
+
+                               
+                               <input type="date" spellcheck="false" type="text" class="titulo" placeholder="Inserta el título de la dieta..." required>
+                               <div class="button">
+                                   <button id="closem" class="cancel3">Cancelar</button>
+                                   <button type="submit" class="send">¡Enviar!</button>
+                               </div>
+                           </form>
+                           <!--Fin del form de medicamentos-->
+                           
+                       </div>
+                   </div>
+                   </section>
+               </div>
+
+           </div>
+                
+        <br>
+
+        <div class="title">
+          <i class="uil uil-abacus" ></i>
+          <span class="text">Asignaciones con Isaac</span>
+        </div>
+
+
+        <div class="overlaycard" id="overcardTRATAM" >
+          <div class="dispTitulo" id="titucolor">
+            <div class="dispTexto"><h3 class="overlay-title">Detalles del tratamiento</h3></div>
+            <div class="dispCerrar"><button id="overlay-close" class="overlay-close">×</button></div>
+          </div>
+          
+          <div class="recuadrodatos">
+            <div class="dispo1" id="tituloTratamiento">
+            </div>
+            <div class="dispo2" id="fechaTratamiento">
+            </div>
+            <div class="contenido" id="contenidoTratamiento">
+            </div>
+          </div>
+
+          <div class="formsElEd">
+            <form action="">
+              <button class="accionAsignacionEl" value="Eliminar">Editar tratamiento</button>
+            </form>
+            <form action="">
+              <button class="accionAsignacionEd" value="Eliminar">Eliminar tratamiento</button>
+            </form>
+          </div>
+        </div>
+
+
+        <div class="overlaycardDIET verdesC" id="overcardDIET" >
+          <div class="dispTitulo" id="titucolor">
+            <div class="dispTexto"><h3 class="overlay-title">Detalles de la dieta</h3></div>
+            <div class="dispCerrar"><button id="overlay-closeDIet" class="overlay-closeDiet">×</button></div>
+          </div>
+          
+          <div class="recuadrodatos">
+            <div class="dispo1" id="tituloDiet">
+            </div>
+            <div class="dispo2" id="fechaDiet">
+            </div>
+            <div class="contenido" id="contenidoDiet">
+            </div>
+          </div>
+
+          <div class="formsElEd">
+            <form action="">
+              <button class="accionAsignacionEl" value="Eliminar">Editar dieta</button>
+            </form>
+            <form action="">
+              <button class="accionAsignacionEd" value="Eliminar">Eliminar dieta</button>
+            </form>
+          </div>
+        </div>
+
+
+        <div class="overlaycardCITA azulesC" id="overcardCITA" >
+          <div class="dispTitulo" id="titucolor">
+            <div class="dispTexto"><h3 class="overlay-title">Detalles de la cita</h3></div>
+            <div class="dispCerrar"><button id="overlay-closeCITA" class="overlay-closeCita">×</button></div>
+          </div>
+          
+          <div class="recuadrodatos">
+            <div class="dispo1" id="tituloCITA">
+            </div>
+            <div class="dispo2" id="fechaCITA">
+            </div>
+            <div class="contenido" id="contenidoCITA">
+            </div>
+          </div>
+
+          <div class="formsElEd">
+            <form action="">
+              <button class="accionAsignacionEl" value="Eliminar">Editar cita</button>
+            </form>
+            <form action="">
+              <button class="accionAsignacionEdCita" value="Eliminar">Eliminar cita</button>
+            </form>
+          </div>
+        </div>
+
+
+
+        <div class="container">
+        <div class="column1">
+          <h3 class="name">Citas</h3>
+
+          <div class="card azulesC">
+            <p class="small-content dates">Dia 20-03-2023</p>
+            <h4 class="hora">Hora: 6:00 am</h4>
+            <h6> fecha de publicación: </h6>
+          </div>
+
+          <div class="card azulesC">
+            <p class="small-content dates">Dia 21-04-2023</p>
+            <h4 class="hora">Hora: 4:50 am</h4>
+            <h6> fecha de publicación: </h6>
+          </div>
+
+          
+        </div>
+        <div class="column2">
+          <h3  class="name">Tratamientos</h3>
+
+          <div class="card amarillosC">
+            <h4>tratamiento uno</h4>
+            <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am.</p>
+            <h6> fecha de publicación:</h6>
+
+          </div>
+
+          <div class="card amarillosC">
+            <h4>tratamiento dos</h4>
+            <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am. y más</p>
+            <h6> fecha de publicación:</h6>
+
+          </div>
+
+
+        </div>
+        <div class="column3">
+          <h3  class="name">Dietas</h3>
+
+          <div class="card verdesC">
+            <h4>Dieta 1</h4>
+            <p class="small-content">Coco 20 Kcal con sal, Lechuga para el sanwis</p>
+            <h6> fecha de publicación:</h6>
+          </div>
+          
+
+          <div class="card verdesC">
+            <h4>Dieta 1</h4>
+            <p class="small-content">Coco 20 Kcal con sal, Lechuga para el sanwis</p>
+            <h6> fecha de publicación:</h6>
+          </div>
+
+
+        </div>
+        </div>
+
+
+
+
+        <div class="title">
+          <i class="uil uil-chart-growth" ></i>
+          <span class="text">Tablas de glucosa y presión</span>
+        </div>
+
+                <div class="row">
+                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; height: auto;">
+                        tabla
+                    </div>
+                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; height: auto;">
+                        tabla
+                  </div>
+                </div>
+
+        <br>
+        
+        <div class="title">
+          <i class="uil uil-book" ></i>
+          <span class="text">Historial de registros del paciente</span>
+        </div>
+        
+          
+            <div class="row">
+                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; overflow-y: auto; min-height: 110px; max-height: 220px;">
+                    <table>
+                        <tr>
+                          <th style="background-color: #F7B416;"> Glucosa</th>
+                          <th style="font-size: small;">niveles</th>
+                        </tr>
+                        <tr>
+                          <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
+                          <td data-label="Registro 1" >120/80 a las 19:31</td>
+                          <td data-label="Registro 2" >130/80 a las 18:32</td>
+                          <td data-label="Registro 3" >20/80 a las 17:32</td>
+                          <td data-label="Registro 4" >220/80 a las 16:45</td>
+                        </tr>
+                        <tr>
+                            <td  data-label="Hace 2 días" style="font-weight: bold;">20/12/2022 </td>
+                            <td data-label="Registro 1" >120/80 a las 19:31</td>
+                            <td data-label="Registro 2" >130/80 a las 18:32</td>
+                            <td data-label="Registro 3" >20/80 a las 17:32</td>
+                            <td data-label="Registro 4" >220/80 a las 16:45</td>
+                          </tr>
+                      </table>
+                  
+                </div>
+                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; overflow-y: auto;  min-height: 110px; max-height: 220px;">
+                    <table>
+                        <tr>
+                          <th style="background-color: #F71652;"> Presión</th>
+                          <th style="font-size: small;">niveles</th>
+                        </tr>
+                        <tr>
+                          <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
+                          <td data-label="Registro 1" >120/80 a las 19:31</td>
+                          <td data-label="Registro 2" >130/80 a las 18:32</td>
+                          <td data-label="Registro 3" >20/80 a las 17:32</td>
+                          <td data-label="Registro 4" >220/80 a las 16:45</td>
+                        </tr>
+                        <tr>
+                            <td  data-label="Hace 1 día" style="font-weight: bold;">20/12/2022 </td>
+                            <td data-label="Registro 1" >120/80 a las 19:31</td>
+                            <td data-label="Registro 2" >130/80 a las 18:32</td>
+                            <td data-label="Registro 3" >20/80 a las 17:32</td>
+                            <td data-label="Registro 4" >220/80 a las 16:45</td>
+                          </tr>
+                      </table>
+                </div>
+              </div>
+              
+  
+</div>
+
+
+    <script src="js/pacienteDoctor.js"></script>
+
+    
+</body>
+</html>

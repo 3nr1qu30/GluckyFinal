@@ -54,6 +54,7 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
  
+
  db.aceptarPeticiones = (Cedula,CurpForm,callback)=>{
   con.query(`update pacientemedico set id_edosol=2 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,acepta)=>{
    if(error){
@@ -172,6 +173,27 @@ db.enlazarDoctoresPacientes = (Curp,CedulaForm,callback)=>{
     }
   });
 }; 
+
+db.solicitudcita=(FechaForm,HoraForm,Curp,callback)=>{
+  con.query(`select id_consmed from pacientemedico natural join consultoriomedico where curp_pacien='${Curp}'`,(error,consultorio)=>{
+    if(error){
+      console.log(error);
+    }
+    else if(consultorio){
+      let consul = parseInt(consultorio[0].id_consmed);
+      con.query(`INSERT INTO solicitarcita VALUES(default, '${FechaForm}', '${HoraForm}', 1, '${Curp}', ${consul})`, (error, cita) => {
+        if(error){
+          callback(error,null);
+        }
+        else if(cita){
+          callback(null,'Solicitud de Cita enviada');
+        }
+      });
+    }
+  });
+};
+
+
 //modificar registros
 db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
   con.query(`UPDATE pacientemedico SET cedula_med='${Cedula}', id_edosol=1 WHERE curp_pacien ='${Curp}'`,(error,actualizacion)=>{
