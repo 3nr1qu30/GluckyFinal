@@ -10,6 +10,10 @@ sexo = document.getElementById('sexo'),
 tipodiabetes = document.getElementById('tipodiabetes'),
 password = document.getElementById('password');
 
+var tipoDiabetes = document.getElementsByName("TipoDiabetes")[0],
+genero = document.getElementsByName("GeneroForm")[0];
+
+
 const expReg = {
     nombre: /^[A-Za-z\u00C0-\u017F]{2,}( [A-Za-z\u00C0-\u017F]{2,})+$/,
     apellidos: /^[A-Z\u00C0-\u017F][a-z\u00C0-\u017F]{1,}\s[A-Z\u00C0-\u017F][a-z\u00C0-\u017F]{1,}\s?[A-Z\u00C0-\u017F]?[a-z\u00C0-\u017F]{0,}$/,
@@ -38,6 +42,30 @@ const validarFormulario = (e) => {
         case "NombreForm":
             break;
         case "ApellidosForm":
+            break;
+        case "EmailForm":
+            break;
+        case "EdadForm":
+            break;
+        case "TelefonoForm":
+            break;
+        case "CurpForm":
+            break;
+        case "GeneroForm":
+            if (genero.value !== "" && genero.value != null) {
+                console.log("Seleccionaste el género: " + genero.value);
+              } else {
+                console.log("Selecciona un género válido");
+              }
+            break;
+        case "TipoDiabetes":
+            if (tipoDiabetes.value !== "" && tipoDiabetes.value != null) {
+                console.log("Seleccionaste el tipo de diabetes: " + tipoDiabetes.value);
+              } else {
+                console.log("Selecciona un tipo de diabetes válido");
+              }
+            break;
+        case "PassForm":
             break;
     }
 }
