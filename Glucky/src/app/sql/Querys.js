@@ -66,7 +66,30 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
    }
   });
  };
+
+
+db.verAlimentos = (callback)=>{
+  con.query(`SELECT * FROM ingrediente`, (error,ver)=>{
+   if(error){
+      console.error('No hay alimentos', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
+ db.verMedicamentos = (callback)=>{
+  con.query(`SELECT * FROM medicamento`, (error,ver)=>{
+   if(error){
+      console.error('No hay medicamentos', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
  
+
  db.PeticionesCita = (Cedula,callback)=>{
   con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
@@ -248,6 +271,43 @@ db.solicitudcita=(FechaForm,HoraForm,Curp,callback)=>{
   });
 };
 
+
+db.Alimentos = (alimentoNombre,alimentoDescripcion,callback)=>{
+con.query(`INSERT INTO ingrediente VALUES (default, '${alimentoNombre}', '${alimentoDescripcion}')`, (error, alimento) => {
+  if(error){
+    callback(error,null);
+  }
+  else if(alimento){
+    callback(null,'Alimento registrado');
+  }
+});
+};
+
+db.Medicamentos = (medicamentoNombre,callback)=>{
+  con.query(`INSERT INTO medicamento VALUES (default, '${medicamentoNombre}')`, (error, medicamento) => {
+    if(error){
+      callback(error,null);
+    }
+    else if(medicamento){
+      callback(null,'Medicamento registrado');
+    }
+  });
+};
+
+db.editarMedicamento=(idMed,nomMed,callback)=>{
+  con.query(`UPDATE medicamento SET nom_medic='${nomMed}' WHERE id_medic ='${idMed}'`,(error,actualizacion)=>{
+    if(error){
+      console.log('Error al modificar ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Modificación de medicamento realizada');
+      callback(null,actualizacion);
+    }
+  });
+}
+
+
 db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callback)=>{
   con.query(`INSERT INTO datosmedicos VALUES(default,'${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}'`,(error,registro)=>{
     if(error){
@@ -272,5 +332,53 @@ db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
     }
   });
 }
+
+db.editarAlimento=(idIngred,NomForm,DescForm,callback)=>{
+  con.query(`UPDATE ingrediente SET nom_ingred='${NomForm}', desc_ingred='${DescForm}' WHERE id_ingred ='${idIngred}'`,(error,actualizacion)=>{
+    if(error){
+      console.log('Error al modificar ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Modificación de alimento realizado');
+      callback(null,actualizacion);
+    }
+  });
+}
+
+
 //eliminar registros
+db.eliminarAlimento=(idIngred,callback)=>{
+  let idIng = parseInt(idIngred);
+  con.query(`DELETE FROM ingrediente WHERE id_ingred='${idIng}'`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Alimento eliminado limón');
+      callback(null,elimina);
+    }
+  });
+};
+
+db.eliminarMedicamento=(idMedic,callback)=>{
+  let idIng = parseInt(idMedic);
+  con.query(`DELETE FROM medicamento WHERE id_medic='${idIng}'`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Medicamento eliminado naranja');
+      callback(null,elimina);
+    }
+  });
+};
+
+
+
+
 module.exports= db;
+
+
