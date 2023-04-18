@@ -162,44 +162,24 @@
                         <h1 class="citasgrande">Tus Citas Generales</h1>
                         <h4 class="citascantidad">5 Citas</h1>
                             <div class="contenecitas">
-                                
-                           
-
+                                <%if(citasaceptadas.length !== 0){
+                                    for(let i = 0; i < citasaceptadas.length; i++){
+                                        var fechita = citasaceptadas[i].date_solcita;%>
                                 <div class="cuadrocitas">
-                                    <h5 class="grandato">10:00 am</h5>
-                                    <h5 class="minidato">5 de Enero del 2020</h5>
-                                    <h5 class="minidato">Isaac Montoya</h5> 
+                                    <h5 class="grandato"><%=citasaceptadas[i].hour_solcita%></h5>
+                                    <h5 class="minidato"><%=fechita.toISOString().substring(0,10)%></h5>
+                                    <h5 class="minidato"><%=citasaceptadas[i].nom_pers%> <%=citasaceptadas[i].apellidos_pers%></h5> 
                                     <div class="izquierdaborr">
 
                                         <form action="">
+                                            <input type="hidden" value="<%=citasaceptadas[i].id_solcita%>">
                                             <button type="submit" class="borrarcita">Borrar</button> 
                                         </form>
                                        
                                     </div>
                                 </div>
-                                <div class="cuadrocitas">
-                                    <h5 class="grandato">10:00 am</h5>
-                                    <h5 class="minidato">5 de Enero del 2020</h5>
-                                    <h5 class="minidato">Isaac Montoya</h5> 
-                                    <div class="izquierdaborr">
-                                        <form action="">
-                                            <button type="submit" class="borrarcita">Borrar</button> 
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="cuadrocitas">
-                                    <h5 class="grandato">10:00 am</h5>
-                                    <h5 class="minidato">5 de Enero del 2020</h5>
-                                    <h5 class="minidato">Isaac Montoya</h5> 
-                                    <div class="izquierdaborr">
-                                        <form action="">
-                                            <button type="submit" class="borrarcita">Borrar</button> 
-                                        </form>
-                                    </div>
-                                </div>
-                                
-
-                               
+                                <%}
+                            }%>
                             </div>
 
                         <div class="recuadropetit">

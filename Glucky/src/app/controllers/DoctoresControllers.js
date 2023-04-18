@@ -13,9 +13,10 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.verPeticionesDoctor(Cedula,(error,ver)=>{
       if(ver){
-        querys.PeticionesCitaGenerales(Cedula,(error,citasacpetadas)=>{
-          if(citasacpetadas){
-            res.render('peticionesDoctor',{datos:ver,citasacpetadas});
+        querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
+          if(citasaceptadas){
+            console.log(`Si se hizo mami`);
+            res.render('peticionesDoctor',{datos:ver,citasaceptadas});
           }
           else if(error){
             console.log(error);
@@ -33,8 +34,15 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.PeticionesCita(Cedula,(error,ver)=>{
       if(ver){
-        console.log(ver);
-        res.render('citasDoctor',{datos:ver});
+        querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
+          if(citasaceptadas){
+            console.log(`Si se hizo mami`);
+            res.render('citasDoctor',{datos:ver,citasaceptadas});
+          }
+          else if(error){
+            console.log(error);
+          }
+        });
       }
       else{
         console.log(error);
