@@ -47,7 +47,6 @@ db.buscarPaciente = (CurpForm,callback)=>{
 db.mostrarDatosDoctorPaciente = (CurpForm, callback)=> {
   con.query(`SELECT paciente.curp_pacien, persona.nom_pers, persona.apellido_pers, persona.email_pers tipodiabetes.nomtipdiabts FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
     if(error){
-      console.error('No hay registro', error);
       callback(error, null);
     } else {
       if (fila) {
