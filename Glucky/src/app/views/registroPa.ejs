@@ -124,7 +124,7 @@
               </div>
             </div>
 
-<form action="/Glucky/Registros/Paciente" method="post">
+<form action="/Glucky/Registros/Paciente" method="post" id="formulario">
             <div class="row">
               <div class="column1" style="background-color:rgb(255, 255, 255);">
                 <div class="">
@@ -142,41 +142,31 @@
                           <label for="fullName">Nombre*</label>
                           <input 
                               type="text" 
-                              placeholder="Nombre" 
-                              required
+                              placeholder="Nombre"
                               maxlength="50"
-                              name="NombreForm"
-                              pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ']{2,25}){2,25}" 
-                              required>
+                              name="NombreForm">
                         </div>
                         <div class="ud-form-group">
                           <label for="email">Apellidos*</label>
                           <input 
                           type="text" 
-                          placeholder="Apellidos" 
-                          required
+                          placeholder="Apellidos"
                           name="ApellidosForm"
-                          maxlength="60" 
-                          pattern="([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ']{2,25})+([ ]{1})+([a-zA-ZñÑáéíóúÁÉÍÓÚüÜ ']{2,25})" 
-                          required>
+                          maxlength="60" >
                         </div>
                         <div class="ud-form-group">
                           <label for="phone">E-mail*</label>
                           <input 
                           type="email" 
                           placeholder="Ejemplo@gmail.com"  
-                          name="EmailForm" 
-                          required>
+                          name="EmailForm">
                         </div>
                         <div class="ud-form-group">
                           <label for="message">Edad*</label>
                           <input 
                               type="number" 
-                              placeholder="Ejemplo (34)" 
-                              required
-                              name="EdadForm" 
-                              pattern="[0,9]{2}" 
-                              required>
+                              placeholder="Ejemplo (34)"
+                              name="EdadForm" >
                         </div>
                         <div class="ud-form-group">
                           <label for="message">Teléfono*</label>
@@ -185,9 +175,7 @@
                           placeholder="Ejemplo (5544667788)" 
                           name="TelefonoForm" 
                           maxlength="10" 
-                          minlength="10" 
-                          pattern="([0-9]{10})" 
-                          required>
+                          minlength="10" >
                         </div>
                        
                         <div class="ud-form-group">
@@ -195,8 +183,7 @@
                           <input 
                           type="text" 
                           placeholder="Escribe tu clave CURP válida" 
-                          name="CurpForm"  
-                          required>
+                          name="CurpForm" >
                         </div>
       
                         <div class="ud-form-group">
@@ -228,9 +215,7 @@
                           <input 
                               type="password" 
                               name="PassForm" 
-                              placeholder=*********** " 
-                              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  
-                              required>
+                              placeholder="***********" >
                         </div>
       
                         <div class="ud-form-group mb-0">
@@ -406,6 +391,7 @@
     <!-- ====== All Javascript Files ====== -->
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/wow.min.js"></script>
+    <script src="/js/registroPacienteValidacion.js"></script>
     <script src="/js/main.js"></script>
   </body>
 </html>

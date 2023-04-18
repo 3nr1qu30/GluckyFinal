@@ -1,6 +1,3 @@
-/* const validaciones = {};
-
-validaciones.login = () => { */
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 
@@ -8,7 +5,7 @@ const cedula = document.getElementById('cedula'), password = document.getElement
 const expReg = {
     cedula: /^\d[0-9]{7}$/,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.#])[A-Za-z\d$@$!%*?&.#]{8,35}$/,
-    curp: /^[A-Z\d]{18}$/
+    curp: /^([A-Z]{4})(\d{6})([A-Z]{6})(\d{2})$/
 }
 
 const campos = {
