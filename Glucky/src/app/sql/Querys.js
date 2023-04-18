@@ -76,6 +76,16 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
 
+ db.PeticionesCitaGenerales = (Cedula,callback)=>{
+  con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 2`, (error,aceptas)=>{
+    if(error){
+      console.error('No hay solicitudes', error);
+   }else{
+     callback(null,aceptas);
+   }
+  });
+ }
+
 
  db.aceptarPeticiones = (Cedula,CurpForm,callback)=>{
   con.query(`update pacientemedico set id_edosol=2 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,acepta)=>{
@@ -87,7 +97,27 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
 
- db.aceptarcita = (IdCita,IdConsmed,callback)=>{
+/*  db.verCita = (IdCita,callback)=>{
+  con.query(`select id_cita from citamedica natural join solicitarcita where id_edosol = "${IdCita}`, (error,consultar)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,consultar);
+   }
+  });
+ }; */
+
+/*  db.borrarCita = (IdCita,IdConsmed,callback)=>{
+  con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,borrar)=>{
+   if(error){
+      console.error('No mami', error);
+   }else{
+     callback(null,borrar);
+   }
+  });
+ }; */
+
+db.aceptarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=2 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,acepta)=>{
    if(error){
       console.error('No mami', error);
@@ -95,7 +125,7 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
      callback(null,acepta);
    }
   });
- };
+ }; 
 
  db.declinarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,declina)=>{

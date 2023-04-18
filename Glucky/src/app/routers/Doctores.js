@@ -7,7 +7,8 @@ router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/ConsultaPacienteDash',DoctoresControllers.detallesPaciente);
 
 
-//rutas post
+// router.post('/CitaConsultar',DoctoresControllers.citasDoctorConsultar);
+// router.post('/CitasBorrar',DoctoresControllers.citasDoctorBorrar);
 router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
 router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
