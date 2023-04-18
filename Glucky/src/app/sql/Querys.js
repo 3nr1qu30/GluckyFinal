@@ -100,6 +100,16 @@ db.verAlimentos = (callback)=>{
   });
  };
 
+ db.PeticionesCitaGenerales = (Cedula,callback)=>{
+  con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 2`, (error,aceptas)=>{
+    if(error){
+      console.error('No hay solicitudes', error);
+   }else{
+     callback(null,aceptas);
+   }
+  });
+ }
+
 
  db.aceptarPeticiones = (Cedula,CurpForm,callback)=>{
   con.query(`update pacientemedico set id_edosol=2 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,acepta)=>{
@@ -111,7 +121,7 @@ db.verAlimentos = (callback)=>{
   });
  };
 
- db.aceptarcita = (IdCita,IdConsmed,callback)=>{
+db.aceptarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=2 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,acepta)=>{
    if(error){
       console.error('No mami', error);
@@ -119,7 +129,7 @@ db.verAlimentos = (callback)=>{
      callback(null,acepta);
    }
   });
- };
+ }; 
 
  db.declinarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,declina)=>{
