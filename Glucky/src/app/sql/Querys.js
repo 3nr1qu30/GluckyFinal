@@ -77,6 +77,16 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
 
+ db.PeticionesCitaGenerales = (Cedula,callback)=>{
+  con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 2`, (error,aceptas)=>{
+    if(error){
+      console.error('No hay solicitudes', error);
+   }else{
+     callback(null,aceptas);
+   }
+  });
+ }
+
 
  db.aceptarPeticiones = (Cedula,CurpForm,callback)=>{
   con.query(`update pacientemedico set id_edosol=2 where cedula_med='${Cedula}' and curp_pacien='${CurpForm}';`, (error,acepta)=>{
