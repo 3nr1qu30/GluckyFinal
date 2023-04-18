@@ -171,9 +171,13 @@
                                     <h5 class="minidato"><%=citasaceptadas[i].nom_pers%> <%=citasaceptadas[i].apellidos_pers%></h5> 
                                     <div class="izquierdaborr">
 
-                                        <form action="">
-                                            <input type="hidden" value="<%=citasaceptadas[i].id_solcita%>">
-                                            <button type="submit" class="borrarcita">Borrar</button> 
+                                        <form action="/Glucky/Doctores/CitasDeclina" method="post">
+                                            <input type="hidden" name="HoraForm" value="<%=citasaceptadas[i].hour_solcita%>">
+                                            <input type="hidden" name="FechaForm" value="<%=fechita.toISOString().substring(0,10)%>">
+                                            <input type="hidden" name="NombreForm" value="<%=citasaceptadas[i].nom_pers%> <%=citasaceptadas[i].apellidos_pers%>">
+                                            <input type="hidden" name="IdCita" value="<%=citasaceptadas[i].id_solcita%>">
+                                            <input type="hidden" name="IdConsmed" value="<%=citasaceptadas[i].id_consmed%>">
+                                            <button type="submit" class="borrarcita">Borrar</button>  
                                         </form>
                                        
                                     </div>

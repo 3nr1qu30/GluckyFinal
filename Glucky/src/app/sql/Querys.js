@@ -98,26 +98,6 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
 
-/*  db.verCita = (IdCita,callback)=>{
-  con.query(`select id_cita from citamedica natural join solicitarcita where id_edosol = "${IdCita}`, (error,consultar)=>{
-   if(error){
-      console.error('No mami', error);
-   }else{
-     callback(null,consultar);
-   }
-  });
- }; */
-
-/*  db.borrarCita = (IdCita,IdConsmed,callback)=>{
-  con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,borrar)=>{
-   if(error){
-      console.error('No mami', error);
-   }else{
-     callback(null,borrar);
-   }
-  });
- }; */
-
 db.aceptarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=2 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,acepta)=>{
    if(error){
