@@ -292,13 +292,20 @@
     <script src="/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <%
-    if (typeof docNoExiste !== "undefined"){
-      docNoExiste = "undefined"
-      %>
-      <script>
-        verificarDoctor()
-      </script>
-      <% } else{
-      }%>
+    if (typeof sessionStorage !== 'undefined') {
+      if (sessionStorage.getItem('docNoExiste') === 'El doctor no esta registrado') {
+        %>
+        <script>
+          verificarDoctor();
+        </script>
+        <% 
+        sessionStorage.setItem('docNoExiste', 'El doctor puede existir');
+      } else {
+        sessionStorage.setItem('docNoExiste', 'Si existe');
+      }
+    } else {
+    }    
+    %>
+
   </body>
 </html>
