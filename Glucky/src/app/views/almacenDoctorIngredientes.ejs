@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/almacenDoctorIngredientes.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Dashboard doctor</title> 
+        <!--====== Favicon Icon ======-->
+        <link
+        rel="shortcut icon"
+        href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+        type="image/svg"
+      />
+  
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="https://i.ibb.co/8bjZVfw/731-sin-t-tulo-20221215205600.png" alt="">
+            </div>
+
+            <span class="logo_name">Glucky</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="#pacientesjeje">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Pacientes</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-chat"></i>
+                    <span class="link-name">Chats</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-plus-circle"></i>
+                    <span class="link-name">Peticiones</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="uil uil-schedule"></i>
+                    <span class="link-name">Citas</span>
+                </a></li>
+                <li><a href="#">
+                  <i class="uil uil-restaurant"></i>
+                  <span class="link-name">Alimentos</span>
+              </a></li>
+              <li><a href="#">
+                  <i class="uil uil-capsule"></i>
+                  <span class="link-name">Medicamentos</span>
+              </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Salir</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-x"></i>
+                    <span class="link-name">Ajustes de cuenta</span>
+                </a>
+
+                <div class="mode-toggle">
+                 
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-circle"></i>
+                <input type="text" placeholder="Aplicación glucky para doctores" disabled>
+            </div>
+
+
+                <div class="icon" onclick="toggleNotifi()">
+			        <div class="noti">17</div>
+		        </div>
+
+                <div class="notifi-box" id="box">
+                    <h2>Notificaciones: <span>17</span></h2>
+                    
+                    <div class="notifi-item">
+                        <img src="https://uxwing.com/wp-content/themes/uxwing/download/checkmark-cross/cross-icon.png" alt="img">
+                        <div class="text">
+                            <h4>Notificaciones</h4>
+                            <p>Descripción de la notificación</p>
+                         </div> 
+                    </div>
+        
+                
+        
+                </div>
+
+            <img src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png" alt="" onclick="toggleNotifi2()">
+
+            <div class="notifi-box2" id="box2">
+                <div class="profile-card">
+                    <div class="image">
+                      <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
+                    </div>
+                    <div class="text-data">
+                      <span class="name">Nombre completo </span>
+                      <span class="job">Email@mail.com</span>
+                      <span class="job">Doctor</span>
+                    </div>
+              
+                    <div class="media-buttons">
+                      <a href="#" style="background: #a1a1a136" class="link">
+                        <i class="bx bx-plus-medical"></i>
+                      </a>
+                    
+                    </div>
+              
+                    <div class="buttons">
+                      <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
+                      <button class="button">Cuenta</>
+                    </div>
+              
+                    <div class="analytics">
+                      <div class="data">
+                        <i class="bx bx-circle"></i>
+                        <span class="number">Glucky</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-heart"></i>
+                        <span class="number">Doctor</span>
+                      </div>
+                      <div class="data">
+                        <i class="bx bx-award"></i>
+                        <span class="number">...</span>
+                      </div>
+                    </div>
+                  </div>
+    
+            </div>
+        
+        </div>
+
+       
+
+        <div class="dash-content">
+          <div class="blurry-background"></div>
+          <!-- Aquí puedes agregar el resto del contenido -->
+
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-restaurant verdess" style="background-color: #48e07b;"></i>
+                    <span class="text">Almacén de alimentos</span>
+                </div>
+                <h5 class="descripo">¡Agrega, elimina y modifica un alimento para poder asignarlo a cada uno de tus pacientes!</h5>
+
+                <div class="home-content">
+
+                  <div class="contenedorImagen">
+                    <div class="contenedorAlimentos">
+
+                        <% for(var i=0;i<datos.length;i++){%> 
+                        <%}%>   
+                                               
+                      <h2 class="textp">Almacén con <%=i%>  alimentos</h2>
+                        <div class="buscar-contenedor">
+                            <input type="search" id="buscar" class="buscarElemento" placeholder="Buscar alimento...">
+                            <i class="bx bx-search buscar-icono"></i>
+                            <span class="opciones">Haz clic sobre un alimento para ver más opciones y da clic sobre el alimento para editarlo</span>
+                        </div>
+                          
+                                <ul class="lista-elementos">
+
+                          <% for(var i=0;i<datos.length;i++){%>
+
+                                  <li class="elemento">
+                                    <!--Inicio del form de editar-->
+                                    <form action="/Glucky/Doctores/AlimentosEd" method="post">
+                                      <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">                                       
+                                      <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple" >
+                                      <input type="text" value="<%=datos[i].desc_ingred%>" name="DescForm" class="textoSimple" >
+                                      <div class="botones-elemento" id="botonesAcci">
+                                      <button type="submit" class="btnEditarEle">Editar</button>
+                                    </form>
+                                    <!--Fin del form de editar-->
+                                    <!--Inicio del form de eliminar-->
+                                    <form action="/Glucky/Doctores/AlimentosE" method="post">                                       
+                                      <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">
+                                      <button type="submit" class="btnEliminarEle">Eliminar</button>
+                                    </form>
+                                    <!--Fin del form de eliminar-->
+                                    </div>
+                                  </li>
+                                  <br>
+
+                          <%}%>
+                                 
+
+                                </ul>
+                                <div class="agregar">
+                                  <form action="/Glucky/Doctores/Alimentos" method="post">
+                                  <input type="text" name="alimentoNombre" class="escribeElemento" placeholder="Escribe el nombre del alimento">
+                                  <input type="text" name="alimentoDescripcion" class="escribeElemento" placeholder="Escribe la descripción del alimento">
+                                  <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento</span></button>
+                                  </form>
+                                </div>
+                                <br>
+                        </div>
+                      </div>
+                        
+
+
+        </div>
+    </div>
+
+
+
+  <br>
+
+  <script src="/js/almacenesIngMed.js">
+    </script>
+    
+    
+</body>
+</html>
