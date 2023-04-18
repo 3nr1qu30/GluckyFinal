@@ -13,8 +13,14 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.verPeticionesDoctor(Cedula,(error,ver)=>{
       if(ver){
-        console.log(ver);
-        res.render('peticionesDoctor',{datos:ver});
+        querys.PeticionesCitaGenerales(Cedula,(error,citasacpetadas)=>{
+          if(citasacpetadas){
+            res.render('peticionesDoctor',{datos:ver,citasacpetadas});
+          }
+          else if(error){
+            console.log(error);
+          }
+        });
       }
       else{
         console.log(error);
