@@ -96,6 +96,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         let error ='El paciente no esta registrado';
         console.log(error);
         res.render('iniciosesion',{error});
+        error = undefined;
       }
       else if(paciente){
         if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){

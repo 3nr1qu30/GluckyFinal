@@ -13,9 +13,10 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.verPeticionesDoctor(Cedula,(error,ver)=>{
       if(ver){
-        querys.PeticionesCitaGenerales(Cedula,(error,citasacpetadas)=>{
-          if(citasacpetadas){
-            res.render('peticionesDoctor',{datos:ver,citasacpetadas});
+        querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
+          if(citasaceptadas){
+            console.log(`Si se hizo mami`);
+            res.render('peticionesDoctor',{datos:ver,citasaceptadas});
           }
           else if(error){
             console.log(error);
@@ -33,8 +34,15 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.PeticionesCita(Cedula,(error,ver)=>{
       if(ver){
-        console.log(ver);
-        res.render('citasDoctor',{datos:ver});
+        querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
+          if(citasaceptadas){
+            console.log(`Si se hizo mami`);
+            res.render('citasDoctor',{datos:ver,citasaceptadas});
+          }
+          else if(error){
+            console.log(error);
+          }
+        });
       }
       else{
         console.log(error);
@@ -42,6 +50,110 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
+  Controllers.Alimentos = (req,res,next)=>{
+    console.log(req.body);
+    querys.verAlimentos((error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.render('almacenDoctorIngredientes',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+  Controllers.Medicamentos = (req,res,next)=>{
+    console.log(req.body);
+    querys.verMedicamentos((error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.render('almacenDoctorMedicamentos',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+  Controllers.Medicamento = (req,res,next)=>{
+    const{medicamentoNombre} =req.body;
+    querys.Medicamentos(medicamentoNombre, (error, medicamento) =>{
+      if(medicamento) {
+        console.log('Medicamento agregado exitosamente');
+        res.render('almacenDoctorMedicamentos');
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  Controllers.editarMedicamentos = (req,res,next)=>{
+    const{idMed} = req.body;
+    const{nomMed} = req.body;
+    console.log(idMed);
+    querys.editarMedicamento(idMed,nomMed,(error,editamami)=>{
+      if(editamami){
+        console.log('Modificacion realizada');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
+  Controllers.Alimento = (req,res,next)=>{
+    const{alimentoNombre} =req.body;
+    const{alimentoDescripcion} =req.body;
+    querys.Alimentos(alimentoNombre, alimentoDescripcion, (error, alimento) =>{
+      if(alimento) {
+        console.log('Alimento agregado exitosamente');
+        res.render('almacenDoctorIngredientes');
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+
+  Controllers.eliminarAlimentos = (req,res,next)=>{
+    const{idIngred} = req.body;
+    querys.eliminarAlimento(idIngred,(error,elimina)=>{
+      if(elimina){
+        console.log('Eliminación lograda');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
+  Controllers.eliminarMedicamento = (req,res,next)=>{
+    const{idMed} = req.body;
+    querys.eliminarMedicamento(idMed,(error,elimina)=>{
+      if(elimina){
+        console.log('Eliminación lograda');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
+
+  Controllers.editarAlimentos = (req,res,next)=>{
+    const{idIngred} = req.body;
+    const{NomForm} = req.body;
+    const{DescForm} = req.body;
+    querys.editarAlimento(idIngred,NomForm,DescForm,(error,editamami)=>{
+      if(editamami){
+        console.log('pues va mami');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
 
   Controllers.peticionesDoctorAcepta = (req,res,next)=>{
     const Cedula = req.session.cedula;
@@ -56,31 +168,6 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   };
 
-/*   Controllers.citasDoctorConsultar = (req,res,next)=>{    
-    const{IdCita} = "2";
-    querys.verCita(IdCita,(error,consultar)=>{
-      if(consultar){
-        console.log('consultado exitosamente');
-      }
-      else{
-        console.log(error);
-      }
-    });
-  }; */
-
-/*   Controllers.citasDoctorBorrar = (req,res,next)=>{    
-    const{IdCita} = req.body;
-    const{IdConsmed} = req.body;
-    querys.borrarCita(IdCita,IdConsmed,(error,borrar)=>{
-      if(borrar){
-        console.log('cita borrada');
-      }
-      else{
-        console.log(error);
-      }
-    });
-  };
- */
   Controllers.citasDoctorAcepta = (req,res,next)=>{    
     const{IdCita} = req.body;
     const{IdConsmed} = req.body;
@@ -123,6 +210,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   Controllers.citasDoctor = (req,res,next)=>{
     res.render('citasDoctor');
   };
+
  
   Controllers.detallesPaciente = (req, res, next) => {
     const Cedula = req.session.cedula;
@@ -138,4 +226,8 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   }
 
-module.exports = Controllers;
+
+
+  
+ 
+module.exports = Controllers; 
