@@ -158,6 +158,6 @@ formulario.addEventListener('submit', (e) => {
         
     } else {
         e.preventDefault();
-        document.querySelector('#grupo_enviar .form_input_error4').classList.add('form_input_error4-activo');
+        document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');
     }
 });
