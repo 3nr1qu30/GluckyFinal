@@ -34,6 +34,7 @@ function actualizarError() {
   if (this.value !== '') {
     error.classList.remove('form_input_error-activo');
     campos.tipodiabetes = true;
+    document.querySelector('#grupo_enviar .form_input_error').classList.remove('form_input_error-activo');
 } else {
     error.classList.add('form_input_error-activo');
     campos.tipodiabetes = false;
@@ -49,6 +50,7 @@ function actualizarErrorgenero() {
   if (this.value !== '') {
     error.classList.remove('form_input_error-activo');
     campos.genero = true;
+    document.querySelector('#grupo_enviar .form_input_error').classList.remove('form_input_error-activo');
 } else {
     error.classList.add('form_input_error-activo');
     campos.genero = false;
@@ -59,7 +61,6 @@ generoSelect.addEventListener('change', actualizarErrorgenero);
 
 
 const validarFormulario = (e) => {
-    console.log(e.target.name);
     switch (e.target.name){
         case "NombreForm":
             if(expReg.nombre.test(e.target.value)){
@@ -145,17 +146,22 @@ const validarFormulario = (e) => {
                 campos.password = false;                
             }
             break;
-    }
-}
-
-inputs.forEach((input) => {
-    input.addEventListener('keyup', validarFormulario);
-    input.addEventListener('blur', validarFormulario);
-});
-
-formulario.addEventListener('submit', (e) => {
-    if (campos.nombre && campos.apellidos && campos.email && campos.edad && campos.telefono && campos.curp && campos.genero && campos.tipodiabetes && campos.password) {
+        }
+        if (campos.nombre && campos.apellidos && campos.email && campos.edad && campos.telefono && campos.curp && campos.password) {
+            document.querySelector('#grupo_enviar .form_input_error').classList.remove('form_input_error-activo');
+            console.log(`esta bien`);
+        }
         
+    }
+    
+    inputs.forEach((input) => {
+        input.addEventListener('keyup', validarFormulario);
+        input.addEventListener('blur', validarFormulario);
+    });
+    
+    formulario.addEventListener('submit', (e) => {
+        if (campos.nombre && campos.apellidos && campos.email && campos.edad && campos.telefono && campos.curp && campos.genero && campos.tipodiabetes && campos.password) {
+            console.log(`esta bien`);
     } else {
         e.preventDefault();
         document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');
