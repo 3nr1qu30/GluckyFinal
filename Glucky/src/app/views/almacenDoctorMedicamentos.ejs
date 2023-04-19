@@ -172,13 +172,13 @@
                         <% for(var i=0;i<datos.length;i++){%> 
                         <%}%>   
                                                    
-                        <h2 class="textp">Almacén con <%=i%>  medicamentos</h2>
+                        <h2 class="textp">Almacén con <%= i %> <%= i === 1 ? "medicamento" : "medicamentos" %></h2>
                         <div class="buscar-contenedor">
                             <input type="search" id="buscar" class="buscarElemento" placeholder="Buscar medicamento...">
                             <i class="bx bx-search buscar-icono"></i>
                             <span class="opciones">Haz clic sobre un elemento para ver más opciones y da clic sobre el medicamento para editarlo</span>
                         </div>
-                          
+                        <div class="contiene">
                                 <ul class="lista-elementos">
 
                             <% for(var i=0;i<datos.length;i++){%>
@@ -202,6 +202,7 @@
                                   </li>
                             
                             <%}%>
+                            </div>
 
                                 </ul>
                                 <div class="agregar">
@@ -212,7 +213,7 @@
                                 </div>
                         </div>
                       </div>
-
+<br>
                         
 
 

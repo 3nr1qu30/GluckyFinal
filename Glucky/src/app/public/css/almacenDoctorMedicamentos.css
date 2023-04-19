@@ -2817,3 +2817,11 @@ section.active .show-modal {
   background-position: 50% -10%;
   padding-top: 50px;
 }
+
+
+.contiene{
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
