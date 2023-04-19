@@ -87,16 +87,15 @@ Controllers.registroDocPost=(req,res,next)=>{
 
 Controllers.iniciosesionPost=(req,res,next)=>{
   const{UserForm,PassForm} = req.body;
+  let error;
   if(UserForm.length===18){
     querys.buscarPaciente(UserForm, async (error,paciente)=>{
       if(error){
         console.log(error);
       }
       else if(paciente==='no existe'){
-        let error ='El paciente no esta registrado';
-        console.log(error);
+        error ='El paciente no esta registrado';
         res.render('iniciosesion',{error});
-        error = undefined;
       }
       else if(paciente){
         if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){
@@ -107,7 +106,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
           res.redirect('/Glucky/Pacientes/Dashboard');
         }
         else{
-          console.log('Contraseña incorrecta');
+          res.render('iniciosesionpasin',{Usuario:UserForm});
         }
       }
     });
@@ -118,9 +117,8 @@ Controllers.iniciosesionPost=(req,res,next)=>{
         console.log(error);
       }
       else if(doctor==='no existe'){
-        let docNoExiste ='El doctor no esta registrado';
-        console.log(docNoExiste);
-        res.render('iniciosesion',{docNoExiste});
+        error='El doctor no esta registrado';
+        res.render('iniciosesion',{error});
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){
@@ -128,6 +126,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
           req.session.nombre=`${doctor[0].nom_pers} ${doctor[0].apellidos_pers}`;
           req.session.correo=doctor[0].email_pers;
           res.redirect('/Glucky/Doctores/Dashboard');
+        }
+        else{
+          res.render('iniciosesionpasin',{Usuario:UserForm});
         }
       }
     });

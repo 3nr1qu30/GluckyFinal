@@ -1,4 +1,4 @@
-<%if(typeof docNoExiste === 'undefined'){%>
+<%if(typeof error === 'undefined'){%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -132,7 +132,7 @@
                   <input
                   type="password"
                   name="PassForm"
-                  placeholder="*********"
+                  placeholder="Contraseña"
                   />
                   <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                 </div>
@@ -294,7 +294,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>
-<%}else{%>
+<%}else if(typeof error !== 'undefined'){%>
   <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -428,7 +428,7 @@
                   <input
                   type="password"
                   name="PassForm"
-                  placeholder="*********"
+                  placeholder="Contraseña"
                   />
                   <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                 </div>
@@ -589,17 +589,17 @@
     <script src="/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <%
-    if (docNoExiste === 'El doctor no esta registrado'){
-      docNoExiste = "El doctor puede existir";
-      %>
+    if (error === 'El doctor no esta registrado'){
+      error = "undefined";%>
       <script>
-        verificarDoctor()
+        DoctorSinRegistro()
       </script>
-      <% 
-    } else if(docNoExiste !== 'El doctor no esta registrado'){
-        docNoExiste = "undefined";
-      } else{
-      }%>
+      <%}else if(error === 'El paciente no esta registrado'){
+        error = "undefined";%>
+        <script>
+          PacienteSinRegistro()
+        </script>
+        <%}%>
   </body>
 </html>
   <%}%>

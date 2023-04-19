@@ -1,0 +1,298 @@
+<%if(typeof Usuario !== 'undefined' && typeof Usuario !== ""){%>
+    <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glucky inicio sesión</title>
+
+
+     <!-- Primary Meta Tags -->
+<meta name="title" content="Glucky Principal">
+<meta name="description" content="Gratuita - Aplicación para gestionar tu diabetes de manera inteligente">
+
+    <!--====== Favicon Icon ======-->
+      <!--====== Favicon Icon ======-->
+      <link
+      rel="shortcut icon"
+      href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+      type="image/svg"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- ===== All CSS files ===== -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/animate.css" />
+    <link rel="stylesheet" href="/css/lineicons.css" />
+    <link rel="stylesheet" href="/css/ud-styles.css" />
+    <link rel="stylesheet" href="/css/registro.css" />
+  </head>
+  <body>
+    
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="/Glucky/">
+                <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="Logo" />
+              </a>
+              <button class="navbar-toggler">
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+              </button>
+
+              <div class="navbar-collapse">
+                <ul id="nav" class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                    <a class="ud-menu-scroll" href="/Glucky/">Principal</a>
+                  </li>
+
+                 
+                 
+                  <li class="nav-item nav-item-has-children">
+                    <a href="javascript:void(0)"> Páginas </a>
+                    <ul class="ud-submenu">
+                      <li class="ud-submenu-item">
+                        <a href="/Glucky/IniciodeSesion" class="ud-submenu-link">
+                          Inicio de sesión
+                        </a>
+                      </li>
+                      <li class="ud-submenu-item">
+                        <a href="/Glucky/Registros" class="ud-submenu-link">
+                          Registro
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="navbar-btn d-none d-sm-inline-block">
+                <a href="/Glucky/Registros" class="ud-main-btn ud-login-btn">
+                  Registro
+                </a>
+                <a class="ud-main-btn ud-white-btn" href="/Glucky/IniciodeSesion">
+                  Iniciar sesión
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Banner Start ====== -->
+    <section class="ud-page-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-banner-content">
+              <h1>Inicio de sesión</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Banner End  ====== -->
+    <!-- ====== Login Start ====== -->
+    <section class="ud-login">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-login-wrapper">
+              <div class="ud-login-logo">
+                <img src="https://i.ibb.co/kQt7vqD/730-sin-t-tulo-20221215201908.png" alt="logo" />
+              </div>
+              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
+                <div class="ud-form-group" id="grupo__cedula">
+                  <input
+                    type="text"
+                    placeholder="Usuario (Cédula o CURP)"
+                    name="UserForm" 
+                    value="<%=Usuario%>"
+                    />
+                  <p class="form_input_error1"> La cédula debe tener 8 dígitos </p>
+                  <p class="form_input_error2"> El CURP debe tener 18 carácteres </p>
+                </div>
+                <div class="ud-form-group" id="grupo__password">
+                  <input
+                  type="password"
+                  name="PassForm"
+                  placeholder="Contraseña"
+                  />
+                  <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
+                </div>
+                <div class="ud-form-group" id="grupo_enviar">
+                  <button type="submit" class="ud-main-btn w-100" onclick="rellenoDatos()">Inicia sesión</button>
+                  <p class="form_input_error4"> Por favor, rellene bien los datos</p>
+                    </div>
+              </form>
+              <script src="/js/plantillaAlertas.js"></script>
+              <script src="/js/loginValidacion.js"></script>
+              <a class="forget-pass" href="javascript:void(0)">
+                Registro
+              </a>
+              <p class="signup-option">
+                No eres usuario aún? <a href="javascript:void(0)"> Registrate</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Login End ====== -->
+
+    <!-- ====== Footer Start ====== -->
+    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
+      <div class="shape shape-1">
+        <img src="images/footer/shape-1.svg" alt="shape" />
+      </div>
+      <div class="shape shape-2">
+        <img src="images/footer/shape-2.svg" alt="shape" />
+      </div>
+      <div class="shape shape-3">
+        <img src="images/footer/shape-3.svg" alt="shape" />
+      </div>
+      <div class="ud-footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="ud-widget">
+                <a href="/Glucky/" class="ud-footer-logo">
+                  <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="logo" />
+                </a>
+                <p class="ud-widget-desc">
+                  Ofrecemos un servicio para todos los tipos de diabetes
+                </p>
+                <ul class="ud-widget-socials">
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-facebook-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-twitter-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-instagram-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-linkedin-original"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Colaboradores</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Montoya Rodriguez Isaac</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Negrete Gonzalez Roberto</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Varillas Figueroa Enrique</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Sandoval Vasquez Gonzalo</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Nieves Bartolo Marco Antonio</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Características</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Doctores</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Pacientes</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Agenda</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Monitoreo</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+           
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ud-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <ul class="ud-footer-bottom-left">
+                <li>
+                  <a href="javascript:void(0)">Privacidad</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Apoyanos</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Terminos de servicio</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <p class="ud-footer-bottom-right">
+                Diseñado y desarrollado por
+                <a href="https://uideck.com" rel="nofollow">ECLYS</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <%if(typeof Usuario !== 'undefined'){%>
+      <script>
+        PassIncorrecto()
+      </script>
+      <%}%>
+  </body>
+</html>
+  <%Usuario="";
+}%>
