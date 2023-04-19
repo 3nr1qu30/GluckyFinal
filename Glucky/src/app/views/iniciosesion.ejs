@@ -132,7 +132,7 @@
                   <input
                   type="password"
                   name="PassForm"
-                  placeholder="*********"
+                  placeholder="Contraseña"
                   />
                   <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                 </div>
@@ -294,7 +294,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>
-<%}else{%>
+<%}else if(typeof error !== 'undefined'){%>
   <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -428,7 +428,7 @@
                   <input
                   type="password"
                   name="PassForm"
-                  placeholder="*********"
+                  placeholder="Contraseña"
                   />
                   <p class="form_input_error3"> La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                 </div>

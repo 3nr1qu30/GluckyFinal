@@ -19,3 +19,13 @@ function PacienteSinRegistro(e) {
     document.getElementById('formulario').submit();
   }, 10000)
 }
+function PassIncorrecto(e) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'Contraseña incorrecta',
+  });
+  setTimeout(function(e){
+    document.getElementById('formulario').submit();
+  }, 10000)
+}
