@@ -175,11 +175,8 @@
 
                   <div class="contenedorImagen">
                     <div class="contenedorAlimentos">
-
-                        <% for(var i=0;i<datos.length;i++){%> 
-                        <%}%>   
-                                               
-                      <h2 class="textp">Almacén con <%= i %> <%= i === 1 ? "alimento" : "alimentos" %></h2>
+      
+                      <h2 class="textp">Almacén con <%= datos.length %> <%=datos.length === 1 ? "alimento" : "alimentos" %></h2>
                         <div class="buscar-contenedor">
                             <input type="search" id="buscar" class="buscarElemento" placeholder="Buscar alimento...">
                             <i class="bx bx-search buscar-icono"></i>

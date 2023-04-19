@@ -81,7 +81,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.Medicamentos(medicamentoNombre, (error, medicamento) =>{
       if(medicamento) {
         console.log('Medicamento agregado exitosamente');
-        res.render('almacenDoctorMedicamentos');
+        res.redirect('/Glucky/Doctores/Medicamentos');
       } else {
         console.log(error);
       }
@@ -94,7 +94,8 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     console.log(idMed);
     querys.editarMedicamento(idMed,nomMed,(error,editamami)=>{
       if(editamami){
-        console.log('Modificacion realizada');
+        console.log('Modificacion realizada de medicamento');
+        res.redirect('/Glucky/Doctores/Medicamentos');
       }
       else{
         console.log(error);
@@ -108,7 +109,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.Alimentos(alimentoNombre, alimentoDescripcion, (error, alimento) =>{
       if(alimento) {
         console.log('Alimento agregado exitosamente');
-        res.render('almacenDoctorIngredientes');
+        res.redirect('/Glucky/Doctores/Alimentos');
       } else {
         console.log(error);
       }
@@ -121,6 +122,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.eliminarAlimento(idIngred,(error,elimina)=>{
       if(elimina){
         console.log('Eliminación lograda');
+        res.redirect('/Glucky/Doctores/Alimentos');
       }
       else{
         console.log(error);
@@ -133,6 +135,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.eliminarMedicamento(idMed,(error,elimina)=>{
       if(elimina){
         console.log('Eliminación lograda');
+        res.redirect('/Glucky/Doctores/Medicamentos');
       }
       else{
         console.log(error);
@@ -148,6 +151,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.editarAlimento(idIngred,NomForm,DescForm,(error,editamami)=>{
       if(editamami){
         console.log('pues va mami');
+        res.redirect('/Glucky/Doctores/Alimentos');
       }
       else{
         console.log(error);
