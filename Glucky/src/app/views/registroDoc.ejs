@@ -135,57 +135,57 @@
 
                       <br>
                       <form class="ud-contact-form">
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_nombre">
                           <label for="fullName">Nombre*</label>
                           <input 
                               type="text" 
                               placeholder="Nombre" 
-                              maxlength="50"
                               name="NombreForm">
+                              <p class="form_input_error">El o los nombres deben contener minimo dos letras con la primera letra en mayúscula</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_apellidos">
                           <label for="email">Apellidos*</label>
                           <input 
                           type="text" 
                           placeholder="Apellidos" 
-                          name="ApellidosForm"
-                          maxlength="60" >
+                          name="ApellidosForm">
+                          <p class="form_input_error">Los apellidos deberán tener como mínimo dos letras</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_email">
                           <label for="phone">E-mail*</label>
                           <input 
                           type="email" 
                           placeholder="Ejemplo@gmail.com"  
                           name="EmailForm" >
+                          <p class="form_input_error">Introduzca un correo válido</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_edad">
                           <label for="message">Edad*</label>
                           <input 
                               type="number" 
                               placeholder="Ejemplo (34)" 
                               name="EdadForm" >
+                              <p class="form_input_error">Introduzca una edad válida</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_telefono">
                           <label for="message">Teléfono*</label>
                           <input  
                           type="text" 
                           placeholder="Ejemplo (5544667788)" 
-                          name="TelefonoForm" 
-                          maxlength="10" 
-                          minlength="10" >
+                          name="TelefonoForm">
+                          <p class="form_input_error">Introduzca 10 dígitos</p>
                         </div>
                        
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_cedula">
                           <label for="message" style="font: bolder;">Cédula profesional*</label>
                           <input 
                           type="text" 
                           placeholder="Escribe tu cédula profesional válida" 
-                          name="CedulaForm" 
-                          maxlength="8" 
-                          minlength="8" >
+                          name="CedulaForm">
+                          <p class="form_input_error">La cédula contiene 8 dígitos</p>
                         </div>
       
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_sexo">
                           <label for="message">Sexo*</label>
                           <select name="sexo" class="sexo">
                             <option value="">Selecciona tu sexo</option>
@@ -193,66 +193,75 @@
                             <option value="Masculino">Masculino</option>
                             <option value="PND">Prefiero no decirlo</option>
                           </select>
+                          <p class="form_input_error">Seleccione su género</p>
                         </div>
       
                         <h4 class="ud-contact-form-title">Lugar de contacto</h4>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_calle">
                           <label for="message">Calle*</label>
                           <input 
                               type="text" 
                               placeholder="Escribe la calle de tu consultorio" 
                               name="CalleForm" >
+                              <p class="form_input_error">Escribe una calle válida</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_numeroConsultorio">
                           <label for="message">Número de consultorio*</label>
                           <input 
                               type="text" 
                               placeholder="Escribe el número de tu consultorio" 
                               name="NumeroConsForm" >
+                              <p class="form_input_error">Escribe un consultorio válido de máximo 3 dígitos</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_cp">
                           <label for="message">Código postal*</label>
                           <input 
                               type="number" 
                               placeholder="Escribe el código postal de tu consultorio" 
                               name="CodigoPostalForm" >
+                              <p class="form_input_error">El código postal contiene 5 dígitos</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_colonia">
                           <label for="message">Colonia*</label>
                           <input 
                               type="text" 
                               placeholder="Escribe la colonia en la cual se encuetra tu consultorio" 
                               name="ColoniaForm" >
+                              <p class="form_input_error">Ingresa una colonia válida</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_delomuni">
                           <label for="message">Delegación o Municipio*</label>
                           <input 
                               type="text" 
                               placeholder="Escribe la Delegación o Municipio en la cual se encuetra tu consultorio" 
                               name="DelMunForm" >
+                              <p class="form_input_error">Ingresa una delegación o municipo válido</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_estado">
                           <label for="message">Estado*</label>
                           <input 
                               type="text" 
                               placeholder="Escribe el Estado en el cual se encuetra tu consultorio" 
                               name="EdoForm" >
+                              <p class="form_input_error">Ingresa un estado válido</p>
                         </div>
       
                         <h4 class="ud-contact-form-title">Contraseña</h4>
       
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_password">
                           <label for="message">Contraseña segura*</label>
                           <input 
                               type="password" 
                               name="PassForm" 
                               placeholder=*********** " >
+                              <p class="form_input_error">La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                         </div>
       
                         <div class="ud-form-group mb-0" id="grupo_enviar">
                           <button type="submit" class="ud-main-btn">
                             Enviar
                           </button>
+                          <p class="form_input_error">Por favor, rellene bien los datos</p>
                         </div>
                       </form>
                     </div>
