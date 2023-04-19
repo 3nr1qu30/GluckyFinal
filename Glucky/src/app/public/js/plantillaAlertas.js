@@ -4,9 +4,6 @@ function DoctorSinRegistro(e) {
     title: 'Error',
     text: 'El doctor no está registrado en el sistema',
   });
-  setTimeout(function(e){
-    document.getElementById('formulario').submit();
-  }, 10000)
 }
 
 function PacienteSinRegistro(e) {
@@ -15,9 +12,7 @@ function PacienteSinRegistro(e) {
     title: 'Error',
     text: 'El paciente no está registrado en el sistema',
   });
-  setTimeout(function(e){
-    document.getElementById('formulario').submit();
-  }, 10000)
+
 }
 function PassIncorrecto(e) {
   Swal.fire({
@@ -25,7 +20,4 @@ function PassIncorrecto(e) {
     title: 'Error',
     text: 'Contraseña incorrecta',
   });
-  setTimeout(function(e){
-    document.getElementById('formulario').submit();
-  }, 10000)
 }
