@@ -14,7 +14,7 @@ const expReg = {
     cp: /^\d{5}$/,
     colonia: /^[a-zA-Z0-9\s#áéíóúÁÉÍÓÚñÑ.,-]+$/,
     delomuni: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{2,100}$/,
-    estado: /^(Aguascalientes|Baja California|Baja California Sur|Campeche|Chiapas|Chihuahua|Coahuila|Colima|Durango|Guanajuato|Guerrero|Hidalgo|Jalisco|México|Michoacán|Morelos|Nayarit|Nuevo León|Oaxaca|Puebla|Querétaro|Quintana Roo|San Luis Potosí|Sinaloa|Sonora|Tabasco|Tamaulipas|Tlaxcala|Veracruz|Yucatán|Zacatecas|Ciudad de México|CDMX)$/i,
+    estado: /^(Aguas calientes|Baja California|Baja California Sur|Campeche|Chiapas|Chihuahua|Coahuila|Colima|Durango|Guanajuato|Guerrero|Hidalgo|Jalisco|México|Michoacán|Morelos|Nayarit|Nuevo León|Oaxaca|Puebla|Querétaro|Quintana Roo|San Luis Potosí|Sinaloa|Sonora|Tabasco|Tamaulipas|Tlaxcala|Veracruz|Yucatán|Zacatecas|Ciudad de México|CDMX|Estado de México)$/i,
     password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.#])[A-Za-z\d$@$!%*?&.#]{8,35}$/
 }
 
