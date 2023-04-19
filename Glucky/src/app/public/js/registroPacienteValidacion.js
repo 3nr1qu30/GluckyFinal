@@ -149,7 +149,6 @@ const validarFormulario = (e) => {
         }
         if (campos.nombre && campos.apellidos && campos.email && campos.edad && campos.telefono && campos.curp && campos.password) {
             document.querySelector('#grupo_enviar .form_input_error').classList.remove('form_input_error-activo');
-            console.log(`esta bien`);
         }
         
     }
@@ -159,11 +158,10 @@ const validarFormulario = (e) => {
         input.addEventListener('blur', validarFormulario);
     });
     
-    formulario.addEventListener('submit', (e) => {
-        if (campos.nombre && campos.apellidos && campos.email && campos.edad && campos.telefono && campos.curp && campos.genero && campos.tipodiabetes && campos.password) {
-            console.log(`esta bien`);
-    } else {
-        e.preventDefault();
-        document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');
-    }
+formulario.addEventListener('submit', (e) => {
+    if (campos.nombre && campos.apellidos && campos.email && campos.edad && campos.telefono && campos.curp && campos.genero && campos.tipodiabetes && campos.password) {
+        console.log(`esta bien`);
+} else {
+    e.preventDefault();
+    document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');    }
 });
