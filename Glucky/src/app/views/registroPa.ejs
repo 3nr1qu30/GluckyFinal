@@ -138,37 +138,41 @@
 
                       <br>
                       <form class="ud-contact-form">
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_nombre">
                           <label for="fullName">Nombre*</label>
                           <input 
                               type="text" 
                               placeholder="Nombre"
                               maxlength="50"
                               name="NombreForm">
+                              <p class="form_input_error">El o los nombres deben contener minimo dos letras</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_apellidos">
                           <label for="email">Apellidos*</label>
                           <input 
                           type="text" 
                           placeholder="Apellidos"
                           name="ApellidosForm"
                           maxlength="60" >
+                          <p class="form_input_error">Los apellidos deberán tener como mínimo dos letras</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_email">
                           <label for="phone">E-mail*</label>
                           <input 
                           type="email" 
                           placeholder="Ejemplo@gmail.com"  
                           name="EmailForm">
+                          <p class="form_input_error">Introduzca un correo válido</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_edad">
                           <label for="message">Edad*</label>
                           <input 
                               type="number" 
                               placeholder="Ejemplo (34)"
                               name="EdadForm" >
+                              <p class="form_input_error">Introduzca una edad válida</p>
                         </div>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_telefono">
                           <label for="message">Teléfono*</label>
                           <input 
                           type="text" 
@@ -176,17 +180,19 @@
                           name="TelefonoForm" 
                           maxlength="10" 
                           minlength="10" >
+                          <p class="form_input_error">Introduzca 10 dígitos</p>
                         </div>
                        
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_curp">
                           <label for="message" style="font: bolder;">CURP*</label>
                           <input 
                           type="text" 
                           placeholder="Escribe tu clave CURP válida" 
                           name="CurpForm" >
+                          <p class="form_input_error">Introduzca una CURP válida</p>
                         </div>
       
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_genero">
                           <label for="message">Genero*</label>
                           <select name="GeneroForm" class="sexo">
                             <option value="">Selecciona tu genero</option>
@@ -194,11 +200,12 @@
                             <option value="Masculino">Masculino</option>
                             <option value="PND">Prefiero no decirlo</option>
                           </select>
+                          <p class="form_input_error">Seleccione un genero</p>
                         </div>
       
                         <h4 class="ud-contact-form-title">Tipo de diabetes</h4>
                         <h6 class="aviso">*Antes de registrarte en nuestra aplicación, es importante que revises qué tipo de diabetes tienes para asegurarte de que nuestro servicio sea el adecuado para ti.*</h6>
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_tipodiabetes">
                             <label for="message">Tipo de diabetes*</label>
                             <select name="TipoDiabetes" class="sexo">
                               <option value="">Selecciona tu tipo de diabetes</option>
@@ -206,22 +213,25 @@
                               <option value="2">Tipo 2</option>
                               <option value="3">Tipo gestacional</option>
                             </select>
+                            <p class="form_input_error">Seleccione su tipo de diabetes</p>
                           </div>
       
                         <h4 class="ud-contact-form-title">Contraseña</h4>
       
-                        <div class="ud-form-group">
+                        <div class="ud-form-group" id="grupo_password">
                           <label for="message">Contraseña segura*</label>
                           <input 
                               type="password" 
                               name="PassForm" 
                               placeholder="***********" >
+                              <p class="form_input_error">La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
                         </div>
       
-                        <div class="ud-form-group mb-0">
+                        <div class="ud-form-group mb-0" id="grupo_enviar">
                           <button type="submit" class="ud-main-btn">
                             Enviar
                           </button>
+                          <p class="form_input_error">Por favor, rellene bien los datos</p>
                         </div>
                       </form>
                     </div>
