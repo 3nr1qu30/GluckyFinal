@@ -106,7 +106,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
           res.redirect('/Glucky/Pacientes/Dashboard');
         }
         else{
-          console.log('Contraseña incorrecta');
+          res.render('iniciosesionpasin',{Usuario:UserForm});
         }
       }
     });
@@ -126,6 +126,9 @@ Controllers.iniciosesionPost=(req,res,next)=>{
           req.session.nombre=`${doctor[0].nom_pers} ${doctor[0].apellidos_pers}`;
           req.session.correo=doctor[0].email_pers;
           res.redirect('/Glucky/Doctores/Dashboard');
+        }
+        else{
+          res.render('iniciosesionpasin',{Usuario:UserForm});
         }
       }
     });
