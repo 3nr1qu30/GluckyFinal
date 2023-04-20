@@ -5,7 +5,7 @@ var con;
 function connect(){
     con=mysql.createConnection({
         host: "localhost",
-        port: "3308",
+        port: "3306",
         user: "root",
         password: "n0m3l0", 
         database:"glucky3",
