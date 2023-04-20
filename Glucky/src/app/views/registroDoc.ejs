@@ -1,3 +1,4 @@
+<%if(typeof error === 'undefined'){%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -428,6 +429,459 @@
     <script src="/js/wow.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/registroDoctorValidacion.js"></script>
+    <script src="/js/plantillaAlertas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>
+<%}else{%>
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glucky registro</title>
+
+
+     <!-- Primary Meta Tags -->
+<meta name="title" content="Glucky Principal">
+<meta name="description" content="Gratuita - Aplicación para gestionar tu diabetes de manera inteligente">
+
+    <!--====== Favicon Icon ======-->
+      <!--====== Favicon Icon ======-->
+      <link
+      rel="shortcut icon"
+      href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+      type="image/svg"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- ===== All CSS files ===== -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/animate.css" />
+    <link rel="stylesheet" href="/css/lineicons.css" />
+    <link rel="stylesheet" href="/css/ud-styles.css" />
+    <link rel="stylesheet" href="/css/registro.css" />
+  </head>
+  <body>
+    <!-- ====== Header Start ====== -->
+    <header class="ud-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <nav class="navbar navbar-expand-lg">
+              <a class="navbar-brand" href="/Glucky/">
+                <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="Logo" />
+              </a>
+              <button class="navbar-toggler">
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+                <span class="toggler-icon"> </span>
+              </button>
+
+              <div class="navbar-collapse">
+                <ul id="nav" class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                    <a class="ud-menu-scroll" href="/Glucky/">Principal</a>
+                  </li>
+
+                 
+                 
+                  <li class="nav-item nav-item-has-children">
+                    <a href="javascript:void(0)"> Páginas </a>
+                    <ul class="ud-submenu">
+                      <li class="ud-submenu-item">
+                        <a href="/Glucky/IniciodeSesion" class="ud-submenu-link">
+                          Inicio de sesión
+                        </a>
+                      </li>
+                      <li class="ud-submenu-item">
+                        <a href="/Glucky/Registros" class="ud-submenu-link">
+                          Registro
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="navbar-btn d-none d-sm-inline-block">
+                <a href="/Glucky/Registros" class="ud-main-btn ud-login-btn">
+                  Registro
+                </a>
+                <a class="ud-main-btn ud-white-btn" href="/Glucky/IniciodeSesion">
+                  Iniciar sesión
+                </a>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ====== Header End ====== -->
+
+    <!-- ====== Banner Start ====== -->
+    <section class="ud-page-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-banner-content">
+              <h1>Registro de doctores</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Banner End ====== -->
+
+       <!-- ====== Contact Start ====== -->
+       <section id="contact" class="ud-contact">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-xl-8 col-lg-7">
+              <div class="ud-contact-content-wrapper">
+                <div class="ud-contact-title">
+                  <span>COMIENZA A CREAR UNA CUENTA</span>
+                  <h2>
+                    Solo necesitas pocos datos <br />
+                    para registrarte
+                  </h2>
+                  <br>
+                  Registrarse en nuestra aplicación es rápido y fácil, solo necesitas proporcionar pocos datos y dedicar un momento a completar el proceso
+                  <h1 style="color: rgb(0, 0, 0);">...</h1>
+                </div>
+              </div>
+            </div>
+
+<form action="/Glucky/Registros/Doctor" method="post" id="formulario">
+            <div class="row">
+              <div class="column1" style="background-color:rgb(255, 255, 255);">
+                <div class="">
+                  <div class="juaja" id="style-2">
+                    <div
+                      class="ud-contact-form-wrapper wow fadeInDown"
+                      data-wow-delay=".1003s"
+                    >
+                      <h3 class="ud-contact-form-title" style="text-align: center;">Registrate como doctor</h3>
+                      <h6 class="cuaosa" style="text-align: center;">Necesitas una cédula profesional</h6>
+
+                      <br>
+                      <form class="ud-contact-form">
+                        <div class="ud-form-group" id="grupo_nombre">
+                          <label for="fullName">Nombre*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Nombre" 
+                              name="NombreForm">
+                              <p class="form_input_error">El o los nombres deben contener minimo dos letras con la primera letra en mayúscula</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_apellidos">
+                          <label for="email">Apellidos*</label>
+                          <input 
+                          type="text" 
+                          placeholder="Apellidos" 
+                          name="ApellidosForm">
+                          <p class="form_input_error">Los apellidos deberán tener como mínimo dos letras</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_email">
+                          <label for="phone">E-mail*</label>
+                          <input 
+                          type="email" 
+                          placeholder="Ejemplo@gmail.com"  
+                          name="EmailForm" >
+                          <p class="form_input_error">Introduzca un correo válido</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_edad">
+                          <label for="message">Edad*</label>
+                          <input 
+                              type="number" 
+                              placeholder="Ejemplo (34)" 
+                              name="EdadForm" >
+                              <p class="form_input_error">Introduzca una edad válida</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_telefono">
+                          <label for="message">Teléfono*</label>
+                          <input  
+                          type="text" 
+                          placeholder="Ejemplo (5544667788)" 
+                          name="TelefonoForm">
+                          <p class="form_input_error">Introduzca 10 dígitos</p>
+                        </div>
+                       
+                        <div class="ud-form-group" id="grupo_cedula">
+                          <label for="message" style="font: bolder;">Cédula profesional*</label>
+                          <input 
+                          type="text" 
+                          placeholder="Escribe tu cédula profesional válida" 
+                          name="CedulaForm">
+                          <p class="form_input_error">La cédula contiene 8 dígitos</p>
+                        </div>
+      
+                        <div class="ud-form-group" id="grupo_sexo">
+                          <label for="message">Sexo*</label>
+                          <select name="sexo" class="sexo">
+                            <option value="">Selecciona tu sexo</option>
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="PND">Prefiero no decirlo</option>
+                          </select>
+                          <p class="form_input_error">Seleccione su género</p>
+                        </div>
+      
+                        <h4 class="ud-contact-form-title">Lugar de contacto</h4>
+                        <div class="ud-form-group" id="grupo_calle">
+                          <label for="message">Calle*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Escribe la calle de tu consultorio" 
+                              name="CalleForm" >
+                              <p class="form_input_error">Escribe una calle válida</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_numeroConsultorio">
+                          <label for="message">Número de consultorio*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Escribe el número de tu consultorio" 
+                              name="NumeroConsForm" >
+                              <p class="form_input_error">Escribe un consultorio válido de máximo 3 dígitos</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_cp">
+                          <label for="message">Código postal*</label>
+                          <input 
+                              type="number" 
+                              placeholder="Escribe el código postal de tu consultorio" 
+                              name="CodigoPostalForm" >
+                              <p class="form_input_error">El código postal contiene 5 dígitos</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_colonia">
+                          <label for="message">Colonia*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Escribe la colonia en la cual se encuetra tu consultorio" 
+                              name="ColoniaForm" >
+                              <p class="form_input_error">Ingresa una colonia válida</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_delomuni">
+                          <label for="message">Delegación o Municipio*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Escribe la Delegación o Municipio en la cual se encuetra tu consultorio" 
+                              name="DelMunForm" >
+                              <p class="form_input_error">Ingresa una delegación o municipo válido</p>
+                        </div>
+                        <div class="ud-form-group" id="grupo_estado">
+                          <label for="message">Estado*</label>
+                          <input 
+                              type="text" 
+                              placeholder="Escribe el Estado en el cual se encuetra tu consultorio" 
+                              name="EdoForm" >
+                              <p class="form_input_error">Ingresa un estado válido</p>
+                        </div>
+      
+                        <h4 class="ud-contact-form-title">Contraseña</h4>
+      
+                        <div class="ud-form-group" id="grupo_password">
+                          <label for="message">Contraseña segura*</label>
+                          <input 
+                              type="password" 
+                              name="PassForm" 
+                              placeholder=*********** " >
+                              <p class="form_input_error">La contraseña debe cumplir con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
+                        </div>
+      
+                        <div class="ud-form-group mb-0" id="grupo_enviar">
+                          <button type="submit" class="ud-main-btn">
+                            Enviar
+                          </button>
+                          <p class="form_input_error">Por favor, rellene bien los datos</p>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="column2" style="background-color:#bbb;">
+                
+                <h3 class="achetresss">Sea bienvenido a </h3>
+                <br>
+                <a class="navbar-brand" href="/Glucky/">
+                  <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="Logo" />
+                </a>
+                <br>
+                <br>
+                <h6 class="acheseiss">Registrate con tu cédula para convertirte en un doctor dentro de la aplicación</h6>
+                <h3 style="color: white;">...</h3>
+                
+              </div>
+            </div>
+
+          </form>
+
+          
+          </div>
+        </div>
+      </section>
+      <!-- ====== Contact End ====== -->
+
+    <!-- ====== Footer Start ====== -->
+    <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
+      <div class="shape shape-1">
+        <img src="images/footer/shape-1.svg" alt="shape" />
+      </div>
+      <div class="shape shape-2">
+        <img src="images/footer/shape-2.svg" alt="shape" />
+      </div>
+      <div class="shape shape-3">
+        <img src="images/footer/shape-3.svg" alt="shape" />
+      </div>
+      <div class="ud-footer-widgets">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="ud-widget">
+                <a href="/Glucky/" class="ud-footer-logo">
+                  <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="logo" />
+                </a>
+                <p class="ud-widget-desc">
+                  Ofrecemos un servicio para todos los tipos de diabetes
+                </p>
+                <ul class="ud-widget-socials">
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-facebook-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-twitter-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-instagram-filled"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/MusharofChy">
+                      <i class="lni lni-linkedin-original"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Colaboradores</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Montoya Rodriguez Isaac</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Negrete Gonzalez Roberto</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Varillas Figueroa Enrique</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Sandoval Vasquez Gonzalo</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Nieves Bartolo Marco Antonio</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+              <div class="ud-widget">
+                <h5 class="ud-widget-title">Características</h5>
+                <ul class="ud-widget-links">
+                  <li>
+                    <a href="javascript:void(0)">Doctores</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Pacientes</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Agenda</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)">Monitoreo</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+           
+            </div>
+            <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
+            
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ud-footer-bottom">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <ul class="ud-footer-bottom-left">
+                <li>
+                  <a href="javascript:void(0)">Privacidad</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Apoyanos</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)">Terminos de servicio</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <p class="ud-footer-bottom-right">
+                Diseñado y desarrollado por
+                <a href="https://uideck.com" rel="nofollow">ECLYS</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ====== Footer End ====== -->
+
+    <!-- ====== Back To Top Start ====== -->
+    <a href="javascript:void(0)" class="back-to-top">
+      <i class="lni lni-chevron-up"> </i>
+    </a>
+    <!-- ====== Back To Top End ====== -->
+
+    <!-- ====== All Javascript Files ====== -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/registroDoctorValidacion.js"></script>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <%if(error === 'Doctor registrado con anterioridad'){
+      error='undefined';%>
+      <script>
+        DoctorRegistradoAnt()
+      </script>
+    <%}else if(error === 'Doctor registrado con exito'){
+      error='undefined';%>
+      <script>
+        DoctorRegistrado()
+      </script>
+    <%} else if(error === 'Doctor no registrado'){
+      error='undefined';%>
+    <script>
+      NoRegistroDoc()
+    </script>
+    <%}%>
+  </body>
+</html>
+<%}%>
