@@ -13,7 +13,6 @@ function PacienteSinRegistro(e) {
     title: 'Error',
     text: 'El paciente no está registrado en el sistema',
   });
-
 };
 function PassIncorrecto(e) {
   Swal.fire({
@@ -51,7 +50,7 @@ function PacienteRegistradoAnt(e) {
   Swal.fire({
     icon: 'error',
     title: 'Error',
-    text: 'Ya existe una cuenta con esta CURP profesional',
+    text: 'Ya existe una cuenta con esta CURP',
   });
 };
 //Exitos
