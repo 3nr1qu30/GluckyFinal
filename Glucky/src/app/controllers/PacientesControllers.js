@@ -6,6 +6,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
   const nombre = req.session.nombre;
   const correo = req.session.correo;
   const tipodia = req.session.tipodia;
+  const regis = req.session.regis;
+  delete req.session.regis;
   let direccion;
   let solicituda;
   let glucosa = 0;
@@ -43,7 +45,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
               datosmedicos,
               glucosa,
               sistolica,
-              diastolica
+              diastolica,
+              regis
             });
           } else {
             solicituda =
@@ -75,7 +78,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
               datosmedicos,
               glucosa,
               sistolica,
-              diastolica
+              diastolica,
+              regis
             });
           }
         }
@@ -168,6 +172,7 @@ Controllers.dashboardPacientes = (req, res, next) => {
   
   Controllers.registroNiveles = (req,res,next)=>{
     const{glucosa,sistolica,diastolica,medicion}=req.body
+    let regis;
     const Curp = req.session.curp;
     let fechaActual = new Date();
     let anio = fechaActual.getFullYear();
@@ -178,7 +183,7 @@ Controllers.dashboardPacientes = (req, res, next) => {
     let hora = horaActual.toLocaleTimeString();
     querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,(error,registro)=>{
       if(registro){
-        console.log('Tu registro fue enviado');
+        req.session.regis='Tu registro de niveles fue agregado';
         res.redirect("/Glucky/Pacientes/Dashboard");
       }
     });

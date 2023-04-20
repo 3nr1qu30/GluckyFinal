@@ -53,6 +53,7 @@ function PacienteRegistradoAnt(e) {
     text: 'Ya existe una cuenta con esta CURP',
   });
 };
+
 //Exitos
 function DoctorRegistrado(e) {
   Swal.fire({
@@ -71,5 +72,13 @@ function PacienteRegistrado(e) {
     text: 'Paciente registrado al sistema',
   }).then((confirmar)=>{
     window.location.href='/Glucky/IniciodeSesion';
+  });
+};
+
+function NivelesRegistrados(e) {
+  Swal.fire({
+    icon: 'success',
+    title: 'Exito',
+    text: 'Niveles registrados',
   });
 };

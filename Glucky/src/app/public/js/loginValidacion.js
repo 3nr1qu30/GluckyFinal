@@ -1,5 +1,6 @@
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
+const Usuario = request("Usuario");
 
 const cedula = document.getElementById('cedula'), password = document.getElementById('password');
 const expReg = {
@@ -77,6 +78,8 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     if (campos.UserForm && campos.PassForm) {
         
+    } else if(Usuario !== undefined && campos.PassForm){
+
     } else {
         e.preventDefault();
         document.querySelector('#grupo_enviar .form_input_error4').classList.add('form_input_error4-activo');

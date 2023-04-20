@@ -5,8 +5,13 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const cedula = req.session.cedula;
     const nombre = req.session.nombre;
     const correo = req.session.correo;
-    res.render('dashboardDoctores',{cedula,nombre,correo});
+    querys.verListaPacientes(cedula,(error,pacientes)=>{
+      if(pacientes){
+        res.render('dashboardDoctores',{cedula,nombre,correo,pacientes});
+      }
+    });
   };
+
 
   Controllers.peticionesDoctor = (req,res,next)=>{
     console.log(req.body);
@@ -229,9 +234,5 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     });
   }
-
-
-
-  
  
 module.exports = Controllers; 

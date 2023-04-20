@@ -77,6 +77,19 @@ db.verAlimentos = (callback)=>{
   });
  };
 
+
+ db.verListaPacientes = (Cedula,callback)=>{
+  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}'`, (error,ver)=>{
+   if(error){
+      console.error('No hay alimentos', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
+
+
  db.verMedicamentos = (callback)=>{
   con.query(`SELECT * FROM medicamento`, (error,ver)=>{
    if(error){
