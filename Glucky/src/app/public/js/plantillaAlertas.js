@@ -39,12 +39,37 @@ function NoRegistroDoc(e) {
   });
 };
 
+function NoRegistroPa(e) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo registrar al paciente en el sistema',
+  });
+};
+
+function PacienteRegistradoAnt(e) {
+  Swal.fire({
+    icon: 'error',
+    title: 'Error',
+    text: 'Ya existe una cuenta con esta CURP profesional',
+  });
+};
 //Exitos
 function DoctorRegistrado(e) {
   Swal.fire({
     icon: 'success',
     title: 'Exito',
     text: 'Doctor registrado al sistema',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/IniciodeSesion';
+  });
+};
+
+function PacienteRegistrado(e) {
+  Swal.fire({
+    icon: 'success',
+    title: 'Exito',
+    text: 'Paciente registrado al sistema',
   }).then((confirmar)=>{
     window.location.href='/Glucky/IniciodeSesion';
   });

@@ -29,26 +29,30 @@ Controllers.iniciosesion=(req,res,next)=>{
 Controllers.registroPaPost = (req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
     TipoDiabetes,PassForm} = req.body;
+    console.log(req.body);
   querys.buscarPaciente(CurpForm, (error, resultado)=>{
     if(error){
+      error='Paciente no registrado';
       console.log(error);
-      res.render('index');
+      res.render('registroPa',{error});
     }
     else{
       if(resultado === 'no existe'){
         querys.registrarPaciente(NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
           TipoDiabetes,PassForm,(error,alta)=>{
             if(error){
-              console.log(error);
-              console.log('Paciente no registrado');
+              error='Paciente no registrado';
+              res.render('registroPa',{error});
             }
             else if(alta){
-              console.log('Paciente registrado con exito');
+              error='Paciente registrado con exito';
+              res.render('registroPa',{error});
             }
           });
       }
       else{
-        console.log('Paciente registrado con anterioridad');
+        error='Paciente registrado con anterioridad';
+        res.render('registroPa',{error});
       }
     }
   });
@@ -58,7 +62,6 @@ Controllers.registroDocPost=(req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,
     CedulaForm,sexo,CalleForm,NumeroConsForm,CodigoPostalForm,
     ColoniaForm,DelMunForm,EdoForm,PassForm}=req.body;
-    let error;
     querys.buscarDoctor(CedulaForm, (error, resultado)=>{
       if(error){
         error='Doctor no registrado';
