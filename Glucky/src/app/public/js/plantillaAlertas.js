@@ -13,7 +13,6 @@ function PacienteSinRegistro(e) {
     title: 'Error',
     text: 'El paciente no está registrado en el sistema',
   });
-
 };
 function PassIncorrecto(e) {
   Swal.fire({

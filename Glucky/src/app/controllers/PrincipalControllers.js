@@ -29,7 +29,6 @@ Controllers.iniciosesion=(req,res,next)=>{
 Controllers.registroPaPost = (req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
     TipoDiabetes,PassForm} = req.body;
-    console.log(req.body);
   querys.buscarPaciente(CurpForm, (error, resultado)=>{
     if(error){
       error='Paciente no registrado';

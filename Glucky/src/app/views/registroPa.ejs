@@ -814,15 +814,18 @@
     <script src="/js/registroPacienteValidacion.js"></script>
     <script src="/js/plantillaAlertas.js"></script>
     <script src="/js/main.js"></script>
-    <%if(error === 'Paciente registrado con anterioridad'){%>
+    <%if(error === 'Paciente registrado con anterioridad'){
+      error='undefined';%>
       <script>
         PacienteRegistradoAnt()
       </script>
-    <%}else if(error === 'Paciente registrado con exito'){%>
+    <%}else if(error === 'Paciente registrado con exito'){
+      error='undefined';%>
       <script>
         PacienteRegistrado()
       </script>
-    <%} else if(error === 'Paciente no registrado'){%>
+    <%} else if(error === 'Paciente no registrado'){
+      error='undefined';%>
     <script>
       NoRegistroPa()
     </script>
