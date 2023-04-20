@@ -165,33 +165,33 @@
                     <i class="uil uil-restaurant verdess" style="background-color: #48e07b;"></i>
                     <span class="text">Almacén de alimentos</span>
                 </div>
-                <h5 class="descripo">¡Agrega, elimina y modifica un alimento para poder asignarlo a cada uno de tus pacientes!</h5>
+                <h5 class="descripo">¡Bienvenido al lugar donde puedes agregar, eliminar y modificar alimentos para tus pacientes! Aquí podrás personalizar la dieta de tus pacientes y asegurarte de que reciban la nutrición adecuada. Recuerda ser respetuoso con la comunidad de doctores y pacientes.
+
+
+
+                </h5>
 
                 <div class="home-content">
 
                   <div class="contenedorImagen">
                     <div class="contenedorAlimentos">
-
-                        <% for(var i=0;i<datos.length;i++){%> 
-                        <%}%>   
-                                               
-                      <h2 class="textp">Almacén con <%=i%>  alimentos</h2>
+      
+                      <h2 class="textp">Almacén con <%= datos.length %> <%=datos.length === 1 ? "alimento" : "alimentos" %></h2>
                         <div class="buscar-contenedor">
                             <input type="search" id="buscar" class="buscarElemento" placeholder="Buscar alimento...">
                             <i class="bx bx-search buscar-icono"></i>
                             <span class="opciones">Haz clic sobre un alimento para ver más opciones y da clic sobre el alimento para editarlo</span>
                         </div>
-                          
+                          <div class="contiene">
                                 <ul class="lista-elementos">
-
                           <% for(var i=0;i<datos.length;i++){%>
 
                                   <li class="elemento">
                                     <!--Inicio del form de editar-->
                                     <form action="/Glucky/Doctores/AlimentosEd" method="post">
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">                                       
-                                      <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple" >
-                                      <input type="text" value="<%=datos[i].desc_ingred%>" name="DescForm" class="textoSimple" >
+                                      <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple altoP" >
+                                      <textarea class="textoSimple dopss" cols="10" name="DescForm" rows="1"><%=datos[i].desc_ingred%></textarea>
                                       <div class="botones-elemento" id="botonesAcci">
                                       <button type="submit" class="btnEditarEle">Editar</button>
                                     </form>
@@ -210,14 +210,15 @@
                                  
 
                                 </ul>
+                              </div>
                                 <div class="agregar">
                                   <form action="/Glucky/Doctores/Alimentos" method="post">
                                   <input type="text" name="alimentoNombre" class="escribeElemento" placeholder="Escribe el nombre del alimento">
-                                  <input type="text" name="alimentoDescripcion" class="escribeElemento" placeholder="Escribe la descripción del alimento">
+                                  <input type="text" name="alimentoDescripcion" class="escribeElemento borros" placeholder="Escribe la descripción del alimento">
                                   <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento</span></button>
                                   </form>
                                 </div>
-                                <br>
+                             
                         </div>
                       </div>
                         
@@ -231,6 +232,12 @@
   <br>
 
   <script src="/js/almacenesIngMed.js">
+
+function autoGrow(elemento) {
+  elemento.style.height = "auto";
+  elemento.style.height = elemento.scrollHeight + "px";
+}
+
     </script>
     
     
