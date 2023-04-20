@@ -50,7 +50,7 @@ function PacienteRegistradoAnt(e) {
   Swal.fire({
     icon: 'error',
     title: 'Error',
-    text: 'Ya existe una cuenta con esta CURP profesional',
+    text: 'Ya existe una cuenta con esta CURP',
   });
 };
 //Exitos
