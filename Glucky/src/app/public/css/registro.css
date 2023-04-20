@@ -302,3 +302,11 @@ input[type=number] { -moz-appearance:textfield; }
   display: block;
 }
 
+.form_input_error{
+  display: none;
+}
+
+.form_input_error-activo{
+  color: red;
+  display: block;
+}
