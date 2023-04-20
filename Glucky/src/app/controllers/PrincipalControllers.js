@@ -58,10 +58,11 @@ Controllers.registroDocPost=(req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,
     CedulaForm,sexo,CalleForm,NumeroConsForm,CodigoPostalForm,
     ColoniaForm,DelMunForm,EdoForm,PassForm}=req.body;
+    let error;
     querys.buscarDoctor(CedulaForm, (error, resultado)=>{
       if(error){
-        console.log(error);
-        res.render('index');
+        error='Doctor no registrado';
+        res.render('registroDoc',{error});
       }
       else{
         if(resultado === 'no existe'){
@@ -69,16 +70,18 @@ Controllers.registroDocPost=(req,res,next)=>{
             CedulaForm,sexo,CalleForm,NumeroConsForm,CodigoPostalForm,
             ColoniaForm,DelMunForm,EdoForm,PassForm,(error,alta)=>{
               if(error){
-                console.log(error);
-                console.log('Doctor no registrado');
+                error='Doctor no registrado';
+                res.render('registroDoc',{error});
               }
               else if(alta){
-                console.log('Doctor registrado con exito');
+                error='Doctor registrado con exito';
+                res.render('registroDoc',{error});
               }
             });
         }
         else{
-          console.log('Doctor registrado con anterioridad');
+          error='Doctor registrado con anterioridad';
+          res.render('registroDoc',{error});
         }
       }
     });
