@@ -9,5 +9,5 @@ router.get('/Solicitudes',PacienteControllers.solicitudesPaciente);
 router.post('/Solicitudes',PacienteControllers.solicitudesPacientePost);
 router.post('/Dashboard',PacienteControllers.dashboardPacientes);
 router.post('/Citas',PacienteControllers.solicitudCita);
-
+router.post('/Niveles',PacienteControllers.registroNiveles);
 module.exports= router;

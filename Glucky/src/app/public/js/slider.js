@@ -19,26 +19,6 @@ window.addEventListener("click", function(event) {
   }
 });
 
-
-var glucosaNormalForm2 = document.getElementById("glucosaNormalForm");
-var modal2 = document.getElementById("glucosa-modal2");
-var close2 = document.getElementsByClassName("close2")[0];
-
-glucosaNormalForm2.addEventListener("click", function() {
-  modal2.style.display = "block";
-});
-
-close2.addEventListener("click", function() {
-  modal2.style.display = "none";
-});
-
-window.addEventListener("click", function(event) {
-  if (event.target == modal2) {
-    modal2.style.display = "none";
-  }
-});
-
-
 var formCitaNueva = document.getElementById("formCitaNueva");
 var modal3 = document.getElementById("glucosa-modal3");
 var close3 = document.getElementsByClassName("close3")[0];
