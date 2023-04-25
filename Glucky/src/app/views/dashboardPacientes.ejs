@@ -706,10 +706,17 @@
                     </script>
                   <script src="/js/slider.js"></script>
                   <script src="/js/peticionesDoctor.js"></script>
+                  <script src="/js/plantillaAlertas.js"></script>
+                  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
           </div>
-     
   </div>
-  
+  <%if(typeof regis !== 'undefined'){%>
+    <%if(regis === 'Tu registro de niveles fue agregado'){%>
+      <script>
+        NivelesRegistrados()
+      </script>
+      <%}%>
+  <%}%>
   </body>
   </html>
 <%}else{%>

@@ -13,7 +13,6 @@ function PacienteSinRegistro(e) {
     title: 'Error',
     text: 'El paciente no está registrado en el sistema',
   });
-
 };
 function PassIncorrecto(e) {
   Swal.fire({
@@ -51,9 +50,10 @@ function PacienteRegistradoAnt(e) {
   Swal.fire({
     icon: 'error',
     title: 'Error',
-    text: 'Ya existe una cuenta con esta CURP profesional',
+    text: 'Ya existe una cuenta con esta CURP',
   });
 };
+
 //Exitos
 function DoctorRegistrado(e) {
   Swal.fire({
@@ -72,5 +72,13 @@ function PacienteRegistrado(e) {
     text: 'Paciente registrado al sistema',
   }).then((confirmar)=>{
     window.location.href='/Glucky/IniciodeSesion';
+  });
+};
+
+function NivelesRegistrados(e) {
+  Swal.fire({
+    icon: 'success',
+    title: 'Exito',
+    text: 'Niveles registrados',
   });
 };

@@ -17,7 +17,17 @@
         href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
         type="image/svg"
       />
-  
+  <style>
+    .textoSimple{
+        font-size: 15px;
+        margin-right: 10px;
+        position: relative;
+        overflow-x: auto;
+        width: 90%;
+        height: 30px;
+        display: ;
+    }
+  </style>
 </head>
 <body>
     <nav>
@@ -294,68 +304,26 @@
                                     <th scope="col">estado</th>
                                     <th scope="col">Tipo-diabetes</th>
                                     <th scope="col">CURP</th>
-                                    <th scope="col">E-mail</th>
                                     <th scope="col">Detalles</th>
                     
                             </tr>
+                            <%if(pacientes.length!==0){%>
+                                <%for(let i =0;i<pacientes.length;i++){%>
                             <tr>
                                 <!--INICIO DE REDIRECCIÓN A DETALLES-->
                                 <form action="/Glucky/Doctores/ConsultaPacienteD" method="get">
-                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM </b></td>
+                                <td scope="row" data-label="Nombre"><b><%=pacientes[i].nom_pers%> <%=pacientes[i].apellidos_pers%></b></td>
                                 <td data-label="Estado"><div class="estadodos">Medio</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Tipo-1">Tipo-1</div></td>
-                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
-                                <td data-label="E-MAIL">email@mail.com</td>
+                                <td data-label="Tipo-diabetes"><div class="Tipo-1"><%=pacientes[i].nom_tipdiabts%></div></td>
+                                <td data-label="CURP"><input type="text" value="<%=pacientes[i].curp_pacien%>" class="textoSimple" readonly></td>
                                 <td data-label="Ver detalles paciente">
                                         <button type="submit" class="btndetalles">Ver detalles</button>
                                 </form>
                                  <!--FIN DE REDIRECCIÓN A DETALLES-->
                                 </td>
                             </tr>
-                            <tr>
-                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
-
-                                
-                                <form action="/Glucky/Doctores/ConsultaPacienteDash">
-                                <td scope="row" data-label="Nombre"><b>Yo</b></td>
-                                <td data-label="Estado"><div class="estadodos">Medio</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Tipo-2">Tipo-2</div></td>
-                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
-                                <td data-label="E-MAIL">email@mail.com</td>
-                                <td data-label="Detalles">
-                                        <button type="submit" class="btndetalles">Ver detalles</button>
-                                </form>
-                                <!--FIN DE REDIRECCIÓN A DETALLES-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
-                                <form action="">
-                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM</b></td>
-                                <td data-label="Estado"><div class="estadotres">Mal</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Gestacional">Gestacional</div></td>
-                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
-                                <td data-label="E-MAIL">email@mail.com</td>
-                                <td data-label="Detalles">
-                                        <button type="submit" class="btndetalles">Ver detalles</button>
-                                </form>
-                                <!--FIN DE REDIRECCIÓN A DETALLES-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <!--INICIO DE REDIRECCIÓN A DETALLES-->
-                                <form action="">
-                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM</b></td>
-                                <td data-label="Estado"><div class="estadocero">Bien</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Gestacional">Gestacional</div></td>
-                                <td data-label="CURP"><input type="text" value="123" class="textoSimple" readonly></td>
-                                <td data-label="E-MAIL">email@mail.com</td>
-                                <td data-label="Detalles">
-                                        <button type="submit" class="btndetalles">Ver detalles</button>
-                                </form>    
-                                <!--FIN DE REDIRECCIÓN A DETALLES-->
-                                </td>
-                            </tr>
+                            <%}
+                        }%>
                             </table>
 
                             <div class="void">
