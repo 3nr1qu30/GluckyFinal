@@ -311,11 +311,11 @@
                                 <%for(let i =0;i<pacientes.length;i++){%>
                             <tr>
                                 <!--INICIO DE REDIRECCIÓN A DETALLES-->
-                                <form action="/Glucky/Doctores/ConsultaPacienteD" method="get">
+                                <form action="/Glucky/Doctores/PacienteDoctor" method="post">
                                 <td scope="row" data-label="Nombre"><b><%=pacientes[i].nom_pers%> <%=pacientes[i].apellidos_pers%></b></td>
                                 <td data-label="Estado"><div class="estadodos">Medio</div></td>
                                 <td data-label="Tipo-diabetes"><div class="Tipo-1"><%=pacientes[i].nom_tipdiabts%></div></td>
-                                <td data-label="CURP"><input type="text" value="<%=pacientes[i].curp_pacien%>" class="textoSimple" readonly></td>
+                                <td data-label="CURP"><input type="text" name="CURPform" value="<%=pacientes[i].curp_pacien%>" class="textoSimple" readonly></td>
                                 <td data-label="Ver detalles paciente">
                                         <button type="submit" class="btndetalles">Ver detalles</button>
                                 </form>

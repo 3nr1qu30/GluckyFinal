@@ -80,22 +80,36 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     }); 
   };
-  
 
-  //nueva shit
   Controllers.PacienteDoctor = (req,res,next)=>{
-    console.log(req.body);
-    querys.verAlimentos((error,ver)=>{
+    const Cedula = req.session.cedula;
+    const{CURPform} =req.body;
+    querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
         console.log(ver);
-        res.render('almacenDoctorIngredientes',{datos:ver});
+        res.render('pacienteDoctor',{datos:ver});
       }
       else{
         console.log(error);
       }
     }); 
   };
-  //nueva shit para pacientedoctor
+
+  Controllers.PacienteDoctorCitas = (req,res,next)=>{
+    const{CurpForm} =req.body;
+    const {HoraForm} = req.body;
+    const {FechaForm} = req.body;
+    const Cedula = req.session.cedula;
+    querys.agregarCitaPaciente(FechaForm,HoraForm,CurpForm,Cedula,(error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
 
   Controllers.Medicamento = (req,res,next)=>{
     const{medicamentoNombre} =req.body;

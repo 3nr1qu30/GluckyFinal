@@ -173,13 +173,14 @@
                     <div class="tablacentrada">
                         <div class="tabla">
                             <table>
-                       
+                            <%if(datos.length!==0){%>
+                              <%for(let i =0;i<datos.length;i++){%>
                             <tr>
-                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM </b></td>
+                                <td scope="row" data-label="Nombre"><b> <%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%> </b></td>
                                 <td data-label="Estado"><div class="estadouno">Regular</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Tipo-1">Tipo-1</div></td>
-                                <td data-label="CURP">MAMAMAMA</td>
-                                <td data-label="E-MAIL">robert@gmail.cum</td>
+                                <td data-label="Tipo-diabetes"><div class="Tipo-1"><%=datos[i].nom_tipdiabts%></div></td>
+                                <td data-label="CURP"><%=datos[i].curp_pacien%></td>
+                                <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
                                 <td data-label="Ver detalles y acciones paciente">
                                     <div class="botisimo">
                                         <div class="botver">
@@ -293,6 +294,9 @@
                                     </div>
                                 </td>
                             </tr>
+
+                            <%}%>
+                            
                          
                             
                           
@@ -382,7 +386,7 @@
                 </div>
 
 
-                <!-- The Modal -->
+                <!-- Form de citas -->
                 <div id="myModal2" class="modal">
 
                     <!-- Modal content -->
@@ -395,17 +399,18 @@
                                <div class="profile-text">
                                    <img src="https://i.ibb.co/W6CrCWm/731-sin-t-tulo-20230412145236.png" alt=""> 
                                    <div class="text">
-                                       <span class="name">Nombre del paciente</span>
+                                       <span class="name">Paciente: <%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
                                         <span class="profession">En este formulario podrás agendar una nueva cita para su
                                            paciente </span>
                                    </div>
                                </div>
-                               <form action="#">
-                                   <input spellcheck="false" type="time" class="titulo" placeholder="Inserta el título de la cita..." required>
-                                   <input type="date" spellcheck="false" type="text" class="titulo" placeholder="Inserta la fecha..." required>
+                               <form action="/Glucky/Doctores/PacienteDoctorCitas" method="post">
+                                   <input type="hidden" value="<%=datos[0].curp_pacien%>" name="CurpForm">
+                                   <input spellcheck="false" type="time" class="titulo" name="HoraForm" required>
+                                   <input type="date" spellcheck="false" type="text" class="titulo" name="FechaForm" required>
                                    <div class="button">
                                        <button id="closem" class="cancel2">Cancelar</button>
-                                       <button class="send">¡Enviar!</button>
+                                       <button type="submit" class="send">¡Enviar!</button>
                                    </div>
                                </form>
                            </div>
@@ -414,6 +419,7 @@
                    </div>
 
                </div>
+              <!-- Form de citas -->
 
 
                <!-- The Modal -->
@@ -711,6 +717,7 @@
                       </table>
                 </div>
               </div>
+              <%}%>>
               
   
 </div>
