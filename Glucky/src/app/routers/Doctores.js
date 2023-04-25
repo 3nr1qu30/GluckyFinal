@@ -6,7 +6,8 @@ router.get('/Dashboard',DoctoresControllers.dashboardDoctores);
 router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/Citas',DoctoresControllers.peticionesCita);
 router.get('/Alimentos',DoctoresControllers.Alimentos);
-router.get('/Medicamentos',DoctoresControllers.Medicamentos)
+router.get('/Medicamentos',DoctoresControllers.Medicamentos);
+router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctor)
 
 router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
 router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);

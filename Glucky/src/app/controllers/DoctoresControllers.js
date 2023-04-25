@@ -76,6 +76,19 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
+  Controllers.PacienteDoctor = (req,res,next)=>{
+    console.log(req.body);
+    querys.verAlimentos((error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.render('almacenDoctorIngredientes',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
   Controllers.Medicamento = (req,res,next)=>{
     const{medicamentoNombre} =req.body;
     querys.Medicamentos(medicamentoNombre, (error, medicamento) =>{
