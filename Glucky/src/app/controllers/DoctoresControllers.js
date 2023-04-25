@@ -75,7 +75,9 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     }); 
   };
+  
 
+  //nueva shit
   Controllers.PacienteDoctor = (req,res,next)=>{
     console.log(req.body);
     querys.verAlimentos((error,ver)=>{
@@ -88,6 +90,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     }); 
   };
+  //nueva shit para pacientedoctor
 
   Controllers.Medicamento = (req,res,next)=>{
     const{medicamentoNombre} =req.body;
