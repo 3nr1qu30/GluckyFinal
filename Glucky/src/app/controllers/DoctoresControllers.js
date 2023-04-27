@@ -81,7 +81,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
-  Controllers.PacienteDoctor = (req,res,next)=>{
+  Controllers.PacienteDoctorPost = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CURPform} =req.body;
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
@@ -95,6 +95,21 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
+  Controllers.PacienteDoctorGet = (req,res,next)=>{
+    const Cedula = req.session.cedula;
+    const CURPform = req.session.paciente;
+    querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.render('pacienteDoctor',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+
   Controllers.PacienteDoctorCitas = (req,res,next)=>{
     const{CurpForm} =req.body;
     const {HoraForm} = req.body;
@@ -102,6 +117,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.agregarCitaPaciente(FechaForm,HoraForm,CurpForm,Cedula,(error,ver)=>{
       if(ver){
+        req.session.paciente=CurpForm;
         console.log(ver);
         res.redirect('/Glucky/Doctores/PacienteDoctor');
       }

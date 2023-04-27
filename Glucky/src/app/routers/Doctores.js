@@ -7,9 +7,10 @@ router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/Citas',DoctoresControllers.peticionesCita);
 router.get('/Alimentos',DoctoresControllers.Alimentos);
 router.get('/Medicamentos',DoctoresControllers.Medicamentos);
+router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctorGet);
 
 router.post('/PacienteDoctorCitas',DoctoresControllers.PacienteDoctorCitas);
-router.post('/PacienteDoctor',DoctoresControllers.PacienteDoctor);
+router.post('/PacienteDoctor',DoctoresControllers.PacienteDoctorPost);
 router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
 router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);
 router.post('/Alimentos',DoctoresControllers.Alimento);
