@@ -5,8 +5,13 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const cedula = req.session.cedula;
     const nombre = req.session.nombre;
     const correo = req.session.correo;
-    res.render('dashboardDoctores',{cedula,nombre,correo});
+    querys.verListaPacientes(cedula,(error,pacientes)=>{
+      if(pacientes){
+        res.render('dashboardDoctores',{cedula,nombre,correo,pacientes});
+      }
+    });
   };
+
 
   Controllers.peticionesDoctor = (req,res,next)=>{
     console.log(req.body);
@@ -69,6 +74,52 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       if(ver){
         console.log(ver);
         res.render('almacenDoctorMedicamentos',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+  Controllers.PacienteDoctorPost = (req,res,next)=>{
+    const Cedula = req.session.cedula;
+    const{CURPform} =req.body;
+    querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.render('pacienteDoctor',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+  Controllers.PacienteDoctorGet = (req,res,next)=>{
+    const Cedula = req.session.cedula;
+    const CURPform = req.session.paciente;
+    querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
+      if(ver){
+        console.log(ver);
+        res.render('pacienteDoctor',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+
+  Controllers.PacienteDoctorCitas = (req,res,next)=>{
+    const{CurpForm} =req.body;
+    const {HoraForm} = req.body;
+    const {FechaForm} = req.body;
+    const Cedula = req.session.cedula;
+    querys.agregarCitaPaciente(FechaForm,HoraForm,CurpForm,Cedula,(error,ver)=>{
+      if(ver){
+        req.session.paciente=CurpForm;
+        console.log(ver);
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
       else{
         console.log(error);
@@ -229,9 +280,5 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     });
   }
-
-
-
-  
  
 module.exports = Controllers; 

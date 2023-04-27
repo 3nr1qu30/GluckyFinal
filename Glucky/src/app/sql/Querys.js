@@ -77,6 +77,31 @@ db.verAlimentos = (callback)=>{
   });
  };
 
+
+ db.verListaPacientes = (Cedula,callback)=>{
+  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}'`, (error,ver)=>{
+   if(error){
+      console.error('No hay alimentos', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
+
+ //Ver
+ db.verPacienteIndividual = (Cedula,CURPform,callback)=>{
+  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
+   if(error){
+      console.error('No existe', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
+
+
  db.verMedicamentos = (callback)=>{
   con.query(`SELECT * FROM medicamento`, (error,ver)=>{
    if(error){
@@ -281,6 +306,24 @@ db.solicitudcita=(FechaForm,HoraForm,Curp,callback)=>{
   });
 };
 
+db.agregarCitaPaciente=(FechaForm,HoraForm,CURPform,Cedula,callback)=>{
+  con.query(`select id_consmed from consultoriomedico where cedula_med='${Cedula}'`,(error,consultorio)=>{
+    if(error){
+      console.log(error);
+    }
+    else if(consultorio){
+      let consul = parseInt(consultorio[0].id_consmed);
+      con.query(`INSERT INTO citamedica VALUES(default, '${FechaForm}', '${HoraForm}', '${consul}', '${CURPform}')`, (error, cita) => {
+        if(error){
+          callback(error,null);
+        }
+        else if(cita){
+          callback(null,'Cita oficial enviada');
+        }
+      });
+    }
+  });
+};
 
 db.Alimentos = (alimentoNombre,alimentoDescripcion,callback)=>{
 con.query(`INSERT INTO ingrediente VALUES (default, '${alimentoNombre}', '${alimentoDescripcion}')`, (error, alimento) => {
