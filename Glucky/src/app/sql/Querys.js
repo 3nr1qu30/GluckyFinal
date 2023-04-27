@@ -89,7 +89,7 @@ db.verAlimentos = (callback)=>{
  };
 
 
- //Ver
+ 
  db.verPacienteIndividual = (Cedula,CURPform,callback)=>{
   con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
    if(error){
@@ -100,7 +100,15 @@ db.verAlimentos = (callback)=>{
   });
  };
 
-
+ db.verCitasPacienteIndividual = (CURPform,callback)=>{
+  con.query(`SELECT * FROM citamedica where curp_pacien ='${CURPform}'`, (error2,citasver)=>{
+   if(error2){
+      console.error('No existe', error2);
+   }else{
+     callback(null,citasver);
+   }
+  });
+ };
 
  db.verMedicamentos = (callback)=>{
   con.query(`SELECT * FROM medicamento`, (error,ver)=>{
@@ -404,6 +412,20 @@ db.editarAlimento=(idIngred,NomForm,DescForm,callback)=>{
 db.eliminarAlimento=(idIngred,callback)=>{
   let idIng = parseInt(idIngred);
   con.query(`DELETE FROM ingrediente WHERE id_ingred='${idIng}'`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Alimento eliminado limón');
+      callback(null,elimina);
+    }
+  });
+};
+
+db.eliminarCitaPaciente=(curp,callback)=>{
+  let idIng = parseInt(idIngred);
+  con.query(`DELETE FROM citamedica WHERE curp_pacien='${curp}' and id_cita = "${id_cita}"`,(error,elimina)=>{
     if(error){
       console.log('Error al eliminar: ',error);
       callback(error,null);

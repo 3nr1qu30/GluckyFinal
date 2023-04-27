@@ -592,17 +592,26 @@
         <div class="column1">
           <h3 class="name">Citas</h3>
 
+
+          <%if(citas.length!==0){%>
+            <%for(let i =0;i<citas.length;i++){
+              var fechita = citas[i].date_cita;%>
+            
+           
           <div class="card azulesC">
-            <p class="small-content dates">Dia 20-03-2023</p>
-            <h4 class="hora">Hora: 6:00 am</h4>
-            <h6> fecha de publicación: </h6>
+            <input type="hidden" value="<%=citas[i].curp_pacien%>" id="CURP_pacienForm">
+            <input type="hidden" value="<%=citas[i].id_cita%>" id="id_citaForm">
+            <p class="small-content dates"><%=fechita.toISOString().substring(0,10)%></p>
+            <h4 class="hora"><%=citas[i].hour_cita%></h4>
+            <h6>amigaa </h6>
           </div>
 
-          <div class="card azulesC">
-            <p class="small-content dates">Dia 21-04-2023</p>
-            <h4 class="hora">Hora: 4:50 am</h4>
-            <h6> fecha de publicación: </h6>
-          </div>
+          <%}
+        } else{ %>
+        No tienes citas con tu paciente
+
+          <%}%>
+         
 
           
         </div>

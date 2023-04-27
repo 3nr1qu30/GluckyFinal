@@ -87,7 +87,19 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
         console.log(ver);
-        res.render('pacienteDoctor',{datos:ver});
+
+    //inicio de la segunda consulta de query 
+    querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
+      if(citasver){
+        console.log(citasver);
+        res.render('pacienteDoctor',{citas:citasver,datos:ver});
+      }
+      else{
+        console.log(error2);
+      }
+    }); 
+    //final de la segunda consulta de query
+
       }
       else{
         console.log(error);
@@ -101,7 +113,19 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
         console.log(ver);
-        res.render('pacienteDoctor',{datos:ver});
+
+    //inicio de la segunda consulta de query 
+    querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
+      if(citasver){
+        console.log(citasver);
+        res.render('pacienteDoctor',{citas:citasver,datos:ver});
+      }
+      else{
+        console.log(error2);
+      }
+    }); 
+    //final de la segunda consulta de query
+
       }
       else{
         console.log(error);
