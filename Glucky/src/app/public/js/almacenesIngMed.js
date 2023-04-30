@@ -2,8 +2,33 @@ const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
       sidebarToggle = body.querySelector(".sidebar-toggle");
-
 let getMode = localStorage.getItem("mode");
+const formulario = document.getElementById("formulario")
+const inputs = document.querySelectorAll('#formulario input');
+const expReg = {
+  alimentoNombre: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,10}$/,
+  alimentoDescripcion: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{1,10}$/
+}
+const campos = {
+  alimentoNombre: false,
+  alimentoDescripcion: false
+}
+
+const validarFormulario = (e) => {
+  switch(e.target.name){
+    case "alimentoNombre":
+      if(expReg.alimentoNombre.test(e.target.value)){
+        console.log(`To bien papu`);
+      }
+      else{
+        console.log(`dlv crack`);
+      }
+      break;
+    case "alimentoDescripcion":
+      break;
+  }
+}
+
 if(getMode && getMode ==="dark"){
     body.classList.toggle("dark");
 }
@@ -112,4 +137,16 @@ buscar.addEventListener("input", () => {
   });
 });
 
-//  yo esa
+inputs.forEach((input) => {
+  input.addEventListener('keyup', validarFormulario);
+  input.addEventListener('blur', validarFormulario);
+});
+
+formulario.addEventListener('submit', (e) => {
+  if (campos.alimentoDescripcion && campos.alimentoNombre) {
+      console.log(`esta bien`);
+} else {
+  e.preventDefault();
+  document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');    
+}
+});
