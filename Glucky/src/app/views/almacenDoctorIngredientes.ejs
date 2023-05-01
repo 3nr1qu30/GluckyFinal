@@ -188,7 +188,7 @@
 
                                   <li class="elemento">
                                     <!--Inicio del form de editar-->
-                                    <form action="/Glucky/Doctores/AlimentosEd" method="post">
+                                    <form action="/Glucky/Doctores/AlimentosEd" method="post" id="formulario2">
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">                                       
                                       <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple altoP" >
                                       <textarea class="textoSimple dopss" cols="10" name="DescForm" rows="1"><%=datos[i].desc_ingred%></textarea>
@@ -213,18 +213,9 @@
                               </div>
                                 <div class="agregar">
                                   <form action="/Glucky/Doctores/Alimentos" method="post" id="formulario">
-                                    <div class="grupo_alinombre">
                                       <input type="text" name="alimentoNombre" class="escribeElemento" placeholder="Escribe el nombre del alimento">
-                                      <p class="form_input_error"></p>
-                                    </div>
-                                    <div class="grupo_alidescrip">
                                       <input type="text" name="alimentoDescripcion" class="escribeElemento borros" placeholder="Escribe la descripción del alimento">
-                                      <p class="form_input_error"></p>
-                                    </div>
-                                    <div class="grupo_enviar">
-                                      <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento</span></button>
-                                      <p class="form_input_error"></p>
-                                    </div>
+                                      <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento. <br>Nota: El nombre no puede contener números</span></button>
                                   </form>
                                 </div>
                              
@@ -249,6 +240,6 @@ function autoGrow(elemento) {
 
     </script>
     
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
