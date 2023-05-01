@@ -574,7 +574,10 @@
                       labels: fechas,
                       datasets: [{
                         label: 'Glucosa',
-                        data: datos
+                        data: datos,
+                        backgroundColor: 'rgba(0, 255, 0, 0.2)', // verde transparente
+                        borderColor: 'rgba(0, 255, 0, 1)', // borde verde
+                        borderWidth: 1 // ancho del borde
                       }]
                     };
 
@@ -599,20 +602,27 @@
                   }
                   
                   const datao = {
-                      labels: fecha,
-                      datasets: [{
-                          label: 'Presion sistolica',
-                          data: datosis
-                      }, {
-                          label: 'Presion diastolica',
-                          data: datosdia
-                      }],
-                  };
-                  
-                  new Chart('presiongraf', {
-                      type: 'line',
-                      data: datao
-                  });
+  labels: fecha,
+  datasets: [{
+    label: 'Presion sistolica',
+    data: datosis,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)', // azul transparente
+    borderColor: 'rgba(54, 162, 235, 1)', // borde azul
+    borderWidth: 1 // ancho del borde
+  }, {
+    label: 'Presion diastolica',
+    data: datosdia,
+    backgroundColor: 'rgba(255, 206, 86, 0.2)', // amarillo transparente
+    borderColor: 'rgba(255, 206, 86, 1)', // borde amarillo
+    borderWidth: 1 // ancho del borde
+  }],
+};
+
+new Chart('presiongraf', {
+  type: 'line',
+  data: datao
+});
+
                   
                   </script>
                   
