@@ -2904,3 +2904,12 @@ section.active .show-modal {
   background-color: #ffffff;
   border-radius: 10px;
 }
+
+.form_input_error{
+  display: none;
+}
+
+.form_input_error-activo{
+  color: red;
+  display: block;
+}

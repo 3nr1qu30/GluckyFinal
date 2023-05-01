@@ -2,7 +2,6 @@ const Controllers={};
 const querys = require('../sql/Querys');
 const encriptar = require('../helpers/EncriptarContraseñas');
 const session = require('express-session');
-const Swal = require('sweetalert2');
 
 //rutas get
 Controllers.index = (req, res, next) => {
@@ -120,8 +119,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
           res.redirect('/Glucky/Pacientes/Dashboard');
         }
         else{
-          res.render('iniciosesionpasin',{Usuario:UserForm});
-          UserForm="undefined";
+          res.render('iniciosesionpasin',{Usuario:UserForm})
         }
       }
     });
