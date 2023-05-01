@@ -151,6 +151,40 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
+
+  Controllers.PacienteDoctorCitasEl= (req,res,next)=>{
+    const{id_citaEl} = req.body;
+    const {curpFormPac} = req.body;
+    querys.eliminarCitaPaciente(id_citaEl,curpFormPac,(error,elimina)=>{
+      if(elimina){
+        req.session.paciente=curpFormPac;
+        console.log('Eliminación lograda de cita');
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
+
+  Controllers.PacienteDoctorCitasEd= (req,res,next)=>{
+    const {curp_pacienF} =req.body;
+    const {id_citaF} =req.body;
+    const {date_citaF} =req.body;
+    const {hour_citaF} =req.body;
+    querys.editarCitaPaciente(curp_pacienF,id_citaF,date_citaF,hour_citaF,(error,elimina)=>{
+      if(elimina){
+        req.session.paciente=curp_pacienF;
+        console.log('Eliminación lograda de cita');
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
   Controllers.Medicamento = (req,res,next)=>{
     const{medicamentoNombre} =req.body;
     querys.Medicamentos(medicamentoNombre, (error, medicamento) =>{

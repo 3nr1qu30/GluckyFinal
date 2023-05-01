@@ -5,7 +5,7 @@ var con;
 function connect(){
     con=mysql.createConnection({
         host: "localhost",
-        port: "3308",
+        port: "3306",
         user: "root",
         password: "n0m3l0", 
         database:"glucky3",
@@ -79,9 +79,9 @@ db.verAlimentos = (callback)=>{
 
 
  db.verListaPacientes = (Cedula,callback)=>{
-  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}'`, (error,ver)=>{
+  con.query(`select * from vdoctorpaciente natural join pacientemedico where cedula_med='${Cedula}' and id_edosol = '2'`, (error,ver)=>{
    if(error){
-      console.error('No hay alimentos', error);
+      console.error('No hay pacientes', error);
    }else{
      callback(null,ver);
    }
@@ -290,7 +290,7 @@ db.enlazarDoctoresPacientes = (Curp,CedulaForm,callback)=>{
       callback(error,null);
     }
     else if(enlaze){
-      callback(null,'Solicitud de enlaze enviada');
+      callback(null,'Solicitud de enlace enviada');
     }
   });
 }; 
@@ -408,6 +408,19 @@ db.editarAlimento=(idIngred,NomForm,DescForm,callback)=>{
 }
 
 
+db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
+  con.query(`update citamedica set date_cita = '${date_cita}', hour_cita = '${hour_cita}', curp_pacien = '${curp_pacien}' where curp_pacien = '${curp_pacien}' and id_cita =  '${id_cita}'`,(error,actualizacion)=>{
+    if(error){
+      console.log('Error al modificar la cita',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Modificación de cita realizada');
+      callback(null,actualizacion);
+    }
+  });
+}
+
 //eliminar registros
 db.eliminarAlimento=(idIngred,callback)=>{
   let idIng = parseInt(idIngred);
@@ -423,15 +436,15 @@ db.eliminarAlimento=(idIngred,callback)=>{
   });
 };
 
-db.eliminarCitaPaciente=(curp,callback)=>{
-  let idIng = parseInt(idIngred);
-  con.query(`DELETE FROM citamedica WHERE curp_pacien='${curp}' and id_cita = "${id_cita}"`,(error,elimina)=>{
+db.eliminarCitaPaciente=(id_citaEl,curpFormPac,callback)=>{
+  let id_cita = parseInt(id_citaEl);
+  con.query(`DELETE FROM citamedica WHERE curp_pacien='${curpFormPac}' and id_cita = "${id_cita}"`,(error,elimina)=>{
     if(error){
       console.log('Error al eliminar: ',error);
       callback(error,null);
     }
     else{
-      console.log('Alimento eliminado limón');
+      console.log('Cita eliminada');
       callback(null,elimina);
     }
   });

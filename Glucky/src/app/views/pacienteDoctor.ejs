@@ -509,6 +509,7 @@
         </div>
 
 
+        <!--Datos a enviar de tratamiento-->
         <div class="overlaycard" id="overcardTRATAM" >
           <div class="dispTitulo" id="titucolor">
             <div class="dispTexto"><h3 class="overlay-title">Detalles del tratamiento</h3></div>
@@ -533,8 +534,9 @@
             </form>
           </div>
         </div>
+      <!--Datos a enviar de tratamiento-->
 
-
+        <!--Datos a enviar de dieta-->
         <div class="overlaycardDIET verdesC" id="overcardDIET" >
           <div class="dispTitulo" id="titucolor">
             <div class="dispTexto"><h3 class="overlay-title">Detalles de la dieta</h3></div>
@@ -559,38 +561,54 @@
             </form>
           </div>
         </div>
+      <!--Datos a enviar de dieta-->
 
 
-        <div class="overlaycardCITA azulesC" id="overcardCITA" >
-          <div class="dispTitulo" id="titucolor">
-            <div class="dispTexto"><h3 class="overlay-title">Detalles de la cita</h3></div>
-            <div class="dispCerrar"><button id="overlay-closeCITA" class="overlay-closeCita">×</button></div>
-          </div>
+      
+      <!--Datos a enviar de cita-->
           
-          <div class="recuadrodatos">
-            <div class="dispo1" id="tituloCITA">
-            </div>
-            <div class="dispo2" id="fechaCITA">
-            </div>
-            <div class="contenido" id="contenidoCITA">
-            </div>
-          </div>
+              <div class="overlaycardCITA azulesC" id="overcardCITA" >
+                <div class="dispTitulo" id="titucolor">
+                  <div class="dispTexto"><h3 class="overlay-title">Opciones de la cita  con <%=datos[0].nom_pers%> </h3></div>
+                  <div class="dispCerrar"><button id="overlay-closeCITA" class="overlay-closeCita">×</button></div>
+                </div>
+              <!--Inicio del form de editar citas -->
+              <form action="/Glucky/Doctores/PacienteDoctorCitasEd" method="post">
+                <div class="recuadrodatos">
+                  <div class="contenido">
+                    <b>Hora</b>
+                      <input type="time" value="" id="tituloCITA" name="hour_citaF" class="blanqui1">
+                  </div>
+                  <div class="contenido">
+                    <b>Fecha</b>  
+                      <input type="date" value="" id="contenidoCITA" name="date_citaF" class="blanqui2">
+                  </div>
+                </div>
+                <div class="formsElEd">
+                    <input type="hidden" name="curp_pacienF" value="<%=datos[0].curp_pacien%>">
+                    <input type="hidden" name="id_citaF" id="fechaCITAEd" class="contenido" value="">
+                  <button class="accionAsignacionEl" type="submit" value="Eliminar">Guardar cambios</button>
+              </form>
+                <!--Fin del form de editar citas -->
 
-          <div class="formsElEd">
-            <form action="">
-              <button class="accionAsignacionEl" value="Eliminar">Editar cita</button>
-            </form>
-            <form action="">
-              <button class="accionAsignacionEdCita" value="Eliminar">Eliminar cita</button>
-            </form>
+                <!--Inicio del form de eliminar citas -->
+                <form action="/Glucky/Doctores/PacienteDoctorCitasEl" method="post">
+                      <input type="hidden" name="curpFormPac" value="<%=datos[0].curp_pacien%>">
+                      <input type="hidden" name="id_citaEl" id="fechaCITA" class="contenido" value="">
+                    <button class=" accionAsignacionEdCita" value="Eliminar"> Eliminar cita</button>
+                </form>
+                <!--Fin del form de eliminar citas -->
+           
           </div>
         </div>
-
+        <!--Datos a enviar de cita-->
 
 
         <div class="container">
         <div class="column1">
-          <h3 class="name">Citas</h3>
+
+       
+          <h3 class="name">Citas totales: <%= citas.length %></h3>
 
 
           <%if(citas.length!==0){%>
@@ -601,9 +619,11 @@
           <div class="card azulesC">
             <input type="hidden" value="<%=citas[i].curp_pacien%>" id="CURP_pacienForm">
             <input type="hidden" value="<%=citas[i].id_cita%>" id="id_citaForm">
+           <b class="jajaamiga">Dia y hora de la cita n° <%=i+1%>:</b> 
             <p class="small-content dates"><%=fechita.toISOString().substring(0,10)%></p>
+            
             <h4 class="hora"><%=citas[i].hour_cita%></h4>
-            <h6>amigaa </h6>
+            <h6><%=citas[i].id_cita%></h6>
           </div>
 
           <%}
@@ -726,7 +746,7 @@
                       </table>
                 </div>
               </div>
-              <%}%>>
+              <%}%>
               
   
 </div>

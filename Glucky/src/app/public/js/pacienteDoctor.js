@@ -475,9 +475,10 @@ let circle = document.querySelector(".color-option");
           
 
           } else if (clase == 'azulesC') {
-            document.getElementById("tituloCITA").innerHTML = titulo;
-            document.getElementById("contenidoCITA").innerHTML = detalles;
-            document.getElementById("fechaCITA").innerHTML = fecha;
+            document.getElementById("tituloCITA").value = titulo;
+            document.getElementById("contenidoCITA").value =  detalles;
+            document.getElementById("fechaCITA").value = fecha; //Este es el dato que usas para hacer consultas SQL
+            document.getElementById("fechaCITAEd").value = fecha; //Este es el dato que usas para hacer consultas SQL
 
             // Mostrar el overlay
             overcardCITA.style.display = 'block';
