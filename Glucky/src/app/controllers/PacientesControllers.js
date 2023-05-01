@@ -1,5 +1,7 @@
-const Controllers={};
+const { Chart } = require('chart.js/auto');
 const querys = require('../sql/Querys');
+const Controllers={};
+
 //get
 Controllers.dashboardPacientes = (req, res, next) => {
   const curp = req.session.curp;
@@ -24,9 +26,9 @@ Controllers.dashboardPacientes = (req, res, next) => {
         sistolica += parseInt(datosmedicos[i].presis_datmed);
         diastolica += parseInt(datosmedicos[i].predia_datmed);
       }
-      glucosa /= datosmedicos.length;
-      sistolica /= datosmedicos.length;
-      diastolica /= datosmedicos.length;
+      glucosa = Math.floor(glucosa / datosmedicos.length);
+      sistolica = Math.floor(sistolica / datosmedicos.length);
+      diastolica = Math.floor(diastolica / datosmedicos.length);
 
       querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
         if (error) {
@@ -79,7 +81,7 @@ Controllers.dashboardPacientes = (req, res, next) => {
               glucosa,
               sistolica,
               diastolica,
-              regis
+              regis,
             });
           }
         }
