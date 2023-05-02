@@ -487,8 +487,8 @@
                         
                   <!--CITA NORMAL -->
                       
-                      
-                  <%if(citas.length!==0){%>
+                
+                  <%if(typeof citas!=='undefined'&&citas.length!==0 ){%>
                     <%for(let i =0;i<citas.length;i++){
                       var fechita = citas[i].date_cita;%>
 
@@ -510,7 +510,7 @@
                         
                  
                       <!--CITA EN PROCESO --> 
-                      <%if(citasP1.length!==0){%>
+                      <%if(typeof citasP1!=='undefined'&&citasP1.length!==0){%>
                         <%for(let i =0;i<citasP1.length;i++){ 
                           var fechita = citasP1[i].date_solcita;%>
                         <div class="asignacion asignacion-1 moradin2">
@@ -540,7 +540,7 @@
   
                       <!--CITA DENEGADA --> 
 
-                      <%if(citasP3.length!==0){%>
+                      <%if(typeof citasP3!=='undefined'&&citasP3.length!==0){%>
                         <%for(let i =0;i<citasP3.length;i++){ 
                           var fechita = citasP3[i].date_solcita;%>
                       <div class="asignacion asignacion-3">
