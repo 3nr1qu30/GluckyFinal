@@ -59,7 +59,7 @@ db.mostrarDatosDoctorPaciente = (CurpForm, callback)=> {
 db.verPeticionesDoctor = (Cedula,callback)=>{
   con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona natural join tipodiabetes n WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
-      console.error('No hay solicitudes', error);
+      console.error('Error al ver las solicitudes', error);
    }else{
      callback(null,peticiones);
    }
@@ -120,12 +120,30 @@ db.verAlimentos = (callback)=>{
   });
  };
 
- 
-
  db.PeticionesCita = (Cedula,callback)=>{
   con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
       console.error('No hay solicitudes', error);
+   }else{
+     callback(null,peticiones);
+   }
+  });
+ };
+
+ db.PeticionesCitaPaciente = (Curp,callback)=>{
+  con.query(`SELECT * FROM solicitarcita WHERE curp_pacien  = '${Curp}' AND id_edosol = 1`, (error,peticiones)=>{
+   if(error){
+      console.error('Hay error al jalar las solicitudes', error);
+   }else{
+     callback(null,peticiones);
+   }
+  });
+ };
+
+ db.PeticionesCitaPacienteDeclinadas = (Curp,callback)=>{
+  con.query(`SELECT * FROM solicitarcita WHERE curp_pacien  = '${Curp}' AND id_edosol = 3`, (error,peticiones)=>{
+   if(error){
+      console.error('Hay error al jalar las solicitudes', error);
    }else{
      callback(null,peticiones);
    }

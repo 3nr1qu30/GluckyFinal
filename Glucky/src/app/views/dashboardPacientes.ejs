@@ -485,30 +485,64 @@
                       <!--CONSULTORIO --> 
   
                         
-                
+                  <!--CITA NORMAL -->
+                      
+                      
+                  <%if(citas.length!==0){%>
+                    <%for(let i =0;i<citas.length;i++){
+                      var fechita = citas[i].date_cita;%>
+
+                    <div class="asignacion asignacion-2" style="background-color: #E9ECF2;">
+                      <div class="clase">
+                        Tienes una cita asignada con número <%=i+1%>
+                      </div> 
+                      <div class="titulo">
+                        El dia  <%=fechita.toISOString().substring(0,10)%>
+                      </div> 
+                      <div class="titulo2">
+                        A las   <%=citas[i].hour_cita%>
+                      </div> 
+                  </div>
+                    <%}
+                  } else{ %>
+                  <%}%>
+                  <!--CITA NORMAL --> 
                         
                  
-                      <!--CITA ACEPTADA --> 
+                      <!--CITA EN PROCESO --> 
+                      <%if(citasP1.length!==0){%>
+                        <%for(let i =0;i<citasP1.length;i++){ 
+                          var fechita = citasP1[i].date_solcita;%>
                         <div class="asignacion asignacion-1 moradin2">
                           <div class="clase backgrounds">
-                            Aceptada
+                            Citas en proceso
                           </div> 
                           <div class="titulo">
-                            Cita
+                            Tu cita pronto será aceptada
                           </div>
                           <div class="titulo2">
-                            Tienes una cita el dia XX-XX-XXX a las XX-XX am
+                            La solicitaste para el dia  <%=fechita.toISOString().substring(0,10)%>
                           </div>
-                            <form action="">
-                              <input type="hidden" name="" id="">
-                              <button class="AceptarBtm" type="submit">
-                                Aceptar
-                              </button>
-                            </form>
+                          <div class="titulo2">
+                            A las <%=citasP1[i].hour_solcita%>
+                          </div>
+                          <form action="/Glucky/Pacientes/BorrarCitasDenegadas">
+                            <input type="hidden" name="IdSolCita" id="" value="<%=citasP3[i].id_solcita%>">
+                            <button class="AceptarBtm" type="submit">
+                              Aceptar y borrar
+                            </button>
+                          </form>
                       </div>
-                      <!--CITA ACEPTADA --> 
+                      <%}
+                    } else{ %>
+                    <%}%>
+                      <!--CITA EN PROCESO --> 
   
                       <!--CITA DENEGADA --> 
+
+                      <%if(citasP3.length!==0){%>
+                        <%for(let i =0;i<citasP3.length;i++){ 
+                          var fechita = citasP3[i].date_solcita;%>
                       <div class="asignacion asignacion-3">
                         <div class="clase backgrounds">
                           Denegada
@@ -517,31 +551,25 @@
                           Cita
                         </div>
                         <div class="titulo2">
-                          Solicitaste una cita el dia XX-XX-XXX a las XX-XX am
+                          Solicitaste una cita el dia <%=citasP3[i].date_solcita%> 
                         </div>
-                          <form action="">
-                            <input type="hidden" name="" id="">
+                        <div class="titulo2">
+                          A las<%=citasP3[i].hour_solcita%> 
+                        </div>
+                          <form action="/Glucky/Pacientes/BorrarCitasDenegadas">
+                            <input type="hidden" name="IdSolCita" id="" value="<%=citasP3[i].id_solcita%>">
                             <button class="AceptarBtm" type="submit">
-                              Volver a intentar
+                              Aceptar y borrar
                             </button>
                           </form>
                       </div>
+                      <%}
+                    } else{ %>
+                    <%}%>
                        <!--CITA DENEGADA --> 
   
                       
-                      <!--CITA NORMAL --> 
-                        <div class="asignacion asignacion-2">
-                          <div class="clase">
-                            Tienes una cita asignada
-                          </div> 
-                          <div class="titulo">
-                            El dia 
-                          </div> 
-                          <div class="titulo2">
-                            A las   
-                          </div> 
-                      </div>
-                      <!--CITA NORMAL --> 
+                    
   
                         
                        
