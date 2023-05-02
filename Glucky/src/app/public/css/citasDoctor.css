@@ -2173,21 +2173,17 @@ section.active .show-modal {
     float: left;
     width: 45%;
     height: 520px;
-    background-color: #f0f0f0;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding: 20px;
+    border-radius: 10px;
+    transition: all ease .3s;
   }
 
   .columna2 {
     float: left;
     width: 55%;
     height: 520px; 
-    background: linear-gradient(890deg, rgb(82, 166, 231) 10%, rgb(47, 41, 228) 100%);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 20px;
-    padding-top: 30px;
+    border-radius: 10px;
+    padding-left: 20px;
+    transition: all ease .3s;
   }
 
   .fecha{
@@ -2251,12 +2247,35 @@ section.active .show-modal {
   }
 
   .contenecitas{
-    height: 150px;
+    height: 81%;
     overflow-y: auto;
     overflow-x: hidden;
     transform: translate(-5px, 0px);
     width: 102%;
+    transition: all ease .3s;
   }
+
+
+  .dodododo{
+    margin-top: 10px;
+  background-color: #eeeeee70;
+  border-radius: 10px;
+  padding: 10px;
+  transition: all ease .3s;
+  
+}
+.dodododo::-webkit-scrollbar {
+  width:5px; /* establece el ancho de la scrollbar */
+}
+
+.dodododo::-webkit-scrollbar-thumb {
+  background-color: #ff0077; /* establece el color de la thumb de la scrollbar */
+  border-radius: 4px; /* establece el radio de la thumb de la scrollbar */
+}
+
+.dodododo::-webkit-scrollbar-track {
+  background-color: transparent; /* establece el color de la track de la scrollbar */
+}
 
   .nueva{
     border-radius: 5px;
@@ -2281,13 +2300,10 @@ section.active .show-modal {
     font-size: 20px;
     margin-top: 10px;
     color: #777;
+    background-color: #0A2558;
   }
 
 
-  .izquierdaborr {
-    display: flex;
-    align-items: center;
-  }
 
   /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
   @media screen and (max-width: 700px) {
@@ -2299,6 +2315,7 @@ section.active .show-modal {
     }
     .columna2 {
         width: 100%;
+        padding-top: 20px;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
         border-bottom-left-radius: 10px;
@@ -2568,12 +2585,17 @@ font-weight: 700;
   width: auto;
   border-radius: 6px;
   cursor: pointer;
-  background-color: #cc0808;
+  background-color: #ff0077;
   color: white;
   font-weight: bold;
   padding-right: 4px;
   padding-left: 4px;
   height: auto;
+}
+
+
+.rojinn{
+  color: #ff0077;
 }
 
 .aceptarCita{
@@ -2587,7 +2609,24 @@ font-weight: 700;
   padding-right: 4px;
   padding-left: 4px;
   height: auto;
-  background-color: rgba(17, 228, 87, 0.767);
+  background-color: rgba(32, 131, 189, 0.767);
+  margin-right: 5px;
+}
+
+.hoverbb:hover{
+  transition: all 0.3s ease-in-out;
+}
+
+.hoverbb:hover {
+  transform: translateY(-3px); /* Agrega un desplazamiento hacia arriba */
+  font-size: 14px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+}
+
+.finalizar{
+  background-color: rgba(32, 131, 189, 0.767);
+  width: 120%;
+  height: 20px;
 }
 
 
@@ -2613,9 +2652,85 @@ font-weight: 700;
 
 
 .recuadropetit{
-  background-color: white;
-  border-radius: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding: 10px;
-  margin-left: -7px;
-  margin-top: 5px;
+  height: 100%;
+  background-color: white;
+  padding: 20px;
+}
+
+
+.textoSimple{
+  border:solid #dddddd00;
+  background-color: transparent;
+  font-weight: 500;
+}
+
+
+.textoSimple:focus{
+  border:solid #dddddd00;
+  background-color: transparent;
+  font-weight: 500;
+  outline: none;
+}
+
+.cuadrocitas:hover{
+  background-color: #0000000e;
+  padding-left: 10px;
+  border-left: 2px solid rgb(212, 212, 212);
+}
+
+.izquierdaborr {
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Alinea los elementos verticalmente en el centro */
+  width: 100%;
+}
+
+.agregarCita {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translate(50%, -50%) rotate(90deg);
+  background-color: #f20f80;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+  margin-right: 20px;
+  transition: all ease .2s;
+  z-index: 10000000;
+  
+}
+
+.agregarCita:hover {
+  transform: translate(50%, -50%) rotate(90deg) scale(1.1); /* Agrega una escala */
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
+}
+
+
+.mensaje {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  width: 98%;
+}
+
+.mensaje p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 0;
+  color: #333;
+}
+
+.MEGALARGO{
+  height: 400px;
+  background-color: white;
 }

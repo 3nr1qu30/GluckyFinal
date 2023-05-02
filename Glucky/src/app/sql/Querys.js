@@ -133,9 +133,9 @@ db.verAlimentos = (callback)=>{
  };
 
  db.PeticionesCitaGenerales = (Cedula,callback)=>{
-  con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 2`, (error,aceptas)=>{
+  con.query(`SELECT * FROM citamedica natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}'`, (error,aceptas)=>{
     if(error){
-      console.error('No hay solicitudes', error);
+      console.error('Hubo un error al ver las citas generales', error);
    }else{
      callback(null,aceptas);
    }
@@ -153,20 +153,11 @@ db.verAlimentos = (callback)=>{
   });
  };
 
-db.aceptarcita = (IdCita,IdConsmed,callback)=>{
-  con.query(`update solicitarcita set id_edosol=2 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,acepta)=>{
-   if(error){
-      console.error('No mami', error);
-   }else{
-     callback(null,acepta);
-   }
-  });
- }; 
 
  db.declinarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,declina)=>{
    if(error){
-      console.error('No mami', error);
+      console.error('No mami jaja no puedes porque eres tonta jaja', error);
    }else{
      callback(null,declina);
    }
@@ -250,6 +241,23 @@ db.buscarDatosmedicos=(curp,callback)=>{
 });
 };
 //insertar registros a la base
+
+db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback)=>{
+  con.query(`insert into citamedica (id_cita, date_cita, hour_cita, id_consmed, curp_pacien)
+  VALUES (default, '${date_cita}', '${hour_cita}', ${id_consmed}, '${curp_pacien}');`, (error,acepta)=>{
+   if(error){
+      console.error('No se pudo agregar la cita a la tabla citas', error);
+   }else if (acepta){
+    con.query(`delete from solicitarcita where id_solcita = '${id_solcita}' and curp_pacien = '${curp_pacien}';`, (error,acepta)=>{
+     if(error){
+        console.error('No se pudo eliminar esta solicitud jaja amiga', error);
+     }else{
+       callback(null,acepta);
+     }
+    });
+   }
+  });
+ }; 
 
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
     TipoDiabetes,PassForm, callback) =>{
@@ -449,6 +457,17 @@ db.eliminarCitaPaciente=(id_citaEl,curpFormPac,callback)=>{
     }
   });
 };
+
+db.finalizarCita= (IdCita,CurpPacien,callback)=>{
+  let id_cita = parseInt(IdCita);
+  con.query(`Delete from citamedica where curp_pacien ='${CurpPacien}' and id_cita = '${id_cita}'`, (error,finaliza)=>{
+   if(error){
+      console.error('Error al finalizar la cita', error);
+   }else{
+     callback(null,finaliza);
+   }
+  });
+ };
 
 db.eliminarMedicamento=(idMedic,callback)=>{
   let idIng = parseInt(idMedic);
