@@ -188,7 +188,7 @@
 
                                   <li class="elemento">
                                     <!--Inicio del form de editar-->
-                                    <form action="/Glucky/Doctores/AlimentosEd" method="post" id="formulario2">
+                                    <form action="/Glucky/Doctores/AlimentosEd" method="post" id="formulario2"  onsubmit="return validarFormulario2();">
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">                                       
                                       <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple altoP" >
                                       <textarea class="textoSimple dopss" cols="10" name="DescForm" rows="1"><%=datos[i].desc_ingred%></textarea>
@@ -197,7 +197,7 @@
                                     </form>
                                     <!--Fin del form de editar-->
                                     <!--Inicio del form de eliminar-->
-                                    <form action="/Glucky/Doctores/AlimentosE" method="post">                                       
+                                    <form action="/Glucky/Doctores/AlimentosE" method="post" id="formulario3">                                       
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">
                                       <button type="submit" class="btnEliminarEle">Eliminar</button>
                                     </form>
