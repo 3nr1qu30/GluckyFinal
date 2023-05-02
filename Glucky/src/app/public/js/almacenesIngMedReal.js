@@ -10,41 +10,30 @@ const inputs = document.querySelectorAll('#formulario input');
 const inputs2 = document.querySelectorAll('#formulario2 input');
 
 const expReg = {
-  alimentoNombre: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,15}$/,
-  alimentoDescripcion: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s0-9]{2,15}.$/
+  medicamentoNombre: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{4,20}$/
 }
+
 const campos = {
-  alimentoNombre: false,
-  alimentoDescripcion: false,
-  alimentoNombre2: false,
+  medicamentoNombre: false,
+  medicamentoNombre2: false
 }
 
 const validarFormulario = (e) => {
-  switch(e.target.name){
-    case "alimentoNombre":
-      if(expReg.alimentoNombre.test(e.target.value)){
-        campos.alimentoNombre = true;
+    switch(e.target.name){
+        case "medicamentoNombre":
+          if(expReg.medicamentoNombre.test(e.target.value)){
+            campos.medicamentoNombre = true;
+          }
+          else if(e.target.value === ""){
+            campos.medicamentoNombre = false;
+          }
+          else{
+            campos.medicamentoNombre = false;
+          }
+          break;
       }
-      else if(e.target.value === ""){
-        campos.alimentoNombre = false;
-      }
-      else{
-        campos.alimentoNombre = false;
-      }
-      break;
-    case "alimentoDescripcion":
-      if(expReg.alimentoDescripcion.test(e.target.value)){
-        campos.alimentoDescripcion = true;
-      }
-      else if(e.target.value === ""){
-        campos.alimentoDescripcion = false;
-      }
-      else{
-        campos.alimentoDescripcion = false;
-      }
-      break;
-  }
 }
+
 
 if(getMode && getMode ==="dark"){
     body.classList.toggle("dark");
@@ -137,44 +126,23 @@ function validarFormulario2() {
   let camposValidos = true;
 
   elementos.forEach(elemento => {
-    const nombre = elemento.querySelector('input[name="NomForm"]');
-    const descripcion = elemento.querySelector('textarea[name="DescForm"]');
+    const nombre = elemento.querySelector('input[name="nomMed"]');
 
     if (!nombre.value.trim()) {
       swal({
         icon: "error",
         title: "Nombre vacío",
-        text: "El nombre del alimento no puede estar vacío, de lo contrario no se actualizará"
-      });      
-      camposValidos = false;
-      return;
-    }
-    
-    if (!expReg.alimentoNombre.test(nombre.value.trim())) {
-      swal({
-        icon: "error",
-        title: "Nombre con extensión erronea",
-        text: "Por favor, ingrese un nombre válido para el alimento (de 2 a 15 caracteres alfabéticos), de lo contrario no se actualizará"
-      }); 
-      camposValidos = false;
-      return;
-    }
-    
-    if (!descripcion.value.trim()) {
-      swal({
-        icon: "error",
-        title: "Descripción vacía",
-        text: "La descripción del alimento no puede estar vacía, de lo contrario no se actualizará"
+        text: "El nombre del medicamento no puede estar vacío, de lo contrario no se actualizará"
       });
       camposValidos = false;
       return;
     }
     
-    if (!expReg.alimentoDescripcion.test(descripcion.value.trim())) {
+    if (!expReg.medicamentoNombre.test(nombre.value.trim())) {
       swal({
         icon: "error",
-        title: "Descripción con extensión erronea",
-        text: "Por favor, ingrese una descripción válida para el alimento (de 2 a 15 caracteres alfanuméricos), de lo contrario no se actualizará"
+        title: "Nombre con extensión erronea",
+        text: "Por favor, ingrese un nombre válido para el medicamento (de 4 a 20 caracteres alfabéticos), de lo contrario no se actualizará"
       }); 
       camposValidos = false;
       return;
@@ -216,12 +184,7 @@ inputs.forEach((input) => {
 
 
 formulario.addEventListener('submit', (e) => {
-  if (campos.alimentoDescripcion && campos.alimentoNombre) {
-/*     swal({
-      icon: "success",
-      title: "Alimento agregado",
-      text: "El alimento se ha agregado al almacén"
-    }); */
+  if (campos.medicamentoNombre) {
   } else {
   e.preventDefault();
 }
@@ -231,36 +194,7 @@ formulario2.addEventListener('submit', (e) => {
   e.preventDefault();
   
   if (validarFormulario2()) {
-    // swal({
-    //   icon: "success",
-    //   title: "Alimento modificado",
-    //   text: "El alimento ya está actualizado"
-    // }).then(() => {
       formulario2.submit();
-    // });
-  } else {    
-    // console.log(`Esta mal pa`);
+  } else {
   }
 });
-
-// formulario3.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const id = e.target.querySelector('.idElemento').value;
-//   swal({
-//     title: "¿Estás seguro?",
-//     text: "Este elemento será eliminado permanentemente.",
-//     icon: "warning",
-//     buttons: ["Cancelar", "Eliminar"],
-//     dangerMode: true,
-//   })
-//   .then((willDelete) => {
-//     if (willDelete) {
-//       swal("El elemento ha sido eliminado.", {
-//         icon: "success",
-//       });
-//       formulario3.submit();
-//     } else {
-//       swal("La eliminación ha sido cancelada.");
-//     }
-//   });
-// });
