@@ -2744,15 +2744,29 @@ section.active .show-modal {
     padding: 5px;
     box-sizing: border-box;
     transition: all ease 1s;
-    max-height: 800px;
+    max-height: 540px;
+    overflow-y: auto;
     
   }
+
+  .column1::-webkit-scrollbar {
+    width: 5px; /* ancho del scrollbar */
+  }
+
+  
+  .column1::-webkit-scrollbar-thumb {
+    background-color: #f72020ad; /* color del scrollbar */
+    border-radius: 10px; /* borde redondeado del scrollbar */
+    
+  }
+
   .column2 {
     flex-basis: calc(33.3% - 20px);
     margin-right: 5px;
     padding: 5px;
     box-sizing: border-box;
     max-height: 800px;
+    overflow-y: auto;
     
   }
   
@@ -2763,8 +2777,23 @@ section.active .show-modal {
     box-sizing: border-box;
     max-height: 800px;
     overflow-y: auto;
+    overflow-y: auto;
+  }
+
+  .formsElEd{
+    padding-top: 10px;
+  }
+
+  .blancos{
+    color: white;
+    margin-left: -2px;
   }
   
+
+  .blanqui{
+    background-color: rgba(255, 255, 255, 0);
+    border: solid #00000000;
+  }
   
   h2 {
     font-size: 20px;
@@ -3626,6 +3655,17 @@ border-radius: 10px;
     overflow-y: auto;
     font-size: small;
     color: rgb(255, 255, 255);
+    border: solid;
+    border-color: #ffffff00;
+
+    background-color: #ffffff00;
+  }
+
+
+  .dispo2:focus, .dispo2:active {
+    outline: none;
+    border: none;
+    background-color: transparent;
   }
 
   .contenido{
@@ -3715,4 +3755,128 @@ border-radius: 10px;
     border-radius: 10px;
     margin-bottom: 10px;
     color: black;
+  }
+
+
+  .campoEditable {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .campoEditable input[type="time"] {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    color: #000000;
+    padding: 0;
+  }
+  
+
+  
+
+  .blanqui{
+    font-size:medium;
+  }
+
+
+
+  
+ .blanqui1{
+  background-color: #00000000;
+  border: solid #00000000;
+ }
+
+
+ .blanqui2{
+  background-color: #00000000;
+  border: solid #00000000;
+ }
+
+  .blanqui1::-webkit-calendar-picker-indicator {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/266/266146.png');
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+    border: none;
+    margin-left: 5px;
+  }
+
+
+  .blanqui2::-webkit-calendar-picker-indicator {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/266/266146.png');
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+    border: none;
+    margin-left: 5px;
+  }
+  
+  input[type="time"]:focus::-webkit-calendar-picker-indicator {
+    opacity: 1;
+  }
+
+
+  .blanqui2, .blanqui1{
+transition: all ease .2s;
+  }
+
+  input.blanqui2:hover,
+  input.blanqui2:focus {
+    border-color: #000000;
+    outline: none;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 5px;
+  }
+
+  input.blanqui1:hover,
+  input.blanqui1:focus {
+    border-color: #000000;
+    outline: none;
+    border-radius: 10px;
+    border-width: 1px;
+    padding: 5px;
+  }
+
+  input.blanqui1:focus {
+    border-color: #ff1212b2;
+    outline: none;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 5px;
+  }
+
+  input.blanqui2:focus {
+    border-color: #ff1212b2;
+    outline: none;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 5px;
+    background-color: #ff121236 ;
+  }
+  
+
+  
+  input.blanqui1:focus {
+    border-color: #ff1212b2;
+    outline: none;
+    border-radius: 10px;
+    border-width: 2px;
+    padding: 5px;
+    background-color: #ff121236 ;
+  }
+
+
+
+  .jajaamiga{
+    color: white;
   }

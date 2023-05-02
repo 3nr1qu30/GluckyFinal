@@ -183,7 +183,7 @@
 
                                   <li class="elemento">
                                     <!--Inicio del form de editar-->
-                                    <form action="/Glucky/Doctores/MedicamentosEd" method="post">
+                                    <form action="/Glucky/Doctores/MedicamentosEd" method="post" id="formulario2" onsubmit="return validarFormulario2();">
                                       <input type="hidden" class="idElemento" name="idMed" value="<%=datos[i].id_medic%>">
                                       <input type="text" value="<%=datos[i].nom_medic%>" name="nomMed" class="textoSimple">
                                       <div class="botones-elemento" id="botonesAcci">
@@ -191,7 +191,7 @@
                                     </form>
                                     <!--Fin del form de editar-->
                                     <!--Inicio del form de eliminar-->
-                                    <form action="/Glucky/Doctores/MedicamentosE" method="post">
+                                    <form action="/Glucky/Doctores/MedicamentosE" method="post" id="formulario3">
                                       <input type="hidden" class="idElemento" name="idMed" value="<%=datos[i].id_medic%>">
                                       <button type="submit" class="btnEliminarEle">Eliminar</button>
                                     </form>
@@ -204,9 +204,9 @@
 
                                 </ul>
                                 <div class="agregar">
-                                    <form action="/Glucky/Doctores/Medicamentos" method="post">
+                                    <form action="/Glucky/Doctores/Medicamentos" method="post" id="formulario">
                                     <input type="text" name="medicamentoNombre" class="escribeElemento" placeholder="Escribe el nombre del medicamento">
-                                    <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento</span></button>
+                                    <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento<br>Nota: El medicamento no puede<br> contener números ni estar vacío</span></button>
                                     </form>
                                 </div>
                         </div>
@@ -224,8 +224,9 @@
 
 
 
-<script src="/js/almacenesIngMed.js"> </script>
-    
+<!-- <script src="/js/almacenesIngMed.js"> </script> -->
+<script src="/js/almacenesIngMedReal.js"> </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
     
 </body>
 </html>

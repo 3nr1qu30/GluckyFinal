@@ -1,5 +1,7 @@
-const Controllers={};
+const { Chart } = require('chart.js/auto');
 const querys = require('../sql/Querys');
+const Controllers={};
+
 //get
 Controllers.dashboardPacientes = (req, res, next) => {
   const curp = req.session.curp;
@@ -24,9 +26,9 @@ Controllers.dashboardPacientes = (req, res, next) => {
         sistolica += parseInt(datosmedicos[i].presis_datmed);
         diastolica += parseInt(datosmedicos[i].predia_datmed);
       }
-      glucosa /= datosmedicos.length;
-      sistolica /= datosmedicos.length;
-      diastolica /= datosmedicos.length;
+      glucosa = Math.floor(glucosa / datosmedicos.length);
+      sistolica = Math.floor(sistolica / datosmedicos.length);
+      diastolica = Math.floor(diastolica / datosmedicos.length);
 
       querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
         if (error) {
@@ -49,38 +51,66 @@ Controllers.dashboardPacientes = (req, res, next) => {
               regis
             });
           } else {
-            solicituda =
-              solicitud[0].nom_pers + ' ' + solicitud[0].apellidos_pers;
-            direccion =
-              'Calle:' +
-              solicitud[0].calle_cons +
-              ' Num:' +
-              solicitud[0].num_cons +
-              '\n' +
-              ' CP:' +
-              solicitud[0].cp_cons +
-              '\n' +
-              ' Colonia:' +
-              solicitud[0].col_cons +
-              '\n' +
-              ' Del o Mun:' +
-              solicitud[0].del_cons +
-              '\n' +
-              ' Estado o Ciudad:' +
-              solicitud[0].edo_cons;
-            res.render('dashboardPacientes', {
-              curp,
-              nombre,
-              correo,
-              solicituda,
-              direccion,
-              tipodia,
-              datosmedicos,
-              glucosa,
-              sistolica,
-              diastolica,
-              regis
-            });
+        //inicio de la segunda consulta de query 
+        querys.verCitasPacienteIndividual(curp,(error2,citasver)=>{
+          if(citasver){
+            //inicio de la tercera consulta de query 
+            querys.PeticionesCitaPaciente(curp,(error3,citasverEdo1)=>{
+            if(citasverEdo1){
+              //inicio de la cuarta consulta de query 
+              querys.PeticionesCitaPacienteDeclinadas(curp,(error4,citasverEdo3)=>{
+              if(citasverEdo3){
+                solicituda =
+                solicitud[0].nom_pers + ' ' + solicitud[0].apellidos_pers;
+              direccion =
+                'Calle:' +
+                solicitud[0].calle_cons +
+                ' Num:' +
+                solicitud[0].num_cons +
+                '\n' +
+                ' CP:' +
+                solicitud[0].cp_cons +
+                '\n' +
+                ' Colonia:' +
+                solicitud[0].col_cons +
+                '\n' +
+                ' Del o Mun:' +
+                solicitud[0].del_cons +
+                '\n' +
+                ' Estado o Ciudad:' +
+                solicitud[0].edo_cons;
+              res.render('dashboardPacientes', {
+                curp,
+                nombre,
+                correo,
+                solicituda, 
+                direccion,
+                tipodia,
+                datosmedicos,
+                glucosa,
+                sistolica,
+                diastolica,
+                regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3
+              });
+                console.log(citasverEdo3);
+              }
+              else{
+                console.log(error4);
+              }
+              }); 
+              //Fin de la cuarta consulta de query 
+            }
+            else{
+              console.log(error3);
+            }
+            }); 
+            //Fin de la tercera consulta de query 
+          }
+          else{
+            console.log(error2);
+          }
+          }); 
+          //Fin de la segunda consulta de query 
           }
         }
       });

@@ -2,7 +2,6 @@ const Controllers={};
 const querys = require('../sql/Querys');
 const encriptar = require('../helpers/EncriptarContraseñas');
 const session = require('express-session');
-const Swal = require('sweetalert2');
 
 //rutas get
 Controllers.index = (req, res, next) => {
@@ -34,6 +33,7 @@ Controllers.registroPaPost = (req,res,next)=>{
       error='Paciente no registrado';
       console.log(error);
       res.render('registroPa',{error});
+      error="undefined";
     }
     else{
       if(resultado === 'no existe'){
@@ -42,16 +42,19 @@ Controllers.registroPaPost = (req,res,next)=>{
             if(error){
               error='Paciente no registrado';
               res.render('registroPa',{error});
+              error="undefined";
             }
             else if(alta){
               error='Paciente registrado con exito';
               res.render('registroPa',{error});
+              error="undefined";
             }
           });
       }
       else{
         error='Paciente registrado con anterioridad';
         res.render('registroPa',{error});
+        error="undefined";
       }
     }
   });
@@ -65,6 +68,7 @@ Controllers.registroDocPost=(req,res,next)=>{
       if(error){
         error='Doctor no registrado';
         res.render('registroDoc',{error});
+        error="undefined";
       }
       else{
         if(resultado === 'no existe'){
@@ -74,16 +78,19 @@ Controllers.registroDocPost=(req,res,next)=>{
               if(error){
                 error='Doctor no registrado';
                 res.render('registroDoc',{error});
+                error="undefined";
               }
               else if(alta){
                 error='Doctor registrado con exito';
                 res.render('registroDoc',{error});
+                error="undefined";
               }
             });
         }
         else{
           error='Doctor registrado con anterioridad';
           res.render('registroDoc',{error});
+          error="undefined";
         }
       }
     });
@@ -101,6 +108,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
       else if(paciente==='no existe'){
         error ='El paciente no esta registrado';
         res.render('iniciosesion',{error});
+        error="undefined";
       }
       else if(paciente){
         if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){
@@ -111,7 +119,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
           res.redirect('/Glucky/Pacientes/Dashboard');
         }
         else{
-          res.render('iniciosesionpasin',{Usuario:UserForm});
+          res.render('iniciosesionpasin',{Usuario:UserForm})
         }
       }
     });
@@ -124,6 +132,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
       else if(doctor==='no existe'){
         error='El doctor no esta registrado';
         res.render('iniciosesion',{error});
+        error="undefined";
       }
       else if(doctor){
         if(await encriptar.compare(PassForm, doctor[0].pass_med)===true){

@@ -60,7 +60,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       if(ver){
         querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
-            console.log(`Si se hizo mami`);
+            console.log(`ver las citas`);
             res.render('peticionesDoctor',{datos:ver,citasaceptadas});
           }
           else if(error){
@@ -81,7 +81,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       if(ver){
         querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
-            console.log(`Si se hizo mami`);
+            console.log(`Ver las citas`);
             res.render('citasDoctor',{datos:ver,citasaceptadas});
           }
           else if(error){
@@ -121,19 +121,58 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
-  Controllers.PacienteDoctor = (req,res,next)=>{
+  Controllers.PacienteDoctorPost = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CURPform} =req.body;
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
         console.log(ver);
-        res.render('pacienteDoctor',{datos:ver});
+
+        //inicio de la segunda consulta de query 
+        querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
+          if(citasver){
+            console.log(citasver);
+            res.render('pacienteDoctor',{citas:citasver,datos:ver});
+          }
+          else{
+            console.log(error2);
+          }
+        }); 
+        //final de la segunda consulta de query
+
       }
       else{
         console.log(error);
       }
     }); 
   };
+
+  Controllers.PacienteDoctorGet = (req,res,next)=>{
+    const Cedula = req.session.cedula;
+    const CURPform = req.session.paciente;
+    querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
+      if(ver){
+        console.log(ver);
+
+    //inicio de la segunda consulta de query 
+    querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
+      if(citasver){
+        console.log(citasver);
+        res.render('pacienteDoctor',{citas:citasver,datos:ver});
+      }
+      else{
+        console.log(error2);
+      }
+    }); 
+    //final de la segunda consulta de query
+
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
 
   Controllers.PacienteDoctorCitas = (req,res,next)=>{
     const{CurpForm} =req.body;
@@ -142,6 +181,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.agregarCitaPaciente(FechaForm,HoraForm,CurpForm,Cedula,(error,ver)=>{
       if(ver){
+        req.session.paciente=CurpForm;
         console.log(ver);
         res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
@@ -149,6 +189,40 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         console.log(error);
       }
     }); 
+  };
+
+
+  Controllers.PacienteDoctorCitasEl= (req,res,next)=>{
+    const{id_citaEl} = req.body;
+    const {curpFormPac} = req.body;
+    querys.eliminarCitaPaciente(id_citaEl,curpFormPac,(error,elimina)=>{
+      if(elimina){
+        req.session.paciente=curpFormPac;
+        console.log('Eliminación lograda de cita');
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
+
+  Controllers.PacienteDoctorCitasEd= (req,res,next)=>{
+    const {curp_pacienF} =req.body;
+    const {id_citaF} =req.body;
+    const {date_citaF} =req.body;
+    const {hour_citaF} =req.body;
+    querys.editarCitaPaciente(curp_pacienF,id_citaF,date_citaF,hour_citaF,(error,elimina)=>{
+      if(elimina){
+        req.session.paciente=curp_pacienF;
+        console.log('Cita editada correctamente');
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
+      }
+      else{
+        console.log(error);
+      }
+    });
   };
 
   Controllers.Medicamento = (req,res,next)=>{
@@ -247,12 +321,16 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   };
 
-  Controllers.citasDoctorAcepta = (req,res,next)=>{    
+  Controllers.citasDoctorAcepta = (req,res,next)=>{   
     const{IdCita} = req.body;
+    const{HoraForm} = req.body;
+    const{FechaForm} = req.body;
+    const{CurpPacien} = req.body;
     const{IdConsmed} = req.body;
-    querys.aceptarcita(IdCita,IdConsmed,(error,cambio)=>{
+    querys.aceptarcita(FechaForm,HoraForm,IdConsmed,CurpPacien,IdCita,(error,cambio)=>{
       if(cambio){
-        console.log('cieta aceptada');
+        console.log('cita aceptada y eliminada de solicitudes');
+        res.redirect('/Glucky/Doctores/Citas');
       }
       else{
         console.log(error);
@@ -266,6 +344,21 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.declinarcita(IdCita,IdConsmed,(error,cambio)=>{
       if(cambio){
         console.log('cita declinada');
+        res.redirect('/Glucky/Doctores/Citas');
+      }
+      else{
+        console.log(error);
+      }
+    });
+  };
+
+  Controllers.citasDoctorFinaliza= (req,res,next)=>{    
+    const{IdCitaL} = req.body;
+    const{CurpPacienL} = req.body;
+    querys.finalizarCita(IdCitaL,CurpPacienL,(error,finaliza)=>{
+      if(finaliza){
+        console.log('cita finalizada correctamente osea borrada xd');
+        res.redirect('/Glucky/Doctores/Citas');
       }
       else{
         console.log(error);

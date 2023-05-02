@@ -188,7 +188,7 @@
 
                                   <li class="elemento">
                                     <!--Inicio del form de editar-->
-                                    <form action="/Glucky/Doctores/AlimentosEd" method="post">
+                                    <form action="/Glucky/Doctores/AlimentosEd" method="post" id="formulario2" onsubmit="return validarFormulario2();">
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">                                       
                                       <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple altoP" >
                                       <textarea class="textoSimple dopss" cols="10" name="DescForm" rows="1"><%=datos[i].desc_ingred%></textarea>
@@ -197,7 +197,7 @@
                                     </form>
                                     <!--Fin del form de editar-->
                                     <!--Inicio del form de eliminar-->
-                                    <form action="/Glucky/Doctores/AlimentosE" method="post">                                       
+                                    <form action="/Glucky/Doctores/AlimentosE" method="post" id="formulario3">                                       
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">
                                       <button type="submit" class="btnEliminarEle">Eliminar</button>
                                     </form>
@@ -212,10 +212,10 @@
                                 </ul>
                               </div>
                                 <div class="agregar">
-                                  <form action="/Glucky/Doctores/Alimentos" method="post">
-                                  <input type="text" name="alimentoNombre" class="escribeElemento" placeholder="Escribe el nombre del alimento">
-                                  <input type="text" name="alimentoDescripcion" class="escribeElemento borros" placeholder="Escribe la descripción del alimento">
-                                  <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento</span></button>
+                                  <form action="/Glucky/Doctores/Alimentos" method="post" id="formulario">
+                                      <input type="text" name="alimentoNombre" class="escribeElemento" placeholder="Escribe el nombre del alimento">
+                                      <input type="text" name="alimentoDescripcion" class="escribeElemento borros" placeholder="Escribe la descripción del alimento">
+                                      <button class="enviarElemento" type="submit"> <i class="bx bx-plus"></i>  <span class="opcionesdos">Haz clic para crear un nuevo alimento. <br>Nota: El nombre no puede contener números<br>ni estar vacío asi como debe <br>contener una breve descripción</span></button>
                                   </form>
                                 </div>
                              
@@ -240,6 +240,6 @@ function autoGrow(elemento) {
 
     </script>
     
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

@@ -13,12 +13,6 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
       <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
       <link rel="stylesheet" href="/css/slider.css" />
-      <style>
-        #chartdiv {
-          width: 100%;
-          height: 100%;
-        }
-        </style>
        
   
       <title>Paciente</title> 
@@ -284,7 +278,7 @@
                         </div>
                         <div class="modal-body">
                           <!--INICIO DEL FORM DE GLUCOSA-->
-                          <form class="glucosaNormalForm" action="/Glucky/Pacientes/Niveles" method="post">
+                          <form class="glucosaNormalForm" action="/Glucky/Pacientes/Niveles" method="post" id="formulario">
                             <label for="glucosaNormal">Ingresa el nivel de glucosa y presión</label>
                             <input class="Glucnor" type="number" id="glucosaNormal" name="glucosa" placeholder="Ingresa el valor de tu glucosa aquí...">
                             <input class="Glucnor" type="number" id="glucosaNormal" name="sistolica" placeholder="Ingresa el valor de tu presion sistolica aquí.....">
@@ -335,7 +329,7 @@
                        <%if(datosmedicos.length !== 0){%>
                         <div class="base base2">
                           <div class="vistaCitas vistaGrafica">
-                            <div id="chartdiv"></div>
+                            <canvas id="presiongraf"></canvas>
                       <!-- Contenido niveles de glucosa -->
                           </div>
                           <div class="otro3 otroA">
@@ -358,6 +352,7 @@
   
                         <div class="base base2">
                           <div class="vistaCitas vistaGrafica vistaGrafica2">
+                            <canvas id="glucosagraf"></canvas>
                       <!-- Contenido niveles de presión -->
                           <div id="chartdiv"></div>
                           </div>
@@ -374,7 +369,6 @@
                       <%}else{%>
                         <div class="base base2">
                           <div class="vistaCitas vistaGrafica">
-                            <div id="chartdiv"></div>
                       <!-- Contenido niveles de glucosa -->
                           </div>
                           <div class="otro3 otroA">
@@ -491,30 +485,64 @@
                       <!--CONSULTORIO --> 
   
                         
-                
+                  <!--CITA NORMAL -->
+                      
+                      
+                  <%if(citas.length!==0){%>
+                    <%for(let i =0;i<citas.length;i++){
+                      var fechita = citas[i].date_cita;%>
+
+                    <div class="asignacion asignacion-2" style="background-color: #E9ECF2;">
+                      <div class="clase">
+                        Tienes una cita asignada con número <%=i+1%>
+                      </div> 
+                      <div class="titulo">
+                        El dia  <%=fechita.toISOString().substring(0,10)%>
+                      </div> 
+                      <div class="titulo2">
+                        A las   <%=citas[i].hour_cita%>
+                      </div> 
+                  </div>
+                    <%}
+                  } else{ %>
+                  <%}%>
+                  <!--CITA NORMAL --> 
                         
                  
-                      <!--CITA ACEPTADA --> 
+                      <!--CITA EN PROCESO --> 
+                      <%if(citasP1.length!==0){%>
+                        <%for(let i =0;i<citasP1.length;i++){ 
+                          var fechita = citasP1[i].date_solcita;%>
                         <div class="asignacion asignacion-1 moradin2">
                           <div class="clase backgrounds">
-                            Aceptada
+                            Citas en proceso
                           </div> 
                           <div class="titulo">
-                            Cita
+                            Tu cita pronto será aceptada
                           </div>
                           <div class="titulo2">
-                            Tienes una cita el dia XX-XX-XXX a las XX-XX am
+                            La solicitaste para el dia  <%=fechita.toISOString().substring(0,10)%>
                           </div>
-                            <form action="">
-                              <input type="hidden" name="" id="">
-                              <button class="AceptarBtm" type="submit">
-                                Aceptar
-                              </button>
-                            </form>
+                          <div class="titulo2">
+                            A las <%=citasP1[i].hour_solcita%>
+                          </div>
+                          <form action="/Glucky/Pacientes/BorrarCitasDenegadas">
+                            <input type="hidden" name="IdSolCita" id="" value="<%=citasP3[i].id_solcita%>">
+                            <button class="AceptarBtm" type="submit">
+                              Aceptar y borrar
+                            </button>
+                          </form>
                       </div>
-                      <!--CITA ACEPTADA --> 
+                      <%}
+                    } else{ %>
+                    <%}%>
+                      <!--CITA EN PROCESO --> 
   
                       <!--CITA DENEGADA --> 
+
+                      <%if(citasP3.length!==0){%>
+                        <%for(let i =0;i<citasP3.length;i++){ 
+                          var fechita = citasP3[i].date_solcita;%>
                       <div class="asignacion asignacion-3">
                         <div class="clase backgrounds">
                           Denegada
@@ -523,31 +551,25 @@
                           Cita
                         </div>
                         <div class="titulo2">
-                          Solicitaste una cita el dia XX-XX-XXX a las XX-XX am
+                          Solicitaste una cita el dia <%=citasP3[i].date_solcita%> 
                         </div>
-                          <form action="">
-                            <input type="hidden" name="" id="">
+                        <div class="titulo2">
+                          A las<%=citasP3[i].hour_solcita%> 
+                        </div>
+                          <form action="/Glucky/Pacientes/BorrarCitasDenegadas">
+                            <input type="hidden" name="IdSolCita" id="" value="<%=citasP3[i].id_solcita%>">
                             <button class="AceptarBtm" type="submit">
-                              Volver a intentar
+                              Aceptar y borrar
                             </button>
                           </form>
                       </div>
+                      <%}
+                    } else{ %>
+                    <%}%>
                        <!--CITA DENEGADA --> 
   
                       
-                      <!--CITA NORMAL --> 
-                        <div class="asignacion asignacion-2">
-                          <div class="clase">
-                            Tienes una cita asignada
-                          </div> 
-                          <div class="titulo">
-                            El dia 
-                          </div> 
-                          <div class="titulo2">
-                            A las   
-                          </div> 
-                      </div>
-                      <!--CITA NORMAL --> 
+                    
   
                         
                        
@@ -560,154 +582,77 @@
   
                    
                   </div>
-                  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-                  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-                  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-                  <script>
-                    am5.ready(function() {
-                    
-                    // Create root element
-                    // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-                    var root = am5.Root.new("chartdiv");
-                    
-                    
-                    // Set themes
-                    // https://www.amcharts.com/docs/v5/concepts/themes/
-                    root.setThemes([
-                      am5themes_Animated.new(root)
-                    ]);
-                    
-                    
-                    // Create chart
-                    // https://www.amcharts.com/docs/v5/charts/xy-chart/
-                    var chart = root.container.children.push(am5xy.XYChart.new(root, {
-                      panX: true,
-                      panY: true,
-                      wheelX: "panX",
-                      wheelY: "zoomX",
-                      pinchZoomX:true
-                    }));
-                    
-                    chart.get("colors").set("step", 3);
-                    
-                    
-                    // Add cursor
-                    // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
-                    var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
-                    cursor.lineY.set("visible", false);
-                    
-                    
-                    // Create axes
-                    // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
-                    var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
-                      maxDeviation: 0.3,
-                      baseInterval: {
-                        timeUnit: "day",
-                        count: 1
-                      },
-                      renderer: am5xy.AxisRendererX.new(root, {}),
-                      tooltip: am5.Tooltip.new(root, {})
-                    }));
-                    
-                    var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
-                      maxDeviation: 0.3,
-                      renderer: am5xy.AxisRendererY.new(root, {})
-                    }));
-                    
-                    
-                    // Add series
-                    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-                    var series = chart.series.push(am5xy.LineSeries.new(root, {
-                      name: "Series 1",
-                      xAxis: xAxis,
-                      yAxis: yAxis,
-                      valueYField: "value1",
-                      valueXField: "date",
-                      tooltip: am5.Tooltip.new(root, {
-                        labelText: "{valueX}: {valueY}\n{previousDate}: {value2}"
-                      })
-                    }));
-                    
-                    series.strokes.template.setAll({
-                      strokeWidth: 2
-                    });
-                    
-                    series.get("tooltip").get("background").set("fillOpacity", 0.5);
-                    
-                    var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-                      name: "Series 2",
-                      xAxis: xAxis,
-                      yAxis: yAxis,
-                      valueYField: "value2",
-                      valueXField: "date"
-                    }));
-                    series2.strokes.template.setAll({
-                      strokeDasharray: [2, 2],
-                      strokeWidth: 2
-                    });
-                    
-                    // Set date fields
-                    // https://www.amcharts.com/docs/v5/concepts/data/#Parsing_dates
-                    root.dateFormatter.setAll({
-                      dateFormat: "yyyy-MM-dd",
-                      dateFields: ["valueX"]
-                    });
-                    
-                    
-                    // Set data
-                    var data = [{
-                      date: new Date(2019, 5, 12).getTime(),
-                      value1: 50,
-                      value2: 48,
-                      previousDate: new Date(2019, 5, 5)
-                    }, {
-                      date: new Date(2019, 5, 13).getTime(),
-                      value1: 53,
-                      value2: 51,
-                      previousDate: "2019-05-06"
-                    }, {
-                      date: new Date(2019, 5, 14).getTime(),
-                      value1: 56,
-                      value2: 58,
-                      previousDate: "2019-05-07"
-                    }, {
-                      date: new Date(2019, 5, 15).getTime(),
-                      value1: 52,
-                      value2: 53,
-                      previousDate: "2019-05-08"
-                    }, {
-                      date: new Date(2019, 5, 16).getTime(),
-                      value1: 48,
-                      value2: 44,
-                      previousDate: "2019-05-09"
-                    }, {
-                      date: new Date(2019, 5, 17).getTime(),
-                      value1: 47,
-                      value2: 42,
-                      previousDate: "2019-05-10"
-                    }, {
-                      date: new Date(2019, 5, 18).getTime(),
-                      value1: 59,
-                      value2: 55,
-                      previousDate: "2019-05-11"
-                    }]
-                    
-                    series.data.setAll(data);
-                    series2.data.setAll(data);
-                    
-                    
-                    // Make stuff animate on load
-                    // https://www.amcharts.com/docs/v5/concepts/animations/
-                    series.appear(1000);
-                    series2.appear(1000);
-                    chart.appear(1000, 100);
-                    
-                    }); // end am5.ready()
-                    </script>
+                  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                   <script src="/js/slider.js"></script>
                   <script src="/js/peticionesDoctor.js"></script>
                   <script src="/js/plantillaAlertas.js"></script>
+                  <script src="/js/dashboardPacientesValidaciones.js"></script>
                   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+                  <script>
+                    const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
+                    const fechas = [];
+                    const datos = [];
+
+                    for (let i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
+                      const fechaHora = datosmedicos[i].date_datmed.slice(0, 10) + " " + datosmedicos[i].hpur_datmed;
+                      fechas.push(fechaHora.toLocaleString());
+                      datos.push(parseInt(datosmedicos[i].gluc_datmed));
+                    }
+
+                    const data = {
+                      labels: fechas,
+                      datasets: [{
+                        label: 'Glucosa',
+                        data: datos,
+                        backgroundColor: 'rgba(0, 255, 0, 0.2)', // verde transparente
+                        borderColor: 'rgba(0, 255, 0, 1)', // borde verde
+                        borderWidth: 1 // ancho del borde
+                      }]
+                    };
+
+                    new Chart('glucosagraf', {
+                      type: 'line',
+                      data: data
+                    });
+
+                  </script>
+                  <script>
+                  const datosmedicoso = <%- JSON.stringify(datosmedicos) %>;
+
+                  var fecha=[];
+                  var datosis=[];
+                  var datosdia=[];
+                  
+                  for (let i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
+                    const fechaHora = datosmedicoso[i].date_datmed.slice(0, 10) + " " + datosmedicoso[i].hpur_datmed;
+                      fecha.push(fechaHora.toLocaleString());
+                      datosis.push(parseInt(datosmedicoso[i].presis_datmed));
+                      datosdia.push(parseInt(datosmedicoso[i].predia_datmed));
+                  }
+                  
+                  const datao = {
+                    labels: fecha,
+                    datasets: [{
+                      label: 'Presion sistolica',
+                      data: datosis,
+                      backgroundColor: 'rgba(54, 162, 235, 0.2)', // azul transparente
+                      borderColor: 'rgba(54, 162, 235, 1)', // borde azul
+                      borderWidth: 1 // ancho del borde
+                    }, {
+                      label: 'Presion diastolica',
+                      data: datosdia,
+                      backgroundColor: 'rgba(255, 206, 86, 0.2)', // amarillo transparente
+                      borderColor: 'rgba(255, 206, 86, 1)', // borde amarillo
+                      borderWidth: 1 // ancho del borde
+                    }],
+                  };
+
+                  new Chart('presiongraf', {
+                    type: 'line',
+                    data: datao
+                  });                  
+                  </script>
+                  
           </div>
   </div>
   <%if(typeof regis !== 'undefined'){%>

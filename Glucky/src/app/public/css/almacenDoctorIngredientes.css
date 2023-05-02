@@ -2714,7 +2714,7 @@ section.active .show-modal {
 }
 
 .verdess{
-    background-color: #48e07b;
+  background-color: #48e07b;
 }
 
 .opcionesdos {
@@ -2736,7 +2736,7 @@ section.active .show-modal {
 .enviarElemento:hover .opcionesdos{
   display: block;
 }
-  
+
 
 .textp{
   margin-bottom: 10px;
@@ -2789,9 +2789,9 @@ section.active .show-modal {
   margin: 0;
   outline: none;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-          width: 65%;
+  -moz-appearance: none;
+  appearance: none;
+  width: 65%;
 }
 
 
@@ -2903,4 +2903,17 @@ section.active .show-modal {
   padding: 10px;
   background-color: #ffffff;
   border-radius: 10px;
+}
+
+.form_input_error{
+  display: none;
+}
+
+.form_input_error-activo{
+  color: red;
+  display: block;
+}
+
+.swal-text {
+  text-align: center;
 }

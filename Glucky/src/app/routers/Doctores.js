@@ -7,13 +7,20 @@ router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/Citas',DoctoresControllers.peticionesCita);
 router.get('/Alimentos',DoctoresControllers.Alimentos);
 router.get('/Medicamentos',DoctoresControllers.Medicamentos);
+<<<<<<< HEAD
 router.get('/EditarCuenta',DoctoresControllers.VerDatosDoctor);
 
+=======
+router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctorGet);
+>>>>>>> 27345c6411d941d7068ee0c00341e5f27b50fbf4
 
+router.post('/PacienteDoctorCitasEd',DoctoresControllers.PacienteDoctorCitasEd);
+router.post('/PacienteDoctorCitasEl',DoctoresControllers.PacienteDoctorCitasEl);
 router.post('/PacienteDoctorCitas',DoctoresControllers.PacienteDoctorCitas);
-router.post('/PacienteDoctor',DoctoresControllers.PacienteDoctor);
+router.post('/PacienteDoctor',DoctoresControllers.PacienteDoctorPost);
 router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
-router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina);
+router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina); 
+router.post('/FinalizarCita',DoctoresControllers.citasDoctorFinaliza); 
 router.post('/Alimentos',DoctoresControllers.Alimento);
 router.post('/AlimentosE',DoctoresControllers.eliminarAlimentos);
 router.post('/AlimentosEd',DoctoresControllers.editarAlimentos);

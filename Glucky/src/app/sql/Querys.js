@@ -87,7 +87,7 @@ db.mostrarDatosDoctorPaciente = (CurpForm, callback)=> {
 db.verPeticionesDoctor = (Cedula,callback)=>{
   con.query(`SELECT * FROM pacientemedico natural join paciente natural join persona natural join tipodiabetes n WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
-      console.error('No hay solicitudes', error);
+      console.error('Error al ver las solicitudes', error);
    }else{
      callback(null,peticiones);
    }
@@ -107,9 +107,9 @@ db.verAlimentos = (callback)=>{
 
 
  db.verListaPacientes = (Cedula,callback)=>{
-  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}'`, (error,ver)=>{
+  con.query(`select * from vdoctorpaciente natural join pacientemedico where cedula_med='${Cedula}' and id_edosol = '2'`, (error,ver)=>{
    if(error){
-      console.error('No hay alimentos', error);
+      console.error('No hay pacientes', error);
    }else{
      callback(null,ver);
    }
@@ -117,7 +117,7 @@ db.verAlimentos = (callback)=>{
  };
 
 
- //Ver
+ 
  db.verPacienteIndividual = (Cedula,CURPform,callback)=>{
   con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
    if(error){
@@ -128,7 +128,15 @@ db.verAlimentos = (callback)=>{
   });
  };
 
-
+ db.verCitasPacienteIndividual = (CURPform,callback)=>{
+  con.query(`SELECT * FROM citamedica where curp_pacien ='${CURPform}'`, (error2,citasver)=>{
+   if(error2){
+      console.error('No existe', error2);
+   }else{
+     callback(null,citasver);
+   }
+  });
+ };
 
  db.verMedicamentos = (callback)=>{
   con.query(`SELECT * FROM medicamento`, (error,ver)=>{
@@ -140,8 +148,6 @@ db.verAlimentos = (callback)=>{
   });
  };
 
- 
-
  db.PeticionesCita = (Cedula,callback)=>{
   con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
    if(error){
@@ -152,10 +158,30 @@ db.verAlimentos = (callback)=>{
   });
  };
 
+ db.PeticionesCitaPaciente = (Curp,callback)=>{
+  con.query(`SELECT * FROM solicitarcita WHERE curp_pacien  = '${Curp}' AND id_edosol = 1`, (error,peticiones)=>{
+   if(error){
+      console.error('Hay error al jalar las solicitudes', error);
+   }else{
+     callback(null,peticiones);
+   }
+  });
+ };
+
+ db.PeticionesCitaPacienteDeclinadas = (Curp,callback)=>{
+  con.query(`SELECT * FROM solicitarcita WHERE curp_pacien  = '${Curp}' AND id_edosol = 3`, (error,peticiones)=>{
+   if(error){
+      console.error('Hay error al jalar las solicitudes', error);
+   }else{
+     callback(null,peticiones);
+   }
+  });
+ };
+
  db.PeticionesCitaGenerales = (Cedula,callback)=>{
-  con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 2`, (error,aceptas)=>{
+  con.query(`SELECT * FROM citamedica natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}'`, (error,aceptas)=>{
     if(error){
-      console.error('No hay solicitudes', error);
+      console.error('Hubo un error al ver las citas generales', error);
    }else{
      callback(null,aceptas);
    }
@@ -173,20 +199,11 @@ db.verAlimentos = (callback)=>{
   });
  };
 
-db.aceptarcita = (IdCita,IdConsmed,callback)=>{
-  con.query(`update solicitarcita set id_edosol=2 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,acepta)=>{
-   if(error){
-      console.error('No mami', error);
-   }else{
-     callback(null,acepta);
-   }
-  });
- }; 
 
  db.declinarcita = (IdCita,IdConsmed,callback)=>{
   con.query(`update solicitarcita set id_edosol=3 where id_solcita='${IdCita}' and id_consmed='${IdConsmed}';`, (error,declina)=>{
    if(error){
-      console.error('No mami', error);
+      console.error('No mami jaja no puedes porque eres tonta jaja', error);
    }else{
      callback(null,declina);
    }
@@ -339,7 +356,7 @@ db.enlazarDoctoresPacientes = (Curp,CedulaForm,callback)=>{
       callback(error,null);
     }
     else if(enlaze){
-      callback(null,'Solicitud de enlaze enviada');
+      callback(null,'Solicitud de enlace enviada');
     }
   });
 }; 
@@ -457,6 +474,19 @@ db.editarAlimento=(idIngred,NomForm,DescForm,callback)=>{
 }
 
 
+db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
+  con.query(`update citamedica set date_cita = '${date_cita}', hour_cita = '${hour_cita}', curp_pacien = '${curp_pacien}' where curp_pacien = '${curp_pacien}' and id_cita =  '${id_cita}'`,(error,actualizacion)=>{
+    if(error){
+      console.log('Error al modificar la cita',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Modificación de cita realizada');
+      callback(null,actualizacion);
+    }
+  });
+}
+
 //eliminar registros
 db.eliminarAlimento=(idIngred,callback)=>{
   let idIng = parseInt(idIngred);
@@ -471,6 +501,31 @@ db.eliminarAlimento=(idIngred,callback)=>{
     }
   });
 };
+
+db.eliminarCitaPaciente=(id_citaEl,curpFormPac,callback)=>{
+  let id_cita = parseInt(id_citaEl);
+  con.query(`DELETE FROM citamedica WHERE curp_pacien='${curpFormPac}' and id_cita = "${id_cita}"`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Cita eliminada');
+      callback(null,elimina);
+    }
+  });
+};
+
+db.finalizarCita= (IdCita,CurpPacien,callback)=>{
+  let id_cita = parseInt(IdCita);
+  con.query(`Delete from citamedica where curp_pacien ='${CurpPacien}' and id_cita = '${id_cita}'`, (error,finaliza)=>{
+   if(error){
+      console.error('Error al finalizar la cita', error);
+   }else{
+     callback(null,finaliza);
+   }
+  });
+ };
 
 db.eliminarMedicamento=(idMedic,callback)=>{
   let idIng = parseInt(idMedic);
