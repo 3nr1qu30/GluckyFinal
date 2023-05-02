@@ -26,7 +26,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   };
 
  Controllers.ActualizarDatosDoctor = (req,res,next)=>{
-  const{CedulaForm} =req.body;
+  const CedulaForm =req.session.cedula;
   const{NombreForm} =req.body;
   const{ApellidosForm} =req.body;
   const{EmailForm} =req.body;
