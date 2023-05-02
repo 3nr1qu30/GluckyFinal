@@ -7,12 +7,8 @@ router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/Citas',DoctoresControllers.peticionesCita);
 router.get('/Alimentos',DoctoresControllers.Alimentos);
 router.get('/Medicamentos',DoctoresControllers.Medicamentos);
-<<<<<<< HEAD
 router.get('/EditarCuenta',DoctoresControllers.VerDatosDoctor);
 
-=======
-router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctorGet);
->>>>>>> 27345c6411d941d7068ee0c00341e5f27b50fbf4
 
 router.post('/PacienteDoctorCitasEd',DoctoresControllers.PacienteDoctorCitasEd);
 router.post('/PacienteDoctorCitasEl',DoctoresControllers.PacienteDoctorCitasEl);
