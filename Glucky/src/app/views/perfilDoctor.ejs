@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/perfilDoctor.css">
+    <link rel="stylesheet" href="/css/perfilDoctor.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -163,14 +163,14 @@
             <div class="Titulo">
                Tu cuenta
             </div>
-
-          <form action="">
-
+            <% for(var i=0;i<datos.length;i++){%>
+          <form action="/Glucky/Doctores/ActualizacionDoctor" method="post">
+          
             <div class="Info">
                 <div class="infoEdit">
                   <h5 class="infoDoc">Nombre</h5>  
                   <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="#" value="Isaac">
+                    <input type="text"  id="edText" class="formdato" name="NombreForm" value="<%=datos[i].nom_pers%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -182,7 +182,7 @@
                 <div class="infoEdit" >
                   <h5 class="infoDoc">Apellidos</h5>
                   <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="#" value="Montoya Rodriguez">
+                    <input type="text"  id="edText" class="formdato" name="ApellidosForm" value="<%=datos[i].apellidos_pers%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -197,7 +197,7 @@
                     🛈 no puedes editar tu cédula profesional
                   </h6>
                   <h6 class="nomDoc">
-                    <input type="text" id="edText" class="formdato" name="#" value="nose" style="font-weight: bold; color: #000000a6;" disabled>
+                    <input type="text" id="edText" class="formdato" name="CedulaForm" value="<%=datos[i].cedula_med%>" style="font-weight: bold; color: #000000a6;" disabled>
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -212,7 +212,7 @@
                     🛈 no puedes editar tu e-mail de contacto
                   </h6>
                   <h6 class="nomDoc">
-                    <input type="email"  id="edText" class="formdato" name="#" value="isaacmontoyar@gmail.com" disabled>
+                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>" disabled>
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -224,7 +224,7 @@
                 <div class="infoEdit" ">
                   <h5 class="infoDoc">Edad</h5>
                   <h6 class="nomDoc">
-                    <input type="number"  id="edText" class="formdato" name="#" value="17">
+                    <input type="number"  id="edText" class="formdato" name="EdadForm" value="<%=datos[i].edad_pers%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -236,7 +236,7 @@
                 <div class="infoEdit" ">
                   <h5 class="infoDoc">Teléfono de contacto</h5>
                   <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="#" value="(55)88082838">
+                    <input type="text"  id="edText" class="formdato" name="TelForm" value="<%=datos[i].tel_pers%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -245,12 +245,20 @@
             </div>
 
             <div class="Info">
+              <% var genero = datos[i].genero_pers;
+              var genero2 = "";
+                 if (genero = "Masculino"){
+                   genero2 = "Femenino";
+                 }else if(genero = "Femenino"){
+                  genero2 = "Masculino";
+                 }%>
                 <div class="infoEdit" ">
                   <h5 class="infoDoc">Sexo</h5>
                   <h6 class="nomDoc">
-                    <select name="#" class="formdato">
-                        <option value="Femenino">Femenino</option>
-                        <option value="Masculino">Masculino</option>
+          
+                    <select name="GeneroForm" class="formdato">
+                        <option value="<%=genero%>"><%=genero%></option>
+                        <option value="<%=genero2%>"><%=genero2%></option>
                       </select>
                   </h6>
                 </div>
@@ -270,7 +278,7 @@
                 <div class="infoEdit" ">
                   <h5 class="infoDoc">Calle</h5>
                   <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="#" value="(55)88082838">
+                    <input type="text"  id="edText" class="formdato" name="CalleForm" value="<%=datos[i].calle_cons%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -282,7 +290,7 @@
                 <div class="infoEdit" ">
                   <h5 class="infoDoc">Número de consultorio</h5>
                   <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="#" value="No 2">
+                    <input type="text"  id="edText" class="formdato" name="NumeroForm" value="<%=datos[i].num_cons%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -294,16 +302,19 @@
                 <div class="infoEdit" ">
                   <h5 class="infoDoc">Código postal</h5>
                   <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="#" value="(55)88082838">
+                    <input type="text"  id="edText" class="formdato" name="CPForm" value="<%=datos[i].cp_cons%>">
+                    <input type="hidden"  id="edText" name="ColForm" value="<%=datos[i].col_cons%>">
+                    <input type="hidden"  id="edText" name="DelForm" value="<%=datos[i].del_cons%>">
+                    <input type="hidden"  id="edText" name="EdoForm" value="<%=datos[i].edo_cons%>">
                   </h6>
                 </div>
                 <div class="botonEdit2">
-                    <input type="submit" value="Actualizar" class="botonFormEdit">
+                    <input type="submit" class="botonFormEdit">
                 </div>
             </div>
-
+          
           </form>
-
+          <%}%>
 
           <div class="Info borderds">
             <h5 class="infoDoc">Opciones</h5>
@@ -365,7 +376,7 @@
          
             </script>
 </div>
-    <script src="js/perfilDoctor.js"></script>
+    <script src="/js/perfilDoctor.js"></script>
     
     
 </body>

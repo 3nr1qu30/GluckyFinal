@@ -12,6 +12,46 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   };
 
+  Controllers.VerDatosDoctor = (req,res,next)=>{
+    const cedula = req.session.cedula;
+    querys.VerDatoDoctor(cedula,(error,ver)=>{
+      if(ver){
+ 
+        res.render('perfilDoctor',{datos:ver});
+      }
+      else{
+        console.log(error);
+      }
+    }); 
+  };
+
+ Controllers.ActualizarDatosDoctor = (req,res,next)=>{
+  const{CedulaForm} =req.body;
+  const{NombreForm} =req.body;
+  const{ApellidosForm} =req.body;
+  const{EmailForm} =req.body;
+  const{EdadForm} =req.body;
+  const{GeneroForm} =req.body;
+  const{TelForm} =req.body;
+  const{CalleForm} =req.body;
+  const{NumeroForm} =req.body;
+  const{CPForm} =req.body;
+  const{ColForm} =req.body;
+  const{DelForm} =req.body;
+  const{EdoForm} =req.body;
+
+  querys.ActualizarDatoDoctor(CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,
+    DelForm,EdoForm,(error,ver)=>{
+    if(ver){
+      console.log(ver);
+      res.redirect('/Glucky/Doctores/EditarCuenta');
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+ };
+
 
   Controllers.peticionesDoctor = (req,res,next)=>{
     console.log(req.body);

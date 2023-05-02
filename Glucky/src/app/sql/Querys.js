@@ -27,6 +27,34 @@ const db={};
 //Consultas y demas a la base de datos no cierren la conexión ya que si hacen eso todo se va a la mierda jeje
 
 //Consultar info
+db.VerDatoDoctor = (cedula,callback)=>{
+con.query(`SELECT * FROM persona NATURAL JOIN consultoriomedico NATURAL JOIN consultorio NATURAL JOIN medico Where cedula_med = '${cedula}'`,(error,datos)=>{
+  if(error){
+    console.error('No existe pero se supone que si debia existir jeje', error);
+    callback(error, null);
+  }
+  else{
+    callback(null, datos);
+  }
+});
+};
+
+db.VerDatoPaciente = (curp,callback)=>{
+  con.query(`SELECT * FROM persona NATURAL JOIN paciente NATURAL JOIN tipodiabetes  Where curp_pacien = '${curp}'`,(error,datos)=>{
+    if(error){
+      console.error('No existe pero se supone que si debia existir jeje', error);
+      callback(error, null);
+    }
+    else{
+      callback(null, datos);
+    }
+  });
+  };
+
+
+
+
+
 db.buscarPaciente = (CurpForm,callback)=>{
   con.query(`SELECT * FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
     if(error){
@@ -243,6 +271,35 @@ db.buscarDatosmedicos=(curp,callback)=>{
 };
 //insertar registros a la base
 
+db.ActualizarDatoDoctor = async (CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,
+DelForm,EdoForm,callback) =>{
+  con.query(`CALL sp_actualizar_datos_medico(?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    [CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,DelForm,EdoForm],
+    (error,actualizacion)=>{
+      if(error){
+        callback(error,null);
+      }
+      else if(actualizacion){
+        callback(null,NombreForm);
+      }
+    });
+};
+
+db.ActualizarDatoPaciente = async (CurpForm,NombreForm,ApellidosForm,EmailForm,
+                                   EdadForm,GeneroForm,TelForm,TDiabForm,callback) =>{
+  con.query(`CALL sp_actualizar_datos_paciente(?,?,?,?,?,?,?,?)`,
+    [CurpForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,TDiabForm],
+    (error,actualizacion)=>{
+      if(error){
+        callback(error,null);
+      }
+      else if(actualizacion){
+        callback(null,NombreForm);
+      }
+    });
+};
+
+
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
     TipoDiabetes,PassForm, callback) =>{
     const PassEn = await encrypt.encrypt(PassForm);
@@ -250,7 +307,7 @@ db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,Telefon
     [NombreForm,ApellidosForm,EmailForm,parseInt(EdadForm),TelefonoForm,GeneroForm,CurpForm,PassEn,parseInt(TipoDiabetes)],
     (error,alta)=>{
       if(error){
-        callback(error,null);
+        callback(error,null); 
       }
       else if(alta){
         callback(null,'Paciente registrado');

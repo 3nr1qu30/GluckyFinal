@@ -7,6 +7,8 @@ router.get('/Peticiones',DoctoresControllers.peticionesDoctor);
 router.get('/Citas',DoctoresControllers.peticionesCita);
 router.get('/Alimentos',DoctoresControllers.Alimentos);
 router.get('/Medicamentos',DoctoresControllers.Medicamentos);
+router.get('/EditarCuenta',DoctoresControllers.VerDatosDoctor);
+
 
 router.post('/PacienteDoctorCitas',DoctoresControllers.PacienteDoctorCitas);
 router.post('/PacienteDoctor',DoctoresControllers.PacienteDoctor);
@@ -18,6 +20,7 @@ router.post('/AlimentosEd',DoctoresControllers.editarAlimentos);
 router.post('/Medicamentos',DoctoresControllers.Medicamento);
 router.post('/MedicamentosEd',DoctoresControllers.editarMedicamentos);
 router.post('/MedicamentosE',DoctoresControllers.eliminarMedicamento);
+router.post('/ActualizacionDoctor',DoctoresControllers.ActualizarDatosDoctor)
 
 
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);

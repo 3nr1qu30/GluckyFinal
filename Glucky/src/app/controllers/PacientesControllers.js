@@ -88,6 +88,41 @@ Controllers.dashboardPacientes = (req, res, next) => {
   });
 };
 
+Controllers.VerDatosPaciente = (req,res,next)=>{
+  const curp = req.session.curp;
+  querys.VerDatoPaciente(curp,(error,ver)=>{
+    if(ver){
+
+      res.render('perfilPaciente',{datos:ver});
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+};
+
+
+Controllers.ActualizarDatosPaciente = (req,res,next)=>{
+  const{CurpForm} =req.body;
+  const{NombreForm} =req.body;
+  const{ApellidosForm} =req.body;
+  const{EmailForm} =req.body;
+  const{EdadForm} =req.body;
+  const{GeneroForm} =req.body;
+  const{TelForm} =req.body;
+  const{TDiabForm} =req.body;
+
+  querys.ActualizarDatoPaciente(CurpForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,TDiabForm,(error,ver)=>{
+    if(ver){
+      console.log(ver);
+      res.redirect('/Glucky/Pacientes/EditarCuenta');
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+ };
+
 
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const curp = req.session.curp;
