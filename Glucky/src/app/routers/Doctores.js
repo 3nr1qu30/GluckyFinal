@@ -17,7 +17,7 @@ router.post('/PacienteDoctor',DoctoresControllers.PacienteDoctorPost);
 router.post('/CitasAcepta',DoctoresControllers.citasDoctorAcepta);
 router.post('/CitasDeclina',DoctoresControllers.citasDoctorDeclina); 
 router.post('/FinalizarCita',DoctoresControllers.citasDoctorFinaliza); 
-router.post('/Alimentos',DoctoresControllers.Alimento);
+router.post('/Alimentos',DoctoresControllers.Alimento);|
 router.post('/AlimentosE',DoctoresControllers.eliminarAlimentos);
 router.post('/AlimentosEd',DoctoresControllers.editarAlimentos);
 router.post('/Medicamentos',DoctoresControllers.Medicamento);
