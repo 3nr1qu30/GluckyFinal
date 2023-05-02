@@ -5,9 +5,10 @@ const body = document.querySelector("body"),
 let getMode = localStorage.getItem("mode");
 const formulario = document.getElementById("formulario")
 const formulario2 = document.getElementById("formulario2")
+const formulario3 = document.getElementById("formulario3")
 const inputs = document.querySelectorAll('#formulario input');
 const inputs2 = document.querySelectorAll('#formulario2 input');
-const textareaValue = formulario2.querySelector('textarea[name="DescForm"]').value;
+// const textareaValue = formulario2.querySelector('textarea[name="DescForm"]').value;
 
 const expReg = {
   alimentoNombre: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,15}$/,
@@ -52,41 +53,6 @@ const validarFormulario = (e) => {
       break;
   }
 }
-
-const validarFormulario2 = (e) => {
-  switch (e.target.name){
-    case "NomForm":
-      if(expReg.alimentoNombre.test(e.target.value)){
-        console.log(`To bien papu`);
-        campos.alimentoNombre2 = true;
-      }
-      else if(e.target.value === ""){
-        console.log(`mal papu`);
-        campos.alimentoNombre2 = false;
-      }
-      else{
-        console.log(`dlv crack`);
-        campos.alimentoNombre2 = false;
-      }
-      break;
-    }
-    switch (e.target.name){
-      case "DescForm":
-        if(expReg.alimentoDescripcion.test(e.target.value)) {
-          console.log(`To bien papu`);
-          campos.alimentoDescripcion2 = true;
-        } else if(e.target.value === "") {
-          console.log(`mal papu`);
-          campos.alimentoDescripcion2 = false;
-        } else {
-          console.log(`dlv crack`);
-          campos.alimentoDescripcion2 = false;
-        }
-        break;
-    }
-  }
-
-
 
 if(getMode && getMode ==="dark"){
     body.classList.toggle("dark");
@@ -158,8 +124,6 @@ function toggleNotifi2(){
 	}
 }
 
-
-
 const elementos = document.querySelectorAll(".elemento");
 
 elementos.forEach((elemento) => {
@@ -173,19 +137,62 @@ elementos.forEach((elemento) => {
       botones.style.display = "flex";
       botonesVisibles = true;
     }
-    const formulario2 = elemento.querySelector('#formulario2');
-    formulario2.addEventListener('input', validarFormulario2);
-    // formulario2 = elemento.querySelector('textarea[name="DescForm"]');
-    formulario2.addEventListener('change', validarFormulario2);
-
-/*     const validarFormulario3 = (e) => {
-      const textareaValue = e.target.form.querySelector('textarea[name="DescForm"]').value;
-    } */
-  });
+  })
 });
 
-/* const formulario3 = elemento.querySelector('textarea[name="DescForm"]');
-formulario3.addEventListener('change', validarFormulario3); */
+function validarFormulario2() {
+  const elementos = document.querySelectorAll('.elemento');
+  let camposValidos = true;
+
+  elementos.forEach(elemento => {
+    const nombre = elemento.querySelector('input[name="NomForm"]');
+    const descripcion = elemento.querySelector('textarea[name="DescForm"]');
+
+    if (!nombre.value.trim()) {
+      swal({
+        icon: "error",
+        title: "Nombre vacío",
+        text: "El nombre del alimento no puede estar vacío, de lo contrario no se actualizará"
+      });      
+      camposValidos = false;
+      return;
+    }
+    
+    if (!expReg.alimentoNombre.test(nombre.value.trim())) {
+      swal({
+        icon: "error",
+        title: "Nombre con extensión erronea",
+        text: "Por favor, ingrese un nombre válido para el alimento (de 2 a 15 caracteres alfabéticos), de lo contrario no se actualizará"
+      }); 
+      camposValidos = false;
+      return;
+    }
+    
+    if (!descripcion.value.trim()) {
+      swal({
+        icon: "error",
+        title: "Descripción vacía",
+        text: "La descripción del alimento no puede estar vacía, de lo contrario no se actualizará"
+      });
+      camposValidos = false;
+      return;
+    }
+    
+    if (!expReg.alimentoDescripcion.test(descripcion.value.trim())) {
+      swal({
+        icon: "error",
+        title: "Descripción con extensión erronea",
+        text: "Por favor, ingrese una descripción válida para el alimento (de 2 a 15 caracteres alfanuméricos), de lo contrario no se actualizará"
+      }); 
+      camposValidos = false;
+      return;
+    }
+  });
+  
+  return camposValidos;
+}
+
+
 
 const buscar = document.getElementById("buscar");
 buscar.addEventListener("input", () => {
@@ -216,38 +223,52 @@ inputs.forEach((input) => {
 });
 
 
-
-formulario2.addEventListener('submit', (e) => {
-  if (campos.alimentoDescripcion2 && campos.alimentoNombre2) {
-      console.log(`esta bien`);
-    } else if(campos.alimentoNombre2 === false){
-  e.preventDefault();
-  swal({
-    icon: "error",
-    title: "Error",
-    text: "El nombre no puede estar vacío ni contener menos de dos letras, de lo contrario no se modificará"
-  });
-} else if (campos.alimentoDescripcion2 === false){
-  e.preventDefault();
-  swal({
-    icon: "error",
-    title: "Error",
-    text: "La descripción no puede estar vacía ni contener menos de dos letras, de lo contrario no se modificará"
-  });
-} else {
-  e.preventDefault();
-  swal({
-    icon: "error",
-    title: "Error",
-    text: "Por favor rellena bien los datos"
-  });
-  }
-});
-
 formulario.addEventListener('submit', (e) => {
   if (campos.alimentoDescripcion && campos.alimentoNombre) {
-      console.log(`esta bien`);
-} else {
+    swal({
+      icon: "success",
+      title: "Alimento agregado",
+      text: "El alimento se ha agregado al almacén"
+    });
+  } else {
   e.preventDefault();
 }
 });
+
+formulario2.addEventListener('submit', (e) => {
+  e.preventDefault();
+  
+  if (validarFormulario2()) {
+    // swal({
+    //   icon: "success",
+    //   title: "Alimento modificado",
+    //   text: "El alimento ya está actualizado"
+    // }).then(() => {
+      formulario2.submit();
+    // });
+  } else {    
+    // console.log(`Esta mal pa`);
+  }
+});
+
+// formulario3.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const id = e.target.querySelector('.idElemento').value;
+//   swal({
+//     title: "¿Estás seguro?",
+//     text: "Este elemento será eliminado permanentemente.",
+//     icon: "warning",
+//     buttons: ["Cancelar", "Eliminar"],
+//     dangerMode: true,
+//   })
+//   .then((willDelete) => {
+//     if (willDelete) {
+//       swal("El elemento ha sido eliminado.", {
+//         icon: "success",
+//       });
+//       formulario3.submit();
+//     } else {
+//       swal("La eliminación ha sido cancelada.");
+//     }
+//   });
+// });
