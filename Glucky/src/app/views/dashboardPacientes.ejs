@@ -278,7 +278,7 @@
                         </div>
                         <div class="modal-body">
                           <!--INICIO DEL FORM DE GLUCOSA-->
-                          <form class="glucosaNormalForm" action="/Glucky/Pacientes/Niveles" method="post">
+                          <form class="glucosaNormalForm" action="/Glucky/Pacientes/Niveles" method="post" id="formulario">
                             <label for="glucosaNormal">Ingresa el nivel de glucosa y presión</label>
                             <input class="Glucnor" type="number" id="glucosaNormal" name="glucosa" placeholder="Ingresa el valor de tu glucosa aquí...">
                             <input class="Glucnor" type="number" id="glucosaNormal" name="sistolica" placeholder="Ingresa el valor de tu presion sistolica aquí.....">
@@ -558,6 +558,7 @@
                   <script src="/js/slider.js"></script>
                   <script src="/js/peticionesDoctor.js"></script>
                   <script src="/js/plantillaAlertas.js"></script>
+                  <script src="/js/dashboardPacientesValidaciones.js"></script>
                   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
                   <script>
                     const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
