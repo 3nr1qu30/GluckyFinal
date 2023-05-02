@@ -2833,3 +2833,7 @@ section.active .show-modal {
   margin-top: 10px;
   margin-bottom: 3px;
 }
+
+.swal-text {
+  text-align: center;
+}
