@@ -294,5 +294,10 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     });
   };
 
+  Controllers.chatPacienteGet=(req,res,next)=>{
+    const curp = req.session.curp;
+    res.render('chatPaciente',{curp});
+  };
+
 
   module.exports = Controllers;

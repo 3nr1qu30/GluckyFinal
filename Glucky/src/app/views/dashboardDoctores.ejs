@@ -25,7 +25,9 @@
         overflow-x: auto;
         width: 90%;
         height: 30px;
-        display: ;
+    }
+    .jaja{
+        box-shadow: none;
     }
   </style>
 </head>
@@ -180,7 +182,7 @@
                         <div class="box">
                             <div class="right-side">
                             <div class="box-topic">Solicitudes</div>
-                            <div class="number">2.00</div>
+                            <div class="number"><%=verpaci.length%></div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Solicitudes de doctor</span>
@@ -191,7 +193,7 @@
                         <div class="box">
                             <div class="right-side">
                             <div class="box-topic">Citas</div>
-                            <div class="number">3.00</div>
+                            <div class="number"><%=vercitas.length%></div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Citas pendientes</span>
@@ -223,23 +225,44 @@
                         </div>
                     </div>
 
+
+                    <%
+                    let tipo1Count = 0;
+                    let tipo2Count = 0;
+                    let tipoGestCount = 0;
+                    
+                    for(let i = 0; i < pacientes.length; i++){
+                        if(pacientes[i].nom_tipdiabts === "tipo 1"){
+                        tipo1Count++;
+                        } else if(pacientes[i].nom_tipdiabts === "tipo 2"){
+                        tipo2Count++;
+                        } else if(pacientes[i].nom_tipdiabts === "tipo gestacional"){
+                        tipoGestCount++;
+                        }
+                    }
+                    %>
+
                     <div class="boxes">
                         <div class="box box1">
-                            <i class="uil uil-heart-alt blanco"></i>
+                            <i class="uil uil-heart-alt jaja "></i>
                             <span class="text">Pacientes tipo 1</span>
-                            <span class="number">50.00</span>
+                            <span class="number"><%= tipo1Count %></span>
                         </div>
                         <div class="box box2">
-                            <i class="uil uil-syringe blanco"></i>
+                            <i class="uil uil-syringe jaja "></i>
                             <span class="text">Pacientes tipo 2</span>
-                            <span class="number">20.00</span>
+                            <span class="number"><%= tipo2Count %></span>
                         </div>
                         <div class="box box3">
-                            <i class="uil uil-annoyed blanco"></i>
+                            <i class="uil uil-annoyed jaja"></i>
                             <span class="text">Tipo gestacional</span>
-                            <span class="number">10.00</span>
+                            <span class="number"><%= tipoGestCount %></span>
                         </div>
                     </div>
+
+
+
+   
 
                 </div>
             </div>
