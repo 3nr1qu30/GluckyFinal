@@ -200,7 +200,7 @@
                     🛈 no puedes editar tu CURP personal 
                   </h6>
                   <h6 class="nomDoc">
-                    <input type="text" id="edText" class="formdato" name="CurpForm" value="<%=datos[i].curp_pacien%>" style="font-weight: bold; color: #000000a6;" disabled>
+                    <input type="text" id="edText" class="formdato" name="CurpForm" value="<%=datos[i].curp_pacien%>" style="font-weight: bold; color: #000000a6;" readonly="readonly">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -216,7 +216,7 @@
                     🛈 no puedes editar tu tipo de diabetes
                   </h6>
                   <h6 class="nomDoc">
-                    <input type="text" id="edText" class="formdato" name="TDiabForm" value="<%=datos[i].nom_tipdiabts%>" style="font-weight: bold; color: #000000a6;" disabled>
+                    <input type="text" id="edText" class="formdato" name="TDiabForm" value="<%=datos[i].id_tipdiabts%>" style="font-weight: bold; color: #000000a6;" readonly="readonly">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -231,7 +231,7 @@
                     🛈 no puedes editar tu e-mail de contacto
                   </h6>
                   <h6 class="nomDoc">
-                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>" disabled>
+                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>" readonly="readonly">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -286,7 +286,7 @@
             </div>
 
           </form>
-          <%}%>
+          
           <div class="Info borderds">
               <h5 class="infoDoc">Opciones</h5>
               <h6 class="nomDoc borrarcuenta">
@@ -324,19 +324,19 @@
                 </div>
                 <h5 class="TituloDoc2"> <b class="black"> Nombre:</b> Nombre ApellidoP ApellidoM </h5>
                 <div class="TituloDoc3">
-                    <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> XXXXXXXXXXXXXX</h5>
-                    <h5 class="tit"> <b class="black"> Cédula profesional:</b> XXXXXXXXXXXXXX</h5>
-                    <h5 class="tit"> <b class="black"> Dirección particular del consultorio:</b> XXXXXXXXXXXXXX</h5>
+                    <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> <%=datos[i].num_cons%></h5>
+                    <h5 class="tit"> <b class="black"> Cédula profesional:</b> <%=datos[i].cedula_med%></h5>
+                    <h5 class="tit"> <b class="black"> Dirección particular del consultorio:</b> <%=datos[i].calle_cons%>, <%=datos[i].col_cons%>, <%=datos[i].del_cons%>, <%=datos[i].cp_cons%>, <%=datos[i].edo_cons%> </h5>
                     <h5 class="tit"> <b class="black"> Email de contacto:</b> XXXXXXXXXXXXXX</h5>
                     <h5 class="tit"> <b class="black"> Teléfono de contacto:</b> XXXXXXXXXXXXXX</h5>
                 </div>
                 <button class="btm">Desvincular doctor</button>
             </div>
 
-
+            <%}%>
             <br>
             <br>
-
+           
             <div class="overview">
                 <div class="title">
                     <i class="uil uil-keyboard"></i>
