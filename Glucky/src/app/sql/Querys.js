@@ -1,5 +1,6 @@
 const mysql=require('mysql2');
 const encrypt = require('../helpers/EncriptarContraseñas');
+
 var con;
 
 function connect(){
@@ -488,6 +489,20 @@ db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
 }
 
 //eliminar registros
+db.eliminaSolicitudesDen=(idCita,curpPacien,callback)=>{
+  let idCitas = parseInt(idCita);
+  con.query(`delete from solicitarcita where curp_pacien = '${curpPacien}' and id_solcita = '${idCitas}'  and id_edosol = '3';`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar la solicitud de cita: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('Solicitud eliminada limón');
+      callback(null,elimina);
+    }
+  });
+};
+
 db.eliminarAlimento=(idIngred,callback)=>{
   let idIng = parseInt(idIngred);
   con.query(`DELETE FROM ingrediente WHERE id_ingred='${idIng}'`,(error,elimina)=>{

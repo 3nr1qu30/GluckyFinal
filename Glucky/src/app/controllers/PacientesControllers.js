@@ -234,7 +234,22 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
       }
     });
   }; 
-  
+
+
+  Controllers.eliminaSolCita = (req,res,next)=>{    
+    const{FechaForm} = req.body;
+    const{HoraForm} = req.body;
+    const Curp = req.session.curp;
+    querys.solicitudcita(FechaForm,HoraForm,Curp,(error,Cita)=>{
+      if(Cita){
+        console.log('Tu cita fue enviada');
+        res.redirect("/Glucky/Pacientes/Dashboard");
+      }
+      else{
+        console.log(error);
+      }
+    });
+  }; 
   Controllers.registroNiveles = (req,res,next)=>{
     const{glucosa,sistolica,diastolica,medicion}=req.body
     let regis;

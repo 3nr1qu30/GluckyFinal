@@ -8,6 +8,7 @@ router.get('/Citas',DoctoresControllers.peticionesCita);
 router.get('/Alimentos',DoctoresControllers.Alimentos);
 router.get('/Medicamentos',DoctoresControllers.Medicamentos);
 router.get('/EditarCuenta',DoctoresControllers.VerDatosDoctor);
+router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctorGet);
 
 
 router.post('/PacienteDoctorCitasEd',DoctoresControllers.PacienteDoctorCitasEd);
