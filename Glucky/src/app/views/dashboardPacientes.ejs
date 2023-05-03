@@ -526,11 +526,6 @@
                           <div class="titulo2">
                             A las <%=citasP1[i].hour_solcita%>
                           </div>
-                          <form action="/Glucky/Pacientes/BorrarCitasDenegadas">
-                            <input type="hidden" name="IdSolCita" id="" value="<%=citasP3[i].id_solcita%>">
-                            <button class="AceptarBtm" type="submit">
-                              Aceptar y borrar
-                            </button>
                           </form>
                       </div>
                       <%}
@@ -556,12 +551,12 @@
                         <div class="titulo2">
                           A las<%=citasP3[i].hour_solcita%> 
                         </div>
-                          <form action="/Glucky/Pacientes/BorrarCitasDenegadas">
-                            <input type="hidden" name="IdSolCita" id="" value="<%=citasP3[i].id_solcita%>">
+                        <form action="/Glucky/Pacientes/EliminaSolCita" method="post">
+                            <input type="hidden" name="idCitaDel" id="" value="<%=citasP3[i].id_solcita%>">
                             <button class="AceptarBtm" type="submit">
                               Aceptar y borrar
                             </button>
-                          </form>
+                         </form>
                       </div>
                       <%}
                     } else{ %>
