@@ -5,6 +5,7 @@ const PacienteControllers = require('../controllers/PacientesControllers');
 router.get('/Dashboard',PacienteControllers.dashboardPacientes);
 router.get('/Solicitudes',PacienteControllers.solicitudesPaciente);
 router.get('/EditarCuenta',PacienteControllers.VerDatosPaciente);
+router.get('/Chat',PacienteControllers.chatPacienteGet);
 //router.get('/CuentaPaciente', PacienteControllers.);
 
 router.post('/EliminaSolCita',PacienteControllers.eliminaSolCita);
