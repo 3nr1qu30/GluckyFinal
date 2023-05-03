@@ -491,7 +491,7 @@ db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
 //eliminar registros
 db.eliminaSolicitudesDen=(idCita,curpPacien,callback)=>{
   let idCitas = parseInt(idCita);
-  con.query(`delete from solicitarcita where curp_pacien = '${curpPacien}' and id_solcita = '${idCitas}'  and id_edosol = '3';`,(error,elimina)=>{
+  con.query(`delete from solicitarcita where curp_pacien = '${curpPacien}' and id_solcita = '${idCitas}'  and id_edosol = 3;`,(error,elimina)=>{
     if(error){
       console.log('Error al eliminar la solicitud de cita: ',error);
       callback(error,null);
@@ -555,6 +555,25 @@ db.eliminarMedicamento=(idMedic,callback)=>{
     }
   });
 };
+
+
+//modificar y eliminar registros osea querys anidados jaja el que borre esto lo asesino
+db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback)=>{
+  con.query(`insert into citamedica (id_cita, date_cita, hour_cita, id_consmed, curp_pacien)
+  VALUES (default, '${date_cita}', '${hour_cita}', ${id_consmed}, '${curp_pacien}');`, (error,acepta)=>{
+   if(error){
+      console.error('No se pudo agregar la cita a la tabla citas', error);
+   }else if (acepta){
+    con.query(`delete from solicitarcita where id_solcita = '${id_solcita}' and curp_pacien = '${curp_pacien}';`, (error,acepta)=>{
+     if(error){
+        console.error('No se pudo eliminar esta solicitud jaja amiga', error);
+     }else{
+       callback(null,acepta);
+     }
+    });
+   }
+  });
+ }; 
 
 
 

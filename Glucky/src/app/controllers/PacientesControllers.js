@@ -237,10 +237,9 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
 
 
   Controllers.eliminaSolCita = (req,res,next)=>{    
-    const{FechaForm} = req.body;
-    const{HoraForm} = req.body;
+    const{idCitaDel} = req.body;
     const Curp = req.session.curp;
-    querys.solicitudcita(FechaForm,HoraForm,Curp,(error,Cita)=>{
+    querys.eliminaSolicitudesDen(idCitaDel,Curp,(error,Cita)=>{
       if(Cita){
         console.log('Tu cita fue enviada');
         res.redirect("/Glucky/Pacientes/Dashboard");
@@ -250,6 +249,7 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
       }
     });
   }; 
+
   Controllers.registroNiveles = (req,res,next)=>{
     const{glucosa,sistolica,diastolica,medicion}=req.body
     let regis;
