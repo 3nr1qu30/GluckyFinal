@@ -40,7 +40,8 @@ con.query(`SELECT * FROM persona NATURAL JOIN consultoriomedico NATURAL JOIN con
 };
 
 db.VerDatoPaciente = (curp,callback)=>{
-  con.query(`SELECT * FROM persona NATURAL JOIN paciente NATURAL JOIN tipodiabetes  Where curp_pacien = '${curp}'`,(error,datos)=>{
+  con.query(`SELECT * FROM persona NATURAL JOIN paciente NATURAL JOIN tipodiabetes NATURAL JOIN pacientemedico NATURAL JOIN consultorio NATURAL JOIN consultoriomedico
+   Where curp_pacien = '${curp}'`,(error,datos)=>{
     if(error){
       console.error('No existe pero se supone que si debia existir jeje', error);
       callback(error, null);
