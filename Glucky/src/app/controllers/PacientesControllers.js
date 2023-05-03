@@ -133,7 +133,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
 
 
 Controllers.ActualizarDatosPaciente = (req,res,next)=>{
-  const{CurpForm} =req.body;
+  const CurpForm =req.session.curp;
   const{NombreForm} =req.body;
   const{ApellidosForm} =req.body;
   const{EmailForm} =req.body;
@@ -267,6 +267,11 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
         res.redirect("/Glucky/Pacientes/Dashboard");
       }
     });
+  };
+
+  Controllers.chatPacienteGet=(req,res,next)=>{
+    const curp = req.session.curp;
+    res.render('chatPaciente',{curp});
   };
 
 
