@@ -122,7 +122,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   querys.VerDatoPaciente(curp,(error,ver)=>{
     if(ver){
-
+      console.log(ver);
       res.render('perfilPaciente',{datos:ver});
     }
     else{
@@ -153,6 +153,31 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   }); 
  };
 
+ Controllers.Desvincular = (req,res,next)=>{
+  const CurpForm =req.session.curp;
+  querys.DesvincularDoctor(CurpForm,(error,desv)=>{
+    if(desv){
+      console.log(desv);
+      res.redirect('/Glucky/Pacientes/EditarCuenta');
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+ };
+
+ Controllers.ActualizarContraPaciente = (req,res,next)=>{
+const curp  = req.session.curp;
+const {NewPass} = req.body;
+querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
+  if(act){
+    console.log(act);
+    res.redirect('/Glucky/Pacientes/EditarCuenta');
+  } else{
+    console.log(error);
+  }
+});
+};
 
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const curp = req.session.curp;
@@ -267,6 +292,11 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
         res.redirect("/Glucky/Pacientes/Dashboard");
       }
     });
+  };
+
+  Controllers.chatPacienteGet=(req,res,next)=>{
+    const curp = req.session.curp;
+    res.render('chatPaciente',{curp});
   };
 
 

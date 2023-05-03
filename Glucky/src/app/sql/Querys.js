@@ -28,6 +28,18 @@ const db={};
 //Consultas y demas a la base de datos no cierren la conexión ya que si hacen eso todo se va a la mierda jeje
 
 //Consultar info
+
+db.DesvincularDoctor = (CurpForm,callback)=>{
+  con.query(`UPDATE pacientemedico SET id_edosol = 3 WHERE curp_pacien = '${CurpForm}'`,(error,desv)=>{
+  if(error){
+    console.log('Error al desvincular', error);
+    callback(error,null);
+  }else{
+   callback(null, desv)
+  }
+  });
+ };
+
 db.VerDatoDoctor = (cedula,callback)=>{
 con.query(`SELECT * FROM persona NATURAL JOIN consultoriomedico NATURAL JOIN consultorio NATURAL JOIN medico Where cedula_med = '${cedula}'`,(error,datos)=>{
   if(error){
@@ -40,8 +52,30 @@ con.query(`SELECT * FROM persona NATURAL JOIN consultoriomedico NATURAL JOIN con
 });
 };
 
+db.ActualizarContraPaciente = async(curp,NewPass, callback)=>{
+  const PassEn = await encrypt.encrypt(NewPass);
+  con.query(`UPDATE paciente SET pass_pacien = '${PassEn}' WHERE curp_pacien = '${curp}'`,(error,cambio)=>{
+   if(error){
+     callback(error,null);
+   }else if(cambio){
+    callback(null,cambio);
+   }
+  });
+ };
+
+ db.ActualizarContraDoctor = async(cedula,NewPass, callback)=>{
+  const PassEn = await encrypt.encrypt(NewPass);
+  con.query(`UPDATE medico SET pass_med = '${PassEn}' WHERE cedula_med = '${cedula}'`,(error,cambio)=>{
+   if(error){
+     callback(error,null);
+   }else if(cambio){
+    callback(null,cambio);
+   }
+  });
+ };
+
 db.VerDatoPaciente = (curp,callback)=>{
-  con.query(`SELECT * FROM persona NATURAL JOIN paciente NATURAL JOIN tipodiabetes NATURAL JOIN pacientemedico NATURAL JOIN consultorio NATURAL JOIN consultoriomedico
+  con.query(`SELECT * FROM persona NATURAL JOIN pacientemedico NATURAL JOIN tipodiabetes NATURAL JOIN paciente NATURAL JOIN consultorio NATURAL JOIN consultoriomedico
    Where curp_pacien = '${curp}'`,(error,datos)=>{
     if(error){
       console.error('No existe pero se supone que si debia existir jeje', error);
@@ -52,9 +86,6 @@ db.VerDatoPaciente = (curp,callback)=>{
     }
   });
   };
-
-
-
 
 
 db.buscarPaciente = (CurpForm,callback)=>{

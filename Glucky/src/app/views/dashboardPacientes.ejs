@@ -44,7 +44,7 @@
                       <i class="uil uil-chart"></i>
                       <span class="link-name">Doctor</span>
                   </a></li>
-                  <li><a href="#">
+                  <li><a href="/Glucky/Pacientes/Chat">
                       <i class="uil uil-chat"></i>
                       <span class="link-name">Chats</span>
                   </a></li>
@@ -159,14 +159,14 @@
                   <div class="row">
                       <div class="dashboardPac" >
   
-                        <!--CALENDARIO-->
-                        <div class="base">
-                          <div class="vistaCitas">
-                            <div class="mesC">Diciembre</div>
-                            <div class="diaC">23</div>
-                            <div class="citaC"></div>
-                          </div>
-                          <div class="otrosDivs">
+                      <!--CALENDARIO-->
+                      <div class="base">
+                        <div class="vistaCitas">
+                          <div class="mesC"><%= new Date().toLocaleString('es-ES', { month: 'long' }).charAt(0).toUpperCase() + new Date().toLocaleString('es-ES', { month: 'long' }).slice(1).toLowerCase() %></div>
+                          <div class="diaC">0<%= new Date().getDate() %></div>
+                          <a href="#seccion1" class="citaC"></a>
+                        </div>
+                        <div class="otrosDivs">
                         <!--FIN CALENDARIO-->
                             <%if(datosmedicos.length !== 0){%>
                         <!--Inicio Glucosa--> 
@@ -191,8 +191,7 @@
                               </div>
                               <div class="numero ayunas"><%=datosmedicos[datosmedicos.length-1].presis_datmed%></div>
                               <div class="fecha ayunas">Hoy</div>
-                              <div class="hover-message">
-                              </div>
+                              
                             </div>
                             <!--Fin Presión-->
   
@@ -245,19 +244,41 @@
                               </div>
 
                               <%}%>
-                             <!--Inicio Citas-->
-                            <div class="otro2 otro4" id="formCitaNueva">
-                               <div class="titulo4">
+
+                            <% if (solicituda === 'Aun no te has enlazado a un doctor') { %> 
+                          
+                            <!--Inicio Citas-->
+                            <div class="otro2 otro4 otro533" id="formCitaNuevap">
+                              <div class="titulo4">
+                              <i class="fa fa-ban  iconoBase CiC"></i>
+                              <a class="tipo1">Citas</a> 
+                              </div>
+                                <div class="numero numeroAjustable jjssss">bloqueado</div>
+                       
+                            </div>
+                            <!--Fin citas-->
+                                
+                            <% } else { %>
+
+                            <!--Inicio Citas-->
+                              <div class="otro2 otro4" id="formCitaNueva">
+                                <div class="titulo4">
                                 <i class="fa fa-circle iconoBase CiC"></i>
                                 <a class="tipo1">Citas</a> 
                               </div>
-                              <div class="numero numeroAjustable">X Citas</div>
-                              <div class="fecha">Hoy</div>
+                              <%if(typeof citas!=='undefined'&&citas.length!==0 ){%>
+                                  <div class="numero numeroAjustable"><%=citas.length%> Citas</div>
+                              <div class="fecha">Asignadas</div>
+                              <%} else{%>
+                                <div class="numero numeroAjustable">---</div>
+                                <%}%>
                               <div class="hover-message">
                                 <p>De clic para solicitar una cita</p>
                               </div>
                             </div>
-                             <!--Fin citas-->
+                            <!--Fin citas-->
+
+                            <% } %>
   
                        
   
@@ -419,7 +440,7 @@
                         <div class="Accion2">
                           <h3><i class="fas fa-circle"></i> Estado</h3>
                           <div class="estadoInfo">
-  
+                           
                             <!-- Contenido niveles del paciente -->
                             <div class="cuadrado rojo">
                               <i class="fas fa-exclamation"></i>
@@ -469,7 +490,7 @@
   
                         
                         <h3 class="contexto"> <h3>Detalles y citas</h3></h3>
-  
+                      <h2 id="seccion1"></h2>
                       <!--CONSULTORIO --> 
                         <div class="asignacion asignacion-1">
                           <div class="clase">
@@ -494,7 +515,7 @@
 
                     <div class="asignacion asignacion-2" style="background-color: #E9ECF2;">
                       <div class="clase">
-                        Tienes una cita asignada con número <%=i+1%>
+                      Tienes una cita asignada con <%=solicituda%> número 
                       </div> 
                       <div class="titulo">
                         El dia  <%=fechita.toISOString().substring(0,10)%>
@@ -502,12 +523,14 @@
                       <div class="titulo2">
                         A las   <%=citas[i].hour_cita%>
                       </div> 
+                      <div class="jajaamiga"><%=i+1%></div>  
                   </div>
                     <%}
                   } else{ %>
                   <%}%>
-                  <!--CITA NORMAL --> 
-                        
+                  <!--CITA NORMAL -->
+                  
+                 
                  
                       <!--CITA EN PROCESO --> 
                       <%if(typeof citasP1!=='undefined'&&citasP1.length!==0){%>
@@ -657,6 +680,11 @@
       </script>
       <%}%>
   <%}%>
+
+  <br><br>
+  <br><br>
+  <br><br>
+  <br><br>
   </body>
   </html>
 <%}else{%>

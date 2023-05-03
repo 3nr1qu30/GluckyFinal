@@ -3389,6 +3389,7 @@ ciC{
   color: #00000098;
   cursor: pointer;
   transition: all ease .3s;
+  text-decoration: none;
 }
 .citaC:hover{
   font-size:1.7em ;
@@ -3409,7 +3410,7 @@ ciC{
 }
 
 .citaC:before {
-  content: "Sin cita";
+  content: "Citas";
   height: 100%;
 }
 
@@ -4063,3 +4064,27 @@ Gestacional{
     cursor: pointer;
   }
  
+
+  .jajaamiga {
+    background-color: #c10bc188;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 100%;
+    font-size: 15px;
+    color: white;
+  }
+
+  .otro533{
+  pointer-events: none; /* Bloquea la interacción del usuario */
+  opacity: 0.5; /* Disminuye la opacidad para indicar que está bloqueado */
+  }
+
+
+  .jjssss{
+    font-size: medium;
+  }
