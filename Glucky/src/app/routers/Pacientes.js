@@ -13,5 +13,7 @@ router.post('/Dashboard',PacienteControllers.dashboardPacientes);
 router.post('/Citas',PacienteControllers.solicitudCita);
 router.post('/Niveles',PacienteControllers.registroNiveles);
 router.post('/ActualizacionPaciente',PacienteControllers.ActualizarDatosPaciente);
+router.post('/Desvinculacion',PacienteControllers.Desvincular);
+router.post('/Password',PacienteControllers.ActualizarContraPaciente);
 module.exports= router;
 

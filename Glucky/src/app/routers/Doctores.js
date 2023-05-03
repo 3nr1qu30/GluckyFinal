@@ -24,7 +24,8 @@ router.post('/AlimentosEd',DoctoresControllers.editarAlimentos);
 router.post('/Medicamentos',DoctoresControllers.Medicamento);
 router.post('/MedicamentosEd',DoctoresControllers.editarMedicamentos);
 router.post('/MedicamentosE',DoctoresControllers.eliminarMedicamento);
-router.post('/ActualizacionDoctor',DoctoresControllers.ActualizarDatosDoctor)
+router.post('/ActualizacionDoctor',DoctoresControllers.ActualizarDatosDoctor);
+router.post('/Password',DoctoresControllers.ActualizarContraDoctor);
 
 
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);

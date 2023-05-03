@@ -52,6 +52,18 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   }); 
  };
 
+ Controllers.ActualizarContraDoctor = (req,res,next)=>{
+  const cedula  = req.session.cedula;
+  const {NewPass} = req.body;
+  querys.ActualizarContraDoctor(cedula, NewPass,(error,act)=>{
+    if(act){
+      console.log(act);
+      res.redirect('/Glucky/Doctores/EditarCuenta');
+    } else{
+      console.log(error);
+    }
+  });
+  };
 
   Controllers.peticionesDoctor = (req,res,next)=>{
     console.log(req.body);
