@@ -11,9 +11,13 @@ io.on('connection', (socket) => {
   });
   
   // Utiliza socket.userId para identificar al usuario en eventos futuros
-  socket.on('nuevoMensaje', (message) => {
+  socket.on('nuevoMensaje', (messageData) => {
     const userId = socket.userId;
-    // ...
+    const message = {
+      message: messageData.message,
+      userId: userId
+    };
+    io.emit('nuevoMensaje', message);
   });
 
   socket.on('disconnect', () => {

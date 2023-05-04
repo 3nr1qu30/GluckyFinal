@@ -426,8 +426,11 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     });
   };
-  Controllers.chatDoctorGet = (req,res,next) => {
-    res.render('chatDoctor');
-  };
+
+  Controllers.chatDoctorGet=(req, res,next) => {
+    const cedula = req.session.cedula;
+    res.render('chatDoctor',{cedula});
+  }
+  
  
 module.exports = Controllers; 
