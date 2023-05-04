@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/chatDoctor.css">
-  
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
@@ -242,7 +241,7 @@
                                        
                                     
                                 </div>
-                                <div class="caja">
+                                <div class="caja" id="menssages-container">
                                     <div class="acciones"> 
                                        
                                           <div class="elemento elemento2">
@@ -310,51 +309,47 @@
 
     <script src="/js/chatDoctor.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
-        // Selecciona el botón en tu HTML
         const button = document.querySelector('.enviarMensaje');
-        // Selecciona el campo de entrada de mensaje
         const messageInput = document.querySelector('.escribeC');
-        // Agrega un evento de clic al botón
+        const userId = '<%= cedula %>'// obtener el id de sesión del usuario actual
+        
+         socket.on('connect', () => {
+         socket.emit('userConnected', userId);
+         });
+
         button.addEventListener('click', () => {
-          // Obtiene el mensaje del usuario
           const message = messageInput.value;
-          var messagesContainer = document.getElementById('menssages-container');
-          var newMessage = document.createElement('div');
-          newMessage.className = 'message sent';
-          //Agregar el contenido del mensaje
-          var messageText = document.createElement('p');
-          messageText.textContent = message;
-          newMessage.appendChild(messageText);
-          // Agregar hora al mensaje
-          var messageTime = document.createElement('span');
-          messageTime.className = 'time';
-          messageTime.textContent = getCurrentTime();
-          newMessage.appendChild(messageTime);
-          // Agregar al contenedor de mensajes
-          messagesContainer.appendChild(newMessage);
-          socket.emit('mensaje', message);
+          const messageData = {
+            message: message,
+            userId // enviar el id de sesión junto con el mensaje
+          };
+          socket.emit('nuevoMensaje', messageData);
           messageInput.value='';
-          // Escucha el evento "nuevoMensaje" del servidor
         });
+    
         socket.on('nuevoMensaje', (data) => {
-          // Actualiza el HTML con los datos recibidos del servidor
-          var messagesContainer = document.getElementById('menssages-container');
-          var newMessageRe = document.createElement('div');
-          newMessageRe.className ='message received';
-          var messageTextRe = document.createElement('p');
-          messageTextRe.textContent=data;
-          newMessageRe.appendChild(messageTextRe);
-          // Agregar hora al mensaje
-          var messageTimeRe = document.createElement('span');
-          messageTimeRe.className = 'time';
-          messageTimeRe.textContent = getCurrentTime();
-          newMessageRe.appendChild(messageTimeRe);
-          // Agregar al contenedor de mensajes
-          messagesContainer.appendChild(newMessageRe);
+          const messagesContainer = document.getElementById('menssages-container');
+          const newMessage = document.createElement('div');
+          const messageText = document.createElement('p');
+          const messageTime = document.createElement('span');
+    
+          messageText.textContent = data.message;
+          messageTime.textContent = getCurrentTime();
+          newMessage.appendChild(messageText);
+          newMessage.appendChild(messageTime);
+    
+          if (data.userId === userId) {
+            newMessage.className = 'message sent';
+          } else {
+            newMessage.className = 'message received';
+          }
+    
+          messagesContainer.appendChild(newMessage);
         });
-      
+    
         function getCurrentTime() {
           const date = new Date();
           let hours = date.getHours();
@@ -367,6 +362,7 @@
           return strTime;
         }
       </script>
+       
     
 </body>
 </html>
