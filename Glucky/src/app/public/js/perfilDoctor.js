@@ -2,6 +2,186 @@ const body = document.querySelector("body"),
       modeToggle = body.querySelector(".mode-toggle");
       sidebar = body.querySelector("nav");
       sidebarToggle = body.querySelector(".sidebar-toggle");
+const formularioEditarPerfil = document.getElementById("formularioEditarPerfil")
+const inputs = document.querySelectorAll('#formularioEditarPerfil input');
+const cedula = document.querySelector('input[name="CedulaForm"]').value;
+const email = document.querySelector('input[name="EmailForm"]').value;
+const nombre = document.querySelector('input[name="NombreForm"]').value;
+const apellidos = document.querySelector('input[name="ApellidosForm"]').value;
+const edad = document.querySelector('input[name="EdadForm"]').value;
+const telefono = document.querySelector('input[name="TelForm"]').value;
+const calle = document.querySelector('input[name="CalleForm"]').value;
+const numeroConsultorio = document.querySelector('input[name="NumeroForm"]').value;
+const cp = document.querySelector('input[name="CPForm"]').value;
+
+console.log(`cedula: ${cedula}`);
+console.log(`email: ${email}`);
+console.log(`nombre: ${nombre}`);
+console.log(`apellidos: ${apellidos}`);
+console.log(`edad: ${edad}`);
+console.log(`telefono: ${telefono}`);
+console.log(`calle: ${calle}`);
+console.log(`numeroConsultorio: ${numeroConsultorio}`);
+console.log(`cp: ${cp}`);
+
+const expReg = {
+    nombre: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)*$/,
+    apellidos: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)?(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)$/,
+    edad: /^([1-9][8-9]|[2-9][0-9])$/,
+    telefono: /^\d{10}$/,
+    calle: /^[a-zA-Z0-9\s-.,#áéíóúÁÉÍÓÚñÑ]+$/,
+    numeroConsultorio: /^\d{1,3}$/,
+    cp: /^\d{5}$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.#])[A-Za-z\d$@$!%*?&.#]{8,35}$/
+}
+
+const campos = {
+    nombre: false,
+    apellidos: false,
+    edad: false,
+    telefono: false,
+    calle: false,
+    numeroConsultorio: false,
+    cp: false,
+    password: false 
+} 
+
+var nombre1,
+apellidos1,
+edad1,
+telefono1,
+calle1,
+numeroConsultorio1,
+cp1;
+
+if(nombre === nombre){
+	console.log(`El nombre es igual`);
+	campos.nombre = true
+	} else{
+		validarFormularioCuenta(e);
+		console.log(`El nombre cambio we`);
+	}
+
+const validarFormularioCuenta = (e) => {
+    switch (e.target.name){
+        case "NombreForm":
+            if(expReg.nombre.test(e.target.value)){
+                document.querySelector('#grupo_nombre .form_input_error').classList.remove('form_input_error-activo');
+                campos.nombre = true;         
+				console.log(`El nombre es otro pa`);       
+            } else if (e.target.value === ""){
+				document.querySelector('#grupo_nombre .form_input_error').classList.add('form_input_error-activo');
+                campos.nombre = false;                
+				console.log(`El nombre es otro pa esta mal`);       
+            } else {
+				document.querySelector('#grupo_nombre .form_input_error').classList.add('form_input_error-activo');
+                campos.nombre = false;                
+				console.log(`El nombre es otro pa pero esta mal`);       
+            }
+            break;
+			case "ApellidosForm":
+				if(expReg.apellidos.test(e.target.value)){
+					document.querySelector('#grupo_apellidos .form_input_error').classList.remove('form_input_error-activo');
+					campos.apellidos = true;                
+				} else if (e.target.value === ""){
+					document.querySelector('#grupo_apellidos .form_input_error').classList.add('form_input_error-activo');
+					campos.apellidos = false;                
+				} else {
+					document.querySelector('#grupo_apellidos .form_input_error').classList.add('form_input_error-activo');
+					campos.apellidos = false;                
+				}
+				break;
+				case "EmailForm":
+					if(expReg.email.test(e.target.value)){
+						document.querySelector('#grupo_email .form_input_error').classList.remove('form_input_error-activo');
+						campos.email = true;                
+					} else if (e.target.value === ""){
+						document.querySelector('#grupo_email .form_input_error').classList.remove('form_input_error-activo');
+						campos.email = false;                
+					} else {
+						document.querySelector('#grupo_email .form_input_error').classList.add('form_input_error-activo');
+						campos.email = false;                
+					}
+					break;
+					case "CedulaForm":
+						if(expReg.cedula.test(e.target.value)){
+							document.querySelector('#grupo_cedula .form_input_error').classList.remove('form_input_error-activo');
+							campos.cedula = true;                
+						} else if (e.target.value === ""){
+							document.querySelector('#grupo_cedula .form_input_error').classList.remove('form_input_error-activo');
+							campos.cedula = false;                
+						} else {
+							document.querySelector('#grupo_cedula .form_input_error').classList.add('form_input_error-activo');
+							campos.cedula = false;                
+						}
+						/*
+            break;
+        case "EdadForm":
+            if(expReg.edad.test(e.target.value)){
+                document.querySelector('#grupo_edad .form_input_error').classList.remove('form_input_error-activo');
+                campos.edad = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_edad .form_input_error').classList.add('form_input_error-activo');
+                campos.edad = false;                
+            } else {
+                document.querySelector('#grupo_edad .form_input_error').classList.add('form_input_error-activo');
+                campos.edad = false;                
+            }
+            break;
+        case "TelefonoForm":
+            if(expReg.telefono.test(e.target.value)){
+                document.querySelector('#grupo_telefono .form_input_error').classList.remove('form_input_error-activo');
+                campos.telefono = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_telefono .form_input_error').classList.add('form_input_error-activo');
+                campos.telefono = false;                
+            } else {
+                document.querySelector('#grupo_telefono .form_input_error').classList.add('form_input_error-activo');
+                campos.telefono = false;                
+            }
+            break;
+        case "CalleForm":
+            if(expReg.calle.test(e.target.value)){
+                document.querySelector('#grupo_calle .form_input_error').classList.remove('form_input_error-activo');
+                campos.calle = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_calle .form_input_error').classList.add('form_input_error-activo');
+                campos.calle = false;                
+            } else {
+                document.querySelector('#grupo_calle .form_input_error').classList.add('form_input_error-activo');
+                campos.calle = false;                
+            }
+            break;
+        case "NumeroConsForm":
+            if(expReg.numeroConsultorio.test(e.target.value)){
+                document.querySelector('#grupo_numeroConsultorio .form_input_error').classList.remove('form_input_error-activo');
+                campos.numeroConsultorio = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_numeroConsultorio .form_input_error').classList.add('form_input_error-activo');
+                campos.numeroConsultorio = false;                
+            } else {
+                document.querySelector('#grupo_numeroConsultorio .form_input_error').classList.add('form_input_error-activo');
+                campos.numeroConsultorio = false;                
+            }
+            break;
+        case "CodigoPostalForm":
+            if(expReg.cp.test(e.target.value)){
+                document.querySelector('#grupo_cp .form_input_error').classList.remove('form_input_error-activo');
+                campos.cp = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_cp .form_input_error').classList.add('form_input_error-activo');
+                campos.cp = false;
+            } else {
+                document.querySelector('#grupo_cp .form_input_error').classList.add('form_input_error-activo');
+                campos.cp = false;                
+            }
+            break; */
+    }
+/*     if (campos.nombre && campos.apellidos && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && campos.cp) {
+        document.querySelector('#grupo_enviar .form_input_error').classList.remove('form_input_error-activo');
+    } */
+}
+
 
 let getMode = localStorage.getItem("mode");
 if(getMode && getMode ==="dark"){
@@ -95,3 +275,22 @@ function getfocus() {
 	  x.type = "password";
 	}
   }
+
+
+inputs.forEach((input) => {
+  input.addEventListener('keyup', validarFormularioCuenta);
+  input.addEventListener('blur', validarFormularioCuenta);
+});
+
+formularioEditarPerfil.addEventListener('submit', (e) => {
+    if (cedula === cedula && email === email && campos.nombre) {
+        console.log(`esta bien`);
+		formularioEditarPerfil.submit();
+	} else if(cedula !== cedula || email !== cedula){
+		console.log(`No se puede crack`);
+		e.preventDefault();
+	} else {
+    e.preventDefault();
+    document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');    
+	}
+});
