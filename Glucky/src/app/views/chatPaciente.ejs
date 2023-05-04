@@ -305,7 +305,6 @@
         button.addEventListener('click', () => {
           // Obtiene el mensaje del usuario
           const message = messageInput.value;
-          // Envía el mensaje al servidor
           var messagesContainer = document.getElementById('menssages-container');
           var newMessage = document.createElement('div');
           newMessage.className = 'message sent';
@@ -326,7 +325,18 @@
         });
         socket.on('nuevoMensaje', (data) => {
           // Actualiza el HTML con los datos recibidos del servidor
-          document.querySelector('.message received').innerHTML += `<p>${data}</p>`;
+          var newMessageRe = document.createElement('div');
+          newMessageRe.className ='message received';
+          var messageTextRe = document.createElement('p');
+          messageTextRe.textContent=data;
+          newMessageRe.appendChild(messageTextRe);
+          // Agregar hora al mensaje
+          var messageTimeRe = document.createElement('span');
+          messageTimeRe.className = 'time';
+          messageTimeRe.textContent = getCurrentTime();
+          newMessageRe.appendChild(messageTimeRe);
+          // Agregar al contenedor de mensajes
+          messagesContainer.appendChild(newMessageRe);
         });
       
         function getCurrentTime() {

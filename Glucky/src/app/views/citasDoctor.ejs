@@ -168,15 +168,71 @@
                                       <% if (datos.length === 1) { %>
                                          Una petición
 
+                                         <div class="contenecitas dodododo">
+                                    
+                                            <% for(var i=0;i<datos.length;i++){%>
+                                        <form action="/Glucky/Doctores/CitasAcepta" method="post">
+                                            <div class="cuadrocitas">
+                                                <%var date = datos[i].date_solcita%>
+                                                <h5 class="grandato"> <%=i+1%>° Solicitud de  <input type="text" name="NombreForm" value="<%=datos[i].nom_pers%>" class="textoSimple" readonly></h5> 
+                                                <h5 class="minidato">  Hora: <input type="text" name="HoraForm" value="<%=datos[i].hour_solcita%>" class="textoSimple" readonly></h5>
+                                                <h5 class="minidato"> Fecha: <input type="text" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>" class="textoSimple" readonly></h5>
+                                                <input type="hidden" name="CurpPacien" value="<%=datos[i].curp_pacien%>">
+                                                <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
+                                                <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
+                                                <div class="izquierdaborr">
+                                                <button type="submit" class="aceptarCita hoverbb">Aceptar</button> 
+                                        </form>
+        
+                                                <form action="/Glucky/Doctores/CitasDeclina" method="post">
+                                                    <input type="hidden" name="HoraForm" value="<%=datos[i].hour_solcita%>">
+                                                    <input type="hidden" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>">
+                                                    <input type="hidden" name="NombreForm" value="<%=datos[i].nom_pers%>">
+                                                    <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
+                                                    <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
+                                                    <button type="submit" class="borrarcita hoverbb">Declinar</button> 
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <%}%>
+                                    </div> 
+
 
                                       <% } else if (datos.length > 1) { %>
                                         <%= datos.length %> 
                                         peticiones en total
                                        
+                                        <div class="contenecitas dodododo">
+                                    
+                                            <% for(var i=0;i<datos.length;i++){%>
+                                        <form action="/Glucky/Doctores/CitasAcepta" method="post">
+                                            <div class="cuadrocitas">
+                                                <%var date = datos[i].date_solcita%>
+                                                <h5 class="grandato"> <%=i+1%>° Solicitud de  <input type="text" name="NombreForm" value="<%=datos[i].nom_pers%>" class="textoSimple" readonly></h5> 
+                                                <h5 class="minidato">  Hora: <input type="text" name="HoraForm" value="<%=datos[i].hour_solcita%>" class="textoSimple" readonly></h5>
+                                                <h5 class="minidato"> Fecha: <input type="text" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>" class="textoSimple" readonly></h5>
+                                                <input type="hidden" name="CurpPacien" value="<%=datos[i].curp_pacien%>">
+                                                <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
+                                                <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
+                                                <div class="izquierdaborr">
+                                                <button type="submit" class="aceptarCita hoverbb">Aceptar</button> 
+                                        </form>
+        
+                                                <form action="/Glucky/Doctores/CitasDeclina" method="post">
+                                                    <input type="hidden" name="HoraForm" value="<%=datos[i].hour_solcita%>">
+                                                    <input type="hidden" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>">
+                                                    <input type="hidden" name="NombreForm" value="<%=datos[i].nom_pers%>">
+                                                    <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
+                                                    <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
+                                                    <button type="submit" class="borrarcita hoverbb">Declinar</button> 
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <%}%>
+                                    </div> 
 
                                       <% } else { %>
                                         No hay peticiones pendientes. Por favor, espere a que un paciente solicite una cita.
-                                        <div class="MEGALARGO"></div>
 
                                       <% } %>
                                 
@@ -184,34 +240,7 @@
 
                               
     
-                                <div class="contenecitas dodododo">
-                                    
-                                        <% for(var i=0;i<datos.length;i++){%>
-                                    <form action="/Glucky/Doctores/CitasAcepta" method="post">
-                                        <div class="cuadrocitas">
-                                            <%var date = datos[i].date_solcita%>
-                                            <h5 class="grandato"> <%=i+1%>° Solicitud de  <input type="text" name="NombreForm" value="<%=datos[i].nom_pers%>" class="textoSimple" readonly></h5> 
-                                            <h5 class="minidato">  Hora: <input type="text" name="HoraForm" value="<%=datos[i].hour_solcita%>" class="textoSimple" readonly></h5>
-                                            <h5 class="minidato"> Fecha: <input type="text" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>" class="textoSimple" readonly></h5>
-                                            <input type="hidden" name="CurpPacien" value="<%=datos[i].curp_pacien%>">
-                                            <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
-                                            <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
-                                            <div class="izquierdaborr">
-                                            <button type="submit" class="aceptarCita hoverbb">Aceptar</button> 
-                                    </form>
-    
-                                            <form action="/Glucky/Doctores/CitasDeclina" method="post">
-                                                <input type="hidden" name="HoraForm" value="<%=datos[i].hour_solcita%>">
-                                                <input type="hidden" name="FechaForm" value="<%=date.toISOString().substring(0,10)%>">
-                                                <input type="hidden" name="NombreForm" value="<%=datos[i].nom_pers%>">
-                                                <input type="hidden" name="IdCita" value="<%=datos[i].id_solcita%>">
-                                                <input type="hidden" name="IdConsmed" value="<%=datos[i].id_consmed%>">
-                                                <button type="submit" class="borrarcita hoverbb">Declinar</button> 
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <%}%>
-                                </div> 
+                               
 
                             </div> 
 
@@ -236,7 +265,7 @@
                                   <% } else if (citasaceptadas.length > 1) { %>
                                     <%= citasaceptadas.length %> Citas
                                   <% } else { %>
-                                    No hay citas pendientes. Puede aceptar solicitudes o agregar citas en los detalles de su paciente.
+                                   <div class="jajasd">No hay citas pendientes. Puede aceptar solicitudes o agregar citas en los detalles de su paciente.</div> 
                                   <% } %>
 
                             </h1>
