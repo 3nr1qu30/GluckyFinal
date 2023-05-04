@@ -2734,3 +2734,12 @@ font-weight: 700;
   height: 400px;
   background-color: white;
 }
+
+.dodododo{
+  max-height: 390px;
+  overflow-y: auto;
+}
+
+.jajasd{
+  font-size: small;
+}
