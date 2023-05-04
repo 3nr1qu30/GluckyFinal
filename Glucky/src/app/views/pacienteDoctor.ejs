@@ -326,45 +326,38 @@
                                 </div>
 
                                 <!--Inicio del formulario de dietas-->
-                                <form action="#">
-                                    <input spellcheck="false" type="text" class="titulo" placeholder="Inserta el título de la dieta..." required>
+                               
+                              
 
                                     
                                     <div class="tratamientodiv dops">
-                                        <h1>Lista de ingredientes</h1>
-                                        <b class="infos">Da clic a un ingrediente para agregarlo</b> 
-                                        <input type="text" class="buscamedic" id="searchdietas" placeholder="Buscar ingrediente...">
-                                        <form action="">
-                                        <div id="listadietas" class="flexlistIngredientes">
-                                            <div class="checkbox">
-                                              <input type="checkbox" id="1d" value="Coco" >
-                                              <label for="1d">Coco</label>
-                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
-                                            </div>
-         
-                                            <div class="checkbox">
-                                              <input type="checkbox" id="2d" value="Jamon">
-                                              <label for="2d">Jamon</label>
-                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
-                                            </div>
-         
-                                            <div class="checkbox">
-                                              <input type="checkbox" id="3d" value="Pierna">
-                                              <label for="3d">Pierna</label>
-                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
-                                            </div>
-         
-                                            <div class="checkbox">
-                                              <input type="checkbox" id="4d" value="Comida">
-                                              <label for="4d">Comida</label>
-                                              <input type="text" placeholder="Agrega una descripción..." class="descrip" >
-                                            </div>
-                                          </div>
-                                     </div>
+                                      <div class="tratamientos nomaaaaa">
+                                        Agregar dieta <button class="nomanchesanakaren nopales"><i class="uil uil-plus jajaamigazorra" ></i></button>
+                                      </div>
+
+                                      <div class="tratamientos">
+                                        <!--Form para ir a la dieta para verlo y editarlo-->
+                                          <form action="">
+                                            <input type="hidden" value="" name="id_recmed">
+                                            <button class="nuevo-div plotuist"><i class="uil uil-angle-right-b jajaamigazorra" ></i></button>
+                                          </form>
+                                        <!--Form para ir a la dieta para verlo y editarlo-->
+                                        <div class="cosasas">
+                                          <h5>Tratamiento 1</h5>
+                                          <h6 class="dedicator1">para: </h6>
+                                          <h6 class="dedicator">Total de medicamentos:  </h6>
+                                          <hr class="miniraya">
+                                          <h6 class="dedicatorsb">Asignado el dia: <h6 class="dedicatorsdd"> xddd</h6> </h6>
+                                        </div>
+                                      </div>
+
+                                      
+
+                                    </div>
          
                                         
                                         <div id="dietas-seleccionados" class="dietas-seleccionados">
-                                         Los ingredientes que agregues son los siguientes:
+                                         <b>Información:</b> En esta sección podrás asignar nuevas dietas a tus pacientes. Para empezar, agrega alimentos en el foro correspondiente y luego añádelos a tus pacientes. Para hacerlo, simplemente haz clic en el botón "Agregar".
                                          <br>
                                          <br>
                                         </div>
@@ -372,10 +365,8 @@
 
 
                                     <div class="button">
-                                        <button id="closem" class="cancel">Cancelar</button>
-                                        <button class="send">¡Enviar!</button>
+                                        <button id="closem" class="cancel">Cerrar la ventana</button>
                                     </div>
-                                </form>
 
                                 <!--Fin del formulario de dietas-->
                             </div>
@@ -442,56 +433,50 @@
                            </div>
 
                            <!--Comienzo del form de medicamentos-->
-                           <form action="#">
-                               <input spellcheck="false" type="text" class="titulo" placeholder="Inserta el título del tratamiento..." required>
+                           
+                            
                                
                                
                             <div class="tratamientodiv">
-                               <h1>Lista de medicamentos</h1>
-                               <b class="infos">Da clic a un medicamento para agregarlo</b> 
-                               <input type="text" class="buscamedic" id="search" placeholder="Buscar medicamento...">
-                               <form action="">
-                               <div id="listamedicamentos" class="flexlistMedicamentos">
-                                   <div class="checkbox">
-                                     <input type="checkbox" id="1" value="Paracetamol" >
-                                     <label for="1">Paracetamol</label>
-                                     <input type="time" name=""  class="time" class="tiempo">
-                                   </div>
+                              
+                              <form action="">
+                                <input type="text" name="curp_pacien" value="<%=datos[0].curp_pacien%>">
+                                <input type="text" name="id_cons" value="<%=doctor[0].id_consmed%>">
+                                <div class="tratamientos nomaaaaa jajassssss">
+                                  Agregar tratamiento <button type="submit" class="nomanchesanakaren jajasssssssd margenss"><i class="uil uil-plus jajaamigazorra " ></i></button>
+                                </div>
+                              </form>
 
-                                   <div class="checkbox">
-                                     <input type="checkbox" id="2" value="Gluco coso">
-                                     <label for="2">Gluco coso</label>
-                                     <input type="time" name=""  class="time" class="tiempo">
-                                   </div>
+                              <div class="tratamientos">
+                                <!--Form para ir al tratamiento para verlo y editarlo-->
+                                  <form action="">
+                                    <input type="hidden" value="" name="id_recmed">
+                                    <button class="nuevo-div jajasssssssd plotuist"><i class="uil uil-angle-right-b jajaamigazorra " ></i></button>
+                                  </form>
+                                <!--Form para ir al tratamiento para verlo y editarlo-->
+                                <div class="cosasas">
+                                  <h5>Tratamiento 1</h5>
+                                  <h6 class="dedicator1">para: </h6>
+                                  <h6 class="dedicator">Total de medicamentos:  </h6>
+                                  <hr class="miniraya">
+                                  <h6 class="dedicatorsb">Asignado el dia: <h6 class="dedicatorsdd"> xddd</h6> </h6>
+                                </div>
+                              </div>
 
-                                   <div class="checkbox">
-                                     <input type="checkbox" id="3" value="Medicina">
-                                     <label for="3">Medicina</label>
-                                     <input type="time" name=""  class="time" class="tiempo">
-                                   </div>
-
-                                   <div class="checkbox">
-                                     <input type="checkbox" id="4" value="Glucometro">
-                                     <label for="4">Glucometro</label>
-                                     <input type="time" name=""  class="time" class="tiempo">
-                                   </div>
-                                 </div>
                             </div>
 
                                
-                               <div id="medicamentos-seleccionados" class="medicamentos-seleccionados">
-                                Los medicamentos que agregues son los siguientes; no te olvides de agregarles fecha
-                                <br>
-                                <br>
-                               </div>
+                            <div id="dietas-seleccionados" class="dietas-seleccionados">
+                              <b>Información:</b> En esta sección podrás asignar nuevos tratamientos a tus pacientes. Para empezar, agrega medicamentos en el foro correspondiente y luego añádelos a tus pacientes. Para hacerlo, simplemente haz clic en el botón "Agregar".
+                              <br>
+                              <br>
+                             </div>
 
                                
-                               <input type="date" spellcheck="false" type="text" class="titulo" placeholder="Inserta el título de la dieta..." required>
                                <div class="button">
-                                   <button id="closem" class="cancel3">Cancelar</button>
-                                   <button type="submit" class="send">¡Enviar!</button>
+                                   <button id="closem" class="cancel3">Cerrar la ventana</button>
                                </div>
-                           </form>
+                          
                            <!--Fin del form de medicamentos-->
                            
                        </div>

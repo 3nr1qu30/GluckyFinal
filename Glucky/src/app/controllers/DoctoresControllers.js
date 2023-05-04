@@ -156,12 +156,19 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
         console.log(ver);
-
         //inicio de la segunda consulta de query 
         querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
           if(citasver){
-            console.log(citasver);
-            res.render('pacienteDoctor',{citas:citasver,datos:ver});
+          //inicio de la tercera consulta de query 
+          querys.VerDatoDoctor(Cedula,(error3,doctorver)=>{
+            if(doctorver){
+              res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver});
+            }
+            else{
+              console.log(error3);
+            }
+          }); 
+          //final de la tercera consulta de query
           }
           else{
             console.log(error2);
@@ -181,20 +188,25 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const CURPform = req.session.paciente;
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
-        console.log(ver);
-
-    //inicio de la segunda consulta de query 
-    querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
-      if(citasver){
-        console.log(citasver);
-        res.render('pacienteDoctor',{citas:citasver,datos:ver});
-      }
-      else{
-        console.log(error2);
-      }
-    }); 
-    //final de la segunda consulta de query
-
+      //inicio de la segunda consulta de query 
+      querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
+        if(citasver){
+          //inicio de la tercera consulta de query 
+          querys.VerDatoDoctor(Cedula,(error3,doctorver)=>{
+            if(doctorver){
+              res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver});
+            }
+            else{
+              console.log(error3);
+            }
+          }); 
+          //final de la tercera consulta de query
+        }
+        else{
+          console.log(error2);
+        }
+      }); 
+      //final de la segunda consulta de query
       }
       else{
         console.log(error);
