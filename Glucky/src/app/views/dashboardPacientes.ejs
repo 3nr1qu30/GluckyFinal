@@ -332,11 +332,11 @@
                             <div class="modal-body2">
 
                               <!--INICIO DEL FORM DE CITA-->
-                              <form class="glucosaNormalForm2" action="/Glucky/Pacientes/Citas" method="post">
+                              <form class="glucosaNormalForm2" action="/Glucky/Pacientes/Citas" method="post" id="formularioNuevaCita">
                                 <label for="glucosaNormal2" class="labeltipo">Ingresa el dia y hora de la cita</label>
                                 <input type="date" class="Glucayun colorblue" id="glucosaNormal" name="FechaForm" placeholder="Ingresa el valor aquí...">
                                 <label for="glucosaNormal2" class="labeltipo2">Ingresa la hora</label>
-                                <input type="time" class="Glucayun colorblue" id="glucosaNormal" name="HoraForm" placeholder="Ingresa el valor aquí...">
+                                <input type="time" class="Glucayun colorblue" id="glucosaNormal2" name="HoraForm" placeholder="Ingresa el valor aquí...">
                                 <button type="submit" class="btn-submit3">Enviar solicitud</button>
                               </form>
                               <!--FIN DEL FORM DE CITA-->
@@ -604,7 +604,8 @@
                   <script src="/js/peticionesDoctor.js"></script>
                   <script src="/js/plantillaAlertas.js"></script>
                   <script src="/js/dashboardPacientesValidaciones.js"></script>
-                  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+                  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                  
                   <script>
                     const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
                     const fechas = [];
