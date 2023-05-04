@@ -396,6 +396,9 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         console.log(error);
       }
     });
-  }
+  };
+  Controllers.chatDoctorGet = (req,res,next) => {
+    res.render('chatDoctor');
+  };
  
 module.exports = Controllers; 
