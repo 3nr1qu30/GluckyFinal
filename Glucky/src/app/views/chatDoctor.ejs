@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/chatDoctor.css">     
+    <link rel="stylesheet" href="/css/chatDoctor.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
@@ -33,11 +33,11 @@
             <ul class="nav-links">
                 <li><a href="#">
                     <i class="uil uil-estate"></i>
-                    <span class="link-name">Casa</span>
+                    <span class="link-name">Dashboard</span>
                 </a></li>
                 <li><a href="#pacientesjeje">
                     <i class="uil uil-chart"></i>
-                    <span class="link-name">Doctor</span>
+                    <span class="link-name">Pacientes</span>
                 </a></li>
                 <li><a href="#">
                     <i class="uil uil-chat"></i>
@@ -45,11 +45,11 @@
                 </a></li>
                 <li><a href="#">
                     <i class="uil uil-plus-circle"></i>
-                    <span class="link-name">Asignaciones</span>
+                    <span class="link-name">Peticiones</span>
                 </a></li>
                 <li><a href="#">
-                  <i class="uil uil-user"></i>
-                  <span class="link-name">Personal</span>
+                    <i class="uil uil-schedule"></i>
+                    <span class="link-name">Citas</span>
                 </a></li>
             </ul>
             
@@ -62,7 +62,7 @@
                 <li class="mode">
                     <a href="#">
                         <i class="uil uil-x"></i>
-                    <span class="link-name">Ajustes de cuenta</span>
+                    <span class="link-name">Borrar cuenta</span>
                 </a>
 
                 <div class="mode-toggle">
@@ -79,7 +79,7 @@
 
             <div class="search-box">
                 <i class="uil uil-circle"></i>
-                <input type="text" placeholder="Aplicación glucky para pacientes" disabled>
+                <input type="text" placeholder="Aplicación glucky para doctores" disabled>
             </div>
 
 
@@ -208,7 +208,9 @@
                             <h4 class="buscaP2">Mensajes (23)</h4>
                         </div>
                         
-                       
+                        <div class="buscador">
+                            <input type="search" class="buscaPss" placeholder="BUSCAR PACIENTES">
+                        </div>
                         
                         <div class="personasEl" id="style-2">
                           
@@ -242,7 +244,15 @@
                                 <div class="caja" id="menssages-container">
                                     <div class="acciones"> 
                                        
-                                        Chat personal con tu endocrinologo
+                                          <div class="elemento elemento2">
+                                            <p>Dietas</p>
+                                          </div>
+                                          <div class="elemento elemento3">
+                                            <p>Tratamientos</p>
+                                          </div>
+                                          <div class="elemento elemento4">
+                                            <p>Citas</p>
+                                          </div>
                                     </div>
                                     <br>
 
@@ -251,6 +261,11 @@
                                         <p>¡Bien, gracias! ¿Y tú?</p>
                                         <span class="time">10:35 AM Isaac</span>
                                         </div>
+                                        <div class="message sent">
+                                          <p>Hola, ¿cómo estás?</p>
+                                          <span class="time">10:32 AM Tú</span>
+                                        </div>
+                                        
                                  
 
                                     
@@ -294,11 +309,12 @@
 
     <script src="/js/chatDoctor.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
         const button = document.querySelector('.enviarMensaje');
         const messageInput = document.querySelector('.escribeC');
-        const userId = '<%= curp %>';// obtener el id de sesión del usuario actual
+        const userId = '<%= cedula %>'// obtener el id de sesión del usuario actual
         
          socket.on('connect', () => {
          socket.emit('userConnected', userId);
@@ -346,7 +362,7 @@
           return strTime;
         }
       </script>
-      
+       
     
 </body>
 </html>

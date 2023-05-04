@@ -425,6 +425,12 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         console.log(error);
       }
     });
+  };
+
+  Controllers.chatDoctorGet=(req, res,next) => {
+    const cedula = req.session.cedula;
+    res.render('chatDoctor',{cedula});
   }
+  
  
 module.exports = Controllers; 
