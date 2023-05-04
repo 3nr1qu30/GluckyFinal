@@ -7,7 +7,24 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const correo = req.session.correo;
     querys.verListaPacientes(cedula,(error,pacientes)=>{
       if(pacientes){
-        res.render('dashboardDoctores',{cedula,nombre,correo,pacientes});
+        querys.PeticionesCitaGenerales(cedula,(error2,citasaceptadas)=>{
+          if(citasaceptadas){
+            //nuevocoso
+            querys.verPeticionesDoctor(cedula,(error3,pacientesSolici)=>{
+              if(pacientesSolici){
+                console.log(`ver los super papus`);
+                res.render('dashboardDoctores',{cedula,nombre,correo,pacientes, vercitas:citasaceptadas, verpaci:pacientesSolici});
+              }
+              else{
+                console.log(error3);
+              }
+            }); 
+            //nuevocoso
+          }
+          else if(error2){
+            console.log(error);
+          }
+        });
       }
     });
   };
@@ -52,6 +69,18 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   }); 
  };
 
+ Controllers.ActualizarContraDoctor = (req,res,next)=>{
+  const cedula  = req.session.cedula;
+  const {NewPass} = req.body;
+  querys.ActualizarContraDoctor(cedula, NewPass,(error,act)=>{
+    if(act){
+      console.log(act);
+      res.redirect('/Glucky/Doctores/EditarCuenta');
+    } else{
+      console.log(error);
+    }
+  });
+  };
 
   Controllers.peticionesDoctor = (req,res,next)=>{
     console.log(req.body);

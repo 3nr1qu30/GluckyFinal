@@ -316,23 +316,35 @@
                     <span class="text">Doctor asignado</span>
                 </div>
             </div>
-
+            <form action="/Glucky/Pacientes/Desvinculacion" method="post">
             <div class="doctorC">
                 <div class="flexos">
                     <div class="logos"> <i class="uil uil-user"></i></div>
                     <h5 class="TituloDoc">Información de tu doctor asignado</h5>
                 </div>
+
+                <% var idedo = datos[i].id_edosol;
+                   var numcons;
+                   var cedmed;
+                   var direccion;
+                 if (idedo == 3){
+                 numcons, cedmed, direccion = "";
+                 }else if(idedo == 2){
+                  numcons = datos[i].num_cons;
+                  cedmed =datos[i].cedula_med;  
+                  direccion = datos[i].calle_cons + ", " + datos[i].col_cons+ ", " + datos[i].del_cons+ ", " + datos[i].cp_cons+ ", " + datos[i].edo_cons;
+                 }%>
                 <h5 class="TituloDoc2"> <b class="black"> Nombre:</b> Nombre ApellidoP ApellidoM </h5>
                 <div class="TituloDoc3">
-                    <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> <%=datos[i].num_cons%></h5>
-                    <h5 class="tit"> <b class="black"> Cédula profesional:</b> <%=datos[i].cedula_med%></h5>
-                    <h5 class="tit"> <b class="black"> Dirección particular del consultorio:</b> <%=datos[i].calle_cons%>, <%=datos[i].col_cons%>, <%=datos[i].del_cons%>, <%=datos[i].cp_cons%>, <%=datos[i].edo_cons%> </h5>
+                    <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> <%=numcons%></h5>
+                    <h5 class="tit"> <b class="black"> Cédula profesional:</b> <%=cedmed%></h5>
+                    <h5 class="tit"> <b class="black"> Dirección particular del consultorio:</b> <%=direccion%> </h5>
                     <h5 class="tit"> <b class="black"> Email de contacto:</b> XXXXXXXXXXXXXX</h5>
                     <h5 class="tit"> <b class="black"> Teléfono de contacto:</b> XXXXXXXXXXXXXX</h5>
                 </div>
-                <button class="btm">Desvincular doctor</button>
+                <input type="submit" class="btm" value="Desvincular doctor">
             </div>
-
+          </form>
             <%}%>
             <br>
             <br>
@@ -345,7 +357,7 @@
             </div>
            
 
-            <form action="">
+            <form action="/Glucky/Pacientes/Password" method="post">
             <div class="renovarContra">
                 <h4 class="achecuatro">Cambiar contraseña</h4>
                 
@@ -361,7 +373,7 @@
                     </h6>
                 </div>
 
-                <input type="password" value="" id="myInput2" class="contraria">
+                <input type="password" name="NewPass" id="myInput2" class="contraria">
                 <input type="checkbox" onclick="mostrar2()" class="chequeado"> Mostrar 
                 <br>
                 
