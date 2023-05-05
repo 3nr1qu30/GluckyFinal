@@ -1,6 +1,7 @@
 const mysql=require('mysql2');
 const encrypt = require('../helpers/EncriptarContraseñas');
-const { callback } = require('chart.js/dist/helpers/helpers.core');
+//const { callback } = require('chart.js/dist/helpers/helpers.core');
+
 
 var con;
 
@@ -683,6 +684,17 @@ db.eliminarIngrediente=(id_dietingred,id_dieta,callback)=>{
     }
     else{
       console.log('ingrediente eliminado naranja');
+      callback(null,elimina);
+    }
+  });
+};
+db.eliminarChat=(CurpForm,callback)=>{
+  con.query(`delete from chat where curp_pacien ='${CurpForm}';`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
       callback(null,elimina);
     }
   });
