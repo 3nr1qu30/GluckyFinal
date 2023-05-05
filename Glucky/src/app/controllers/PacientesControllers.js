@@ -320,6 +320,4 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   };
-
-
   module.exports = Controllers;
