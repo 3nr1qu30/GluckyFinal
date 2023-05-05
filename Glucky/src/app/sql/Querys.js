@@ -355,6 +355,18 @@ db.verDietasCompletas=(curp_pacien,cedula_med,callback)=>{
     }
   });
 };
+
+db.verDietaIndividual=(curp_pacien,cedula_med,id_dieta,callback)=>{
+  con.query(`select * from dieta 
+  where curp_pacien = '${curp_pacien}' and cedula_med = '${cedula_med}' and id_dieta = '${id_dieta}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver dieta individual: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
 //insertar registros a la base
 
 db.ActualizarDatoDoctor = async (CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,
@@ -595,6 +607,7 @@ db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
 }
 
 //eliminar registros
+
 db.eliminaSolicitudesDen=(idCita,curpPacien,callback)=>{
   let idCitas = parseInt(idCita);
   con.query(`delete from solicitarcita where curp_pacien = '${curpPacien}' and id_solcita = '${idCitas}'  and id_edosol = 3;`,(error,elimina)=>{
@@ -672,6 +685,24 @@ db.eliminarIngrediente=(id_dietingred,id_dieta,callback)=>{
     else{
       console.log('ingrediente eliminado naranja');
       callback(null,elimina);
+    }
+  });
+};
+
+db.eliminarDieta = (id_dieta, callback) => {
+  con.query(`delete from dietaingrediente where id_dieta = '${id_dieta}';`, (error, vercosas) => {
+    if (error) {
+      console.log('Error al eliminar los ingredientes de una dieta individual: ', error);
+      callback(error, null);
+    } else if (vercosas) {
+      con.query(`delete from dieta where id_dieta = '${id_dieta}';`, (error2, vercosas2) => {
+        if (error2) {
+          console.log('Error al eliminar dieta individual: ', error2);
+          callback(error2, null);
+        } else if (vercosas2) {
+          callback(null, vercosas2);
+        }
+      });
     }
   });
 };

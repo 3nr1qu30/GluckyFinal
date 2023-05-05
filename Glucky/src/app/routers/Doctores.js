@@ -12,6 +12,8 @@ router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctorGet);
 router.get('/EditarDieta',DoctoresControllers.dietaVerDoctorGet);
 router.get('/Chat',DoctoresControllers.chatDoctorGet);
 
+router.post('/EliminarDieta',DoctoresControllers.eliminarDieta);
+router.post('/VerDietasPacienteDoctorEd',DoctoresControllers.dietaVerDoctorEdit);
 router.post('/EliminarIngredienteDieta',DoctoresControllers.eliminarDietaBaseIngrediente);
 router.post('/EnviarIngredienteDieta',DoctoresControllers.enviarDietaBaseIngrediente);
 router.post('/VerDietasPacienteDoctor',DoctoresControllers.dietaVerDoctor);
