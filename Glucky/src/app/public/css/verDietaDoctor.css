@@ -2744,41 +2744,15 @@ section.active .show-modal {
     padding: 5px;
     box-sizing: border-box;
     transition: all ease 1s;
-    max-height: 540px;
-    overflow-y: auto;
+    max-height: 800px;
     
   }
-
-  .column1::-webkit-scrollbar {
-    width: 5px; /* ancho del scrollbar */
-  }
-
-  
-  .column1::-webkit-scrollbar-thumb {
-    background-color: #f72020ad; /* color del scrollbar */
-    border-radius: 10px; /* borde redondeado del scrollbar */
-    
-  }
-
-
-  .column3::-webkit-scrollbar {
-    width: 5px; /* ancho del scrollbar */
-  }
-
-  
-  .column3::-webkit-scrollbar-thumb {
-    background-color: #f0cc57; /* color del scrollbar */
-    border-radius: 10px; /* borde redondeado del scrollbar */
-    
-  }
-
   .column2 {
     flex-basis: calc(33.3% - 20px);
     margin-right: 5px;
     padding: 5px;
     box-sizing: border-box;
     max-height: 800px;
-    overflow-y: auto;
     
   }
   
@@ -2789,23 +2763,8 @@ section.active .show-modal {
     box-sizing: border-box;
     max-height: 800px;
     overflow-y: auto;
-    overflow-y: auto;
-  }
-
-  .formsElEd{
-    padding-top: 10px;
-  }
-
-  .blancos{
-    color: white;
-    margin-left: -2px;
   }
   
-
-  .blanqui{
-    background-color: rgba(255, 255, 255, 0);
-    border: solid #00000000;
-  }
   
   h2 {
     font-size: 20px;
@@ -3326,11 +3285,6 @@ section.active .show-modal {
   background-color:  #f0c63f;
   font-weight:bold ;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  
 }
 
 .seleccionadodos{
@@ -3448,7 +3402,7 @@ label{
 
 .dietas-seleccionados{
   background-color: #F3F3F3;
-  height: 230px;
+  height: 160px;
   width: 100%;
   padding: 11px;
   border: solid;
@@ -3467,15 +3421,16 @@ label{
   position: fixed;
   top: 0;
   right: 0;
+  background-color: #ffffff;
   z-index: 9999; /* Ajusta el valor según sea necesario */
   transform: translate(110%);
   transition: all ease 1s;
   width: 250px;
   height: 400px;
   border-radius: 10px;
-  overflow-y: auto;
+  box-shadow: #91919149 0px 0px 0px 3px;
+  padding: 15px;
 }
-
 
 
 
@@ -3495,7 +3450,30 @@ label{
   
 }
 
+@media (max-width: 800px) {
 
+  .translated {
+    transform: scale(.7) translate(0%, -25%);
+  }
+
+  .tratamientodiv {
+   transform: translate(0, 210%);
+   width: 380px;
+   height: 200px;
+  }
+
+  .flexlistMedicamentos{
+    height: 70px;
+    overflow-y: auto;
+  }
+
+  .flexlistIngredientes{
+    height: 70px;
+    overflow-y: auto;
+  }
+  
+  
+}
 
 .time {
   display: none;
@@ -3648,17 +3626,6 @@ border-radius: 10px;
     overflow-y: auto;
     font-size: small;
     color: rgb(255, 255, 255);
-    border: solid;
-    border-color: #ffffff00;
-
-    background-color: #ffffff00;
-  }
-
-
-  .dispo2:focus, .dispo2:active {
-    outline: none;
-    border: none;
-    background-color: transparent;
   }
 
   .contenido{
@@ -3750,359 +3717,107 @@ border-radius: 10px;
     color: black;
   }
 
-
-  .campoEditable {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .campoEditable input[type="time"] {
-    display: inline-block;
-    background-color: transparent;
-    border: none;
-    font-size: 16px;
-    color: #000000;
-    padding: 0;
-  }
-  
-
-  
-
-  .blanqui{
-    font-size:medium;
-  }
-
-
-
-  
- .blanqui1{
-  background-color: #00000000;
-  border: solid #00000000;
- }
-
-
- .blanqui2{
-  background-color: #00000000;
-  border: solid #00000000;
- }
-
-  .blanqui1::-webkit-calendar-picker-indicator {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/266/266146.png');
-    background-size: 16px;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 20px;
-    height: 20px;
-    opacity: 0.7;
-    cursor: pointer;
-    border: none;
-    margin-left: 5px;
-  }
-
-
-  .blanqui2::-webkit-calendar-picker-indicator {
-    background-image: url('https://cdn-icons-png.flaticon.com/512/266/266146.png');
-    background-size: 16px;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 20px;
-    height: 20px;
-    opacity: 0.7;
-    cursor: pointer;
-    border: none;
-    margin-left: 5px;
-  }
-  
-  input[type="time"]:focus::-webkit-calendar-picker-indicator {
-    opacity: 1;
-  }
-
-
-  .blanqui2, .blanqui1{
-transition: all ease .2s;
-  }
-
-  input.blanqui2:hover,
-  input.blanqui2:focus {
-    border-color: #000000;
-    outline: none;
-    border-radius: 10px;
-    border-width: 1px;
-    padding: 5px;
-  }
-
-  input.blanqui1:hover,
-  input.blanqui1:focus {
-    border-color: #000000;
-    outline: none;
-    border-radius: 10px;
-    border-width: 1px;
-    padding: 5px;
-  }
-
-  input.blanqui1:focus {
-    border-color: #ff1212b2;
-    outline: none;
-    border-radius: 10px;
-    border-width: 2px;
-    padding: 5px;
-  }
-
-  input.blanqui2:focus {
-    border-color: #ff1212b2;
-    outline: none;
-    border-radius: 10px;
-    border-width: 2px;
-    padding: 5px;
-    background-color: #ff121236 ;
-  }
-  
-
-  
-  input.blanqui1:focus {
-    border-color: #ff1212b2;
-    outline: none;
-    border-radius: 10px;
-    border-width: 2px;
-    padding: 5px;
-    background-color: #ff121236 ;
-  }
-
-
-
-  .jajaamiga{
-    color: white;
-  }
-
-
-  .tratamientos{
-    background-color: white; 
-    margin-bottom: 10px;
-    border-radius: 10px;
-    padding: 14px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    transition: all 0.2s ease-out; 
-  }
-
-  .tratamientos:hover{
-    filter: brightness(99%);
-    transform: scale(0.99) rotate(-.7deg);
-  }
-  
-.jajaamigazorra{
-  font-style: normal;
-  font-weight: bold;
-}
-  
-  .nuevo-div {
-    top: 20px;
-    right: 18px;
-    width: 21px;
-    height: 21px;
-    background-color: #ffd000;
-    border-radius: 50%;
-    color: #fff;
-    text-align: center;
+  .descrip{
+    width: 70px;
+    height: 27px;
+    background-color: #6A8FD9;
     font-size: 14px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: all 0.4s ease-in-out;
-    border: solid 1px #dddddd00;
-    transform: translate(200px, 3px);
-  }
-  
-  .nuevo-div + .nuevo-div {
-    right: 48px; /* ajusta el valor de acuerdo al espacio deseado entre elementos */
-  }
-
-  .nuevo-div:hover {
-    cursor: pointer;
-    border-radius: 7px;
-    transform: translate(200px, 3px) scale(1.1) rotate(360deg) ;
-    background-color: #0080ff;
-  }
-
-.cosasas{
-  margin-top: -24px;
-}
-  
-
-  .dedicator{
-    color: #000000c9;
-    font-weight: 500;
-   
-    margin-bottom: 8px;
-  }
-
-  .dedicator1{
-    color: #000000c9;
-    font-weight: 500;
-   
-    margin-bottom: 2px;
-  }
-
-  .miniraya{
-    border: none;
-    height: 1px;
-    background-color: rgba(128, 128, 128, 0.644);
-    margin-bottom: 5px;
-  }
-  
-
-  .dedicatorsb{
-    color: #000000c9;
-    font-weight: 700;
-    display: inline-block;
-    margin-right: 5px;
-  }
-
-  .dedicatorsdd{
-    color: #00000080;
-    font-weight: 500;
-    display: inline-block;
-  }
-
-  .nomanchesanakaren {
-    width: 25px;
-    height: 25px;
-    background-color: #ffd000;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    margin-left: 78px;
-    transition: all .2s ease-in-out;
-
-  }
-  
-  .nomanchesanakaren i {
-    font-size: 16px;
-    color: #fff;
-    font-weight: bolder;
-  }
-
-  .nomanchesanakaren:hover {
-    cursor: pointer;
-    border-radius: 7px;
-    transform:  scale(1.1) rotate(360deg) ;
-    position: sticky;
-    z-index: 12213123;
-  }
-
-  .nomaaaaa{
-    background-color: #fff6c4;
-  }
-
-  .jajassssss{
-    background-color: #c4ffd2;
-  }
-
-
-  .jajasssssssd{
-    background-color: #47F16F;
-  }
-
-  .margenss{
-    margin-left: 24px;
-  }
-
-
-
-  @media (max-width: 800px) {
-
-    .translated {
-      transform: scale(.7) translate(0%, -25%);
-    }
-  
-    .tratamientodiv {
-     transform: translate(0, 210%);
-     width: 380px;
-     height: 200px;
-     overflow-y: auto;
-    }
-  
-    .jajasssssssd{
-      margin-left: 145px;
-    }
-
-    .plotuist{
-      margin-left: 120px;
-      height: 30px;
-      width: 30px;
-    }
-
-    .nopales{
-      margin-left: 200px;
-    }
-  
-    .flexlistMedicamentos{
-      height: 70px;
-      overflow-y: auto;
-    }
-  
-    .flexlistIngredientes{
-      height: 70px;
-      overflow-y: auto;
-    }
-    
-    
-  }
-
-  .popup-box {
-    /* Estilo del scrollbar en navegadores webkit */
-    ::-webkit-scrollbar {
-      width: 0px;
-      background-color: transparent !important; /* o background-color: none; */
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background-color: #aaa;
-      border-radius: 5px;
-    }
-    
-    /* Estilo del scrollbar en otros navegadores */
-    scrollbar-width: thin;
-    scrollbar-color: #aaa transparent; /* o scrollbar-color: #aaa none; */
-  }
-
-  .granadagrande{
-    background-color: #ffffff;
-    display: inline-block;
-    padding-left: 9px ;
-    padding-right: 9px ;
-
-    padding-top: 2px ;
-    padding-bottom: 2px ;
-    border-radius: 5px;
-    color: black !important;
     font-weight: bold;
-    margin-top: -2px;
-  }
-
-  .nomani{
-    margin-bottom: 5px;
-  }
-
-  .arianagrenade {
-    visibility: hidden;
-    height: 0;
-    width: 0;
-    padding: 0;
-    margin: 0;
-    border: none;
-  }
-
-
-  .fechass{
-    margin-top: -15px;
-  }
-
-
-  .info{
     color: white;
-    margin-top: 5px;
-    margin-left: 4px;
-    font-weight: bold;
+    width: 100%;
   }
+
+
+  .textsO{
+    display: none;
+    margin-top: 5px;
+    background-color: rgba(255, 255, 255, 0.788);
+    padding: 5px;
+    border-radius: 5px;
+    color: blaCK;
+    font-size: 10px;
+  }
+.dietas-seleccionados{
+  height: 240px;
+}
+
+ .elementop{
+  background-color: #f0c63f;
+  width: auto;
+  display: inline-block;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-radius: 5px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+  margin-right: 3px;
+  border: solid 1px #dddddd00;
+  margin-bottom: 7px;
+ }
+
+ .elementop:hover{
+  
+  transform: rotate(-2deg);
+ }
+ 
+ .btn:hover{
+  background-color: rgb(223, 55, 55) !important;
+ }
+
+
+ /* estilo para el input type number */
+input[type=number] {
+  -moz-appearance: textfield; /* quita los botones de firefox */
+  appearance: textfield; /* quita los botones de chrome y safari */
+  width: 80px; /* ajusta el ancho según tus necesidades */
+  padding: 5px; /* ajusta el padding según tus necesidades */
+  text-align: center; /* alinea el texto al centro */
+}
+
+/* estilo para los selectores de número en chrome y safari */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* quita la apariencia por defecto */
+  appearance: none;
+  margin: 0; /* asegura que los selectores estén pegados al input */
+}
+
+.asas{
+  background-color: #f0c63f !important;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.checkbox{
+  transition: all 0.1s ease-in;
+}
+
+.checkbox:hover{
+  transform: translate(2px);
+  
+}
+
+.sssds{
+
+  background-color: rgb(223, 55, 55) !important;
+  transition:  all 0.1s ease-in;
+}
+
+.sssds:hover{
+
+  background-color: rgb(236, 79, 79) !important;
+}
+
+.lomins{
+  margin-right: 5px;
+}

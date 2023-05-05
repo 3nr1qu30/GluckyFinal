@@ -193,7 +193,7 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit">
+                <div class="infoEdit" id="grupo_cedula">
                   <h5 class="infoDoc">Cédula profesional</h5> 
                   <h6 class="alerta_no">
                     🛈 no puedes editar tu cédula profesional
@@ -208,7 +208,7 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit">
+                <div class="infoEdit" id="grupo_email">
                   <h5 class="infoDoc">Email de contacto</h5>
                   <h6 class="alerta_no">
                     🛈 no puedes editar tu e-mail de contacto
@@ -216,6 +216,7 @@
                   <h6 class="nomDoc">
                     <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>">
                   </h6>
+                  <p class="form_input_error">Introduzca un correo válido</p>
                 </div>
                 <div class="botonEdit">
                
@@ -317,7 +318,6 @@
                 </div>
                 <div class="botonEdit2" id="grupo_enviar">
                     <input type="submit" class="botonFormEdit">
-                    <p class="form_input_error">Por favor, rellene bien los datos</p>
                 </div>
             </div>
           

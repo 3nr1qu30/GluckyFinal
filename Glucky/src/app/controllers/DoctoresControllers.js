@@ -155,14 +155,31 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const{CURPform} =req.body;
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
-        console.log(ver);
         //inicio de la segunda consulta de query 
         querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
           if(citasver){
           //inicio de la tercera consulta de query 
           querys.VerDatoDoctor(Cedula,(error3,doctorver)=>{
             if(doctorver){
-              res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver});
+              //inicio de la cuarta consulta de query 
+              querys.verDietaBase(CURPform,(error4,dietaver)=>{
+                if(dietaver){
+                //inicio de la quinta consulta de query 
+                querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
+                  if(dietasverTodas){
+                    res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas});
+                  }
+                  else{
+                    console.log(error5);
+                  }
+                }); 
+                //final de la quinta consulta de query
+                }
+                else{
+                  console.log(error4);
+                }
+              }); 
+              //final de la cuarta consulta de query
             }
             else{
               console.log(error3);
@@ -183,6 +200,82 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }); 
   };
 
+  Controllers.dietaVerDoctor = (req, res, next) => {
+    const cedula_med = req.session.cedula;
+    const { curp_pacien } = req.body;
+    const date_dieta = new Date().toISOString().slice(0, 10);
+    querys.enviarDietaBase(curp_pacien, cedula_med, date_dieta, (error, last_id) => {
+      if (last_id) {
+        querys.verAlimentos((error2, alimentosver) => {
+          if (alimentosver) {
+             //inicio de la segunda consulta de query
+             querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
+              if (alimentosver) {
+                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento});
+              } else {
+                console.log(error3);
+              }
+            });
+            //fin de la segunda consulta de query
+          } else {
+            console.log(error2);
+          }
+        });
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  Controllers.dietaVerDoctorGet = (req, res, next) => {
+    const last_id = req.session.id_dieta;
+        querys.verAlimentos((error2, alimentosver) => {
+          if (alimentosver) {
+            //inicio de la segunda consulta de query
+            querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
+              if (alimentosver) {
+                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento});
+              } else {
+                console.log(error3);
+              }
+            });
+            //fin de la segunda consulta de query
+          } else {
+            console.log(error2);
+          }
+        });
+};
+
+
+  Controllers.enviarDietaBaseIngrediente = (req, res, next) => {
+    const {id_dieta} = req.body;
+    const {id_ingred} = req.body;
+    querys.enviarDietaBaseIngrediente(id_dieta,id_ingred,(error, agregado) => {
+      if (agregado) {
+        req.session.id_dieta=id_dieta;
+        res.redirect('/Glucky/Doctores/EditarDieta');
+        console.log('ha sido agregado un alimento SIIIIIIIIIIIIIIIIIIII');
+      } else {
+        console.log(error);
+      }
+    });
+  };
+  
+
+Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
+    const {id_dieta} = req.body;
+    const {id_dietingred} = req.body;
+    querys.eliminarIngrediente(id_dietingred,id_dieta,(error, eliminado) => {
+      if (eliminado) {
+        req.session.id_dieta=id_dieta;
+        res.redirect('/Glucky/Doctores/EditarDieta');
+        console.log('ha sido eliminado un alimento SIIIIIIIIIIIIIIIIIIII');
+      } else {
+        console.log(error);
+      }
+    });
+  }; 
+
   Controllers.PacienteDoctorGet = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const CURPform = req.session.paciente;
@@ -194,7 +287,25 @@ Controllers.dashboardDoctores=(req,res,next)=>{
           //inicio de la tercera consulta de query 
           querys.VerDatoDoctor(Cedula,(error3,doctorver)=>{
             if(doctorver){
-              res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver});
+              //inicio de la cuarta consulta de query 
+              querys.verDietaBase(CURPform,(error4,dietaver)=>{
+                if(dietaver){
+                //inicio de la quinta consulta de query 
+                querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
+                  if(dietasverTodas){
+                    res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas});
+                  }
+                  else{
+                    console.log(error5);
+                  }
+                }); 
+                //final de la quinta consulta de query
+                }
+                else{
+                  console.log(error4);
+                }
+              }); 
+              //final de la cuarta consulta de query
             }
             else{
               console.log(error3);
@@ -213,7 +324,6 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     }); 
   };
-
 
   Controllers.PacienteDoctorCitas = (req,res,next)=>{
     const{CurpForm} =req.body;
@@ -354,7 +464,16 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const{CurpForm} = req.body;
     querys.aceptarPeticiones(Cedula,CurpForm,(error,cambio)=>{
       if(cambio){
-        console.log('Petición aceptada');
+        const fechaActual = new Date();
+        const fechaSQL = fechaActual.toLocaleString('en-US', { timeZone: 'UTC' });
+        querys.crearChat(Cedula,CurpForm,fechaSQL,(error,chat)=>{
+          if(chat){
+            console.log('Petición aceptada');
+          }
+          else{
+            console.log(error);
+          }
+        })
       }
       else{
         console.log(error);
