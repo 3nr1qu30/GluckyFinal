@@ -90,11 +90,9 @@ if (cp === cp) {
   validarFormularioCuenta(e);
 }
 if(password === password){
-	console.log(`Contraseña es igual`);
-	campos.password = true
+	campos.password = false
     } else{
 		validarFormularioCuenta(e);
-		console.log(`Contraseña cambio we`);
 }
 
 var caedulaVar = cedula;
@@ -257,6 +255,23 @@ const validarFormularioCuenta = (e) => {
   }
 };
 
+const validarNuevaPassword = (e) => {
+    switch(e.target.name){
+        case "NewPass":
+            if(expReg.password.test(e.target.value)){
+                document.querySelector('#grupo_password .form_input_error').classList.remove('form_input_error-activo');
+                campos.password = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_password .form_input_error').classList.add('form_input_error-activo');
+                campos.password = false;                
+            } else {
+                document.querySelector('#grupo_password .form_input_error').classList.add('form_input_error-activo');
+                campos.password = false;                
+            }
+        break;
+    }
+}
+
 let getMode = localStorage.getItem("mode");
 if (getMode && getMode === "dark") {
   body.classList.toggle("dark");
@@ -349,6 +364,10 @@ inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormularioCuenta);
   input.addEventListener("blur", validarFormularioCuenta);
 });
+inputs2.forEach((input) => {
+  input.addEventListener("keyup", validarNuevaPassword);
+  input.addEventListener("blur", validarNuevaPassword);
+});
 
 formularioEditarPerfil.addEventListener("submit", (e) => {
   if (
@@ -379,3 +398,16 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
     });
   }
 });
+
+formularioEditarPassword.addEventListener("submit", (e) => {
+    if (campos.password){
+        formularioEditarPassword.submit()
+    } else{
+        e.preventDefault();
+        swal({
+        icon: "error",
+        title: "Contraseña inválida",
+        text: "Por favor, verifica que la contraseña ingresada cumple el formato establecido",
+        });
+    }
+})
