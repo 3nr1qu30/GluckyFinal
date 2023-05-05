@@ -4,18 +4,19 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 io.on('connection', (socket) => {
-  socket.on('userConnected', (userId) => {
+  socket.on('userConnected', (emisor) => {
     // Asocia el id del usuario con la conexión del socket actual
-    console.log('usuario conectado ' + userId);
-    socket.userId = userId;
+    console.log('usuario conectado ' + emisor);
+    socket.emisor = emisor;
   });
   
   // Utiliza socket.userId para identificar al usuario en eventos futuros
   socket.on('nuevoMensaje', (messageData) => {
-    const userId = socket.userId;
+    
     const message = {
       message: messageData.message,
-      userId: userId
+      emisor: messageData.emisor,
+      receptor: messageData.receptor
     };
     io.emit('nuevoMensaje', message);
   });

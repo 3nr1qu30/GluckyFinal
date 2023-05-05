@@ -164,14 +164,15 @@
                Tu cuenta
             </div>
             <% for(var i=0;i<datos.length;i++){%>
-          <form action="/Glucky/Doctores/ActualizacionDoctor" method="post">
+          <form action="/Glucky/Doctores/ActualizacionDoctor" method="post" id="formularioEditarPerfil">
           
             <div class="Info">
-                <div class="infoEdit">
-                  <h5 class="infoDoc">Nombre</h5>  
-                  <h6 class="nomDoc">
-                    <input type="text"  id="edText" class="formdato" name="NombreForm" value="<%=datos[i].nom_pers%>">
-                  </h6>
+              <div class="infoEdit" id="grupo_nombre">
+                <h5 class="infoDoc">Nombre</h5>  
+                <h6 class="nomDoc">
+                  <input type="text"  id="edText" class="formdato" name="NombreForm" value="<%=datos[i].nom_pers%>">
+                </h6>
+                <p class="form_input_error">El o los nombres deben contener minimo dos letras con la primera letra en mayúscula</p>
                 </div>
                 <div class="botonEdit">
                
@@ -179,11 +180,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" >
+                <div class="infoEdit" id="grupo_apellidos">
                   <h5 class="infoDoc">Apellidos</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="ApellidosForm" value="<%=datos[i].apellidos_pers%>">
                   </h6>
+                  <p class="form_input_error">Los apellidos deberán tener como mínimo dos letras</p>
                 </div>
                 <div class="botonEdit">
                
@@ -191,7 +193,7 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit">
                   <h5 class="infoDoc">Cédula profesional</h5> 
                   <h6 class="alerta_no">
                     🛈 no puedes editar tu cédula profesional
@@ -206,13 +208,13 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit">
                   <h5 class="infoDoc">Email de contacto</h5>
                   <h6 class="alerta_no">
                     🛈 no puedes editar tu e-mail de contacto
                   </h6>
                   <h6 class="nomDoc">
-                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>" readonly="readonly">
+                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>">
                   </h6>
                 </div>
                 <div class="botonEdit">
@@ -221,11 +223,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_edad">
                   <h5 class="infoDoc">Edad</h5>
                   <h6 class="nomDoc">
                     <input type="number"  id="edText" class="formdato" name="EdadForm" value="<%=datos[i].edad_pers%>">
                   </h6>
+                  <p class="form_input_error">Introduzca una edad válida</p>
                 </div>
                 <div class="botonEdit">
                
@@ -233,11 +236,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_telefono">
                   <h5 class="infoDoc">Teléfono de contacto</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="TelForm" value="<%=datos[i].tel_pers%>">
                   </h6>
+                  <p class="form_input_error">Introduzca 10 dígitos</p>
                 </div>
                 <div class="botonEdit">
                
@@ -275,11 +279,12 @@
              </div>
 
              <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_calle">
                   <h5 class="infoDoc">Calle</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="CalleForm" value="<%=datos[i].calle_cons%>">
                   </h6>
+                  <p class="form_input_error">Escribe una calle válida</p>
                 </div>
                 <div class="botonEdit">
                
@@ -287,11 +292,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_numeroConsultorio">
                   <h5 class="infoDoc">Número de consultorio</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="NumeroForm" value="<%=datos[i].num_cons%>">
                   </h6>
+                  <p class="form_input_error">Escribe un consultorio válido de máximo 3 dígitos</p>
                 </div>
                 <div class="botonEdit">
                
@@ -299,7 +305,7 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_cp">
                   <h5 class="infoDoc">Código postal</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="CPForm" value="<%=datos[i].cp_cons%>">
@@ -307,9 +313,11 @@
                     <input type="hidden"  id="edText" name="DelForm" value="<%=datos[i].del_cons%>">
                     <input type="hidden"  id="edText" name="EdoForm" value="<%=datos[i].edo_cons%>">
                   </h6>
+                  <p class="form_input_error">El código postal contiene 5 dígitos</p>
                 </div>
-                <div class="botonEdit2">
+                <div class="botonEdit2" id="grupo_enviar">
                     <input type="submit" class="botonFormEdit">
+                    <p class="form_input_error">Por favor, rellene bien los datos</p>
                 </div>
             </div>
           
@@ -344,8 +352,8 @@
                   <span class="text">Contraseña</span>
               </div>
           </div>
-            <form action="/Glucky/Doctores/Password" method="post">
-            <div class="renovarContra">
+            <form action="/Glucky/Doctores/Password" method="post" id="formularioEditarPassword">
+            <div class="renovarContra" id="grupo_password">
                 <h4 class="achecuatro"> contraseña</h4>
                 
                
@@ -364,9 +372,12 @@
                 <input type="checkbox" onclick="mostrar2()" class="chequeado"> Mostrar 
                 <br>
                 
-                
+                <p class="form_input_error">La contraseña no está cumpliendo con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
 
                 <input type="submit" class="contrasenaNueva" value="Cambiar la contraseña">
+
+                <p class="form_input_error">Por favor, rellene bien los datos</p>
+
             </div>
           </form>
 <br>
@@ -377,7 +388,7 @@
             </script>
 </div>
     <script src="/js/perfilDoctor.js"></script>
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
     
 </body>
 </html>

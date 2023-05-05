@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        const emisor = '<%=curp%>';
+        const receptor = '<%=solicitud[0].cedula_med%>';
+    </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/chatDoctor.css">     
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Chat</title> 
@@ -195,45 +198,13 @@
 
         <div class="dash-content">
             <div class="overview">
-
-                
-
-                
-              
-                
-                <div class="row">
-                    <div class="personas" >
-
-                          <div class="buscador2" >
-                            <h4 class="buscaP2">Mensajes (23)</h4>
-                        </div>
-                        
-                       
-                        
-                        <div class="personasEl" id="style-2">
-                          
-                                <div class="persona">
-                                    <div class="cont">
-                                        <h4 class="Nombre">Isaads</h4>
-                                        <div class="mensajesCant">
-                                            <h4 class="Estado">tipo 1</h4>
-                                            <div class="cantidad">
-                                                20
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                
-                           
-                        </div>
-                    </div>
+                <%if(error==='undefined'){%>
                         <div class="chat" >
                             <div class="chatBo">
                                 <div class="chatNom">
                                   
                                         <div class="cont2">
-                                            <h4 class="Nombre">Isaads Montoya Rodriguez</h4>
+                                            <h4 class="Nombre"><%=solicitud[0].nom_pers%> <%=solicitud[0].apellidos_pers%></h4>
                                         </div>
                                      
                                        
@@ -266,6 +237,7 @@
                         </div>
                     </div>
                   </div>
+                  <%}%>
 
 
                 <div class="home-content">
@@ -291,61 +263,20 @@
 
   
 </div>
-
+<script src="/js/plantillaAlertas.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <%if(error==='No te has en lazado a un doctor'){%>
+        <script>
+            Noenlaze()
+        </script>
+    <%}else if(error==='No te has en lazado a un doctor'){%>
+        <script>
+            NocargaChat()
+        </script>
+    <%}%>%>
     <script src="/js/chatDoctor.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        const socket = io();
-        const button = document.querySelector('.enviarMensaje');
-        const messageInput = document.querySelector('.escribeC');
-        const userId = '<%= curp %>';// obtener el id de sesión del usuario actual
-        
-         socket.on('connect', () => {
-         socket.emit('userConnected', userId);
-         });
-
-        button.addEventListener('click', () => {
-          const message = messageInput.value;
-          const messageData = {
-            message: message,
-            userId // enviar el id de sesión junto con el mensaje
-          };
-          socket.emit('nuevoMensaje', messageData);
-          messageInput.value='';
-        });
-    
-        socket.on('nuevoMensaje', (data) => {
-          const messagesContainer = document.getElementById('menssages-container');
-          const newMessage = document.createElement('div');
-          const messageText = document.createElement('p');
-          const messageTime = document.createElement('span');
-    
-          messageText.textContent = data.message;
-          messageTime.textContent = getCurrentTime();
-          newMessage.appendChild(messageText);
-          newMessage.appendChild(messageTime);
-    
-          if (data.userId === userId) {
-            newMessage.className = 'message sent';
-          } else {
-            newMessage.className = 'message received';
-          }
-    
-          messagesContainer.appendChild(newMessage);
-        });
-    
-        function getCurrentTime() {
-          const date = new Date();
-          let hours = date.getHours();
-          let minutes = date.getMinutes();
-          let ampm = hours >= 12 ? 'PM' : 'AM';
-          hours = hours % 12;
-          hours = hours ? hours : 12; // el 0 se convierte en 12 para el formato de 12 horas
-          minutes = minutes < 10 ? '0' + minutes : minutes;
-          const strTime = hours + ':' + minutes + ' ' + ampm;
-          return strTime;
-        }
-      </script>
+    <script src="/js/chatpaciente.js"></script>
       
     
 </body>
