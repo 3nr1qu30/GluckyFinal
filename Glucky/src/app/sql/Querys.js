@@ -128,15 +128,6 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
  };
 
 
-db.verAlimentos = (callback)=>{
-  con.query(`SELECT * FROM ingrediente`, (error,ver)=>{
-   if(error){
-      console.error('No hay alimentos', error);
-   }else{
-     callback(null,ver);
-   }
-  });
- };
 
 
  db.verListaPacientes = (Cedula,callback)=>{
@@ -319,6 +310,51 @@ db.buscarDatosmedicos=(curp,callback)=>{
   }
 });
 };
+
+db.verAlimentos = (callback)=>{
+  con.query(`SELECT * FROM ingrediente`, (error,ver)=>{
+   if(error){
+      console.error('No hay alimentos', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
+
+db.verDietaBase=(curp_pacien,callback)=>{
+  con.query(`select * from dieta where curp_pacien ='${curp_pacien}';`,(error,registro)=>{
+    if(error){
+      console.log('Error al ver dieta: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,registro);
+    }
+  });
+};
+
+db.verIngredientesBaseSele=(id_dieta,callback)=>{
+  con.query(`select * from dietaingrediente  natural join ingrediente where id_dieta = '${id_dieta}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver dieta e ingrediente: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
+
+db.verDietasCompletas=(curp_pacien,cedula_med,callback)=>{
+  con.query(`select * from dieta natural join dietaingrediente natural join ingrediente 
+  where curp_pacien = '${curp_pacien}' and cedula_med = '${cedula_med}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver dieta e ingrediente: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
 //insertar registros a la base
 
 db.ActualizarDatoDoctor = async (CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,
@@ -479,6 +515,44 @@ db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callba
   });
 };
 
+
+db.enviarDietaBase = (curp_pacien, cedula_med, date_dieta, callback) => {
+  con.query(`insert into dieta (id_dieta,curp_pacien,cedula_med,date_dieta) 
+             values (default,'${curp_pacien}',${cedula_med},'${date_dieta}')`, (error, resultado) => {
+    if (error) {
+      console.log('Error al insertar dieta: ', error);
+      callback(error, null);
+    } else {
+      con.query("SELECT LAST_INSERT_ID() as last_id", (error, resultado) => {
+        if (error) {
+          console.log('Error al obtener el último id generado: ', error);
+          callback(error, null);
+        } else if (resultado.length > 0) {
+          const last_id = resultado[0].last_id;
+          console.log('El último id generado es: ', last_id);
+          callback(null, last_id);
+        } else {
+          console.log('No se encontró ningún último id generado.');
+          callback(null, null);
+        }
+      });
+    }
+  });
+};
+
+db.enviarDietaBaseIngrediente=(id_dieta,id_ingred,callback)=>{
+  con.query(`insert into dietaingrediente (id_dietingred, id_dieta, id_ingred)
+  VALUES (default, '${id_dieta}', '${id_ingred}');`,(error,registro)=>{
+    if(error){
+      console.log('Error al insertar elemento: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,'Elemento registrado');
+    }
+  });
+};
+
+
 //modificar registros
 db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
   con.query(`UPDATE pacientemedico SET cedula_med='${Cedula}', id_edosol=1 WHERE curp_pacien ='${Curp}'`,(error,actualizacion)=>{
@@ -587,6 +661,21 @@ db.eliminarMedicamento=(idMedic,callback)=>{
     }
   });
 };
+
+
+db.eliminarIngrediente=(id_dietingred,id_dieta,callback)=>{
+  con.query(`delete from dietaingrediente where id_dietingred = '${id_dietingred}' and id_dieta = '${id_dieta}';`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('ingrediente eliminado naranja');
+      callback(null,elimina);
+    }
+  });
+};
+
 
 
 //modificar y eliminar registros osea querys anidados jaja el que borre esto lo asesino
