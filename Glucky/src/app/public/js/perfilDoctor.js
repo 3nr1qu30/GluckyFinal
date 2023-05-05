@@ -43,7 +43,9 @@ const campos = {
     calle: false,
     numeroConsultorio: false,
     cp: false,
-    password: false 
+    password: false ,
+    email: false,
+    cedula: false
 } 
 
 if(nombre === nombre){
@@ -59,6 +61,20 @@ if(apellidos === apellidos){
     } else{
 		validarFormularioCuenta(e);
 		console.log(`Apellidos cambio we`);
+}
+if(email === email){
+	console.log(`Email es igual`);
+	campos.email = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`Email cambio we`);
+}
+if(cedula === cedula){
+	console.log(`Cedula es igual`);
+	campos.cedula = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`Cedula cambio we`);
 }
 if(edad === edad){
 	console.log(`Edad es igual`);
@@ -108,16 +124,28 @@ const validarFormularioCuenta = (e) => {
         case "NombreForm":
             if(expReg.nombre.test(e.target.value)){
                 document.querySelector('#grupo_nombre .form_input_error').classList.remove('form_input_error-activo');
-                campos.nombre = true;         
+                campos.nombre = true;
 				console.log(`El nombre es otro pa`);       
+                console.log(campos.nombre);
+                console.log(e.target.name);
+                console.log(nombre);
+                console.log(campos.nombre && campos.apellidos && campos.cedula && campos.email && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && calle.cp);
             } else if (e.target.value === ""){
-				document.querySelector('#grupo_nombre .form_input_error').classList.add('form_input_error-activo');
+                document.querySelector('#grupo_nombre .form_input_error').classList.add('form_input_error-activo');
                 campos.nombre = false;                
 				console.log(`El nombre es otro pa esta mal`);       
+                console.log(campos.nombre);
+                console.log(e.target.name);
+                console.log(nombre);
+                console.log(campos.nombre && campos.apellidos && campos.cedula && campos.email && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && calle.cp);
             } else {
-				document.querySelector('#grupo_nombre .form_input_error').classList.add('form_input_error-activo');
+                document.querySelector('#grupo_nombre .form_input_error').classList.add('form_input_error-activo');
                 campos.nombre = false;                
 				console.log(`El nombre es otro pa pero esta mal`);       
+                console.log(campos.nombre);
+                console.log(e.target.name);
+                console.log(nombre);
+                console.log(campos.nombre && campos.apellidos && campos.cedula && campos.email && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && calle.cp);
             }
             break;
 			case "ApellidosForm":
@@ -131,31 +159,32 @@ const validarFormularioCuenta = (e) => {
 					document.querySelector('#grupo_apellidos .form_input_error').classList.add('form_input_error-activo');
 					campos.apellidos = false;                
 				}
-				break;
-				case "EmailForm":
-					if(expReg.email.test(e.target.value)){
-						document.querySelector('#grupo_email .form_input_error').classList.remove('form_input_error-activo');
-						campos.email = true;                
-					} else if (e.target.value === ""){
-						document.querySelector('#grupo_email .form_input_error').classList.remove('form_input_error-activo');
-						campos.email = false;                
-					} else {
-						document.querySelector('#grupo_email .form_input_error').classList.add('form_input_error-activo');
-						campos.email = false;                
-					}
-					break;
-					case "CedulaForm":
-						if(expReg.cedula.test(e.target.value)){
-							document.querySelector('#grupo_cedula .form_input_error').classList.remove('form_input_error-activo');
-							campos.cedula = true;                
-						} else if (e.target.value === ""){
-							document.querySelector('#grupo_cedula .form_input_error').classList.remove('form_input_error-activo');
-							campos.cedula = false;                
-						} else {
-							document.querySelector('#grupo_cedula .form_input_error').classList.add('form_input_error-activo');
-							campos.cedula = false;                
-						}
-						/*
+			break;
+			case "EmailForm":
+                if(expReg.email.test(e.target.value)){
+                    document.querySelector('#grupo_email .form_input_error').classList.remove('form_input_error-activo');
+                    campos.email = true;                
+                } else if (e.target.value === ""){
+                    document.querySelector('#grupo_email .form_input_error').classList.add('form_input_error-activo');
+                    campos.email = false;                
+                } else {
+                    document.querySelector('#grupo_email .form_input_error').classList.add('form_input_error-activo');
+                    campos.email = false;                
+                }
+                    break;
+                    case "CedulaForm":
+                        if(e.target.value === cedula){
+                            campos.cedula = true;
+                            console.log(e.target.value);
+                            console.log(cedula);
+                            console.log(`El cedula esta bien papu no le muevas`);
+                        } else if (e.target.value === ""){
+                            console.log(`la cedula esta bien papu`);
+                            campos.cedula = false;                
+                        } else {
+                            console.log(`la cedula esta bien papu`);
+                            campos.cedula = false;                
+                        }
             break;
         case "EdadForm":
             if(expReg.edad.test(e.target.value)){
@@ -216,11 +245,9 @@ const validarFormularioCuenta = (e) => {
                 document.querySelector('#grupo_cp .form_input_error').classList.add('form_input_error-activo');
                 campos.cp = false;                
             }
-            break; */
+            break;
     }
-/*     if (campos.nombre && campos.apellidos && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && campos.cp) {
-        document.querySelector('#grupo_enviar .form_input_error').classList.remove('form_input_error-activo');
-    } */
+
 }
 
 
@@ -324,14 +351,24 @@ inputs.forEach((input) => {
 });
 
 formularioEditarPerfil.addEventListener('submit', (e) => {
-    if (campos.nombre && campos.apellidos && campos.cedula && campos.email) {
+    if (campos.nombre && campos.apellidos && campos.cedula && campos.email && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && calle.cp) {
+    // if (campos) {
         console.log(`esta bien`);
 		formularioEditarPerfil.submit();
-	} else if(cedula !== cedula || email !== cedula){
-		console.log(`No se puede crack`);
+	} else if(cedula !== cedula){
+        swal({
+            icon: "waring",
+            title: "Cédula modificada",
+            text: "La cédula no puede ser modificada, de lo contrario no se modificará nada"
+        })
 		e.preventDefault();
 	} else {
     e.preventDefault();
+    swal({
+        icon: "error",
+        title: "Datos incorrectos",
+        text: "Por favor, verifica que los datos ingresados cumplen el formato establecido"
+    })
     document.querySelector('#grupo_enviar .form_input_error').classList.add('form_input_error-activo');    
 	}
 });
