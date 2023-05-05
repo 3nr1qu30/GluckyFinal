@@ -1,6 +1,8 @@
+
+
 //Errores
 function DoctorSinRegistro(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'El doctor no está registrado en el sistema',
@@ -8,14 +10,14 @@ function DoctorSinRegistro(e) {
 };
 
 function PacienteSinRegistro(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'El paciente no está registrado en el sistema',
   });
 };
 function PassIncorrecto(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'Contraseña incorrecta',
@@ -23,7 +25,7 @@ function PassIncorrecto(e) {
 };
 
 function DoctorRegistradoAnt(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'Ya existe una cuenta con esta cédula profesional',
@@ -31,7 +33,7 @@ function DoctorRegistradoAnt(e) {
 };
 
 function NoRegistroDoc(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'No se pudo registrar al doctor en el sistema',
@@ -39,7 +41,7 @@ function NoRegistroDoc(e) {
 };
 
 function NoRegistroPa(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'No se pudo registrar al paciente en el sistema',
@@ -47,16 +49,34 @@ function NoRegistroPa(e) {
 };
 
 function PacienteRegistradoAnt(e) {
-  Swal.fire({
+  swal({
     icon: 'error',
     title: 'Error',
     text: 'Ya existe una cuenta con esta CURP',
   });
 };
 
+function Noenlaze(e) {
+  swal({
+    icon: 'error',
+        title: 'Error',
+        text: 'No puedes acceder a esta función, ya que no te has enlazado a ningún doctor',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
+  });
+}
+
+function NocargaChat(e){
+  swal({
+    icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al cargar esta pagina intenta en unos instantes',
+  })
+}
+
 //Exitos
 function DoctorRegistrado(e) {
-  Swal.fire({
+  swal({
     icon: 'success',
     title: 'Exito',
     text: 'Doctor registrado al sistema',
@@ -66,7 +86,7 @@ function DoctorRegistrado(e) {
 };
 
 function PacienteRegistrado(e) {
-  Swal.fire({
+  swal({
     icon: 'success',
     title: 'Exito',
     text: 'Paciente registrado al sistema',
@@ -76,7 +96,7 @@ function PacienteRegistrado(e) {
 };
 
 function NivelesRegistrados(e) {
-  Swal.fire({
+  swal({
     icon: 'success',
     title: 'Exito',
     text: 'Niveles registrados',

@@ -1,5 +1,6 @@
 const { Chart } = require('chart.js/auto');
 const querys = require('../sql/Querys');
+const { query } = require('express');
 const Controllers={};
 
 //get
@@ -296,7 +297,20 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
 
   Controllers.chatPacienteGet=(req,res,next)=>{
     const curp = req.session.curp;
-    res.render('chatPaciente',{curp});
+    querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
+      if(solicitud.length!==0){
+        error='undefined';
+        res.render('chatPaciente',{curp,solicitud,error});
+      }
+      else if(solicitud.length===0){
+      error = "No te has en lazado a un doctor";
+      res.render('chatPaciente',{curp,solicitud,error});
+      }
+      else if(error){
+        error='no se pudo cargar la pagina';
+        res.render('chatPaciente',{curp,solicitud,error});
+      }
+    });
   };
 
 
