@@ -2,10 +2,10 @@ const body = document.querySelector("body"),
   modeToggle = body.querySelector(".mode-toggle");
 sidebar = body.querySelector("nav");
 sidebarToggle = body.querySelector(".sidebar-toggle");
-const formularioEditarPerfil = document.getElementById(
-  "formularioEditarPerfil"
-);
+const formularioEditarPerfil = document.getElementById("formularioEditarPerfil");
+const formularioEditarPassword = document.getElementById("formularioEditarPassword");
 const inputs = document.querySelectorAll("#formularioEditarPerfil input");
+const inputs2 = document.querySelectorAll("#formularioEditarPassword input");
 const cedula = document.querySelector('input[name="CedulaForm"]').value;
 const email = document.querySelector('input[name="EmailForm"]').value;
 const nombre = document.querySelector('input[name="NombreForm"]').value;
@@ -13,10 +13,9 @@ const apellidos = document.querySelector('input[name="ApellidosForm"]').value;
 const edad = document.querySelector('input[name="EdadForm"]').value;
 const telefono = document.querySelector('input[name="TelForm"]').value;
 const calle = document.querySelector('input[name="CalleForm"]').value;
-const numeroConsultorio = document.querySelector(
-  'input[name="NumeroForm"]'
-).value;
+const numeroConsultorio = document.querySelector('input[name="NumeroForm"]').value;
 const cp = document.querySelector('input[name="CPForm"]').value;
+const password = document.querySelector('input[name="NewPass"]').value;
 
 const expReg = {
   nombre: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)*$/,
@@ -90,13 +89,13 @@ if (cp === cp) {
 } else {
   validarFormularioCuenta(e);
 }
-/* if(password === password){
+if(password === password){
 	console.log(`Contraseña es igual`);
 	campos.password = true
     } else{
 		validarFormularioCuenta(e);
 		console.log(`Contraseña cambio we`);
-} */
+}
 
 var caedulaVar = cedula;
 
