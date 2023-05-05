@@ -354,7 +354,16 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const{CurpForm} = req.body;
     querys.aceptarPeticiones(Cedula,CurpForm,(error,cambio)=>{
       if(cambio){
-        console.log('Petición aceptada');
+        const fechaActual = new Date();
+        const fechaSQL = fechaActual.toLocaleString('en-US', { timeZone: 'UTC' });
+        querys.crearChat(Cedula,CurpForm,fechaSQL,(error,chat)=>{
+          if(chat){
+            console.log('Petición aceptada');
+          }
+          else{
+            console.log(error);
+          }
+        })
       }
       else{
         console.log(error);

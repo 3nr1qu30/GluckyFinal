@@ -1,5 +1,6 @@
 const mysql=require('mysql2');
 const encrypt = require('../helpers/EncriptarContraseñas');
+const { callback } = require('chart.js/dist/helpers/helpers.core');
 
 var con;
 
@@ -320,6 +321,17 @@ db.buscarDatosmedicos=(curp,callback)=>{
 });
 };
 //insertar registros a la base
+
+db.crearChat = (Cedula,CurpForm,fechaSQL,callback)=>{
+  con.query(`INSERT INTO chat VALUES(default,'${CurpForm}','${Cedula}','${fechaSQL}')`,(error,chat)=>{
+    if (error){
+      callback(error,null);
+    }
+    else{
+      callback(null,chat);
+    }
+  });
+};
 
 db.ActualizarDatoDoctor = async (CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,
 DelForm,EdoForm,callback) =>{
