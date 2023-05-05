@@ -159,7 +159,15 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   querys.DesvincularDoctor(CurpForm,(error,desv)=>{
     if(desv){
       console.log(desv);
-      res.redirect('/Glucky/Pacientes/EditarCuenta');
+      querys.eliminarChat(CurpForm,(error,eliminar)=>{
+        if(eliminar){
+          console.log(eliminar);
+          res.redirect('/Glucky/Pacientes/EditarCuenta');
+        }
+        else{
+          console.log(error);
+        }
+      });
     }
     else{
       console.log(error);
@@ -312,6 +320,4 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   };
-
-
   module.exports = Controllers;

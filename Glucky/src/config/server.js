@@ -16,6 +16,7 @@ app.use(session({
     saveUninitialized: false,
   }));
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.json());
 //
 
 //importar rutas
