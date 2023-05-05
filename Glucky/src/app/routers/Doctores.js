@@ -9,8 +9,12 @@ router.get('/Alimentos',DoctoresControllers.Alimentos);
 router.get('/Medicamentos',DoctoresControllers.Medicamentos);
 router.get('/EditarCuenta',DoctoresControllers.VerDatosDoctor);
 router.get('/PacienteDoctor',DoctoresControllers.PacienteDoctorGet);
+router.get('/EditarDieta',DoctoresControllers.dietaVerDoctorGet);
 router.get('/Chat',DoctoresControllers.chatDoctorGet);
 
+router.post('/EliminarIngredienteDieta',DoctoresControllers.eliminarDietaBaseIngrediente);
+router.post('/EnviarIngredienteDieta',DoctoresControllers.enviarDietaBaseIngrediente);
+router.post('/VerDietasPacienteDoctor',DoctoresControllers.dietaVerDoctor);
 router.post('/PacienteDoctorCitasEd',DoctoresControllers.PacienteDoctorCitasEd);
 router.post('/PacienteDoctorCitasEl',DoctoresControllers.PacienteDoctorCitasEl);
 router.post('/PacienteDoctorCitas',DoctoresControllers.PacienteDoctorCitas);

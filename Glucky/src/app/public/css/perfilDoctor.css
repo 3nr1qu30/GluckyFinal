@@ -2539,3 +2539,7 @@ input::-webkit-inner-spin-button {
   color: red;
   display: block;
 }
+
+.swal-text {
+  text-align: center;
+}
