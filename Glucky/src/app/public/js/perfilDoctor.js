@@ -46,21 +46,62 @@ const campos = {
     password: false 
 } 
 
-var nombre1,
-apellidos1,
-edad1,
-telefono1,
-calle1,
-numeroConsultorio1,
-cp1;
-
 if(nombre === nombre){
 	console.log(`El nombre es igual`);
 	campos.nombre = true
-	} else{
+    } else{
 		validarFormularioCuenta(e);
 		console.log(`El nombre cambio we`);
-	}
+}
+if(apellidos === apellidos){
+	console.log(`Apellidos es igual`);
+	campos.apellidos = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`Apellidos cambio we`);
+}
+if(edad === edad){
+	console.log(`Edad es igual`);
+	campos.edad = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`Edad cambio we`);
+}
+if(telefono === telefono){
+	console.log(`El telefono es igual`);
+	campos.telefono = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`El telefono cambio we`);
+}
+if(calle === calle){
+	console.log(`Calle es igual`);
+	campos.calle = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`Calle cambio we`);
+}
+if(numeroConsultorio === numeroConsultorio){
+	console.log(`El numero de consultorio es igual`);
+	campos.numeroConsultorio = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`El numero de consultorio cambio we`);
+}
+if(cp === cp){
+	console.log(`El cp es igual`);
+	campos.cp = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`El cp cambio we`);
+}
+/* if(password === password){
+	console.log(`Contraseña es igual`);
+	campos.password = true
+    } else{
+		validarFormularioCuenta(e);
+		console.log(`Contraseña cambio we`);
+} */
 
 const validarFormularioCuenta = (e) => {
     switch (e.target.name){
@@ -283,7 +324,7 @@ inputs.forEach((input) => {
 });
 
 formularioEditarPerfil.addEventListener('submit', (e) => {
-    if (cedula === cedula && email === email && campos.nombre) {
+    if (campos.nombre && campos.apellidos && campos.cedula && campos.email) {
         console.log(`esta bien`);
 		formularioEditarPerfil.submit();
 	} else if(cedula !== cedula || email !== cedula){
