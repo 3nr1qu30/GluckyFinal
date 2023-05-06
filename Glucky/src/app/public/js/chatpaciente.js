@@ -39,7 +39,34 @@ socket.on('nuevoMensaje', (data) => {
 
   if (data.emisor === emisor) {
     newMessage.className = 'message sent';
+    const fecha = new Date();
+
+    const anio = fecha.getFullYear();
+    const mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
+    const dia = fecha.getDate();
+    const hora = fecha.getHours();
+    const minutos = fecha.getMinutes();
+    const segundos = fecha.getSeconds();
+    const fechaActual = `${anio}-${mes}-${dia}`;
+    const horaActual = `${hora}:${minutos}:${segundos}`;
+
     messagesContainer.appendChild(newMessage);
+    const url = 'http://localhost:3000/Glucky/Pacientes/MensajeNuevo';
+    const datams = {
+      IdChat:chat,
+      Emisor:emisor,
+      Receptor:receptor,
+      Mensaje:data.message,
+      Fecha:fechaActual,
+      Hora:horaActual
+    };
+    fetch(url,{
+      method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datams)
+    });
   } else if(data.emisor === receptor && data.receptor === emisor){
     newMessage.className = 'message received';
     messagesContainer.appendChild(newMessage);
