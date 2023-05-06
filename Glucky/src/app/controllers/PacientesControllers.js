@@ -305,7 +305,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
 
   Controllers.chatPacienteGet=(req,res,next)=>{
     const curp = req.session.curp;
-    querys.buscarChat(curp, (error, solicitud) => {
+    querys.buscarChatPaciente(curp, (error, solicitud) => {
       if(solicitud.length!==0){
         const id_chat = solicitud[0].id_chat;
         querys.buscarMensajes(id_chat,(error, mensajes) => {

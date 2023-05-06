@@ -66,6 +66,16 @@ function Noenlaze(e) {
   });
 }
 
+function NoenlazeDoc(e) {
+  swal({
+    icon: 'error',
+        title: 'Error',
+        text: 'No puedes acceder a esta función, ya que no te has enlazado a ningún paciente',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Doctores/Dashboard';
+  });
+}
+
 function NocargaChat(e){
   swal({
     icon: 'error',

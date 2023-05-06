@@ -18,8 +18,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
               else{
                 console.log(error3);
               }
-            }); 
-            //nuevocoso
+            });
           }
           else if(error2){
             console.log(error);
@@ -642,7 +641,18 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
 
   Controllers.chatDoctorGet=(req, res,next) => {
     const cedula = req.session.cedula;
-    res.render('chatDoctor',{cedula});
+    querys.buscarChatDoctor(cedula,(error,chat)=>{
+      if(chat.length!==0){
+        res.render('chatDoctor',{cedula,chat});
+      }
+      else if(chat.length===0){
+        chat='undefined';
+        res.render('chatDoctor',{cedula,chat});
+      }
+      else if(error){
+        console.log(error);
+      }
+    });
   }
   
  

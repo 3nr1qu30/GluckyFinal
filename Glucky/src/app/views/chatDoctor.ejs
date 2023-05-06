@@ -209,26 +209,25 @@
                         <div class="buscador">
                             <input type="search" class="buscaPss" placeholder="BUSCAR PACIENTES">
                         </div>
-                        
+                        <%if(chat !== 'undefined'){%>
+                            <%for(var i=0;i<chat.length;i++){%>
+                    <button id="<%=chat[i].curp_pacien%>">
                         <div class="personasEl" id="style-2">
-                          
                                 <div class="persona">
                                     <div class="cont">
-                                        <h4 class="Nombre">Isaads</h4>
+                                        <h4 class="Nombre"><%=chat[i].nom_pers%> <%=chat[i].apellidos_pers%></h4>
                                         <div class="mensajesCant">
-                                            <h4 class="Estado">tipo 1</h4>
-                                            <div class="cantidad">
-                                                20
-                                            </div>
+                                            <h4 class="Estado"><%=chat[i].nom_tipdiabts%></h4>
+                                            <h4 class="Estado"><%=chat[i].curp_pacien%></h4>
                                         </div>
                                     </div>
-                                </div>
-
-                                
-                           
+                                </div>  
                         </div>
+                    </button>
+                            <%}%>
+                        <%}%>
                     </div>
-                        <div class="chat" >
+<!--                         <div class="chat" >
                             <div class="chatBo">
                                 <div class="chatNom">
                                   
@@ -263,7 +262,7 @@
                                 </div>
                                 
                         </div>
-                    </div>
+                    </div> -->
                   </div>
 
 
@@ -295,7 +294,13 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chatDoctorSo.js"></script>
-       
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <%if(chat==='undefined'){%>
+        <script>
+            NoenlazeDoc()
+        </script>
+    <%}%>
     
 </body>
 </html>

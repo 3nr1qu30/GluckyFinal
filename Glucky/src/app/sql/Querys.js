@@ -30,8 +30,19 @@ const db={};
 //Consultas y demas a la base de datos no cierren la conexión ya que si hacen eso todo se va a la mierda jeje
 
 //Consultar info
-db.buscarChat=(curp,callback) => {
+db.buscarChatPaciente=(curp,callback) => {
   con.query(`SELECT * FROM chat natural join medico natural join persona where curp_pacien='${curp}'`,(error,chat) => {
+    if (error){
+      callback(error);
+    }
+    else{
+      callback(null,chat);
+    }
+  });
+};
+
+db.buscarChatDoctor=(cedula,callback) => {
+  con.query(`SELECT * FROM chat natural join paciente natural join tipodiabetes natural join persona where cedula_med='${cedula}'`,(error,chat) => {
     if (error){
       callback(error);
     }
