@@ -106,13 +106,14 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
+                    <% for(var i=0;i<dato.length;i++){%>
                     <div class="text-data">
-                      <span class="name">Nombre completito jeje</span>
-                      <span class="job">Email@cum.com</span>
+                      <span class="name"><%=dato[i].nom_pers%> <%=dato[i].apellidos_pers%></span>
+                      <span class="job"><%=dato[i].cedula_med%></span>
+                      <span class="job"><%=dato[i].email_pers%></span>
                       <span class="job">Doctor</span>
-                      <span class="job">Dirección??</span>
                     </div>
-              
+                    <%}%>
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
                         <i class="bx bx-plus-medical"></i>
@@ -122,7 +123,7 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Privacidad</>
+                      <button class="button"><a href="/Glucky/Doctores/EditarCuenta" style="color:#ffffff; text-decoration:none;">Cuenta</a></button>
                     </div>
               
                     <div class="analytics">

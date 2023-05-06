@@ -123,8 +123,15 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   querys.VerDatoPaciente(curp,(error,ver)=>{
     if(ver){
-      console.log(ver);
-      res.render('perfilPaciente',{datos:ver});
+      querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
+      if(pacdoc){
+        console.log(ver);
+        console.log(pacdoc);
+      res.render('perfilPaciente',{datos:ver, pacdoc:pacdoc});
+      }else{
+        console.log(error);
+      }
+    });
     }
     else{
       console.log(error);
@@ -235,6 +242,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           querys.enlazarDoctoresPacientes(curp,CedulaForm,(error,enlaze)=>{
             if(enlaze){
               console.log('solicitud enviada');
+              res.redirect("/Glucky/Pacientes/Dashboard");
             }
             else{
               console.log(error);
@@ -244,6 +252,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           querys.reintentoenlazeDoctoresPacientes(curp,CedulaForm,(error,actualizacion)=>{
             if(actualizacion){
               console.log('solicitud envidad');
+              res.redirect("/Glucky/Pacientes/Dashboard");
             }
             else{
               console.log('Error al actualizar la solicitud');
