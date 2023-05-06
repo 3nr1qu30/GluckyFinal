@@ -334,7 +334,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             error='undefined';
             res.render('chatPaciente',{curp,solicitud,mensajes,format12HourTime,formatDate,error});
           }
-          else if(mensajes.length!==0){
+          else if(mensajes.length===0){
             error='undefined';
             mensajes='undefined';
             res.render('chatPaciente',{curp,solicitud,mensajes,error});
