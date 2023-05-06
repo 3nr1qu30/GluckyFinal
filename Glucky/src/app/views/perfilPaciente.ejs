@@ -62,13 +62,13 @@
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="/Glucky/IniciodeSesion">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Salir</span>
                 </a></li>
 
                 <li class="mode">
-                    <a href="#">
+                    <a href="/Glucky/Pacientes/EditarCuenta">
                         <i class="uil uil-x"></i>
                     <span class="link-name">Ajustes de cuenta</span>
                 </a>
@@ -115,9 +115,11 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
+                    <% for(var i=0;i<datos.length;i++){%>
                     <div class="text-data">
-                      <span class="name">Nombre completito jeje</span>
-                      <span class="job">Email@cum.com</span>
+                      <span class="name"><%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%></span>
+                      <span class="name"><%=datos[i].curp_pacien%></span>
+                      <span class="job"><%=datos[i].email_pers%></span>
                       <span class="job">Paciente</span>
                     </div>
               
@@ -166,8 +168,13 @@
             <div class="Titulo">
                Tu cuenta
             </div>
+<<<<<<< HEAD
+          
+            <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post">
+=======
             <% for(var i=0;i<datos.length;i++){%>
             <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post" id="formularioEditarPerfil">
+>>>>>>> 774556718a91be6db11328cb08fd12f00d2bab29
 
             <div class="Info">
                 <div class="infoEdit" id="grupo_nombre">
@@ -318,6 +325,7 @@
                     <span class="text">Doctor asignado</span>
                 </div>
             </div>
+            <% for(var i=0;i<pacdoc.length;i++){%>
             <form action="/Glucky/Pacientes/Desvinculacion" method="post">
             <div class="doctorC">
                 <div class="flexos">
@@ -329,25 +337,35 @@
                    var numcons;
                    var cedmed;
                    var direccion;
+
+                   var nombre;
+                   var email
+                   var tel
                  if (idedo == 3){
-                 numcons, cedmed, direccion = "";
+                 nombre = "No estás vinculado a ningún doctor";
+                 numcons, cedmed, direccion, email, tel = "";
                  }else if(idedo == 2){
                   numcons = datos[i].num_cons;
                   cedmed =datos[i].cedula_med;  
                   direccion = datos[i].calle_cons + ", " + datos[i].col_cons+ ", " + datos[i].del_cons+ ", " + datos[i].cp_cons+ ", " + datos[i].edo_cons;
-                 }%>
-                <h5 class="TituloDoc2"> <b class="black"> Nombre:</b> Nombre ApellidoP ApellidoM </h5>
+                  nombre = pacdoc[i].nom_pers + " " + pacdoc[i].apellidos_pers;
+                  email = pacdoc[i].email_pers;
+                  tel = pacdoc[i].tel_pers;
+                
+                }%>
+                <h5 class="TituloDoc2"> <b class="black"> Nombre:</b><%=nombre%></h5>
                 <div class="TituloDoc3">
                     <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> <%=numcons%></h5>
                     <h5 class="tit"> <b class="black"> Cédula profesional:</b> <%=cedmed%></h5>
                     <h5 class="tit"> <b class="black"> Dirección particular del consultorio:</b> <%=direccion%> </h5>
-                    <h5 class="tit"> <b class="black"> Email de contacto:</b> XXXXXXXXXXXXXX</h5>
-                    <h5 class="tit"> <b class="black"> Teléfono de contacto:</b> XXXXXXXXXXXXXX</h5>
+                    <h5 class="tit"> <b class="black"> Email de contacto:</b><%=email%></h5>
+                    <h5 class="tit"> <b class="black"> Teléfono de contacto:</b><%=tel%></h5>
                 </div>
                 <input type="submit" class="btm" value="Desvincular doctor" name="desvincularDoc">
             </div>
           </form>
-            <%}%>
+            <%}
+            }%>
             <br>
             <br>
            
@@ -393,9 +411,8 @@
          
             </script>
 </div>
-    <script src="/js/perfilPaciente.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
-    
+    <script src="/js/perfilDoctor.js"></script>    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
     
 </body>
 </html>

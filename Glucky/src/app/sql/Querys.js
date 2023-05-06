@@ -121,6 +121,17 @@ db.VerDatoPaciente = (curp,callback)=>{
   });
   };
 
+  db.DatoPacienteDoctor = (curp,callback)=>{
+    con.query(`SELECT * FROM medico NATURAL JOIN persona NATURAL JOIN pacientemedico Where curp_pacien = '${curp}'`,(error,datos)=>{
+      if(error){
+        console.error('No existe pero se supone que si debia existir jeje', error);
+        callback(error, null);
+      }
+      else{
+        callback(null, datos);
+      }
+    });
+    };
 
 db.buscarPaciente = (CurpForm,callback)=>{
   con.query(`SELECT * FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{

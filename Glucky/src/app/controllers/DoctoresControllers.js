@@ -86,10 +86,10 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     const Cedula = req.session.cedula;
     querys.verPeticionesDoctor(Cedula,(error,ver)=>{
       if(ver){
-        querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
+        querys.VerDatoDoctor(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
             console.log(`ver las citas`);
-            res.render('peticionesDoctor',{datos:ver,citasaceptadas});
+            res.render('peticionesDoctor',{datos:ver,dato:citasaceptadas});
           }
           else if(error){
             console.log(error);
@@ -109,8 +109,14 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       if(ver){
         querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
+            querys.VerDatoDoctor(Cedula,(error,dato)=>{
+              if(dato){
             console.log(`Ver las citas`);
-            res.render('citasDoctor',{datos:ver,citasaceptadas});
+            res.render('citasDoctor',{datos:ver,citasaceptadas,dato:dato});
+              }  else if(error){
+                console.log(error);
+              }
+          });
           }
           else if(error){
             console.log(error);
@@ -124,11 +130,18 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   };
 
   Controllers.Alimentos = (req,res,next)=>{
+    const cedula = req.session.cedula;
     console.log(req.body);
     querys.verAlimentos((error,ver)=>{
       if(ver){
+        querys.VerDatoDoctor(cedula,(error,dato)=>{
+          if(dato){
         console.log(ver);
-        res.render('almacenDoctorIngredientes',{datos:ver});
+        res.render('almacenDoctorIngredientes',{datos:ver, dato:dato});
+        } else if(error){
+          console.log(error);
+        }
+         });
       }
       else{
         console.log(error);
@@ -137,11 +150,18 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   };
 
   Controllers.Medicamentos = (req,res,next)=>{
+    const cedula = req.session.cedula;
     console.log(req.body);
     querys.verMedicamentos((error,ver)=>{
       if(ver){
+        querys.VerDatoDoctor(cedula,(error,dato)=>{
+          if(dato){
         console.log(ver);
-        res.render('almacenDoctorMedicamentos',{datos:ver});
+        res.render('almacenDoctorMedicamentos',{datos:ver, dato:dato});
+      } else if(error){
+        console.log(error);
+      }
+       });
       }
       else{
         console.log(error);

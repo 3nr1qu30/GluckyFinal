@@ -81,7 +81,6 @@
                 <input type="text" placeholder="Aplicación glucky para doctores" disabled>
             </div>
 
-
                 <div class="icon" onclick="toggleNotifi()">
 			        <div class="noti">17</div>
 		        </div>
@@ -107,11 +106,12 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
+                    <% for(var i=0;i<datos.length;i++){%>
                     <div class="text-data">
-                      <span class="name">Nombre completito jeje</span>
-                      <span class="job">Email@cum.com</span>
+                      <span class="name"><%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%></span>
+                      <span class="job"><%=datos[i].cedula_med%></span>
+                      <span class="job"><%=datos[i].email_pers%></span>
                       <span class="job">Doctor</span>
-                      <span class="job">Dirección??</span>
                     </div>
               
                     <div class="media-buttons">
@@ -123,7 +123,6 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Privacidad</>
                     </div>
               
                     <div class="analytics">
@@ -163,7 +162,7 @@
             <div class="Titulo">
                Tu cuenta
             </div>
-            <% for(var i=0;i<datos.length;i++){%>
+           
           <form action="/Glucky/Doctores/ActualizacionDoctor" method="post" id="formularioEditarPerfil">
           
             <div class="Info">
