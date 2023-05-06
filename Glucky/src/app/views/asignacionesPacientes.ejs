@@ -266,21 +266,46 @@
 
           <div class="column2">
 
-            <!--UN TRATAMIENTO-->  
-            <h3  class="name">Tratamientos</h3>
-            <div class="card amarillosC">
-              <h4>tratamiento uno</h4>
-              <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am.</p>
-              <h6> fecha de publicación:</h6>
-            </div>
-            <!--FIN TRATAMIENTO-->
-  
-            <!--UN TRATAMIENTO-->  
-            <div class="card amarillosC">
-              <h4>tratamiento dos</h4>
-              <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am</p>
-              <h6> fecha de publicación:</h6>
-            </div>
+            <h3 class="name">Tratamientos totales: <%=recetaver.length%></h3>
+            <%if(recetaver.length!==0){%>
+              <%} else{ %>
+                En estos momentos, no cuentas con ninguna receta médica programada.
+              <%}%>
+
+            <!--UN TRATAMIENTOs-->  
+            <% if (recetaverTodas.length !== 0) {
+              const recetasPorId = {};
+              recetaverTodas.forEach((receta) => {
+                if (!recetasPorId[receta.id_receta]) {
+                  recetasPorId[receta.id_receta] = [receta];
+                } else {
+                  recetasPorId[receta.id_receta].push(receta);
+                }
+              });
+              const gruposDeRecetas = Object.values(recetasPorId);
+              gruposDeRecetas.forEach((grupoDeRecetas, index) => {
+              const fechaDePublicacionReceta = grupoDeRecetas[0].date_receta.toISOString().substring(0, 10);
+            %>
+
+          <div class="card amarillosC">
+            <h4 class="nomani">Tratamiento <%= index + 1 %></h4>
+
+            <% grupoDeRecetas.forEach((receta) => { %>
+              <div class="small-content granadagrande"><%= receta.nom_medic %>, cantidad: <%= receta.frec_recmed %> %></div>
+            <% }); %>
+
+            
+            <% let listaMedicamentos = ""; %>
+                <% grupoDeRecetas.forEach((receta) => { %>
+                  <% listaMedicamentos += `${receta.nom_medic} (cantidad: ${receta.frec_recmed} tipo: ${receta.present_recmed}), `; %>
+                <% }); %>
+                <p class="small-content arianagrenade"><%= listaMedicamentos.slice(0, -2) %></p>
+
+                <br>
+                <h6 class="fechass"> fecha de publicación: <%= fechaDePublicacionReceta %></h6>
+              </div>
+            <% });
+          }%>
             <!--FIN TRATAMIENTO-->
 
 

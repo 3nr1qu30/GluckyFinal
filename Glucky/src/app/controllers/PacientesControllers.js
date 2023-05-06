@@ -174,10 +174,28 @@ Controllers.verAsignacionesPaciente = (req,res,next)=>{
                //inicio de la cuarta consulta de query 
                querys.verDietaBase(curp,(error4,dietaver)=>{
                 if(dietaver){
-                //inicio de la quinta consulta de query 
+                //inicio de la quinta consulta de query verTratamientoBase
                 querys.verDietasCompletas2(curp,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                    res.render('asignacionesPacientes',{citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas});
+                     //inicio de la sexta consulta de query 
+                      querys.verTratamientosCompletas2(curp,(error6,recetaverTodas)=>{
+                        if(recetaverTodas){
+                          //inicio de la séptima consulta de query 
+                          querys.verTratamientoBase(curp,(error7,recetaver)=>{
+                            if(recetaver){
+                              res.render('asignacionesPacientes',{citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
+                            }
+                            else{
+                              console.log(error7);
+                            }
+                          }); 
+                          //final de la séptima consulta de query
+                        }
+                        else{
+                          console.log(error6);
+                        }
+                      }); 
+                      //final de la sexta consulta de query
                   }
                   else{
                     console.log(error5);

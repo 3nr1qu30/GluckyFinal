@@ -524,7 +524,7 @@
 
         <div class="title">
           <i class="uil uil-abacus" ></i>
-          <span class="text">Asignaciones con Isaac</span>
+          <span class="text">Asignaciones con  <%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
         </div>
 
 
@@ -623,7 +623,9 @@
         <div class="column1">
 
        
-          <h3 class="name">Citas totales: <%= citas.length %></h3>
+          <h3 class="name"><% if (citas && citas.length > 0) { %>
+            Citas totales: <%=citas.length%>
+          <% } %></h3>
 
 
           <%if(citas.length!==0){%>
@@ -643,7 +645,7 @@
 
           <%}
         } else{ %>
-        No tienes citas con tu paciente, agrega citas usando el botón de acciones
+          <button class="KylieJenner"><i class="uil uil-plus-circle"></i> Agregar cita</button>
 
           <%}%>
          
@@ -651,11 +653,13 @@
           
         </div>
         <div class="column2">
-          <h3  class="name">Tratamientos totales: <%=recetaver.length%></h3>
+          <h3  class="name"><% if (recetaver && recetaver.length > 0) { %>
+            Tratamientos totales: <%=recetaver.length%>
+          <% } %></h3>
 
           <%if(recetaver.length!==0){%>
             <%} else{ %>
-              No tienes tratamientos con tu paciente, agrega tratamientos usando el botón de acciones
+              <button class="kimkardashian"><i class="uil uil-plus-circle"></i> Agregar tratamiento</button>
             <%}%>
 
             <% if (recetaverTodas.length !== 0) {
@@ -697,11 +701,13 @@
 
         </div>
         <div class="column3">
-          <h3  class="name">Dietas totales: <%=dietas.length%> </h3>
+          <h3  class="name"><% if (dietas && dietas.length > 0) { %>
+            Dietas totales: <%=dietas.length%>
+          <% } %> </h3>
 
           <%if(dietas.length!==0){%>
           <%} else{ %>
-            No tienes dietas con tu paciente, agrega dietas usando el botón de acciones
+            <button class="NickiMinaj"><i class="uil uil-plus-circle"></i> Agregar cita</button>
           <%}%>
 
           <% if (dietasverTodas.length !== 0) {
@@ -752,11 +758,11 @@
         </div>
 
                 <div class="row">
-                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; height: auto;">
-                        tabla
+                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto;">
+                        Sin registros
                     </div>
-                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; height: auto;">
-                        tabla
+                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; height: auto; width: 50%; margin: 0 auto;">
+                        Sin registros
                   </div>
                 </div>
 
@@ -782,13 +788,7 @@
                           <td data-label="Registro 3" >20/80 a las 17:32</td>
                           <td data-label="Registro 4" >220/80 a las 16:45</td>
                         </tr>
-                        <tr>
-                            <td  data-label="Hace 2 días" style="font-weight: bold;">20/12/2022 </td>
-                            <td data-label="Registro 1" >120/80 a las 19:31</td>
-                            <td data-label="Registro 2" >130/80 a las 18:32</td>
-                            <td data-label="Registro 3" >20/80 a las 17:32</td>
-                            <td data-label="Registro 4" >220/80 a las 16:45</td>
-                          </tr>
+                       
                       </table>
                   
                 </div>
@@ -805,13 +805,7 @@
                           <td data-label="Registro 3" >20/80 a las 17:32</td>
                           <td data-label="Registro 4" >220/80 a las 16:45</td>
                         </tr>
-                        <tr>
-                            <td  data-label="Hace 1 día" style="font-weight: bold;">20/12/2022 </td>
-                            <td data-label="Registro 1" >120/80 a las 19:31</td>
-                            <td data-label="Registro 2" >130/80 a las 18:32</td>
-                            <td data-label="Registro 3" >20/80 a las 17:32</td>
-                            <td data-label="Registro 4" >220/80 a las 16:45</td>
-                          </tr>
+                        
                       </table>
                 </div>
               </div>

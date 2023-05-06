@@ -4186,3 +4186,89 @@ transition: all ease .2s;
     transform-origin: 0 50%;
     transform: scaleX(1);
   }
+
+  .kimkardashian {
+    background-color: #47F16F;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .kimkardashian:hover {
+    background-color: #40d462;
+  }
+  .kimkardashian i {
+    display: inline-block; /* Permitir alinear ícono verticalmente */
+    font-size: 24px; /* Tamaño del ícono */
+    margin-right: 10px; /* Separación entre ícono y texto */
+    vertical-align: middle; /* Alinear verticalmente ícono e texto */
+  }
+
+
+  .KylieJenner{
+    background-color: #ff1212b2;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .KylieJenner:hover {
+    background-color: #d61010b2;
+  }
+
+
+  .KylieJenner i {
+    display: inline-block; /* Permitir alinear ícono verticalmente */
+    font-size: 24px; /* Tamaño del ícono */
+    margin-right: 10px; /* Separación entre ícono y texto */
+    vertical-align: middle; /* Alinear verticalmente ícono e texto */
+  }
+
+
+  .NickiMinaj{
+    background-color: #f0c63f;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .NickiMinaj:hover {
+    background-color: #c9a636;
+  }
+
+
+  .NickiMinaj i {
+    display: inline-block; /* Permitir alinear ícono verticalmente */
+    font-size: 24px; /* Tamaño del ícono */
+    margin-right: 10px; /* Separación entre ícono y texto */
+    vertical-align: middle; /* Alinear verticalmente ícono e texto */
+  }

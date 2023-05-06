@@ -449,6 +449,18 @@ db.verDietasCompletas2=(curp_pacien,callback)=>{
   });
 };
 
+db.verTratamientosCompletas2=(curp_pacien,callback)=>{
+  con.query(`select * from receta natural join recetamedicamento natural join medicamento 
+  where curp_pacien = '${curp_pacien}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver receta y medicamento: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
+
 db.verDietaIndividual=(curp_pacien,cedula_med,id_dieta,callback)=>{
   con.query(`select * from dieta 
   where curp_pacien = '${curp_pacien}' and cedula_med = '${cedula_med}' and id_dieta = '${id_dieta}';`,(error,vercosas)=>{
