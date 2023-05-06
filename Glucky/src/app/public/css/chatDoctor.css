@@ -2931,6 +2931,7 @@ input::-webkit-inner-spin-button {
   border-radius: 0px !important;
   transition: background-color 0.3s ease-in-out;
   margin-top: 0px !important;
+  height: auto !important;
 }
 
 .personasEl.badbuny:hover,
