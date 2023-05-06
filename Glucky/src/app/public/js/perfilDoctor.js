@@ -16,6 +16,8 @@ const calle = document.querySelector('input[name="CalleForm"]').value;
 const numeroConsultorio = document.querySelector('input[name="NumeroForm"]').value;
 const cp = document.querySelector('input[name="CPForm"]').value;
 const password = document.querySelector('input[name="NewPass"]').value;
+const borrarCuenta = document.querySelector('input[name="borrarcuenta"]')
+const cerrarSesion = document.querySelector('input[name="cerrarSesion"]')
 
 const expReg = {
   nombre: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)*$/,
@@ -90,11 +92,9 @@ if (cp === cp) {
   validarFormularioCuenta(e);
 }
 if(password === password){
-	console.log(`Contraseña es igual`);
-	campos.password = true
+	campos.password = false
     } else{
 		validarFormularioCuenta(e);
-		console.log(`Contraseña cambio we`);
 }
 
 var caedulaVar = cedula;
@@ -257,6 +257,23 @@ const validarFormularioCuenta = (e) => {
   }
 };
 
+const validarNuevaPassword = (e) => {
+    switch(e.target.name){
+        case "NewPass":
+            if(expReg.password.test(e.target.value)){
+                document.querySelector('#grupo_password .form_input_error').classList.remove('form_input_error-activo');
+                campos.password = true;                
+            } else if (e.target.value === ""){
+                document.querySelector('#grupo_password .form_input_error').classList.add('form_input_error-activo');
+                campos.password = false;                
+            } else {
+                document.querySelector('#grupo_password .form_input_error').classList.add('form_input_error-activo');
+                campos.password = false;                
+            }
+        break;
+    }
+}
+
 let getMode = localStorage.getItem("mode");
 if (getMode && getMode === "dark") {
   body.classList.toggle("dark");
@@ -349,20 +366,34 @@ inputs.forEach((input) => {
   input.addEventListener("keyup", validarFormularioCuenta);
   input.addEventListener("blur", validarFormularioCuenta);
 });
+inputs2.forEach((input) => {
+  input.addEventListener("keyup", validarNuevaPassword);
+  input.addEventListener("blur", validarNuevaPassword);
+});
 
 formularioEditarPerfil.addEventListener("submit", (e) => {
-  if (
-    campos.nombre &&
-    campos.apellidos &&
-    campos.cedula &&
-    campos.email &&
-    campos.edad &&
-    campos.telefono &&
-    campos.calle &&
-    campos.numeroConsultorio &&
-    campos.cp
-  ) {
-    formularioEditarPerfil.submit();
+    e.preventDefault();
+  if (campos.nombre && campos.apellidos && campos.cedula && campos.email && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && campos.cp) {
+    swal({
+        icon: "warning",
+        title: "Modificación de datos",
+        text: "¿Estás seguro de que deseas modificar los datos?",
+        buttons: ["Cancelar", "Modificar"]
+      }).then((modificacionConfirmada) => {
+        if(modificacionConfirmada){
+            swal({
+                icon: "success",
+                title: "Datos modificados"
+            }).then(() => {
+                formularioEditarPerfil.submit();
+            })
+        } else{
+            swal({
+                icon: "warning",
+                title: "Modificación cancelada"
+            })
+        }
+      })
   } else if (cedula !== caedulaVar) {
     swal({
       icon: "warning",
@@ -379,3 +410,71 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
     });
   }
 });
+
+formularioEditarPassword.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (campos.password){
+        swal({
+            icon: "warning",
+            title: "Cambio de contraseña",
+            text: "¿Estás seguro de que deseas cambiar la contraseña?",
+            buttons: ["Cancelar", "Cambiar"]
+          }).then((modificacionConfirmada) => {
+            if(modificacionConfirmada){
+                swal({
+                    icon: "success",
+                    title: "Contraseña cambiada"
+                }).then(() => {
+                    formularioEditarPassword.submit();
+                })
+            } else{
+                swal({
+                    icon: "warning",
+                    title: "Cambio de contraseña cancelado"
+                })
+            }
+          })
+    } else{
+        e.preventDefault();
+        swal({
+            icon: "error",
+            title: "Contraseña no válida",
+            text: "Por favor, verifica que la contraseña ingresada cumple el formato establecido",
+        });
+    };
+});
+
+cerrarSesion.addEventListener("click", (e) => {
+    e.preventDefault();
+    swal({
+        icon: "warning",
+        title: "Cerrar sesión",
+        text: "¿Estás seguro de que quieres cerrar sesión?",
+        buttons: ["Cancelar", "Cerrar"],
+        dangerMode: true
+    }).then((cerrar) => {
+        if(cerrar){
+            cerrarSesion.submit();
+        }
+    })
+})
+
+borrarCuenta.addEventListener("click", (e) => {
+    e.preventDefault()
+    swal({
+        icon: "warning",
+        title: "Borrar cuenta",
+        text: "¿Estás seguro de que deseas borrar tu cuenta?",
+        buttons: ["Cancelar", "Borrar"],
+        dangerMode: true
+      }).then((borrar) => {
+        if(borrar){
+            swal({
+                icon: "success",
+                title: "Cuenta eliminada"
+            }).then(() => {
+                borrarCuenta.submit();
+            })
+        }
+      })
+})
