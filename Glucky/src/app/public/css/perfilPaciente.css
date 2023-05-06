@@ -2530,3 +2530,16 @@ input::-webkit-inner-spin-button {
     border: solid;
     border-color: #00000000;
 }
+
+.form_input_error{
+  display: none;
+}
+
+.form_input_error-activo{
+  color: red;
+  display: block;
+}
+
+.swal-text {
+  text-align: center;
+}
