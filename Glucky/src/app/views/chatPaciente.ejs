@@ -4,6 +4,7 @@
     <script>
         const emisor = '<%=curp%>';
         const receptor = '<%=solicitud[0].cedula_med%>';
+        const chat ='<%=solicitud[0].id_chat%>'
     </script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -195,10 +196,9 @@
             </div>
         
         </div>
-
         <div class="dash-content">
             <div class="overview">
-                <%if(error==='undefined'){%>
+                <%if(solicitud!=='undefined'){%>
                         <div class="chat" >
                             <div class="chatBo">
                                 <div class="chatNom">
@@ -206,9 +206,6 @@
                                         <div class="cont2">
                                             <h4 class="Nombre"><%=solicitud[0].nom_pers%> <%=solicitud[0].apellidos_pers%></h4>
                                         </div>
-                                     
-                                       
-                                    
                                 </div>
                                 <div class="caja" id="menssages-container">
                                     <div class="acciones"> 
@@ -216,15 +213,36 @@
                                         Chat personal con tu endocrinologo
                                     </div>
                                     <br>
-
-
-                                         <div class="message received">
-                                        <p>¡Bien, gracias! ¿Y tú?</p>
-                                        <span class="time">10:35 AM Isaac</span>
-                                        </div>
-                                 
-
-                                    
+                                    <%if(mensajes !== 'undefined'){%>
+                                        <%for(var i=0; i<mensajes.length;i++){%>
+                                            <%if(i > 0 && formatDate(mensajes[i].date_mensaje) !== formatDate(mensajes[i-1].date_mensaje)){%>
+                                                <span><%=formatDate(mensajes[i].date_mensaje)%></span>  
+                                                <%if(mensajes[i].id_emisor===curp){%>
+                                                    <div class="message sent">
+                                                        <p><%=mensajes[i].desc_mensaje%></p>
+                                                        <span class="time"><%=format12HourTime(mensajes[i].hour_mensaje)%></span>
+                                                    </div>
+                                                <%}else{%>
+                                                    <div class="message received">
+                                                        <p><%=mensajes[i].desc_mensaje%></p>
+                                                        <span class="time"><%=format12HourTime(mensajes[i].hour_mensaje)%></span>
+                                                    </div>
+                                                <%}%>
+                                            <%}else{%>
+                                                <%if(mensajes[i].id_emisor===curp){%>
+                                                    <div class="message sent">
+                                                        <p><%=mensajes[i].desc_mensaje%></p>
+                                                        <span class="time"><%=format12HourTime(mensajes[i].hour_mensaje)%></span>
+                                                    </div>
+                                                <%}else{%>
+                                                    <div class="message received">
+                                                        <p><%=mensajes[i].desc_mensaje%></p>
+                                                        <span class="time"><%=format12HourTime(mensajes[i].hour_mensaje)%></span>
+                                                    </div>
+                                                <%}%>
+                                            <%}%>
+                                        <%}%>
+                                    <%}%>    
                                 </div>
                                 <div class="escribe">
                                     <input type="text" placeholder="Escribe un mensaje aquí..." class="escribeC">
@@ -233,7 +251,6 @@
                                     </button>
                                     <br>
                                 </div>
-                                
                         </div>
                     </div>
                   </div>
@@ -273,7 +290,7 @@
         <script>
             NocargaChat()
         </script>
-    <%}%>%>
+    <%}%>
     <script src="/js/chatDoctor.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chatpaciente.js"></script>

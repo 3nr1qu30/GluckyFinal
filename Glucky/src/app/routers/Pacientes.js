@@ -16,5 +16,6 @@ router.post('/Niveles',PacienteControllers.registroNiveles);
 router.post('/ActualizacionPaciente',PacienteControllers.ActualizarDatosPaciente);
 router.post('/Desvinculacion',PacienteControllers.Desvincular);
 router.post('/Password',PacienteControllers.ActualizarContraPaciente);
+router.post('/MensajeNuevo',PacienteControllers.AgregarMensaje);
 module.exports= router;
 

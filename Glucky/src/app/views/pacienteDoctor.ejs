@@ -335,6 +335,10 @@
                                       <!--Form para crear una nueva dieta a seguir-->
                                         <form action="/Glucky/Doctores/VerDietasPacienteDoctor" method="post">
                                           <div class="tratamientos nomaaaaa">
+
+                                            <input type="hidden" name="curpFormPacEd" value="<%=datos[0].curp_pacien%>">
+                                            <input type="hidden" name="cedulaEdit" value="<%=Cedula%>">
+
                                             <input type="hidden" name="curp_pacien" value="<%=datos[0].curp_pacien%>">
                                             <input type="hidden" name="id_cons" value="<%=doctor[0].id_consmed%>">
                                             Agregar dieta<button class="nomanchesanakaren nopales"><i class="uil uil-plus jajaamigazorra" ></i></button>
@@ -346,12 +350,14 @@
                                       <%if(dietas.length!==0){%>
                                         <%for(let i =0;i<dietas.length;i++){  var fechita = dietas[i].date_dieta;%>
                                       <div class="tratamientos">
-                                        <!--Form para ir a la dieta para verlo y editarlo-->
-                                          <form action="">
-                                            <input type="hidden" value="" name="id_recmed">
+                                        <!--Inicio de form para ir a la dieta para verlo y editarlo-->
+                                          <form action="/Glucky/Doctores/VerDietasPacienteDoctorEd" method="post">
+                                            <input type="hidden" name="curpFormPacEd" value="<%=datos[0].curp_pacien%>">
+                                            <input type="hidden" name="cedulaEdit" value="<%=Cedula%>">
+                                            <input type="hidden" name="last_id" value="<%=dietas[i].id_dieta%>">
                                             <button class="nuevo-div plotuist"><i class="uil uil-angle-right-b jajaamigazorra" ></i></button>
                                           </form>
-                                        <!--Form para ir a la dieta para verlo y editarlo-->
+                                        <!--Fin de form para ir a la dieta para verlo y editarlo-->
                                         <div class="cosasas">
                                           <h5>Dieta <%=i+1%></h5>
                                           <h6 class="dedicator1"><b> para:</b> <%=datos[0].nom_pers%></h6>
@@ -545,7 +551,7 @@
             </div>
             <div class="dispo2" id="fechaDiet">
             </div>
-            <div class="info"> Dieta escrita:</div> 
+            <div class="info"> Dieta escrita, para editarla dirijase al botón de acciones</div> 
             <div class="contenido" id="contenidoDiet">
             </div>
           </div>
@@ -619,7 +625,7 @@
 
           <%}
         } else{ %>
-        No tienes citas con tu paciente
+        No tienes citas con tu paciente, agrega citas usando el botón de acciones
 
           <%}%>
          
@@ -629,12 +635,6 @@
         <div class="column2">
           <h3  class="name">Tratamientos</h3>
 
-          <div class="card amarillosC">
-            <h4>tratamiento uno</h4>
-            <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am.</p>
-            <h6> fecha de publicación:</h6>
-
-          </div>
 
           <div class="card amarillosC">
             <h4>tratamiento dos</h4>
@@ -648,6 +648,10 @@
         <div class="column3">
           <h3  class="name">Dietas totales: <%=dietas.length%> </h3>
 
+          <%if(dietas.length!==0){%>
+          <%} else{ %>
+            No tienes dietas con tu paciente, agrega dietas usando el botón de acciones
+          <%}%>
 
           <% if (dietasverTodas.length !== 0) {
             const dietasPorId = {};
@@ -662,6 +666,7 @@
             gruposDeDietas.forEach((grupoDeDietas, index) => {
             const fechaDePublicacion = grupoDeDietas[0].date_dieta.toISOString().substring(0, 10);
           %>
+         
               <div class="card verdesC">
                 <h4 class="nomani">Dieta <%= index + 1 %></h4>
                 

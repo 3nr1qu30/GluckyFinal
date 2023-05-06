@@ -1,6 +1,14 @@
 const socket = io();
 const button = document.querySelector('.enviarMensaje');
 const messageInput = document.querySelector('.escribeC');
+
+document.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', (event) => {
+    console.log(event.target)
+    const id = event.target.id;
+    console.log(`El botón presionado tiene el id ${id}`);
+  });
+});
 // obtener el id de sesión del usuario actual
 
 socket.on('connect', () => {
