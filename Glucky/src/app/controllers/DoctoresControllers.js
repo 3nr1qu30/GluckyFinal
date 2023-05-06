@@ -394,7 +394,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
                 //inicio de la quinta consulta de query 
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                    res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula});
+                    res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas:dietasverTodas, Cedula:Cedula});
                   }
                   else{
                     console.log(error5);

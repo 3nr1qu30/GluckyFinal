@@ -4106,3 +4106,83 @@ transition: all ease .2s;
     margin-left: 4px;
     font-weight: bold;
   }
+
+
+  .nomanchesanakarenelpastel{
+    margin-top: -7px;
+   
+  }
+
+  .contenido55 {
+    transition: background-color 0.3s ease;
+  }
+  
+  .contenido55:hover {
+    transform: rotate(-.1deg);
+    background-color: #fff;
+    background-image: linear-gradient(to right, #000000 50%, #000000 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: background 0.5s ease-out;
+    animation-name: rotateHover;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  
+  @keyframes rotateHover {
+    0% {
+      transform: rotate(-.1deg);
+    }
+    50% {
+      transform: rotate(.1deg);
+    }
+    100% {
+      transform: rotate(-.1deg);
+    }
+  }
+  
+  .contenido55:hover:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: #000000;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .contenido55:hover:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: 100% 50%;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .contenido55:hover:before,
+  .contenido55:hover:after {
+    transition-delay: 0.2s;
+  }
+  
+  .contenido55:hover:before {
+    transform-origin: 100% 50%;
+    transform: scaleX(1);
+  }
+  
+  .contenido55:hover:after {
+    transform-origin: 0 50%;
+    transform: scaleX(1);
+  }
