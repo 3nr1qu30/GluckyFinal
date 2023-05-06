@@ -211,21 +211,23 @@
                         </div>
                         <%if(chat !== 'undefined'){%>
                             <%for(var i=0;i<chat.length;i++){%>
-                    <button id="<%=chat[i].curp_pacien%>">
-                        <div class="personasEl" id="style-2">
-                                <div class="persona">
+                
+                        <button class="personasEl badbuny" id="<%=chat[i].curp_pacien%>">
                                     <div class="cont">
-                                        <h4 class="Nombre"><%=chat[i].nom_pers%> <%=chat[i].apellidos_pers%></h4>
+                                        <h4 class="sss"><%=chat[i].nom_pers%> <%=chat[i].apellidos_pers%></h4>
                                         <div class="mensajesCant">
-                                            <h4 class="Estado"><%=chat[i].nom_tipdiabts%></h4>
-                                            <h4 class="Estado"><%=chat[i].curp_pacien%></h4>
+                                            <h4 class="Estado bordeado"><%=chat[i].nom_tipdiabts%></h4>
+                                            <h4 class="Estado espacioalado"><%=chat[i].curp_pacien%></h4>
                                         </div>
                                     </div>
-                                </div>  
-                        </div>
-                    </button>
+                        </button>
+                 
                             <%}%>
                         <%}%>
+                       
+                 
+
+
                     </div>
 <!--                         <div class="chat" >
                             <div class="chatBo">
