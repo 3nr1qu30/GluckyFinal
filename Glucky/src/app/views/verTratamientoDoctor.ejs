@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/pacienteDoctor2.css">
+    <link rel="stylesheet" href="/css/verTratamientoDoctor.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,30 +32,30 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="/Glucky/Doctores/Dashboard">
+                <li><a href="#">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="/Glucky/Doctores/Dashboard">
+                <li><a href="#pacientesjeje">
                     <i class="uil uil-chart"></i>
                     <span class="link-name">Pacientes</span>
                 </a></li>
-                <li><a href="/Glucky/Doctores/Chat">
+                <li><a href="#">
                     <i class="uil uil-chat"></i>
                     <span class="link-name">Chats</span>
                 </a></li>
-                <li><a href="/Glucky/Doctores/Peticiones">
+                <li><a href="#">
                     <i class="uil uil-plus-circle"></i>
                     <span class="link-name">Peticiones</span>
                 </a></li>
-                <li><a href="/Glucky/Doctores/Citas">
+                <li><a href="#">
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Citas</span>
                 </a></li>
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="/Glucky/IniciodeSesion">
+                <li><a href="#">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Salir</span>
                 </a></li>
@@ -106,14 +106,13 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
-                    <% for(var i=0;i<doctor.length;i++){%>
                     <div class="text-data">
-                      <span class="name"><%=doctor[i].nom_pers%> <%=doctor[i].apellidos_pers%></span>
-                      <span class="job"><%=doctor[i].cedula_med%></span>
-                      <span class="job"><%=doctor[i].email_pers%></span>
+                      <span class="name">Nombre completito jeje</span>
+                      <span class="job">Email@cum.com</span>
                       <span class="job">Doctor</span>
+                      <span class="job">Dirección??</span>
                     </div>
-                    <%}%>
+              
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
                         <i class="bx bx-plus-medical"></i>
@@ -123,7 +122,7 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button"><a href="/Glucky/Doctores/EditarCuenta" style="color:#ffffff; text-decoration:none;">Cuenta</a></button>
+                      <button class="button">Privacidad</>
                     </div>
               
                     <div class="analytics">
@@ -174,26 +173,25 @@
                     <div class="tablacentrada">
                         <div class="tabla">
                             <table>
-                            <%if(datos.length!==0){%>
-                              <%for(let i =0;i<datos.length;i++){%>
+                       
                             <tr>
-                                <td scope="row" data-label="Nombre"><b> <%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%> </b></td>
+                                <td scope="row" data-label="Nombre"><b> Nombre ApellidoP ApellidoM </b></td>
                                 <td data-label="Estado"><div class="estadouno">Regular</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Tipo-1"><%=datos[i].nom_tipdiabts%></div></td>
-                                <td data-label="CURP"><%=datos[i].curp_pacien%></td>
-                                <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
+                                <td data-label="Tipo-diabetes"><div class="Tipo-1">Tipo-1</div></td>
+                                <td data-label="CURP">MAMAMAMA</td>
+                                <td data-label="E-MAIL">robert@gmail.com</td>
                                 <td data-label="Ver detalles y acciones paciente">
-                                    <div class="botisimo">
-                                        <div class="botver">
+                                    <div class="botisimo" style="display: block;">
+                                        <div class="botver" style="display: block;">
                                             <button class="botonver"> Acciones </button>
                                             <!-- #SECCIÓN PARA ACCIONES DEL PACIENTE -->
-                                            <section>
+                                            <section style="display: block;">
                                             
-                                                <span class="overlay"></span>
+                                                <span class="overlay" style="display: block;"></span>
                                                 
-                                                <div class="modal-box2"  id="style-2">
-                                                <div class="product-card">
-                                                    <div class="logo-cart">
+                                                <div class="modal-box2" style="display: block;"  id="style-2">
+                                                <div class="product-card" style="display: block;">
+                                                    <div class="logo-cart" style="display: block;">
                                                     <img src="https://i.ibb.co/c3TW9nN/731-sin-t-tulo-20221217204419.png" alt="logo">
                                                     <i class='bx bxs-circle'></i>
                                                     </div>
@@ -295,98 +293,147 @@
                                     </div>
                                 </td>
                             </tr>
-
-                            <%}%>
-                            
                          
                             
                           
                             </table>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+                    
           
 
               
                 <!-- The Modal -->
-                <div id="myModal" class="modal">
+                <div id="myModal" class="modal" style="display: block;">
 
                      <!-- Modal content -->
-                    <div class="modal-content">
+                    <div class="modal-content" >
                        
-                        <section class="seccione">
-                        <div class="popup-outer">
-                            <div class="popup-box translated" style="box-shadow: #91919149 0px 0px 0px 3px;">
+                        <section class="seccione" >
+                          <div class="popup-outer"  >
+                            <div class="popup-box translated" style="box-shadow: #ffffff00 0px 0px 0px 3px;">
                                
                                 <div class="profile-text">
-                                    <img src="https://i.ibb.co/YLddykt/731-sin-t-tulo-20230412145209.png" alt=""> 
+                                    <img src="https://i.ibb.co/vQQ72rh/731-sin-t-tulo-20230412145300.png" alt=""> 
                                     <div class="text">
-                                        <span class="name">Nombre del paciente</span>
-                                         <span class="profession">En este formulario podrás agendar una nueva dieta para su
+                                        <span class="name">Tratamiento con id de <%= last_id %> </span>
+                                         <span class="profession">En este formulario podrás editar un nuevo tratamiento para su
                                             paciente </span>
                                     </div>
                                 </div>
 
                                 <!--Inicio del formulario de dietas-->
-                               
-                              
 
                                     
-                                    <div class="tratamientodiv dops">
-                                      <!--Form para crear una nueva dieta a seguir-->
-                                        <form action="/Glucky/Doctores/VerDietasPacienteDoctor" method="post">
-                                          <div class="tratamientos nomaaaaa">
-
-                                            <input type="hidden" name="curpFormPacEd" value="<%=datos[0].curp_pacien%>">
-                                            <input type="hidden" name="cedulaEdit" value="<%=Cedula%>">
-
-                                            <input type="hidden" name="curp_pacien" value="<%=datos[0].curp_pacien%>">
-                                            <input type="hidden" name="id_cons" value="<%=doctor[0].id_consmed%>">
+                                    <div class="tratamientodiv dops" style="box-shadow: #ffffff00 0px 0px 0px 3px;">
+                                        <h1>Lista de medicamentos</h1>
+                                        <b class="infos">Da clic a un medicamento para agregarlo</b> 
+                                        <input type="text" class="buscamedic" id="searchdietas" placeholder="Buscar medicamento...">
+                                        <div id="listadietas" class="flexlistIngredientes">
+                   
+                                            <%if(medicamentos.length!==0){%>
+                                                <%for(let i =0;i<medicamentos.length;i++){ %>
                                             
-                                            Agregar dieta<button class="nomanchesanakaren nopales"><i class="uil uil-plus jajaamigazorra" ></i></button>
+                                            <div class="checkbox">
+                                              <input type="checkbox" id="<%=medicamentos[i].id_medic%>" value="nombre">
+                                              <label for="<%=medicamentos[i].id_medic%>"><%=medicamentos[i].nom_medic%></label>
+
+                                              <!--Inicio del form para agregar un alimento-->
+                                            <form action="/Glucky/Doctores/EnviarMedicamentoReceta" method="post">
+                                                <select name="present_recmed" class="textsO">
+                                                    <option value="sin tipo">Seleccione una presentación</option>
+                                                    <option value="Aerosol">Aerosol</option>
+                                                    <option value="Cápsulas">Cápsulas</option>
+                                                    <option value="Caramelos">Caramelos para chupar</option>
+                                                    <option value="Champú">Champú</option>
+                                                    <option value="Crema">Crema</option>
+                                                    <option value="Gel">Gel</option>
+                                                    <option value="Gotas">Gotas</option>
+                                                    <option value="Inhalador">Inhalador</option>
+                                                    <option value="Inyectable">Inyectable (ampolla, jeringa prellenada)</option>
+                                                    <option value="Jarabe">Jarabe</option>
+                                                    <option value="Loción">Loción</option>
+                                                    <option value="Parche">Parche transdérmico</option>
+                                                    <option value="Pastillas efervescentes">Pastillas efervescentes</option>
+                                                    <option value="Polvo">Polvo</option>
+                                                    <option value="Solución">Solución</option>
+                                                    <option value="Spray">Spray</option>
+                                                    <option value="Supositorio">Supositorio</option>
+                                                    <option value="Suspensión">Suspensión</option>
+                                                    <option value="Tabletas">Tabletas</option>
+                                                    <option value="Ungüento">Ungüento</option>
+                                                </select>
+
+                                                    <input type="number" name="frec_recmed" class="cantidad" placeholder="cantidad" value="1">
+                                                
+                                                    <input type="hidden" value="<%=medicamentos[i].id_medic%>"  name="id_medic">
+                                                    <input type="hidden" value="<%= last_id %>" name="id_receta">
+
+                                                    <input type="hidden" name="CurpForm" value="<%= curpFormPacEd %>">
+                                                    <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
+
+                                                    <input type="submit" placeholder="Agrega una descripción..." class="descrip" value="Agregar">
+                                            </form>
+                                              <!--Fin del form para agregar un alimento-->
+                                            </div>
+                                            <%}
+                                        }%>
+                                    
+         
+                                            
+                                            
                                           </div>
-                                        </form>
-                                      <!--Form para crear una nueva dieta a seguir-->
-
-                                      
-                                      <%if(dietas.length!==0){%>
-                                        <%for(let i =0;i<dietas.length;i++){  var fechita = dietas[i].date_dieta;%>
-                                      <div class="tratamientos">
-                                        <!--Inicio de form para ir a la dieta para verlo y editarlo-->
-                                          <form action="/Glucky/Doctores/VerDietasPacienteDoctorEd" method="post">
-                                            <input type="hidden" name="curpFormPacEd" value="<%=datos[0].curp_pacien%>">
-                                            <input type="hidden" name="cedulaEdit" value="<%=Cedula%>">
-                                            <input type="hidden" name="last_id" value="<%=dietas[i].id_dieta%>">
-                                            <button class="nuevo-div plotuist"><i class="uil uil-angle-right-b jajaamigazorra" ></i></button>
-                                          </form>
-                                        <!--Fin de form para ir a la dieta para verlo y editarlo-->
-                                        <div class="cosasas">
-                                          <h5>Dieta <%=i+1%></h5>
-                                          <h6 class="dedicator1"><b> para:</b> <%=datos[0].nom_pers%></h6>
-                                          <h6 class="dedicator">Total de medicamentos:  </h6>
-                                          <hr class="miniraya">
-                                          <h6 class="dedicatorsb">Asignado el dia: <h6 class="dedicatorsdd"> <%=fechita.toISOString().substring(0,10)%></h6> </h6>
-                                        </div>
-                                      </div>
-                                        <%}
-                                      }%>
-
-                                      
-
-                                    </div>
+                                     </div>
          
                                         
                                         <div id="dietas-seleccionados" class="dietas-seleccionados">
-                                         <b>Información:</b> En esta sección podrás asignar nuevas dietas a tus pacientes. Para empezar, agrega alimentos en el foro correspondiente y luego añádelos a tus pacientes. Para hacerlo, simplemente haz clic en el botón "Agregar".
+                                         Los medicamentos que agregues son los siguientes, dale clic a uno usando <b> "<i class="uil uil-minus-circle"></i>"  </b>para eliminarlo.
                                          <br>
                                          <br>
+                                         
+                                         <%if(verrecetamedicamento.length!==0 && typeof verrecetamedicamento !== 'undefined'){%>
+                                            <%for(let i =0;i<verrecetamedicamento.length;i++){%>
+                                         <!--Form para poder eliminar ingrediente de una dieta-->
+                                            <form action="/Glucky/Doctores/EliminarMedicamentoTratamiento" method="post" style="display: inline-block;">
+                                              <input type="hidden" name="id_recmed" value="<%=verrecetamedicamento[i].id_recmed%>">
+                                              <input type="hidden" name="id_receta" value="<%= last_id %>">
+
+                                              <input type="hidden" name="CurpForm" value="<%= curpFormPacEd %>">
+                                              <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
+
+                                              <button class="elementop btn">  <i class="uil uil-minus-circle"></i> <%=verrecetamedicamento[i].nom_medic%> <div class="cantip">cantidad: <%=verrecetamedicamento[i].frec_recmed%> </div> <div class="cantip"> tipo: <%=verrecetamedicamento[i].present_recmed%> </button>
+                                            </form>
+                                          <!--Form para poder eliminar ingrediente de una dieta-->
+                                          <%}}%>
+
+
                                         </div>
 
-                                      
 
-                                          <div class="button">
-                                              <button id="closem" class="cancel">Cerrar la ventana</button>
-                                          </div>
-          
+
+                                    <div class="alabados">
+                                      <a class="asas lomins" href="/Glucky/Doctores/PacienteDoctor">Guardar <i class="uil uil-bag"></i> </a>
+                                      <!--Form para eliminar los ingredientes de la dieta y luego la dieta-->
+                                        <form action="/Glucky/Doctores/EliminarTratamiento" method="post" style="display: inline-block; margin-top: 3px;">
+                                            <input type="hidden" name="id_recetaEl" value="<%= last_id %>">
+
+                                            <input type="hidden" name="CurpForm" value="<%= curpFormPacEd %>">
+                                            <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
+                                          <button type="submit" class="asas sssds cancel3" href="">Eliminar <i class="uil uil-minus-circle"></i></button>
+                                        </form>
+                                      <!--Form para eliminar los ingredientes de la dieta y luego la dieta-->
+                                    </div>
+
                                 <!--Fin del formulario de dietas-->
                             </div>
                         </div>
@@ -396,7 +443,26 @@
                 </div>
 
 
-                <!-- Form de citas -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- The Modal -->
                 <div id="myModal2" class="modal">
 
                     <!-- Modal content -->
@@ -409,18 +475,18 @@
                                <div class="profile-text">
                                    <img src="https://i.ibb.co/W6CrCWm/731-sin-t-tulo-20230412145236.png" alt=""> 
                                    <div class="text">
-                                       <span class="name">Paciente: <%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
+                                       <span class="name">Nombre del paciente</span>
                                         <span class="profession">En este formulario podrás agendar una nueva cita para su
                                            paciente </span>
                                    </div>
                                </div>
-                               <form action="/Glucky/Doctores/PacienteDoctorCitas" method="post">
-                                   <input type="hidden" value="<%=datos[0].curp_pacien%>" name="CurpForm">
-                                   <input spellcheck="false" type="time" class="titulo" name="HoraForm" required>
-                                   <input type="date" spellcheck="false" type="text" class="titulo" name="FechaForm" required>
+                               <form action="#">
+                                   <input spellcheck="false" type="time" class="titulo" placeholder="Inserta el título de la cita..." required>
+                                   <input type="date" spellcheck="false" type="text" class="titulo" placeholder="Inserta la fecha..." required>
+                                 
                                    <div class="button">
                                        <button id="closem" class="cancel2">Cancelar</button>
-                                       <button type="submit" class="send">¡Enviar!</button>
+                                       <button class="send">¡Enviar!</button>
                                    </div>
                                </form>
                            </div>
@@ -429,7 +495,6 @@
                    </div>
 
                </div>
-              <!-- Form de citas -->
 
 
                <!-- The Modal -->
@@ -452,65 +517,56 @@
                            </div>
 
                            <!--Comienzo del form de medicamentos-->
-                           
-                            
+                           <form action="#">
+                               <input spellcheck="false" type="text" class="titulo" placeholder="Inserta el título del tratamiento..." required>
                                
                                
                             <div class="tratamientodiv">
-                              
-                              <form action="/Glucky/Doctores/VerTratamientosPacienteDoctor" method="post">
-                                
-                                <div class="tratamientos nomaaaaa jajassssss">
+                               <h1>Lista de medicamentos</h1>
+                               <b class="infos">Da clic a un medicamento para agregarlo</b> 
+                               <input type="text" class="buscamedic" id="search" placeholder="Buscar medicamento...">
+                               <form action="">
+                               <div id="listamedicamentos" class="flexlistMedicamentos">
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="1" value="Paracetamol" >
+                                     <label for="1">Paracetamol</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
 
-                                  <input type="hidden" name="curpFormPacEd" value="<%=datos[0].curp_pacien%>">
-                                  <input type="hidden" name="cedulaEdit" value="<%=Cedula%>">
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="2" value="Gluco coso">
+                                     <label for="2">Gluco coso</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
 
-                                  <input type="hidden" name="curp_pacien" value="<%=datos[0].curp_pacien%>">
-                                  <input type="hidden" name="id_cons" value="<%=doctor[0].id_consmed%>">
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="3" value="Medicina">
+                                     <label for="3">Medicina</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
 
-                                  Agregar tratamiento <button type="submit" class="nomanchesanakaren jajasssssssd margenss"><i class="uil uil-plus jajaamigazorra " ></i></button>
-                                </div>
-                              </form>
-
-
-                            <%if(recetaver.length!==0){%>
-                              <%for(let i =0;i<recetaver.length;i++){  var fechita = recetaver[i].date_receta;%>
-                              <div class="tratamientos">
-                                <!--Form para ir al tratamiento para verlo y editarlo-->
-                                  <form action="/Glucky/Doctores/VerRecetaPacienteDoctorEd" method="post">
-                                    <input type="hidden" name="curpFormPacEd" value="<%=datos[0].curp_pacien%>">
-                                    <input type="hidden" name="cedulaEdit" value="<%=Cedula%>">
-                                    <input type="hidden" name="last_id" value="<%=recetaver[i].id_receta%>">
-                                    <button class="nuevo-div jajasssssssd plotuist"><i class="uil uil-angle-right-b jajaamigazorra " ></i></button>
-                                  </form>
-                                <!--Form para ir al tratamiento para verlo y editarlo-->
-                                <div class="cosasas">
-                                  <h5>Tratamiento <%=i+1%></h5>
-                                  <h6 class="dedicator1"><b> para:</b> <%=datos[0].nom_pers%></h6>
-                                  <h6 class="dedicator">Total de medicamentos:  </h6>
-                                  <hr class="miniraya">
-                                  <h6 class="dedicatorsb">Asignado el dia: <h6 class="dedicatorsdd"> <%=fechita.toISOString().substring(0,10)%></h6> </h6>
-                                </div>
-                              </div>
-                              <%}
-                            }%>
-
-
-      
+                                   <div class="checkbox">
+                                     <input type="checkbox" id="4" value="Glucometro">
+                                     <label for="4">Glucometro</label>
+                                     <input type="time" name=""  class="time" class="tiempo">
+                                   </div>
+                                 </div>
                             </div>
 
                                
-                            <div id="dietas-seleccionados" class="dietas-seleccionados">
-                              <b>Información:</b> En esta sección podrás asignar nuevos tratamientos a tus pacientes. Para empezar, agrega medicamentos en el foro correspondiente y luego añádelos a tus pacientes. Para hacerlo, simplemente haz clic en el botón "Agregar".
-                              <br>
-                              <br>
-                             </div>
+                               <div id="medicamentos-seleccionados" class="medicamentos-seleccionados">
+                                Los medicamentos que agregues son los siguientes; no te olvides de agregarles fecha
+                                <br>
+                                <br>
+                               </div>
 
                                
+                               <input type="date" spellcheck="false" type="text" class="titulo" placeholder="Inserta el título de la dieta..." required>
                                <div class="button">
-                                   <button id="closem" class="cancel3">Cerrar la ventana</button>
+                                   <button id="closem" class="cancel3">Cancelar</button>
+                                   <button type="submit" class="send">¡Enviar!</button>
                                </div>
-                          
+                           </form>
                            <!--Fin del form de medicamentos-->
                            
                        </div>
@@ -528,7 +584,6 @@
         </div>
 
 
-        <!--Datos a enviar de tratamiento-->
         <div class="overlaycard" id="overcardTRATAM" >
           <div class="dispTitulo" id="titucolor">
             <div class="dispTexto"><h3 class="overlay-title">Detalles del tratamiento</h3></div>
@@ -536,17 +591,15 @@
           </div>
           
           <div class="recuadrodatos">
-            <div class="dispo1" style="margin-left: 2px;" id="tituloTratamiento">
+            <div class="dispo1" id="tituloTratamiento">
             </div>
             <div class="dispo2" id="fechaTratamiento">
             </div>
-            <div class="info"> Tratamiento escrito, para editarlo dirijase al botón de acciones</div> 
             <div class="contenido" id="contenidoTratamiento">
             </div>
           </div>
-          <br>
 
-          <div class="formsElEd" style="display: none;">
+          <div class="formsElEd">
             <form action="">
               <button class="accionAsignacionEl" value="Eliminar">Editar tratamiento</button>
             </form>
@@ -555,9 +608,8 @@
             </form>
           </div>
         </div>
-      <!--Datos a enviar de tratamiento-->
 
-        <!--Datos a enviar de dieta-->
+
         <div class="overlaycardDIET verdesC" id="overcardDIET" >
           <div class="dispTitulo" id="titucolor">
             <div class="dispTexto"><h3 class="overlay-title">Detalles de la dieta</h3></div>
@@ -565,180 +617,105 @@
           </div>
           
           <div class="recuadrodatos">
-            <div class="dispo1" style="margin-left: 2px;" id="tituloDiet">
+            <div class="dispo1" id="tituloDiet">
             </div>
             <div class="dispo2" id="fechaDiet">
             </div>
-            <div class="info"> Dieta escrita, para editarla dirijase al botón de acciones</div> 
             <div class="contenido" id="contenidoDiet">
             </div>
           </div>
-          <br>
-         
-        </div>
-      <!--Datos a enviar de dieta-->
 
-
-      
-      <!--Datos a enviar de cita-->
-          
-              <div class="overlaycardCITA azulesC" id="overcardCITA" >
-                <div class="dispTitulo" id="titucolor">
-                  <div class="dispTexto"><h3 class="overlay-title">Opciones de la cita  con <%=datos[0].nom_pers%> </h3></div>
-                  <div class="dispCerrar"><button id="overlay-closeCITA" class="overlay-closeCita">×</button></div>
-                </div>
-              <!--Inicio del form de editar citas -->
-              <form action="/Glucky/Doctores/PacienteDoctorCitasEd" method="post">
-                <div class="recuadrodatos">
-                  <div class="contenido">
-                    <b>Hora</b>
-                      <input type="time" value="" id="tituloCITA" name="hour_citaF" class="blanqui1">
-                  </div>
-                  <div class="contenido">
-                    <b>Fecha</b>  
-                      <input type="date" value="" id="contenidoCITA" name="date_citaF" class="blanqui2">
-                  </div>
-                </div>
-                <div class="formsElEd">
-                    <input type="hidden" name="curp_pacienF" value="<%=datos[0].curp_pacien%>">
-                    <input type="hidden" name="id_citaF" id="fechaCITAEd" class="contenido" value="">
-                  <button class="accionAsignacionEl" type="submit" value="Eliminar">Guardar cambios</button>
-              </form>
-                <!--Fin del form de editar citas -->
-
-                <!--Inicio del form de eliminar citas -->
-                <form action="/Glucky/Doctores/PacienteDoctorCitasEl" method="post">
-                      <input type="hidden" name="curpFormPac" value="<%=datos[0].curp_pacien%>">
-                      <input type="hidden" name="id_citaEl" id="fechaCITA" class="contenido" value="">
-                    <button class=" accionAsignacionEdCita" value="Eliminar"> Eliminar cita</button>
-                </form>
-                <!--Fin del form de eliminar citas -->
-           
+          <div class="formsElEd">
+            <form action="">
+              <button class="accionAsignacionEl" value="Eliminar">Editar dieta</button>
+            </form>
+            <form action="">
+              <button class="accionAsignacionEd" value="Eliminar">Eliminar dieta</button>
+            </form>
           </div>
         </div>
-        <!--Datos a enviar de cita-->
+
+
+        <div class="overlaycardCITA azulesC" id="overcardCITA" >
+          <div class="dispTitulo" id="titucolor">
+            <div class="dispTexto"><h3 class="overlay-title">Detalles de la cita</h3></div>
+            <div class="dispCerrar"><button id="overlay-closeCITA" class="overlay-closeCita">×</button></div>
+          </div>
+          
+          <div class="recuadrodatos">
+            <div class="dispo1" id="tituloCITA">
+            </div>
+            <div class="dispo2" id="fechaCITA">
+            </div>
+            <div class="contenido" id="contenidoCITA">
+            </div>
+          </div>
+
+          <div class="formsElEd">
+            <form action="">
+              <button class="accionAsignacionEl" value="Eliminar">Editar cita</button>
+            </form>
+            <form action="">
+              <button class="accionAsignacionEdCita" value="Eliminar">Eliminar cita</button>
+            </form>
+          </div>
+        </div>
+
 
 
         <div class="container">
         <div class="column1">
+          <h3 class="name">Citas</h3>
 
-       
-          <h3 class="name">Citas totales: <%= citas.length %></h3>
-
-
-          <%if(citas.length!==0){%>
-            <%for(let i =0;i<citas.length;i++){
-              var fechita = citas[i].date_cita;%>
-            
-           
           <div class="card azulesC">
-            <input type="hidden" value="<%=citas[i].curp_pacien%>" id="CURP_pacienForm">
-            <input type="hidden" value="<%=citas[i].id_cita%>" id="id_citaForm">
-           <b class="jajaamiga">Dia y hora de la cita n° <%=i+1%>:</b> 
-            <p class="small-content dates"><%=fechita.toISOString().substring(0,10)%></p>
-            
-            <h4 class="hora"><%=citas[i].hour_cita%></h4>
-            <h6><%=citas[i].id_cita%></h6>
+            <p class="small-content dates">Dia 20-03-2023</p>
+            <h4 class="hora">Hora: 6:00 am</h4>
+            <h6> fecha de publicación: </h6>
           </div>
 
-          <%}
-        } else{ %>
-        No tienes citas con tu paciente, agrega citas usando el botón de acciones
-
-          <%}%>
-         
+          <div class="card azulesC">
+            <p class="small-content dates">Dia 21-04-2023</p>
+            <h4 class="hora">Hora: 4:50 am</h4>
+            <h6> fecha de publicación: </h6>
+          </div>
 
           
         </div>
         <div class="column2">
-          <h3  class="name">Tratamientos totales: <%=recetaver.length%></h3>
-
-          <%if(recetaver.length!==0){%>
-            <%} else{ %>
-              No tienes tratamientos con tu paciente, agrega tratamientos usando el botón de acciones
-            <%}%>
-
-            <% if (recetaverTodas.length !== 0) {
-              const recetasPorId = {};
-              recetaverTodas.forEach((receta) => {
-                if (!recetasPorId[receta.id_receta]) {
-                  recetasPorId[receta.id_receta] = [receta];
-                } else {
-                  recetasPorId[receta.id_receta].push(receta);
-                }
-              });
-              const gruposDeRecetas = Object.values(recetasPorId);
-              gruposDeRecetas.forEach((grupoDeRecetas, index) => {
-              const fechaDePublicacionReceta = grupoDeRecetas[0].date_receta.toISOString().substring(0, 10);
-            %>
+          <h3  class="name">Tratamientos</h3>
 
           <div class="card amarillosC">
-            <h4 class="nomani">Tratamiento <%= index + 1 %></h4>
+            <h4>tratamiento uno</h4>
+            <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am.</p>
+            <h6> fecha de publicación:</h6>
 
-            <% grupoDeRecetas.forEach((receta) => { %>
-              <div class="small-content granadagrande"><%= receta.nom_medic %>, cantidad: <%= receta.frec_recmed %> %></div>
-            <% }); %>
+          </div>
 
-            
-            <% let listaMedicamentos = ""; %>
-                <% grupoDeRecetas.forEach((receta) => { %>
-                  <% listaMedicamentos += `${receta.nom_medic} (cantidad: ${receta.frec_recmed} tipo: ${receta.present_recmed}), `; %>
-                <% }); %>
-                <p class="small-content arianagrenade"><%= listaMedicamentos.slice(0, -2) %></p>
+          <div class="card amarillosC">
+            <h4>tratamiento dos</h4>
+            <p class="small-content"> Paracetamol a las 10:20 am, Gluco coso a las 11:30 am. y más</p>
+            <h6> fecha de publicación:</h6>
 
-                <br>
-                <h6 class="fechass"> fecha de publicación: <%= fechaDePublicacionReceta %></h6>
-              </div>
-            <% });
-          }%>
-
-
+          </div>
 
 
         </div>
         <div class="column3">
-          <h3  class="name">Dietas totales: <%=dietas.length%> </h3>
+          <h3  class="name">Dietas</h3>
 
-          <%if(dietas.length!==0){%>
-          <%} else{ %>
-            No tienes dietas con tu paciente, agrega dietas usando el botón de acciones
-          <%}%>
+          <div class="card verdesC">
+            <h4>Dieta 1</h4>
+            <p class="small-content">Coco 20 Kcal con sal, Lechuga para el sanwis</p>
+            <h6> fecha de publicación:</h6>
+          </div>
+          
 
-          <% if (dietasverTodas.length !== 0) {
-            const dietasPorId = {};
-            dietasverTodas.forEach((dieta) => {
-              if (!dietasPorId[dieta.id_dieta]) {
-                dietasPorId[dieta.id_dieta] = [dieta];
-              } else {
-                dietasPorId[dieta.id_dieta].push(dieta);
-              }
-            });
-            const gruposDeDietas = Object.values(dietasPorId);
-            gruposDeDietas.forEach((grupoDeDietas, index) => {
-            const fechaDePublicacion = grupoDeDietas[0].date_dieta.toISOString().substring(0, 10);
-          %>
-         
-              <div class="card verdesC">
-                <h4 class="nomani">Dieta <%= index + 1 %></h4>
-                
-                <% grupoDeDietas.forEach((dieta) => { %>
-                  <div class="small-content granadagrande"><%= dieta.nom_ingred %>: <%= dieta.desc_ingred %></div>
-                  
-                <% }); %>
+          <div class="card verdesC">
+            <h4>Dieta 1</h4>
+            <p class="small-content">Coco 20 Kcal con sal, Lechuga para el sanwis</p>
+            <h6> fecha de publicación:</h6>
+          </div>
 
-                
-                <% let listaIngredientes = ""; %>
-                <% grupoDeDietas.forEach((dieta) => { %>
-                  <% listaIngredientes += `${dieta.nom_ingred}: ${dieta.desc_ingred}, `; %>
-                <% }); %>
-                <p class="small-content arianagrenade"><%= listaIngredientes.slice(0, -2) %></p>
-
-
-                <br>
-                <h6 class="fechass"> fecha de publicación: <%= fechaDePublicacion %></h6>
-              </div>
-            <% });
-          }%>
 
         </div>
         </div>
@@ -815,13 +792,12 @@
                       </table>
                 </div>
               </div>
-              <%}%>
               
   
 </div>
 
 
-    <script src="/js/pacienteDoctor.js"></script>
+    <script src="/js/verDietaDoctor.js"></script>
 
     
 </body>

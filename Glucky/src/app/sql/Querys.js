@@ -207,15 +207,6 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
   });
  };
 
- db.verMedicamentos = (callback)=>{
-  con.query(`SELECT * FROM medicamento`, (error,ver)=>{
-   if(error){
-      console.error('No hay medicamentos', error);
-   }else{
-     callback(null,ver);
-   }
-  });
- };
 
  db.PeticionesCita = (Cedula,callback)=>{
   con.query(`SELECT * FROM solicitarcita natural join paciente natural join persona natural join consultoriomedico WHERE cedula_med  = '${Cedula}' AND id_edosol = 1`, (error,peticiones)=>{
@@ -367,10 +358,32 @@ db.verAlimentos = (callback)=>{
  };
 
 
+ db.verMedicamentos = (callback)=>{
+  con.query(`SELECT * FROM medicamento`, (error,ver)=>{
+   if(error){
+      console.error('No hay medicamentos', error);
+   }else{
+     callback(null,ver);
+   }
+  });
+ };
+
+
 db.verDietaBase=(curp_pacien,callback)=>{
   con.query(`select * from dieta where curp_pacien ='${curp_pacien}';`,(error,registro)=>{
     if(error){
       console.log('Error al ver dieta: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,registro);
+    }
+  });
+};
+
+db.verTratamientoBase=(curp_pacien,callback)=>{
+  con.query(`select * from receta where curp_pacien ='${curp_pacien}';`,(error,registro)=>{
+    if(error){
+      console.log('Error al ver receta: ',error);
       callback(error,null);
     } else if(registro){
       callback(null,registro);
@@ -389,11 +402,34 @@ db.verIngredientesBaseSele=(id_dieta,callback)=>{
   });
 };
 
+db.verMedicamentosBaseSele=(id_receta,callback)=>{
+  con.query(`select * from recetamedicamento natural join medicamento where id_receta = '${id_receta}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver dieta y medicamento: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
+
 db.verDietasCompletas=(curp_pacien,cedula_med,callback)=>{
   con.query(`select * from dieta natural join dietaingrediente natural join ingrediente 
   where curp_pacien = '${curp_pacien}' and cedula_med = '${cedula_med}';`,(error,vercosas)=>{
     if(error){
       console.log('Error al ver dieta e ingrediente: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
+
+db.verTratamientosCompletas=(curp_pacien,cedula_med,callback)=>{
+  con.query(`select * from receta natural join recetamedicamento natural join medicamento 
+  where curp_pacien = '${curp_pacien}' and cedula_med = '${cedula_med}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver receta y medicamento: ',error);
       callback(error,null);
     } else if(vercosas){
       callback(null,vercosas);
@@ -631,6 +667,30 @@ db.enviarDietaBase = (curp_pacien, cedula_med, date_dieta, callback) => {
   });
 };
 
+db.enviarTratamientoBase = (curp_pacien, cedula_med, date_receta,id_cons ,callback) => {
+  con.query(`insert into receta (id_receta,curp_pacien,cedula_med,date_receta,id_cons) 
+             values (default,'${curp_pacien}',${cedula_med},'${date_receta}','${id_cons}')`, (error, resultado) => {
+    if (error) {
+      console.log('Error al insertar tratamiento: ', error);
+      callback(error, null);
+    } else {
+      con.query("SELECT LAST_INSERT_ID() as last_id", (error, resultado) => {
+        if (error) {
+          console.log('Error al obtener el último id generado: ', error);
+          callback(error, null);
+        } else if (resultado.length > 0) {
+          const last_id = resultado[0].last_id;
+          console.log('El último id generado es: ', last_id);
+          callback(null, last_id);
+        } else {
+          console.log('No se encontró ningún último id generado.');
+          callback(null, null);
+        }
+      });
+    }
+  });
+};
+
 db.enviarDietaBaseIngrediente=(id_dieta,id_ingred,callback)=>{
   con.query(`insert into dietaingrediente (id_dietingred, id_dieta, id_ingred)
   VALUES (default, '${id_dieta}', '${id_ingred}');`,(error,registro)=>{
@@ -642,6 +702,19 @@ db.enviarDietaBaseIngrediente=(id_dieta,id_ingred,callback)=>{
     }
   });
 };
+
+db.enviarTratamientoBaseMedicamento=(id_receta,id_medic,frec_recmed,present_recmed,callback)=>{
+  con.query(`insert into recetamedicamento (id_recmed,id_receta,id_medic,frec_recmed,present_recmed)
+  VALUES (default, '${id_receta}', '${id_medic}', '${frec_recmed}', '${present_recmed}');`,(error,registro)=>{
+    if(error){
+      console.log('Error al insertar elemento: ',error);
+      callback(error,null);
+    } else if(registro){
+      callback(null,'Elemento registrado');
+    }
+  });
+};
+
 
 
 //modificar registros
@@ -740,19 +813,6 @@ db.finalizarCita= (IdCita,CurpPacien,callback)=>{
   });
  };
 
-db.eliminarMedicamento=(idMedic,callback)=>{
-  let idIng = parseInt(idMedic);
-  con.query(`DELETE FROM medicamento WHERE id_medic='${idIng}'`,(error,elimina)=>{
-    if(error){
-      console.log('Error al eliminar: ',error);
-      callback(error,null);
-    }
-    else{
-      console.log('Medicamento eliminado naranja');
-      callback(null,elimina);
-    }
-  });
-};
 
 
 db.eliminarIngrediente=(id_dietingred,id_dieta,callback)=>{
@@ -767,6 +827,20 @@ db.eliminarIngrediente=(id_dietingred,id_dieta,callback)=>{
     }
   });
 };
+
+db.eliminarMedicamento=(id_recmed,id_receta,callback)=>{
+  con.query(`delete from recetamedicamento where id_recmed = '${id_recmed}' and id_receta = '${id_receta}';`,(error,elimina)=>{
+    if(error){
+      console.log('Error al eliminar: ',error);
+      callback(error,null);
+    }
+    else{
+      console.log('medicamento eliminado verde');
+      callback(null,elimina);
+    }
+  });
+};
+
 db.eliminarChat=(CurpForm,callback)=>{
   con.query(`delete from chat where curp_pacien ='${CurpForm}';`,(error,elimina)=>{
     if(error){
@@ -796,6 +870,26 @@ db.eliminarDieta = (id_dieta, callback) => {
     }
   });
 };
+
+
+db.eliminarTratamiento = (id_receta, callback) => {
+  con.query(`delete from recetamedicamento where id_receta = '${id_receta}';`, (error, vercosas) => {
+    if (error) {
+      console.log('Error al eliminar los ingredientes de un tratamiento individual: ', error);
+      callback(error, null);
+    } else if (vercosas) {
+      con.query(`delete from receta where id_receta = '${id_receta}';`, (error2, vercosas2) => {
+        if (error2) {
+          console.log('Error al eliminar receta individual: ', error2);
+          callback(error2, null);
+        } else if (vercosas2) {
+          callback(null, vercosas2);
+        }
+      });
+    }
+  });
+};
+
 
 
 
