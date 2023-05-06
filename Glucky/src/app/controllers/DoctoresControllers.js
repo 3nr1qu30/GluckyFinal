@@ -548,7 +548,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       if(cambio){
         const fecha = new Date();
         const fechaFormateada = `${fecha.getFullYear()}-${(fecha.getMonth() + 1).toString().padStart(2, '0')}-${fecha.getDate().toString().padStart(2, '0')} ${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}:${fecha.getSeconds().toString().padStart(2, '0')}`;
-        querys.crearChat(Cedula,CurpForm,fechaSQL,(error,chat)=>{
+        querys.crearChat(Cedula,CurpForm,fechaFormateada,(error,chat)=>{
           if(chat){
             console.log('Petición aceptada');
           }

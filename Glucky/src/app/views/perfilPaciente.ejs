@@ -167,14 +167,15 @@
                Tu cuenta
             </div>
             <% for(var i=0;i<datos.length;i++){%>
-            <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post">
+            <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post" id="formularioEditarPerfil">
 
             <div class="Info">
-                <div class="infoEdit">
+                <div class="infoEdit" id="grupo_nombre">
                   <h5 class="infoDoc">Nombre</h5>  
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="NombreForm" value="<%=datos[i].nom_pers%>">
                   </h6>
+                  <p class="form_input_error">El o los nombres deben contener minimo dos letras</p>
                 </div>
                 <div class="botonEdit">
                
@@ -182,11 +183,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" >
+                <div class="infoEdit" id="grupo_apellidos">
                   <h5 class="infoDoc">Apellidos</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="ApellidosForm" value="<%=datos[i].apellidos_pers%>">
                   </h6>
+                  <p class="form_input_error">Los apellidos deberán tener como mínimo dos letras</p>
                 </div>
                 <div class="botonEdit">
                
@@ -194,7 +196,7 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_curp">
                   <h5 class="infoDoc">CURP</h5> 
                   <h6 class="alerta_no">
                     🛈 no puedes editar tu CURP personal 
@@ -210,7 +212,7 @@
             
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_tipodiabetes">
                   <h5 class="infoDoc">Tipo de diabetes</h5> 
                   <h6 class="alerta_no">
                     🛈 no puedes editar tu tipo de diabetes
@@ -225,14 +227,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_email">
                   <h5 class="infoDoc">Email de contacto</h5>
-                  <h6 class="alerta_no">
-                    🛈 no puedes editar tu e-mail de contacto
-                  </h6>
                   <h6 class="nomDoc">
-                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>" readonly="readonly">
+                    <input type="email"  id="edText" class="formdato" name="EmailForm" value="<%=datos[i].email_pers%>">
                   </h6>
+                  <p class="form_input_error">Introduzca un correo válido</p>
                 </div>
                 <div class="botonEdit">
                
@@ -240,11 +240,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_edad">
                   <h5 class="infoDoc">Edad</h5>
                   <h6 class="nomDoc">
                     <input type="number"  id="edText" class="formdato" name="EdadForm" value="<%=datos[i].edad_pers%>">
                   </h6>
+                  <p class="form_input_error">Introduzca una edad válida</p>
                 </div>
                 <div class="botonEdit">
                
@@ -252,11 +253,12 @@
             </div>
 
             <div class="Info">
-                <div class="infoEdit" ">
+                <div class="infoEdit" id="grupo_telefono">
                   <h5 class="infoDoc">Teléfono de contacto</h5>
                   <h6 class="nomDoc">
                     <input type="text"  id="edText" class="formdato" name="TelForm" value="<%=datos[i].tel_pers%>">
                   </h6>
+                  <p class="form_input_error">Introduzca 10 dígitos</p>
                 </div>
                 <div class="botonEdit">
                
@@ -280,7 +282,7 @@
                       </select>
                   </h6>
                 </div>
-                <div class="botonEdit2">
+                <div class="botonEdit2" id="grupo_enviar">
                     <input type="submit" value="Actualizar" class="botonFormEdit">
                 </div>
             </div>
@@ -290,8 +292,8 @@
           <div class="Info borderds">
               <h5 class="infoDoc">Opciones</h5>
               <h6 class="nomDoc borrarcuenta">
-                <input type="submit" value="Borrar cuenta" class="botonFormEdit">
-                <input type="submit" value="Cerrar sesión" class="botonFormEdit">
+                <input type="submit" value="Borrar cuenta" class="botonFormEdit" name="borrarcuenta">
+                <input type="submit" value="Cerrar sesión" class="botonFormEdit" name="cerrarSesion">
               </h6>
               
            
@@ -342,7 +344,7 @@
                     <h5 class="tit"> <b class="black"> Email de contacto:</b> XXXXXXXXXXXXXX</h5>
                     <h5 class="tit"> <b class="black"> Teléfono de contacto:</b> XXXXXXXXXXXXXX</h5>
                 </div>
-                <input type="submit" class="btm" value="Desvincular doctor">
+                <input type="submit" class="btm" value="Desvincular doctor" name="desvincularDoc">
             </div>
           </form>
             <%}%>
@@ -357,8 +359,8 @@
             </div>
            
 
-            <form action="/Glucky/Pacientes/Password" method="post">
-            <div class="renovarContra">
+            <form action="/Glucky/Pacientes/Password" method="post" id="formularioEditarPassword">
+            <div class="renovarContra" id="grupo_password">
                 <h4 class="achecuatro">Cambiar contraseña</h4>
                 
                 
@@ -376,10 +378,12 @@
                 <input type="password" name="NewPass" id="myInput2" class="contraria">
                 <input type="checkbox" onclick="mostrar2()" class="chequeado"> Mostrar 
                 <br>
-                
-                
+                 
+                <p class="form_input_error">La contraseña no está cumpliendo con 1 mayúscula, 1 número, 1 caracter especial, 8 carácteres totales</p>
 
                 <input type="submit" class="contrasenaNueva" value="Cambiar la contraseña">
+
+
             </div>
           </form>
 <br>
@@ -389,7 +393,8 @@
          
             </script>
 </div>
-    <script src="/js/perfilDoctor.js"></script>
+    <script src="/js/perfilPaciente.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
     
     
 </body>

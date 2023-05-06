@@ -30,6 +30,27 @@ const db={};
 //Consultas y demas a la base de datos no cierren la conexión ya que si hacen eso todo se va a la mierda jeje
 
 //Consultar info
+db.buscarChat=(curp,callback) => {
+  con.query(`SELECT * FROM chat natural join medico natural join persona where curp_pacien='${curp}'`,(error,chat) => {
+    if (error){
+      callback(error);
+    }
+    else{
+      callback(null,chat);
+    }
+  });
+};
+
+db.buscarMensajes=(id_chat,callback) => {
+  con.query(`SELECT * FROM mensaje where id_chat = '${id_chat}'`,(error,mensajes) => {
+      if (error){
+        callback(error);
+      }
+      else{
+        callback(null,mensajes);
+      }
+    });
+}
 
 db.DesvincularDoctor = (CurpForm,callback)=>{
   con.query(`UPDATE pacientemedico SET id_edosol = 3 WHERE curp_pacien = '${CurpForm}'`,(error,desv)=>{
@@ -370,6 +391,17 @@ db.verDietaIndividual=(curp_pacien,cedula_med,id_dieta,callback)=>{
   });
 };
 //insertar registros a la base
+
+db.agregarMensaje = (IdChat,Emisor,Receptor,Mensaje,Fecha,Hora)=>{
+  con.query(`INSERT INTO mensaje VALUES(default,${IdChat},'${Emisor}','${Receptor}','${Mensaje}','${Fecha}','${Hora}')`,(error,mensaje)=>{
+    if(error){
+      console.log('Error al agregar mensaje',error);
+    }
+    else{
+      console.log('Mensaje agregado');
+    }
+  });
+}
 
 db.crearChat = (Cedula,CurpForm,fechaSQL,callback)=>{
   con.query(`INSERT INTO chat VALUES(default,'${CurpForm}','${Cedula}','${fechaSQL}')`,(error,chat)=>{
@@ -751,9 +783,6 @@ db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback
   });
  }; 
 
-
-
-
-module.exports= db;
+ module.exports= db;
 
 

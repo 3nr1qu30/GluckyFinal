@@ -6,45 +6,37 @@ const formularioEditarPerfil = document.getElementById("formularioEditarPerfil")
 const formularioEditarPassword = document.getElementById("formularioEditarPassword");
 const inputs = document.querySelectorAll("#formularioEditarPerfil input");
 const inputs2 = document.querySelectorAll("#formularioEditarPassword input");
-const cedula = document.querySelector('input[name="CedulaForm"]').value;
+const curp = document.querySelector('input[name="CurpForm"]').value;
+const tipoDiabetes = document.querySelector('input[name="TDiabForm"]').value;
 const email = document.querySelector('input[name="EmailForm"]').value;
 const nombre = document.querySelector('input[name="NombreForm"]').value;
 const apellidos = document.querySelector('input[name="ApellidosForm"]').value;
 const edad = document.querySelector('input[name="EdadForm"]').value;
 const telefono = document.querySelector('input[name="TelForm"]').value;
-const calle = document.querySelector('input[name="CalleForm"]').value;
-const numeroConsultorio = document.querySelector('input[name="NumeroForm"]').value;
-const cp = document.querySelector('input[name="CPForm"]').value;
 const password = document.querySelector('input[name="NewPass"]').value;
-const borrarCuenta = document.querySelector('input[name="borrarcuenta"]')
-const cerrarSesion = document.querySelector('input[name="cerrarSesion"]')
+const borrarCuenta = document.querySelector('input[name="borrarcuenta"]');
+const cerrarSesion = document.querySelector('input[name="cerrarSesion"]');
+const desvincularDoc = document.querySelector('input[name="desvincularDoc"]');
 
 const expReg = {
-  nombre: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)*$/,
-  apellidos:
-    /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)?(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)$/,
-  edad: /^([1-9][8-9]|[2-9][0-9])$/,
-  telefono: /^\d{10}$/,
-  calle: /^[a-zA-Z0-9\s-.,#áéíóúÁÉÍÓÚñÑ]+$/,
-  numeroConsultorio: /^\d{1,3}$/,
-  cp: /^\d{5}$/,
-  password:
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.#])[A-Za-z\d$@$!%*?&.#]{8,35}$/,
-  email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-};
+    nombre: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)*$/,
+    apellidos: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)?(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)$/,
+    email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+    edad: /^([1-9]|[1-9][0-9])$/,
+    telefono: /^\d{10}$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.#])[A-Za-z\d$@$!%*?&.#]{8,35}$/
+}
 
 const campos = {
-  nombre: false,
-  apellidos: false,
-  edad: false,
-  telefono: false,
-  calle: false,
-  numeroConsultorio: false,
-  cp: false,
-  password: false,
-  email: false,
-  cedula: false,
-};
+    nombre: false,
+    apellidos: false,
+    email: false,
+    edad: false,
+    telefono: false,
+    curp: false,
+    tipoDiabetes: false,
+    password: false 
+}
 
 if (nombre === nombre) {
   campos.nombre = true;
@@ -61,8 +53,13 @@ if (email === email) {
 } else {
   validarFormularioCuenta(e);
 }
-if (cedula === cedula) {
-  campos.cedula = true;
+if (curp === curp) {
+  campos.curp = true;
+} else {
+  validarFormularioCuenta(e);
+}
+if (tipoDiabetes === tipoDiabetes) {
+  campos.tipoDiabetes = true;
 } else {
   validarFormularioCuenta(e);
 }
@@ -76,28 +73,14 @@ if (telefono === telefono) {
 } else {
   validarFormularioCuenta(e);
 }
-if (calle === calle) {
-  campos.calle = true;
-} else {
-  validarFormularioCuenta(e);
-}
-if (numeroConsultorio === numeroConsultorio) {
-  campos.numeroConsultorio = true;
-} else {
-  validarFormularioCuenta(e);
-}
-if (cp === cp) {
-  campos.cp = true;
-} else {
-  validarFormularioCuenta(e);
-}
 if(password === password){
 	campos.password = false
-    } else{
-		validarFormularioCuenta(e);
+} else{
+	validarFormularioCuenta(e);
 }
 
-var caedulaVar = cedula;
+var curpVar = curp, 
+    tipoDiabetesVar = tipoDiabetes;
 
 const validarFormularioCuenta = (e) => {
   switch (e.target.name) {
@@ -155,14 +138,6 @@ const validarFormularioCuenta = (e) => {
         campos.email = false;
       }
       break;
-    case "CedulaForm":
-      caedulaVar = e.target.value;
-      if (caedulaVar === cedula) {
-        campos.cedula = true;
-      } else {
-        campos.cedula = false;
-      }
-      break;
     case "EdadForm":
       if (expReg.edad.test(e.target.value)) {
         document
@@ -199,59 +174,21 @@ const validarFormularioCuenta = (e) => {
         campos.telefono = false;
       }
       break;
-    case "CalleForm":
-      if (expReg.calle.test(e.target.value)) {
-        document
-          .querySelector("#grupo_calle .form_input_error")
-          .classList.remove("form_input_error-activo");
-        campos.calle = true;
-      } else if (e.target.value === "") {
-        document
-          .querySelector("#grupo_calle .form_input_error")
-          .classList.add("form_input_error-activo");
-        campos.calle = false;
-      } else {
-        document
-          .querySelector("#grupo_calle .form_input_error")
-          .classList.add("form_input_error-activo");
-        campos.calle = false;
-      }
-      break;
-    case "NumeroForm":
-      if (expReg.numeroConsultorio.test(e.target.value)) {
-        document
-          .querySelector("#grupo_numeroConsultorio .form_input_error")
-          .classList.remove("form_input_error-activo");
-        campos.numeroConsultorio = true;
-      } else if (e.target.value === "") {
-        document
-          .querySelector("#grupo_numeroConsultorio .form_input_error")
-          .classList.add("form_input_error-activo");
-        campos.numeroConsultorio = false;
-      } else {
-        document
-          .querySelector("#grupo_numeroConsultorio .form_input_error")
-          .classList.add("form_input_error-activo");
-        campos.numeroConsultorio = false;
-      }
-      break;
-    case "CPForm":
-      if (expReg.cp.test(e.target.value)) {
-        document
-          .querySelector("#grupo_cp .form_input_error")
-          .classList.remove("form_input_error-activo");
-        campos.cp = true;
-      } else if (e.target.value === "") {
-        document
-          .querySelector("#grupo_cp .form_input_error")
-          .classList.add("form_input_error-activo");
-        campos.cp = false;
-      } else {
-        document
-          .querySelector("#grupo_cp .form_input_error")
-          .classList.add("form_input_error-activo");
-        campos.cp = false;
-      }
+    case "CurpForm":
+        curpVar = e.target.value;
+        if (curpVar === curp) {
+            campos.curp = true;
+        } else {
+            campos.curp = false;
+        }
+        break;
+    case "TDiabForm":
+        tipoDiabetesVar = e.target.value;
+        if (tipoDiabetesVar === tipoDiabetes) {
+            campos.tipoDiabetes = true;
+        } else {
+            campos.tipoDiabetes = false;
+        }
       break;
   }
 };
@@ -372,7 +309,7 @@ inputs2.forEach((input) => {
 
 formularioEditarPerfil.addEventListener("submit", (e) => {
     e.preventDefault();
-  if (campos.nombre && campos.apellidos && campos.cedula && campos.email && campos.edad && campos.telefono && campos.calle && campos.numeroConsultorio && campos.cp) {
+  if (campos.nombre && campos.apellidos && campos.curp && campos.email && campos.edad && campos.telefono && campos.tipoDiabetes) {
     swal({
         icon: "warning",
         title: "Modificación de datos",
@@ -393,11 +330,11 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
             })
         }
       })
-  } else if (cedula !== caedulaVar) {
+  } else if (curp !== curpVar || tipoDiabetes !== tipoDiabetesVar) {
     swal({
       icon: "warning",
-      title: "Cédula modificada",
-      text: "La cédula no puede ser modificada, de lo contrario no se modificará nada",
+      title: "CURP o tipo de diabetes modificados",
+      text: "El CURP o tipo de diabetes no pueden ser modificados, de lo contrario no se modificará nada",
     });
     e.preventDefault();
   } else {
@@ -473,6 +410,26 @@ borrarCuenta.addEventListener("click", (e) => {
                 title: "Cuenta eliminada"
             }).then(() => {
                 borrarCuenta.submit();
+            })
+        }
+      })
+})
+
+desvincularDoc.addEventListener("click", (e) => {
+    e.preventDefault()
+    swal({
+        icon: "warning",
+        title: "Desvincular doctor",
+        text: "¿Estás seguro de que deseas desvincularte de tu doctor?",
+        buttons: ["Cancelar", "Desvincular"],
+        dangerMode: true    
+      }).then((desvincular) => {
+        if(desvincular){
+            swal({
+                icon: "success",
+                title: "Doctor desvinculado"
+            }).then(() => {
+                desvincularDoc.submit();
             })
         }
       })
