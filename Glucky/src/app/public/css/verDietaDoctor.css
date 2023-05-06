@@ -3808,16 +3808,35 @@ input[type=number]::-webkit-inner-spin-button {
 }
 
 .sssds{
-
   background-color: rgb(223, 55, 55) !important;
-  transition:  all 0.1s ease-in;
+  transition: all .2s ease-in;
+  border: solid 2px #dddddd00;
+  cursor: pointer;
+  height: 29px;
+  display: block;
+  margin-top: -2px;
 }
 
 .sssds:hover{
-
-  background-color: rgb(236, 79, 79) !important;
+  background-color: rgb(231, 23, 23) !important;
+  border-radius: 8px;
+  font-weight: 10px;
+  
 }
 
 .lomins{
   margin-right: 5px;
+  margin-top: 100px;
+  transition: all .2s ease-in;
+  
+  transform: translateY(212123px) !important;
+}
+
+.lomins:hover{
+  background-color: rgb(231, 217, 23) !important;
+  border-radius: 8px;
+}
+
+.alabados{
+  margin-top: 10px;
 }

@@ -30,6 +30,27 @@ const db={};
 //Consultas y demas a la base de datos no cierren la conexión ya que si hacen eso todo se va a la mierda jeje
 
 //Consultar info
+db.buscarChat=(curp,callback) => {
+  con.query(`SELECT * FROM chat natural join medico natural join persona where curp_pacien='${curp}'`,(error,chat) => {
+    if (error){
+      callback(error);
+    }
+    else{
+      callback(null,chat);
+    }
+  });
+};
+
+db.buscarMensajes=(id_chat,callback) => {
+  con.query(`SELECT * FROM mensaje where id_chat = '${id_chat}'`,(error,mensajes) => {
+      if (error){
+        callback(error);
+      }
+      else{
+        callback(null,mensajes);
+      }
+    });
+}
 
 db.DesvincularDoctor = (CurpForm,callback)=>{
   con.query(`UPDATE pacientemedico SET id_edosol = 3 WHERE curp_pacien = '${CurpForm}'`,(error,desv)=>{
@@ -357,7 +378,30 @@ db.verDietasCompletas=(curp_pacien,cedula_med,callback)=>{
     }
   });
 };
+
+db.verDietaIndividual=(curp_pacien,cedula_med,id_dieta,callback)=>{
+  con.query(`select * from dieta 
+  where curp_pacien = '${curp_pacien}' and cedula_med = '${cedula_med}' and id_dieta = '${id_dieta}';`,(error,vercosas)=>{
+    if(error){
+      console.log('Error al ver dieta individual: ',error);
+      callback(error,null);
+    } else if(vercosas){
+      callback(null,vercosas);
+    }
+  });
+};
 //insertar registros a la base
+
+db.agregarMensaje = (IdChat,Emisor,Receptor,Mensaje,Fecha,Hora)=>{
+  con.query(`INSERT INTO mensaje VALUES(default,${IdChat},'${Emisor}','${Receptor}','${Mensaje}','${Fecha}','${Hora}')`,(error,mensaje)=>{
+    if(error){
+      console.log('Error al agregar mensaje',error);
+    }
+    else{
+      console.log('Mensaje agregado');
+    }
+  });
+}
 
 db.crearChat = (Cedula,CurpForm,fechaSQL,callback)=>{
   con.query(`INSERT INTO chat VALUES(default,'${CurpForm}','${Cedula}','${fechaSQL}')`,(error,chat)=>{
@@ -608,6 +652,7 @@ db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
 }
 
 //eliminar registros
+
 db.eliminaSolicitudesDen=(idCita,curpPacien,callback)=>{
   let idCitas = parseInt(idCita);
   con.query(`delete from solicitarcita where curp_pacien = '${curpPacien}' and id_solcita = '${idCitas}'  and id_edosol = 3;`,(error,elimina)=>{
@@ -700,6 +745,24 @@ db.eliminarChat=(CurpForm,callback)=>{
   });
 };
 
+db.eliminarDieta = (id_dieta, callback) => {
+  con.query(`delete from dietaingrediente where id_dieta = '${id_dieta}';`, (error, vercosas) => {
+    if (error) {
+      console.log('Error al eliminar los ingredientes de una dieta individual: ', error);
+      callback(error, null);
+    } else if (vercosas) {
+      con.query(`delete from dieta where id_dieta = '${id_dieta}';`, (error2, vercosas2) => {
+        if (error2) {
+          console.log('Error al eliminar dieta individual: ', error2);
+          callback(error2, null);
+        } else if (vercosas2) {
+          callback(null, vercosas2);
+        }
+      });
+    }
+  });
+};
+
 
 
 //modificar y eliminar registros osea querys anidados jaja el que borre esto lo asesino
@@ -720,9 +783,6 @@ db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback
   });
  }; 
 
-
-
-
-module.exports= db;
+ module.exports= db;
 
 

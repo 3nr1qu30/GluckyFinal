@@ -305,19 +305,68 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
 
   Controllers.chatPacienteGet=(req,res,next)=>{
     const curp = req.session.curp;
-    querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
+    querys.buscarChat(curp, (error, solicitud) => {
       if(solicitud.length!==0){
-        error='undefined';
-        res.render('chatPaciente',{curp,solicitud,error});
+        const id_chat = solicitud[0].id_chat;
+        querys.buscarMensajes(id_chat,(error, mensajes) => {
+          if(mensajes.length!==0){
+            const format12HourTime = (time) => {
+              var splitTime = time.split(':');
+              var hours = parseInt(splitTime[0]);
+              var minutes = parseInt(splitTime[1]);
+              var amPm = hours >= 12 ? 'PM' : 'AM';
+              hours = hours % 12;
+              hours = hours ? hours : 12; // convert 0 to 12
+              minutes = minutes < 10 ? '0' + minutes : minutes;
+              var formattedTime = hours + ':' + minutes + ' ' + amPm;
+              return formattedTime;
+            }
+            const formatDate = (dates) => {
+              const date = new Date(dates);
+              const months = [
+                "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+              ];
+              const day = date.getDate();
+              const monthIndex = date.getMonth();
+              const year = date.getFullYear();
+              return `${day} ${months[monthIndex]} ${year}`;
+            }
+            error='undefined';
+            res.render('chatPaciente',{curp,solicitud,mensajes,format12HourTime,formatDate,error});
+          }
+          else if(mensajes.length!==0){
+            error='undefined';
+            mensajes='undefined';
+            res.render('chatPaciente',{curp,solicitud,mensajes,error});
+          }
+          else if(error){
+            console.log(error);
+          }
+        });
       }
       else if(solicitud.length===0){
       error = "No te has en lazado a un doctor";
+      solicitud = 'undefined';
       res.render('chatPaciente',{curp,solicitud,error});
       }
       else if(error){
         error='no se pudo cargar la pagina';
+        solicitud = 'undefined';
         res.render('chatPaciente',{curp,solicitud,error});
       }
     });
   };
+
+
+  Controllers.AgregarMensaje=(req,res,next)=>{
+    const{IdChat,Emisor,Receptor,Mensaje,Fecha,Hora}=req.body;
+    querys.agregarMensaje(IdChat,Emisor,Receptor,Mensaje,Fecha,Hora,(error,mensaje)=>{
+      if(mensaje){
+       console.log('Mensaje agregado'); 
+      }
+      else{
+              console.log(error);
+            }
+    });
+  }
   module.exports = Controllers;
