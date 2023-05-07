@@ -362,7 +362,7 @@
                                         <div class="cosasas">
                                           <h5>Dieta <%=i+1%></h5>
                                           <h6 class="dedicator1"><b> para:</b> <%=datos[0].nom_pers%></h6>
-                                          <h6 class="dedicator">Total de medicamentos:  </h6>
+                                          <h6 class="dedicator">¡Edita o elimina la dieta!  </h6>
                                           <hr class="miniraya">
                                           <h6 class="dedicatorsb">Asignado el dia: <h6 class="dedicatorsdd"> <%=fechita.toISOString().substring(0,10)%></h6> </h6>
                                         </div>
@@ -487,7 +487,7 @@
                                 <div class="cosasas">
                                   <h5>Tratamiento <%=i+1%></h5>
                                   <h6 class="dedicator1"><b> para:</b> <%=datos[0].nom_pers%></h6>
-                                  <h6 class="dedicator">Total de medicamentos:  </h6>
+                                  <h6 class="dedicator">¡Edita o elimina el tratamiento! </h6>
                                   <hr class="miniraya">
                                   <h6 class="dedicatorsb">Asignado el dia: <h6 class="dedicatorsdd"> <%=fechita.toISOString().substring(0,10)%></h6> </h6>
                                 </div>
@@ -750,38 +750,28 @@
         </div>
 
 
-
+<br>
 
         <div class="title">
           <i class="uil uil-chart-growth" ></i>
           <span class="text">Tablas de glucosa y presión</span>
         </div>
 
-                <div class="row">
-                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto;">
-                        Sin registros
-                    </div>
-                    <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; height: auto; width: 50%; margin: 0 auto;">
-                        Sin registros
-                  </div>
-                </div>
-
-        <br>
+     
+   
         
-        <div class="title">
-          <i class="uil uil-book" ></i>
-          <span class="text">Historial de registros del paciente</span>
-        </div>
+
         
           
             <div class="row">
-                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; overflow-y: auto; min-height: 110px; max-height: 220px;">
+                <div class="column jennerDashian wowkim" style=" border-radius: 20px; margin-right: 10px; overflow-y: auto; min-height: 110px; max-height: 220px; margin-top: 2px;">
                     <table>
-                        <tr>
-                          <th style="background-color: #F7B416;"> Glucosa</th>
-                          <th style="font-size: small;">niveles</th>
+                        <tr class="nomanchesDos">
+                          <th class="nombrecoso1"> Glucosa</th>
+                          <th style="font-size: small;">niveles registrados</th>
                         </tr>
-                        <tr>
+
+                        <tr class="day">
                           <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
                           <td data-label="Registro 1" >120/80 a las 19:31</td>
                           <td data-label="Registro 2" >130/80 a las 18:32</td>
@@ -792,13 +782,13 @@
                       </table>
                   
                 </div>
-                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; overflow-y: auto;  min-height: 110px; max-height: 220px;">
+                <div class="column jennerDashian2 wowkim" style=" border-radius: 20px; overflow-y: auto;  min-height: 110px; max-height: 220px; margin-top: 2px;">
                     <table>
-                        <tr>
-                          <th style="background-color: #F71652;"> Presión</th>
-                          <th style="font-size: small;">niveles</th>
+                        <tr class="nomanchesDos">
+                          <th class="nombrecoso2"> Presión</th>
+                          <th style="font-size: small;">niveles registrados</th>
                         </tr>
-                        <tr>
+                        <tr class="day">
                           <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
                           <td data-label="Registro 1" >120/80 a las 19:31</td>
                           <td data-label="Registro 2" >130/80 a las 18:32</td>
@@ -809,6 +799,17 @@
                       </table>
                 </div>
               </div>
+              <br>
+              <div class="row">
+                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto;">
+                    Sin registros
+                </div>
+                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; height: auto; width: 50%; margin: 0 auto;">
+                    Sin registros
+              </div>
+              </div>
+
+
               <%}%>
               
   
