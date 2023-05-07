@@ -1,7 +1,15 @@
+const socket = io();
+socket.on('connect', () => {
+  socket.emit('userConnected', emisor);
+});
+
 document.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', (event) => {
     const id = event.target.id;
-    const nombre = event.target.querySelector('.sss').textContent;
+    const nombreElement = event.target.querySelector('.sss');
+if (nombreElement) {
+  const nombre = nombreElement.textContent;
+  console.log(nombre);
     console.log(`El botón presionado tiene el id ${id} y el nombre ${nombre}`)
     const elementos = document.querySelectorAll('.chatBo');
     elementos.forEach(elemento => {
@@ -79,32 +87,28 @@ chatBo.appendChild(escribe);
 
 // agregar el contenedor chatBo al contenedor chat-container
 document.getElementById("chat-container").appendChild(chatBo); 
-  });
-});
-/* // obtener el id de sesión del usuario actual
-
-socket.on('connect', () => {
-  socket.emit('userConnected', emisor);
-});
-
-function enviarMensaje() {
+function enviarMensajeSo() {
   const message = messageInput.value;
   const messageData = {
     message: message,
     emisor: emisor ,
-    receptor: receptor// enviar el id de sesión junto con el mensaje
+    receptor: id// enviar el id de sesión junto con el mensaje
   };
   socket.emit('nuevoMensaje', messageData);
   messageInput.value='';
 }
-
-button.addEventListener('click', enviarMensaje);
-
-messageInput.addEventListener('keypress', (event) => {
+const PressEnter = (event) => {
   if (event.key === 'Enter') {
-    enviarMensaje();
+    enviarMensajeSo();
   }
-});
+};
+let button = document.querySelector('.enviarMensaje');
+let messageInput = document.querySelector('.escribeC');
+button.removeEventListener('click', enviarMensajeSo);
+messageInput.removeEventListener('keypress', PressEnter);
+
+button.addEventListener('click', enviarMensajeSo);
+messageInput.addEventListener('keypress', PressEnter);
 
 socket.on('nuevoMensaje', (data) => {
   const messagesContainer = document.getElementById('menssages-container');
@@ -137,5 +141,7 @@ function getCurrentTime() {
   minutes = minutes < 10 ? '0' + minutes : minutes;
   const strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
+  }
 }
- */
+  });
+});
