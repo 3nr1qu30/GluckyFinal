@@ -158,13 +158,14 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
+                    <% for(var i=0;i<datopac.length;i++){%>
                     <div class="text-data">
-                      <span class="name">Nombre completito jeje</span>
-                      <span class="job">Email@cum.com</span>
-                      <span class="job">Doctor</span>
-                      <span class="job">Dirección??</span>
+                        <span class="name"><%=datopac[i].nom_pers%> <%=datopac[i].apellidos_pers%></span>
+                      <span class="job"><%=datopac[i].curp_pacien%></span>
+                      <span class="job"><%=datopac[i].email_pers%></span>
+                      <span class="job">Paciente</span>
                     </div>
-              
+                    <%}%>
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
                         <i class="bx bx-plus-medical"></i>
@@ -174,7 +175,7 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Privacidad</>
+                      <button class="button"><a href="/Glucky/Doctores/EditarCuenta" style="color:#ffffff; text-decoration:none;">Cuenta</a></button>
                     </div>
               
                     <div class="analytics">
@@ -184,7 +185,7 @@
                       </div>
                       <div class="data">
                         <i class="bx bx-heart"></i>
-                        <span class="number">Doctor</span>
+                        <span class="number">Paciente</span>
                       </div>
                       <div class="data">
                         <i class="bx bx-award"></i>

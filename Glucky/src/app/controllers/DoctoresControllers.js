@@ -854,7 +854,13 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const cedula = req.session.cedula;
     querys.buscarChatDoctor(cedula,(error,chat)=>{
       if(chat.length!==0){
-        res.render('chatDoctor',{cedula,chat});
+        querys.VerDatoDoctor(cedula,(error,datos)=>{
+        if(datos){
+        res.render('chatDoctor',{cedula,chat, dato:datos});
+        } else {
+          console.log(error);
+        }
+      });
       }
       else if(chat.length===0){
         chat='undefined';

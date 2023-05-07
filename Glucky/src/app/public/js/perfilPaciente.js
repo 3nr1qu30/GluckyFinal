@@ -236,7 +236,7 @@ sidebarToggle.addEventListener("click", () => {
   } else {
     localStorage.setItem("status", "open");
   }
-});
+})
 
 var box = document.getElementById("box");
 var down = false;
@@ -257,20 +257,20 @@ function toggleNotifi() {
   }
 }
 
-var box2 = document.getElementById("box2");
+var box2 = document.getElementById('box2');
 var down2 = false;
 
 function toggleNotifi2() {
   if (down2) {
-    box2.style.height = "0px";
+    box2.style.height = '0px';
     box2.style.opacity = 0;
     down2 = false;
   } else {
-    box2.style.height = "auto";
+    box2.style.height = 'auto';
     box2.style.opacity = 1;
     down2 = true;
 
-    box.style.height = "0px";
+    box.style.height = '0px';
     box.style.opacity = 0;
     down = false;
   }

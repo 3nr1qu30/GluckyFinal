@@ -290,7 +290,13 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         if(solicitud.length===0){
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
-              res.render('solicitudesPaciente',{datos:Doctores});
+              querys.VerDatoPaciente(curp,(error,datpac)=>{
+                if(datpac){
+              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+                } else {
+                  console.log(error);
+                }
+               });
             }
             else{
               console.log(error);
@@ -307,7 +313,13 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           console.log('su solicitud fue denegada');
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
-              res.render('solicitudesPaciente',{datos:Doctores});
+              querys.VerDatoPaciente(curp,(error,datpac)=>{
+                if(datpac){
+              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+                } else {
+                  console.log(error);
+                }
+               });
             }
             else{
               console.log(error);
@@ -432,9 +444,15 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             res.render('chatPaciente',{curp,solicitud,mensajes,format12HourTime,formatDate,error});
           }
           else if(mensajes.length===0){
+            querys.VerDatoPaciente(curp,(error,datospac)=> {
+              if(datospac){
             error='undefined';
             mensajes='undefined';
-            res.render('chatPaciente',{curp,solicitud,mensajes,error});
+            res.render('chatPaciente',{curp,solicitud,mensajes,error, datopac:datospac});
+              } else {
+                console.log(error);
+              }
+          });
           }
           else if(error){
             console.log(error);
