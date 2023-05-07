@@ -140,6 +140,94 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
 };
 
 
+Controllers.verAsignacionesPaciente = (req,res,next)=>{
+  const curp = req.session.curp;
+  querys.verCitasPacienteIndividual(curp,(error,citas)=>{
+    if(citas){
+      querys.verDietasCompletas2(curp,(error,dietas)=>{
+      if(dietas){
+        querys.solicitudAceptadaDoctor(curp,(error,pacdoc)=>{
+          if(pacdoc){
+            querys.DatoPacienteDoctor(curp,(error,ver)=>{
+              if(ver){
+
+                solicituda =
+                pacdoc[0].nom_pers + ' ' + pacdoc[0].apellidos_pers;
+
+                direccion =
+                'Calle:' +
+                pacdoc[0].calle_cons +
+                ' Num:' +
+                pacdoc[0].num_cons +
+                '\n' +
+                ' CP:' +
+                pacdoc[0].cp_cons +
+                '\n' +
+                ' Colonia:' +
+                pacdoc[0].col_cons +
+                '\n' +
+                ' Del o Mun:' +
+                pacdoc[0].del_cons +
+                '\n' +
+                ' Estado o Ciudad:' +
+                pacdoc[0].edo_cons;
+               //inicio de la cuarta consulta de query 
+               querys.verDietaBase(curp,(error4,dietaver)=>{
+                if(dietaver){
+                //inicio de la quinta consulta de query verTratamientoBase
+                querys.verDietasCompletas2(curp,(error5,dietasverTodas)=>{
+                  if(dietasverTodas){
+                     //inicio de la sexta consulta de query 
+                      querys.verTratamientosCompletas2(curp,(error6,recetaverTodas)=>{
+                        if(recetaverTodas){
+                          //inicio de la séptima consulta de query 
+                          querys.verTratamientoBase(curp,(error7,recetaver)=>{
+                            if(recetaver){
+                              res.render('asignacionesPacientes',{citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
+                            }
+                            else{
+                              console.log(error7);
+                            }
+                          }); 
+                          //final de la séptima consulta de query
+                        }
+                        else{
+                          console.log(error6);
+                        }
+                      }); 
+                      //final de la sexta consulta de query
+                  }
+                  else{
+                    console.log(error5);
+                  }
+                }); 
+                //final de la quinta consulta de query
+                }
+                else{
+                  console.log(error4);
+                }
+              }); 
+              //final de la cuarta consulta de query
+              }else{
+                console.log(error);
+              }
+            });
+          }else{
+            console.log(error);
+          }
+        });
+      }else{
+        console.log(error);
+      }
+    });
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+};
+
+
 Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   const CurpForm =req.session.curp;
   const{NombreForm} =req.body;
@@ -202,7 +290,13 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         if(solicitud.length===0){
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
-              res.render('solicitudesPaciente',{datos:Doctores});
+              querys.VerDatoPaciente(curp,(error,datpac)=>{
+                if(datpac){
+              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+                } else {
+                  console.log(error);
+                }
+               });
             }
             else{
               console.log(error);
@@ -219,7 +313,13 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           console.log('su solicitud fue denegada');
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
-              res.render('solicitudesPaciente',{datos:Doctores});
+              querys.VerDatoPaciente(curp,(error,datpac)=>{
+                if(datpac){
+              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+                } else {
+                  console.log(error);
+                }
+               });
             }
             else{
               console.log(error);
@@ -344,9 +444,15 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             res.render('chatPaciente',{curp,solicitud,mensajes,format12HourTime,formatDate,error});
           }
           else if(mensajes.length===0){
+            querys.VerDatoPaciente(curp,(error,datospac)=> {
+              if(datospac){
             error='undefined';
             mensajes='undefined';
-            res.render('chatPaciente',{curp,solicitud,mensajes,error});
+            res.render('chatPaciente',{curp,solicitud,mensajes,error, datopac:datospac});
+              } else {
+                console.log(error);
+              }
+          });
           }
           else if(error){
             console.log(error);

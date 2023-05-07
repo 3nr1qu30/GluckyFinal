@@ -12,6 +12,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>Mi perfil</title>
 
       <!-- Swiper CSS -->
       <link rel="stylesheet" href="css/swiper-bundle.min.css" />
@@ -118,7 +119,7 @@
                     <% for(var i=0;i<datos.length;i++){%>
                     <div class="text-data">
                       <span class="name"><%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%></span>
-                      <span class="name"><%=datos[i].curp_pacien%></span>
+                      <span class="job"><%=datos[i].curp_pacien%></span>
                       <span class="job"><%=datos[i].email_pers%></span>
                       <span class="job">Paciente</span>
                     </div>
@@ -132,12 +133,12 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Cuenta</>
                     </div>
               
                     <div class="analytics">
                       <div class="data">
                         <i class="bx bx-circle"></i>
+                        <span class="number">Glucky</span>
                       </div>
                       <div class="data">
                         <i class="bx bx-heart"></i>
@@ -168,13 +169,8 @@
             <div class="Titulo">
                Tu cuenta
             </div>
-<<<<<<< HEAD
           
             <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post">
-=======
-            <% for(var i=0;i<datos.length;i++){%>
-            <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post" id="formularioEditarPerfil">
->>>>>>> 774556718a91be6db11328cb08fd12f00d2bab29
 
             <div class="Info">
                 <div class="infoEdit" id="grupo_nombre">
@@ -318,41 +314,44 @@
             </div>
             <br>
             <br>
+      <% for(var i=0;i<pacdoc.length;i++){ %>
 
-            <div class="overview">
+        <% var idedo = datos[i].id_edosol;
+        var numcons;
+        var cedmed;
+        var direccion;
+        var nombre;
+        var email;
+        var tel;
+        var visualizar;
+      if (idedo == 3 || idedo == 1){
+      nombre = "No estás vinculado a ningún doctor";
+      numcons, cedmed, direccion, email, tel = "";
+      visualizar = "none";
+      }else if(idedo == 2){
+       visualizar = "block"
+       numcons = datos[i].num_cons;
+       cedmed =datos[i].cedula_med;  
+       direccion = datos[i].calle_cons + ", " + datos[i].col_cons+ ", " + datos[i].del_cons+ ", " + datos[i].cp_cons+ ", " + datos[i].edo_cons;
+       nombre = pacdoc[i].nom_pers + " " + pacdoc[i].apellidos_pers;
+       email = pacdoc[i].email_pers;
+       tel = pacdoc[i].tel_pers;
+     
+     }%>
+            <div class="overview" style="display: <%=visualizar%>;">
                 <div class="title">
                     <i class="uil uil-bag"></i>
                     <span class="text">Doctor asignado</span>
                 </div>
             </div>
-            <% for(var i=0;i<pacdoc.length;i++){%>
-            <form action="/Glucky/Pacientes/Desvinculacion" method="post">
-            <div class="doctorC">
+            
+              
+            <form action="/Glucky/Pacientes/Desvinculacion" method="post" >
+            <div class="doctorC" style="display:  <%=visualizar%>;">
                 <div class="flexos">
                     <div class="logos"> <i class="uil uil-user"></i></div>
                     <h5 class="TituloDoc">Información de tu doctor asignado</h5>
                 </div>
-
-                <% var idedo = datos[i].id_edosol;
-                   var numcons;
-                   var cedmed;
-                   var direccion;
-
-                   var nombre;
-                   var email
-                   var tel
-                 if (idedo == 3){
-                 nombre = "No estás vinculado a ningún doctor";
-                 numcons, cedmed, direccion, email, tel = "";
-                 }else if(idedo == 2){
-                  numcons = datos[i].num_cons;
-                  cedmed =datos[i].cedula_med;  
-                  direccion = datos[i].calle_cons + ", " + datos[i].col_cons+ ", " + datos[i].del_cons+ ", " + datos[i].cp_cons+ ", " + datos[i].edo_cons;
-                  nombre = pacdoc[i].nom_pers + " " + pacdoc[i].apellidos_pers;
-                  email = pacdoc[i].email_pers;
-                  tel = pacdoc[i].tel_pers;
-                
-                }%>
                 <h5 class="TituloDoc2"> <b class="black"> Nombre:</b><%=nombre%></h5>
                 <div class="TituloDoc3">
                     <h5 class="tit"> <i class="uil uil-circle estilo"></i>  <b class="black"> Consultorio:</b> <%=numcons%></h5>
@@ -364,8 +363,8 @@
                 <input type="submit" class="btm" value="Desvincular doctor" name="desvincularDoc">
             </div>
           </form>
-            <%}
-            }%>
+            <%}%>
+            <% }%>
             <br>
             <br>
            
@@ -406,12 +405,8 @@
           </form>
 <br>
 
-            
-            <script>
-         
-            </script>
 </div>
-    <script src="/js/perfilDoctor.js"></script>    
+    <script src="/js/perfilPaciente.js"></script>    
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
     
 </body>

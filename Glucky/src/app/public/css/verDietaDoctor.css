@@ -3758,11 +3758,22 @@ border-radius: 10px;
   border: solid 1px #dddddd00;
   margin-bottom: 7px;
  }
+ 
+ .elementop:hover {
+  animation: rotate-hover .2s infinite;
+}
 
- .elementop:hover{
-  
-  transform: rotate(-2deg);
- }
+@keyframes rotate-hover {
+  0% {
+    transform: rotate(-1.4deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+  100% {
+    transform: rotate(-1.4deg);
+  }
+}
  
  .btn:hover{
   background-color: rgb(223, 55, 55) !important;

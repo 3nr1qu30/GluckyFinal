@@ -186,7 +186,29 @@ Controllers.dashboardDoctores=(req,res,next)=>{
                 //inicio de la quinta consulta de query 
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                    res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula});
+                   
+                    
+                    //inicio de la sexta consulta de query 
+                      querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
+                        if(recetaver){
+                        //inicio de la séptima consulta de query 
+                        querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
+                          if(recetaverTodas){
+                            res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas});
+                          }
+                          else{
+                            console.log(error7);
+                          }
+                        }); 
+                        //final de la séptima consulta de query
+                        }
+                        else{
+                          console.log(error6);
+                        }
+                      }); 
+                      //final de la sexta consulta de query
+
+
                   }
                   else{
                     console.log(error5);
@@ -253,6 +275,41 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   };
 
+  Controllers.tratamientoVerDoctor = (req, res, next) => {
+    const {curpFormPacEd} = req.body;
+    const {cedulaEdit} = req.body;
+
+    const cedula_med = req.session.cedula;
+    const { curp_pacien } = req.body;
+    const { id_cons } = req.body;
+    const date_receta = new Date().toISOString().slice(0, 10);
+    querys.enviarTratamientoBase(curp_pacien, cedula_med, date_receta,id_cons , (error, last_id) => {
+      if (last_id) {
+        querys.verMedicamentos((error2, medicamentosver) => {
+          if (medicamentosver) {
+             //inicio de la segunda consulta de query
+             querys.verMedicamentosBaseSele(last_id,(error3, verrecetamedicamento) => {
+              if (verrecetamedicamento) {
+                req.session.cedula=cedulaEdit;
+                req.session.paciente=curpFormPacEd;
+                const ala = req.session.paciente;
+                console.log(ala);
+                res.render('verTratamientoDoctor', { medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+              } else {
+                console.log(error3);
+              }
+            });
+            //fin de la segunda consulta de query
+          } else {
+            console.log(error2);
+          }
+        });
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
   Controllers.dietaVerDoctorEdit = (req, res, next) => {
     const {last_id} = req.body;
     const {curpFormPacEd} = req.body;
@@ -265,6 +322,31 @@ Controllers.dashboardDoctores=(req,res,next)=>{
               if (alimentosver) {
                 req.session.paciente=curpFormPacEd;
                 res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+              } else {
+                console.log(error3);
+              }
+            });
+            //fin de la segunda consulta de query
+          } else {
+            console.log(error2);
+          }
+        });
+    //fin de la primera consulta de query para ver los campos de los alimentos
+  };
+
+
+  Controllers.recetaVerDoctorEdit = (req, res, next) => {
+    const {last_id} = req.body;
+    const {curpFormPacEd} = req.body;
+    const {cedulaEdit} = req.body;
+    //inicio de la primera consulta de query para ver los campos de los alimentos
+        querys.verMedicamentos((error2, medicamentosver) => {
+          if (medicamentosver) {
+             //inicio de la segunda consulta de query
+             querys.verMedicamentosBaseSele(last_id,(error3, verrecetamedicamento) => {
+              if (verrecetamedicamento) {
+                req.session.paciente=curpFormPacEd;
+                res.render('verTratamientoDoctor', { medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -291,18 +373,20 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     });
   };
 
-  Controllers.dietaVerDoctorGet = (req, res, next) => {
+ 
+
+  Controllers.tratamientoVerDoctorGet = (req, res, next) => {
     const curpFormPacEd = req.session.paciente;
     const cedulaEdit = req.session.cedula;
-    const last_id = req.session.id_dieta;
-        querys.verAlimentos((error2, alimentosver) => {
-          if (alimentosver) {
+    const last_id = req.session.id_receta;
+      querys.verMedicamentos((error2, medicamentosver) => {
+          if (medicamentosver) {
             //inicio de la segunda consulta de query
-            querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
-              if (alimentosver) {
+            querys.verMedicamentosBaseSele(last_id,(error3, verrecetamedicamento) => {
+              if (verrecetamedicamento) {
                 req.session.cedula=cedulaEdit;
                 req.session.paciente=curpFormPacEd;
-                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verTratamientoDoctor', {  medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -312,6 +396,30 @@ Controllers.dashboardDoctores=(req,res,next)=>{
             console.log(error2);
           }
         });
+};
+
+
+Controllers.dietaVerDoctorGet = (req, res, next) => {
+  const curpFormPacEd = req.session.paciente;
+  const cedulaEdit = req.session.cedula;
+  const last_id = req.session.id_dieta;
+      querys.verAlimentos((error2, alimentosver) => {
+        if (alimentosver) {
+          //inicio de la segunda consulta de query
+          querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
+            if (alimentosver) {
+              req.session.cedula=cedulaEdit;
+              req.session.paciente=curpFormPacEd;
+              res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+            } else {
+              console.log(error3);
+            }
+          });
+          //fin de la segunda consulta de query
+        } else {
+          console.log(error2);
+        }
+      });
 };
 
 
@@ -331,6 +439,30 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         req.session.paciente=CurpForm;
         res.redirect('/Glucky/Doctores/EditarDieta');
         console.log('ha sido agregado un alimento', cedula_med);
+      } else {
+        console.log(error);
+      }
+    });
+  };
+
+  Controllers.enviarTratamientoBaseMedicamento = (req, res, next) => {
+    const {id_receta} = req.body;
+    const {id_medic} = req.body;
+    const {frec_recmed} = req.body;
+    const {present_recmed} = req.body;
+
+    const {CurpForm} = req.body;
+    const {cedulaEdit} = req.body;
+    
+    const cedula_med = req.session.cedula;
+    querys.enviarTratamientoBaseMedicamento(id_receta,id_medic,frec_recmed,present_recmed,(error, agregado) => {
+      if (agregado) {
+        req.session.id_receta=id_receta;
+
+        req.session.cedula=cedulaEdit;
+        req.session.paciente=CurpForm;
+        res.redirect('/Glucky/Doctores/EditarTratamiento');
+        console.log('ha sido agregado un medicamento', cedula_med);
       } else {
         console.log(error);
       }
@@ -360,6 +492,28 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     });
   }; 
 
+  Controllers.eliminarTratamientoBaseMedicamento = (req, res, next) => {
+    const {id_recmed} = req.body;
+    const {id_receta} = req.body;
+
+    const {CurpForm} = req.body;
+    const {cedulaEdit} = req.body;
+
+    querys.eliminarMedicamento(id_recmed,id_receta,(error, eliminado) => {
+      if (eliminado) {
+
+        req.session.cedula=cedulaEdit;
+        req.session.paciente=CurpForm;
+
+        req.session.id_receta=id_receta;
+        res.redirect('/Glucky/Doctores/EditarTratamiento');
+        console.log('ha sido eliminado un medicamento');
+      } else {
+        console.log(error);
+      }
+    });
+  }; 
+
 
   Controllers.eliminarDieta = (req, res, next) => {
     const {id_dietaEl} = req.body;
@@ -376,6 +530,22 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }; 
+
+  Controllers.eliminarTratamiento = (req, res, next) => {
+    const {id_recetaEl} = req.body;
+    const {CurpForm} = req.body;
+    const {cedulaEdit} = req.body;
+    querys.eliminarTratamiento(id_recetaEl,(error, eliminado) => {
+      if (eliminado) {
+        req.session.cedula=cedulaEdit;
+        req.session.paciente=CurpForm;
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
+        console.log('ha sido eliminada un tratamiento');
+      } else {
+        console.log(error);
+      }
+    });
+  };
 
   Controllers.PacienteDoctorGet = (req,res,next)=>{
     const Cedula = req.session.cedula;
@@ -394,7 +564,28 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
                 //inicio de la quinta consulta de query 
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                    res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula});
+                  
+                    
+                     //inicio de la sexta consulta de query 
+                     querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
+                      if(recetaver){
+                      //inicio de la séptima consulta de query 
+                      querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
+                        if(recetaverTodas){
+                          res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas});
+                        }
+                        else{
+                          console.log(error7);
+                        }
+                      }); 
+                      //final de la séptima consulta de query
+                      }
+                      else{
+                        console.log(error6);
+                      }
+                    }); 
+                    //final de la sexta consulta de query
+
                   }
                   else{
                     console.log(error5);
@@ -663,7 +854,13 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const cedula = req.session.cedula;
     querys.buscarChatDoctor(cedula,(error,chat)=>{
       if(chat.length!==0){
-        res.render('chatDoctor',{cedula,chat});
+        querys.VerDatoDoctor(cedula,(error,datos)=>{
+        if(datos){
+        res.render('chatDoctor',{cedula,chat, dato:datos});
+        } else {
+          console.log(error);
+        }
+      });
       }
       else if(chat.length===0){
         chat='undefined';

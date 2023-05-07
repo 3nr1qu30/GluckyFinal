@@ -204,19 +204,34 @@ let circle = document.querySelector(".color-option");
 
 
    const section = document.querySelector("section"),
-        overlay = document.querySelector(".overlay"),
-        showBtn = document.querySelector(".botonver"),  /*Botón para ver */
-        closeBtn = document.querySelector(".button-layer32");
+  overlay = document.querySelector(".overlay"),
+  showBtn = document.querySelector(".botonver"),  /*Botón para ver */
+  kimBtn = document.querySelector(".kimkardashian"), /*Nuevo botón para ver*/
+  KyliBtn = document.querySelector(".KylieJenner"), /*Nuevo botón para ver*/
+  NickiBtn = document.querySelector(".NickiMinaj"), /*Nuevo botón para ver*/
+  closeBtn = document.querySelector(".button-layer32");
 
-      showBtn.addEventListener("click", () => section.classList.add("active"));
+showBtn.addEventListener("click", () => section.classList.add("active"));
 
-      overlay.addEventListener("click", () =>
-        section.classList.remove("active")
-      );
+if (kimBtn) {
+  kimBtn.addEventListener("click", () => section.classList.add("active"));
+}
 
-      closeBtn.addEventListener("click", () =>
-        section.classList.remove("active")
-      );
+if (KyliBtn) {
+  KyliBtn.addEventListener("click", () => section.classList.add("active"));
+}
+
+if (NickiBtn) {
+  NickiBtn.addEventListener("click", () => section.classList.add("active"));
+}
+
+overlay.addEventListener("click", () =>
+  section.classList.remove("active")
+);
+
+closeBtn.addEventListener("click", () =>
+  section.classList.remove("active")
+);
 
 
 

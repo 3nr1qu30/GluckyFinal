@@ -267,6 +267,8 @@ let circle = document.querySelector(".color-option");
       });
 ///fin del script para los botones de listamedicamentos
 
+
+
 ///inicio del script para los botones de listadietas
       const listadietas = document.querySelector('#listadietas');
       const listaSeleccionadosdietas = document.querySelector('#dietas-seleccionados');
@@ -276,61 +278,55 @@ let circle = document.querySelector(".color-option");
         const checkbox = event.target;
         const descrip = checkbox.parentNode.querySelector('input[type="submit"]');
         const texts = checkbox.parentNode.querySelectorAll('.textsO');
+        const cantidad = checkbox.parentNode.querySelectorAll('.cantidad');
       
         if (checkbox.checked) {
-          /* const span = document.createElement('span');
-          span.innerText = checkbox.value + " ";
-          span.classList.add('seleccionado');
-          listaSeleccionadosdietas.appendChild(span); */
-      
-           // Mostrar el input de tipo descrip
+          // Mostrar el input de tipo descrip
           descrip.style.display = 'inline-block';
           descrip.disabled = false; // Desbloquear el input
-
-           // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
-              for (let i = 0; i < texts.length; i++) {
-                texts[i].style.display = 'block';
-                texts[i].disabled = false; // Desbloquear el texto
-              }
-            } else {
-           /*    const spans = listaSeleccionadosdietas.getElementsByTagName('span');
-              for (let i = 0; i < spans.length; i++) {
-                if (spans[i].innerText.trim() === checkbox.value) {
-                  listaSeleccionadosdietas.removeChild(spans[i]);
-                  break;
-                }
-              } */
-      
-         
+        
+          // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
+          for (let i = 0; i < texts.length; i++) {
+            texts[i].style.display = 'block';
+            texts[i].disabled = false; // Desbloquear el texto
+          }
+        
+          // Agregar propiedades CSS al div con class .cantidad
+          for (let i = 0; i < cantidad.length; i++) {
+            cantidad[i].style.display = 'block';
+            cantidad[i].disabled = false; // Desbloquear el campo de cantidad
+            cantidad[i].style.border = '1px solid #ccc'; // Agregar borde al campo de cantidad
+            cantidad[i].style.borderRadius = '3px'; // Agregar borde redondeado al campo de cantidad
+            cantidad[i].style.padding = '5px'; // Agregar espaciado interno al campo de cantidad
+            cantidad[i].style.marginBottom = '10px'; // Agregar margen inferior al campo de cantidad
+          }
+        
+        } else {
+        
           // Ocultar el input de tipo descrip
           descrip.style.display = 'none';
           descrip.disabled = true; // Bloquear el input
-
-            // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
+        
+          // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
           for (let i = 0; i < texts.length; i++) {
             texts[i].style.display = 'none';
             texts[i].disabled = true; // Bloquear el texto
           }
+        
+          // Agregar propiedades CSS al div con class .cantidad
+          for (let i = 0; i < cantidad.length; i++) {
+            cantidad[i].style.display = 'none';
+            cantidad[i].disabled = true; // Bloquear el campo de cantidad
+          }
+        
         }
       });
 
 
 
- /*   function randomColor() {
-    var r = Math.floor(Math.random() * 100) + 105;
-    var g = Math.floor(Math.random() * 100) + 105;
-    var b = Math.floor(Math.random() * 100) + 105;
-    return "rgb(" + r + "," + g + "," + b + ")";
-  }
-        
-      function applyRandomColor() {
-        var buttons = document.querySelectorAll(".btn");
-        for (var i = 0; i < buttons.length; i++) {
-          buttons[i].style.backgroundColor = randomColor();
-        }
-      }
-      
-      applyRandomColor(); */
+
+
+
       
       
       searchInputdietas.addEventListener('input', () => {
