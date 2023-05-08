@@ -68,6 +68,27 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   }); 
  };
 
+ Controllers.Desvincular = (req,res,next)=>{
+  const {CurpForm} =req.body;
+  querys.DesvincularDoctor(CurpForm,(error,desv)=>{
+    if(desv){
+      console.log(desv);
+      querys.eliminarChat(CurpForm,(error,eliminar)=>{
+        if(eliminar){
+          console.log(eliminar);
+          res.redirect('/Glucky/Doctores/Dashboard');
+        }
+        else{
+          console.log(error);
+        }
+      });
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+ };
+
  Controllers.ActualizarContraDoctor = (req,res,next)=>{
   const cedula  = req.session.cedula;
   const {NewPass} = req.body;
@@ -871,6 +892,19 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }
+  Controllers.desplegarMensajes=(req,res,next)=>{
+    const{Receptor}=req.body;
+    querys.buscarChatPaciente(Receptor,(error,chat)=>{
+      if(chat.length!==0){
+        const id_chat=chat[0].id_chat;
+        querys.buscarMensajes(id_chat,(error,mensajes)=>{
+          if(mensajes.length!==0){
+            res.json(mensajes);
+          }
+        })
+      }
+    })
+  };
   
  
 module.exports = Controllers; 

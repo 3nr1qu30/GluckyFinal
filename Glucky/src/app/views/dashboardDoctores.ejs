@@ -51,7 +51,7 @@
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="/Glucky/Doctores/Dashboard">
+                <li><a href="#Pacientes">
                     <i class="uil uil-chart"></i>
                     <span class="link-name">Pacientes</span>
                 </a></li>
@@ -107,9 +107,9 @@
             </div>
 
 
-                <div class="icon" onclick="toggleNotifi()">
+                <!--<div class="icon" onclick="toggleNotifi()">
 			        <div class="noti">17</div>
-		        </div>
+		        </div>-->
 
                 <div class="notifi-box" id="box">
                     <h2>Notificaciones: <span>17</span></h2>
@@ -274,7 +274,7 @@
             <br>
 
             
-                <div class="title" id="pacientesjeje">
+                <div class="title" id="Pacientes">
                     <i class="uil uil-compress-point" ></i>
                     <span class="text">Pacientes</span>
                 </div>
@@ -386,14 +386,16 @@
 </html>
 <%}else{%>
     <!DOCTYPE html>
-  <html>
-    <head>
-      <title>Error - Debes Iniciar Sesión</title>
-    </head>
-    <body>
-      <h1>Error - Debes Iniciar Sesión</h1>
-      <p>Lo sentimos, no puedes acceder a esta página sin iniciar sesión primero.</p>
-      <a href="/Glucky/IniciodeSesion">Iniciar Sesión</a>
-    </body>
-  </html>
+<html>
+  <head>
+    <title>Error - Debes Iniciar Sesión</title>
+  </head>
+  <body>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      SesionCad()
+    </script>
+  </body>
+</html>
   <%}%>

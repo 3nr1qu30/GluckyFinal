@@ -13,6 +13,7 @@ router.get('/EditarDieta',DoctoresControllers.dietaVerDoctorGet);
 router.get('/EditarTratamiento',DoctoresControllers.tratamientoVerDoctorGet);
 router.get('/Chat',DoctoresControllers.chatDoctorGet);
 
+
 router.post('/EliminarDieta',DoctoresControllers.eliminarDieta);
 router.post('/EliminarTratamiento',DoctoresControllers.eliminarTratamiento);
 router.post('/VerDietasPacienteDoctorEd',DoctoresControllers.dietaVerDoctorEdit);
@@ -38,10 +39,10 @@ router.post('/MedicamentosEd',DoctoresControllers.editarMedicamentos);
 router.post('/MedicamentosE',DoctoresControllers.eliminarMedicamento);
 router.post('/ActualizacionDoctor',DoctoresControllers.ActualizarDatosDoctor);
 router.post('/Password',DoctoresControllers.ActualizarContraDoctor);
-
+router.post('/Desvinculacion',DoctoresControllers.Desvincular);
 
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
 router.post('/Peticion',DoctoresControllers.peticionesDoctorDeclina);
-
+router.post('/Mensajes',DoctoresControllers.desplegarMensajes);
 
 module.exports= router;

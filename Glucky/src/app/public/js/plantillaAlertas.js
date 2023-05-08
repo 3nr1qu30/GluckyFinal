@@ -9,6 +9,17 @@ function DoctorSinRegistro(e) {
   });
 };
 
+function SesionCad(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'Su sesión ha caducado, por favor vuelva a iniciarla',
+  })
+  .then((confirmar)=>{
+    window.location.href='/Glucky/';
+  });
+};
+
 function PacienteSinRegistro(e) {
   swal({
     icon: 'error',

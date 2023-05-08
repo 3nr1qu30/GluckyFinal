@@ -2,10 +2,11 @@ const socket = io();
 socket.on('connect', () => {
   socket.emit('userConnected', emisor);
 });
-
+var mensajes;
+var id;
 document.querySelectorAll('button').forEach(btn => {
   btn.addEventListener('click', (event) => {
-    const id = event.target.id;
+     id = event.target.id;
     const nombreElement = event.target.querySelector('.sss');
 if (nombreElement) {
   const nombre = nombreElement.textContent;
@@ -42,18 +43,6 @@ caja.classList.add("caja");
 caja.id = "menssages-container";
 
 // crear los elementos div con clases message received y message sent
-var messageReceived = document.createElement("div");
-messageReceived.classList.add("message", "received");
-messageReceived.innerHTML = '<p>¡Bien, gracias! ¿Y tú?</p><span class="time">10:35 AM Isaac</span>';
-
-var messageSent = document.createElement("div");
-messageSent.classList.add("message", "sent");
-messageSent.innerHTML = '<p>Hola, ¿cómo estás?</p><span class="time">10:32 AM Tú</span>';
-
-// agregar los elementos al contenedor caja
-caja.appendChild(messageReceived);
-caja.appendChild(messageSent);
-
 // crear el elemento div con clase escribe
 var escribe = document.createElement("div");
 escribe.classList.add("escribe");
@@ -87,6 +76,77 @@ chatBo.appendChild(escribe);
 
 // agregar el contenedor chatBo al contenedor chat-container
 document.getElementById("chat-container").appendChild(chatBo); 
+const url = 'http://localhost:3000/Glucky/Doctores/Mensajes';
+const datams = {
+  Receptor: id
+};
+fetch(url,{
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(datams)
+})
+.then(response => response.json())
+.then(data => {
+  mensajes = data;
+  const format12HourTime = (time) => {
+    var splitTime = time.split(':');
+    var hours = parseInt(splitTime[0]);
+    var minutes = parseInt(splitTime[1]);
+    var amPm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // convert 0 to 12
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    var formattedTime = hours + ':' + minutes + ' ' + amPm;
+    return formattedTime;
+  }
+  const formatDate = (dates) => {
+    const date = new Date(dates);
+    const months = [
+      "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+    ];
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
+    return `${day} ${months[monthIndex]} ${year}`;
+  }
+  const messagesContainer = document.getElementById('menssages-container');
+  for (let i = 0; i < mensajes.length;i++){
+    const newMessage = document.createElement('div');
+    const messageText = document.createElement('p');
+    const messageTime = document.createElement('span');
+
+    messageText.textContent = mensajes[i].desc_mensaje;
+    messageTime.textContent =  format12HourTime(mensajes[i].hour_mensaje);
+    newMessage.appendChild(messageText);
+    newMessage.appendChild(messageTime);
+    if(i > 0 && formatDate(mensajes[i].date_mensaje) !== formatDate(mensajes[i-1].date_mensaje)){
+      const fecha = document.createElement('span');
+      fecha.textContent = formatDate(mensajes[i].date_mensaje);
+      messagesContainer.appendChild(fecha);
+      
+      if (mensajes[i].id_emisor === emisor) {
+        newMessage.className = 'message sent';
+        messagesContainer.appendChild(newMessage);
+      
+      } else if(mensajes[i].id_emisor === id && mensajes[i].id_receptor === emisor){
+        newMessage.className = 'message received';
+        messagesContainer.appendChild(newMessage);
+      }
+    }else{
+      if (mensajes[i].id_emisor === emisor) {
+        newMessage.className = 'message sent';
+        messagesContainer.appendChild(newMessage);
+      } else if(mensajes[i].id_emisor === id && mensajes[i].id_receptor === emisor){
+        newMessage.className = 'message received';
+        messagesContainer.appendChild(newMessage);
+      }
+    }
+  }
+});
+
+
 function enviarMensajeSo() {
   const message = messageInput.value;
   const messageData = {
@@ -110,6 +170,21 @@ messageInput.removeEventListener('keypress', PressEnter);
 button.addEventListener('click', enviarMensajeSo);
 messageInput.addEventListener('keypress', PressEnter);
 
+}
+  });
+});
+function getCurrentTime() {
+  const date = new Date();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // el 0 se convierte en 12 para el formato de 12 horas
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  const strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+  }
+
 socket.on('nuevoMensaje', (data) => {
   const messagesContainer = document.getElementById('menssages-container');
   const newMessage = document.createElement('div');
@@ -122,26 +197,39 @@ socket.on('nuevoMensaje', (data) => {
   newMessage.appendChild(messageTime);
 
   if (data.emisor === emisor) {
+    const fecha = new Date();
+
+    const anio = fecha.getFullYear();
+    const mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
+    const dia = fecha.getDate();
+    const hora = fecha.getHours();
+    const minutos = fecha.getMinutes();
+    const segundos = fecha.getSeconds();
+    const fechaActual = `${anio}-${mes}-${dia}`;
+    const horaActual = `${hora}:${minutos}:${segundos}`;
+
+    messagesContainer.appendChild(newMessage);
+    const url = 'http://localhost:3000/Glucky/Pacientes/MensajeNuevo';
+    const datams = {
+      IdChat:id_chat,
+      Emisor:data.emisor,
+      Receptor:data.receptor,
+      Mensaje:data.message,
+      Fecha:fechaActual,
+      Hora:horaActual
+    };
+    fetch(url,{
+      method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datams)
+    });
     newMessage.className = 'message sent';
-  } else if(data.emisor === receptor && data.receptor === emisor){
+    messagesContainer.appendChild(newMessage);
+  } else if(data.emisor === id && data.receptor === emisor){
     newMessage.className = 'message received';
-    
+    messagesContainer.appendChild(newMessage);
   }
 
-  messagesContainer.appendChild(newMessage);
-});
-
-function getCurrentTime() {
-  const date = new Date();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // el 0 se convierte en 12 para el formato de 12 horas
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
-  }
-}
-  });
 });

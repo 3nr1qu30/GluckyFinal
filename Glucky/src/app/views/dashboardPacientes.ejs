@@ -87,9 +87,9 @@
                   <input type="text" placeholder="Aplicación glucky para pacientes" disabled>
               </div>
   
-                  <div class="icon" onclick="toggleNotifi()">
-                <div class="noti">17</div>
-              </div>
+                    <!--<div class="icon" onclick="toggleNotifi()">
+			        <div class="noti">17</div>
+		        </div>-->
   
                   <div class="notifi-box" id="box">
                       <h2>Notificaciones: <span>17</span></h2>
@@ -694,9 +694,11 @@
     <title>Error - Debes Iniciar Sesión</title>
   </head>
   <body>
-    <h1>Error - Debes Iniciar Sesión</h1>
-    <p>Lo sentimos, no puedes acceder a esta página sin iniciar sesión primero.</p>
-    <a href="/Glucky/IniciodeSesion">Iniciar Sesión</a>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      SesionCad()
+    </script>
   </body>
 </html>
 <%}%>

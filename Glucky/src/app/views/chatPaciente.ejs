@@ -87,9 +87,9 @@
             </div>
 
 
-                <div class="icon" onclick="toggleNotifi()">
+                  <!--<div class="icon" onclick="toggleNotifi()">
 			        <div class="noti">17</div>
-		        </div>
+		        </div>-->
 
                 <div class="notifi-box" id="box">
                     <h2>Notificaciones: <span>17</span></h2>
@@ -158,13 +158,15 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
-                    <% for(var i=0;i<datopac.length;i++){%>
-                    <div class="text-data">
-                        <span class="name"><%=datopac[i].nom_pers%> <%=datopac[i].apellidos_pers%></span>
-                      <span class="job"><%=datopac[i].curp_pacien%></span>
-                      <span class="job"><%=datopac[i].email_pers%></span>
-                      <span class="job">Paciente</span>
-                    </div>
+                    <%if(typeof datopac!=='undefined'){%>
+                        <% for(var i=0;i<datopac.length;i++){%>
+                        <div class="text-data">
+                            <span class="name"><%=datopac[i].nom_pers%> <%=datopac[i].apellidos_pers%></span>
+                        <span class="job"><%=datopac[i].curp_pacien%></span>
+                        <span class="job"><%=datopac[i].email_pers%></span>
+                        <span class="job">Paciente</span>
+                        </div>
+                        <%}%>
                     <%}%>
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
