@@ -154,7 +154,7 @@
             
                 <div class="title" id="pacientesjeje">
                     <i class="uil uil-cell" ></i>
-                    <span class="text">Paciente (Nombre)</span>
+                    <span class="text">Paciente: <%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%> </span>
                 </div>
                 
 
@@ -166,13 +166,12 @@
                     <div class="select-menu">
                         <div class="select-btn">
                             <span class="sBtn-text" style="font-size:15px ;">Mostrando paciente individual...</span>
-                            <i class="bx bx-chevron-down"></i>
+                            <i class="bx bx-heart"></i>
                         </div>
                     </div>
 
 
-                    <div class="tablacentrada">
-                        <div class="tabla">
+                   
                             <table>
                             <%if(datos.length!==0){%>
                               <%for(let i =0;i<datos.length;i++){%>
@@ -302,8 +301,7 @@
                             
                           
                             </table>
-                        </div>
-                    </div>
+                     
           
 
               
@@ -540,7 +538,7 @@
             </div>
             <div class="dispo2" id="fechaTratamiento">
             </div>
-            <div class="info"> Tratamiento escrito, para editarlo dirijase al botón de acciones</div> 
+            <div class="info"> Tratamiento escrito:</div> 
             <div class="contenido" id="contenidoTratamiento">
             </div>
           </div>
@@ -569,7 +567,7 @@
             </div>
             <div class="dispo2" id="fechaDiet">
             </div>
-            <div class="info"> Dieta escrita, para editarla dirijase al botón de acciones</div> 
+            <div class="info"> Dieta escrita</div> 
             <div class="contenido" id="contenidoDiet">
             </div>
           </div>
@@ -686,7 +684,7 @@
             
             <% let listaMedicamentos = ""; %>
                 <% grupoDeRecetas.forEach((receta) => { %>
-                  <% listaMedicamentos += `${receta.nom_medic} (cantidad: ${receta.frec_recmed} tipo: ${receta.present_recmed}), `; %>
+                  <% listaMedicamentos += `<li> <b> ${receta.nom_medic} </b> cantidad: ${receta.frec_recmed} tipo: ${receta.present_recmed}</li> `; %>
                 <% }); %>
                 <p class="small-content arianagrenade"><%= listaMedicamentos.slice(0, -2) %></p>
 
@@ -735,7 +733,7 @@
                 
                 <% let listaIngredientes = ""; %>
                 <% grupoDeDietas.forEach((dieta) => { %>
-                  <% listaIngredientes += `${dieta.nom_ingred}: ${dieta.desc_ingred}, `; %>
+                  <% listaIngredientes += `<li> <b> ${dieta.nom_ingred}: </b> ${dieta.desc_ingred}</li> `; %>
                 <% }); %>
                 <p class="small-content arianagrenade"><%= listaIngredientes.slice(0, -2) %></p>
 

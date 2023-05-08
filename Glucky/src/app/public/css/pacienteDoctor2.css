@@ -2780,7 +2780,7 @@ section.active .show-modal {
 
   
   .column2::-webkit-scrollbar-thumb {
-    background-color: #4bd356ea; /* color del scrollbar */
+    background-color: #0080ff; /* color del scrollbar */
     border-radius: 10px; /* borde redondeado del scrollbar */
     
   }
@@ -4255,7 +4255,7 @@ transition: all ease .2s;
   }
 
   .kimkardashian {
-    background-color: #47F16F;
+    background-color: #0080ff;
     color: #fff;
     cursor: pointer;
     width: 100%;
@@ -4272,7 +4272,7 @@ transition: all ease .2s;
   }
 
   .kimkardashian:hover {
-    background-color: #40d462;
+    background-color: #0265c7;
   }
   .kimkardashian i {
     display: inline-block; /* Permitir alinear ícono verticalmente */
@@ -4339,3 +4339,50 @@ transition: all ease .2s;
     margin-right: 10px; /* Separación entre ícono y texto */
     vertical-align: middle; /* Alinear verticalmente ícono e texto */
   }
+
+
+  .amarillosC{
+    background-color: #0080ff;
+     }
+
+     .fechass{
+      font-size: 15px;
+      margin-top: -15px;
+      transform: translateY(-10px);
+      margin-bottom: -10px;
+      font-weight: 10px;
+     }
+
+     .contenido{
+      max-height: none;
+     }
+
+
+     .overlaycard::-webkit-scrollbar {
+      width: 5px; /* ancho del scrollbar */
+    }
+  
+    
+    .overlaycard::-webkit-scrollbar-thumb {
+      background-color: #0080ff; /* color del scrollbar */
+      border-radius: 10px; /* borde redondeado del scrollbar */
+      
+    }
+
+    .overlaycardDIET::-webkit-scrollbar {
+      width: 5px; /* ancho del scrollbar */
+    }
+
+    .overlaycardDIET::-webkit-scrollbar-thumb {
+      background-color: #f0c73ff6; /* color del scrollbar */
+      border-radius: 10px; /* borde redondeado del scrollbar */
+      
+    }
+
+
+    .select-menu{
+      width: 100%;
+      background-color: white;
+      box-shadow: rgba(60, 64, 67, 0.062) 0px 1px 2px 0px, rgba(60, 64, 67, 0.014) 0px 2px 6px 2px;
+      border-radius: 10px;
+    }
