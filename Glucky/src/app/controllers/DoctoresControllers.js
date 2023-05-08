@@ -68,6 +68,27 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   }); 
  };
 
+ Controllers.Desvincular = (req,res,next)=>{
+  const {CurpForm} =req.body;
+  querys.DesvincularDoctor(CurpForm,(error,desv)=>{
+    if(desv){
+      console.log(desv);
+      querys.eliminarChat(CurpForm,(error,eliminar)=>{
+        if(eliminar){
+          console.log(eliminar);
+          res.redirect('/Glucky/Doctores/Dashboard');
+        }
+        else{
+          console.log(error);
+        }
+      });
+    }
+    else{
+      console.log(error);
+    }
+  }); 
+ };
+
  Controllers.ActualizarContraDoctor = (req,res,next)=>{
   const cedula  = req.session.cedula;
   const {NewPass} = req.body;

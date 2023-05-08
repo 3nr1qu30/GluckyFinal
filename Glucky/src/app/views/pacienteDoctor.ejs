@@ -87,7 +87,7 @@
                 <div class="icon" onclick="toggleNotifi()">
 			        <div class="noti">17</div>
 		        </div>
-
+     
                 <div class="notifi-box" id="box">
                     <h2>Notificaciones: <span>17</span></h2>
                     <div class="notifi-item">
@@ -280,10 +280,11 @@
                                                     </div>
                                                     <div class="buttonNUE">
                                                     <div class="button-layer4"></div>
-                                                    <form action="">
+                                                    <form action="/Glucky/Doctores/Desvinculacion" method="post">
                                                         <button type="submit" class="centrado">
                                                             <i class='bx bxs-skull' style="font-size:25px; margin-right: 10px; margin-top: 13px;"></i>
                                                             <h4 class="cent">Dar de baja a paciente</h4>
+                                                            <input type="hidden" name="CurpForm" value="<%=datos[i].curp_pacien%>">
                                                         </button>
                                                     </form>
                                                     </div>
