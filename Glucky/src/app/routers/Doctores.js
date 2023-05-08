@@ -39,11 +39,8 @@ router.post('/MedicamentosEd',DoctoresControllers.editarMedicamentos);
 router.post('/MedicamentosE',DoctoresControllers.eliminarMedicamento);
 router.post('/ActualizacionDoctor',DoctoresControllers.ActualizarDatosDoctor);
 router.post('/Password',DoctoresControllers.ActualizarContraDoctor);
-<<<<<<< HEAD
 router.post('/Desvinculacion',DoctoresControllers.Desvincular);
 
-=======
->>>>>>> ede6034276404f8f1e6ab1c2a032823946313f93
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
 router.post('/Peticion',DoctoresControllers.peticionesDoctorDeclina);
 router.post('/Mensajes',DoctoresControllers.desplegarMensajes);
