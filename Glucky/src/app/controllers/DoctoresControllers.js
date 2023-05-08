@@ -892,6 +892,19 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }
+  Controllers.desplegarMensajes=(req,res,next)=>{
+    const{Receptor}=req.body;
+    querys.buscarChatPaciente(Receptor,(error,chat)=>{
+      if(chat.length!==0){
+        const id_chat=chat[0].id_chat;
+        querys.buscarMensajes(id_chat,(error,mensajes)=>{
+          if(mensajes.length!==0){
+            res.json(mensajes);
+          }
+        })
+      }
+    })
+  };
   
  
 module.exports = Controllers; 
