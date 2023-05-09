@@ -1,9 +1,8 @@
-const { Chart } = require('chart.js/auto');
 const querys = require('../sql/Querys');
-const { query } = require('express');
 const Controllers={};
 
 //get
+//Le falta lo de los estados
 Controllers.dashboardPacientes = (req, res, next) => {
   const curp = req.session.curp;
   const nombre = req.session.nombre;
@@ -22,7 +21,7 @@ Controllers.dashboardPacientes = (req, res, next) => {
     if (error) {
       console.log(error);
     } else if (datosmedicos) {
-      for (var i = 0; i < datosmedicos.length; i++) {
+      for (var i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
         glucosa += parseInt(datosmedicos[i].gluc_datmed);
         sistolica += parseInt(datosmedicos[i].presis_datmed);
         diastolica += parseInt(datosmedicos[i].predia_datmed);
@@ -118,7 +117,7 @@ Controllers.dashboardPacientes = (req, res, next) => {
     }
   });
 };
-
+//Le falta la alerta de si estas seguro de desvincula al doctores
 Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   querys.VerDatoPaciente(curp,(error,ver)=>{
@@ -139,7 +138,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   }); 
 };
 
-
+//Le falta una alerta si no estas asignado a ningun paciente
 Controllers.verAsignacionesPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   querys.verCitasPacienteIndividual(curp,(error,citas)=>{
@@ -227,7 +226,7 @@ Controllers.verAsignacionesPaciente = (req,res,next)=>{
   }); 
 };
 
-
+//Alerta de datos cambiados
 Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   const CurpForm =req.session.curp;
   const{NombreForm} =req.body;
@@ -248,7 +247,7 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
     }
   }); 
  };
-
+//alertas en las desvinculaciones
  Controllers.Desvincular = (req,res,next)=>{
   const CurpForm =req.session.curp;
   querys.DesvincularDoctor(CurpForm,(error,desv)=>{
@@ -269,7 +268,7 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
     }
   }); 
  };
-
+//Contraseña actualizada alerta
  Controllers.ActualizarContraPaciente = (req,res,next)=>{
 const curp  = req.session.curp;
 const {NewPass} = req.body;
@@ -282,7 +281,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
   }
 });
 };
-
+  //Alertas del estado de la solicitud
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const curp = req.session.curp;
     querys.buscarSolicitud(curp,(error,solicitud)=>{
@@ -333,6 +332,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     });
   };
   //post
+  //Alerta de solicitud enviada
   Controllers.solicitudesPacientePost = (req,res,next)=>{
     const{CedulaForm} = req.body;
     const curp = req.session.curp;
@@ -362,7 +362,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   };
-
+  //Alerta de cita enviada
   Controllers.solicitudCita = (req,res,next)=>{    
     const{FechaForm} = req.body;
     const{HoraForm} = req.body;
@@ -378,7 +378,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     });
   }; 
 
-
+//Alerta de eliminacion de cita
   Controllers.eliminaSolCita = (req,res,next)=>{    
     const{idCitaDel} = req.body;
     const Curp = req.session.curp;
