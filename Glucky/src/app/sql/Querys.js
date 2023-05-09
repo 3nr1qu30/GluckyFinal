@@ -65,11 +65,17 @@ db.buscarMensajes=(id_chat,callback) => {
 
 db.DesvincularDoctor = (CurpForm,callback)=>{
   con.query(`UPDATE pacientemedico SET id_edosol = 3 WHERE curp_pacien = '${CurpForm}'`,(error,desv)=>{
-  if(error){
-    console.log('Error al desvincular', error);
+  if(desv){
+    con.query(`DELETE FROM chat WHERE curp_pacien = '${CurpForm}'`,(error,elchat)=>{
+      if(elchat){
+    callback(null, desv);
+      }else{
+        callback(error,null);
+      }
+});
+  }else{ 
+   console.log('Error al desvincular', error);
     callback(error,null);
-  }else{
-   callback(null, desv)
   }
   });
  };
