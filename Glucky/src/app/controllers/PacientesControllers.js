@@ -132,7 +132,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
       if(pacdoc){
         console.log(ver);
         console.log(pacdoc);
-      res.render('perfilPaciente',{datos:ver, pacdoc:pacdoc});
+      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc});
       }else{
         console.log(error);
       }
@@ -188,7 +188,7 @@ Controllers.verAsignacionesPaciente = (req,res,next)=>{
                           //inicio de la séptima consulta de query 
                           querys.verTratamientoBase(curp,(error7,recetaver)=>{
                             if(recetaver){
-                              res.render('asignacionesPacientes',{citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
+                              res.render('asignacionesPacientes',{curp,citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
                             }
                             else{
                               console.log(error7);
@@ -315,7 +315,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             if(Doctores){
               querys.VerDatoPaciente(curp,(error,datpac)=>{
                 if(datpac){
-              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+              res.render('solicitudesPaciente',{curp, datos:Doctores, datopac:datpac});
                 } else {
                   console.log(error);
                 }
@@ -338,7 +338,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             if(Doctores){
               querys.VerDatoPaciente(curp,(error,datpac)=>{
                 if(datpac){
-              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+              res.render('solicitudesPaciente',{curp, datos:Doctores, datopac:datpac});
                 } else {
                   console.log(error);
                 }
