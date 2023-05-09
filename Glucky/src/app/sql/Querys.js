@@ -68,7 +68,7 @@ db.DesvincularDoctor = (CurpForm,callback)=>{
   if(desv){
     con.query(`DELETE FROM chat WHERE curp_pacien = '${CurpForm}'`,(error,elchat)=>{
       if(elchat){
-    callback(null, desv);
+    callback(null, desv, elchat);
       }else{
         callback(error,null);
       }
