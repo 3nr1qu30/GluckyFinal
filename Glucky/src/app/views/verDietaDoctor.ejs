@@ -330,17 +330,14 @@
                                         <input type="text" class="buscamedic" id="searchdietas" placeholder="Buscar alimento...">
                                         <div id="listadietas" class="flexlistIngredientes">
                    
-                                            
-                                          
 
+                                          <% var idIngredientes = []; %>
                                           <% if (alimentos.length !== 0) { %>
-                                            <% var idIngredientes = []; %>
                                             <% for (let i = 0; i < alimentos.length; i++) { %>
                                               <div class="checkbox">
                                                 <input type="checkbox" id="<%= alimentos[i].id_ingred %>" value="<%= alimentos[i].nom_ingred %>">
                                                 <label for="<%= alimentos[i].id_ingred %>"><%= alimentos[i].nom_ingred %></label>
                                                 <div class="textsO"><b>Descripción:</b> <%= alimentos[i].desc_ingred %></div>
-                                                <!--Inicio del form para agregar un alimento-->
                                                 <form action="/Glucky/Doctores/EnviarIngredienteDieta" method="post">
                                                   <input type="hidden" value="<%= alimentos[i].id_ingred %>" name="id_ingred">
                                                   <input type="hidden" value="<%= last_id %>" name="id_dieta">
@@ -348,16 +345,21 @@
                                                   <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
                                                   <input type="submit" placeholder="Agrega una descripción..." class="descrip" value="Agregar">
                                                 </form>
-                                                <!--Fin del form para agregar un alimento-->
                                               </div>
                                               <% idIngredientes.push(alimentos[i].nom_ingred); %>
                                             <% } %>
-                                            <script>
-                                              window.onload = function() {
-                                                console.log(`El array de derecha es <%=idIngredientes%>`);
-                                              }
-                                            </script> 
                                           <% } %>
+
+                                          <script>
+                                            var idIngredientes = <%- JSON.stringify(idIngredientes) %>;
+                                            window.onload = function() {
+                                                console.log(`El array de derecha es ${idIngredientes}`);
+                                              }
+                                              console.log(`El array de derecha 2 es ${idIngredientes}`);
+                                          </script>
+
+
+
                                           
                                           
 
@@ -393,13 +395,44 @@
                                               var ingredienteIzq;
                                               const alimentosIzq = [];
                                               const botones = document.querySelectorAll('.elementop');
+
                                               botones.forEach(boton => {
                                                 ingredienteIzq = boton.textContent.trim();
                                                 alimentosIzq.push(ingredienteIzq)
                                               });
-                                              console.log(`El array de izquierda es ${alimentosIzq}`);
-
+                                            
+                                              var coincidencias = {};
+                                            
+                                              for (var i = 0; i < alimentosIzq.length; i++) {
+                                                for (var j = 0; j < idIngredientes.length; j++) {
+                                                  if (alimentosIzq[i] === idIngredientes[j]) {
+                                                    if (coincidencias[alimentosIzq[i]]) {
+                                                      coincidencias[alimentosIzq[i]]++;
+                                                    } else {
+                                                      coincidencias[alimentosIzq[i]] = 1;
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            
+                                              var coincidenciasArray = Object.keys(coincidencias);
+                                            
+                                              if (coincidenciasArray.length > 0) {
+                                                console.log(`El o los elementos ${coincidenciasArray.join(', ')} coinciden en ambos arrays.`);
+                                                for (var i = 0; i < coincidenciasArray.length; i++) {
+                                                  var elemento = coincidenciasArray[i];
+                                                  var contador = coincidencias[elemento];
+                                                  if (contador > 1) {
+                                                    console.log(`El elemento ${elemento} coincide ${contador} veces en ambos arrays.`);
+                                                  }
+                                                }
+                                              } else {
+                                                console.log('No hay coincidencias entre los elementos de ambos arrays.');
+                                              }
+                                            
                                             </script>
+                                            
+                                            
                                         </div>
 
 
