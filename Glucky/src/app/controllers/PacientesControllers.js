@@ -9,7 +9,11 @@ Controllers.dashboardPacientes = (req, res, next) => {
   const correo = req.session.correo;
   const tipodia = req.session.tipodia;
   const regis = req.session.regis;
+  const citaEli = req.session.citaEli;
+  const citaEnvi = req.session.citaEnvi;
   delete req.session.regis;
+  delete req.session.citaEli;
+  delete req.session.citaEnvi;
   let direccion;
   let solicituda;
   let glucosa = 0;
@@ -90,7 +94,9 @@ Controllers.dashboardPacientes = (req, res, next) => {
                 glucosa,
                 sistolica,
                 diastolica,
-                regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3
+                regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3,
+                citaEli,
+                citaEnvi
               });
                 console.log(citasverEdo3);
               }
@@ -283,7 +289,25 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
 };
   //Alertas del estado de la solicitud
   Controllers.solicitudesPaciente = (req,res,next)=>{
+    const soliciEnvi = req.session.EnvioSoli;
     const curp = req.session.curp;
+    if(soliciEnvi!==undefined){
+      querys.desplegarDoctores((error,Doctores)=>{
+        if(Doctores){
+          querys.VerDatoPaciente(curp,(error,datpac)=>{
+            if(datpac){
+          res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac, soliciEnvi});
+            } else {
+              console.log(error);
+            }
+           });
+        }
+        else{
+          console.log(error);
+        }
+      });
+    }
+    }
     querys.buscarSolicitud(curp,(error,solicitud)=>{
       if(solicitud){
         if(solicitud.length===0){
@@ -341,61 +365,68 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         if(solicitud.length===0){
           querys.enlazarDoctoresPacientes(curp,CedulaForm,(error,enlaze)=>{
             if(enlaze){
-              console.log('solicitud enviada');
-              res.redirect("/Glucky/Pacientes/Dashboard");
+              req.session.EnvioSoli='solicitud de enlaze enviada';
+              res.redirect("/Glucky/Pacientes/Solicitudes");
             }
-            else{
+            else if(error){
               console.log(error);
+              req.session.EnvioSoli='solicitud de enlaze no enviada ';
+              res.redirect("/Glucky/Pacientes/Solicitudes");
             }
           });
         }else{
           querys.reintentoenlazeDoctoresPacientes(curp,CedulaForm,(error,actualizacion)=>{
             if(actualizacion){
-              console.log('solicitud envidad');
-              res.redirect("/Glucky/Pacientes/Dashboard");
+              req.session.EnvioSoli='solicitud de reenlaze enviada';
+              res.redirect("/Glucky/Pacientes/Solicitudes");
             }
-            else{
-              console.log('Error al actualizar la solicitud');
+            else if(error){
+              console.log(error);
+              req.session.EnvioSoli='solicitud de no reenlaze enviada';
+              res.redirect("/Glucky/Pacientes/Solicitudes");
             }
           });
         }
       }
     });
   };
-  //Alerta de cita enviada
+// Este ya esta al 100%
   Controllers.solicitudCita = (req,res,next)=>{    
     const{FechaForm} = req.body;
     const{HoraForm} = req.body;
     const Curp = req.session.curp;
     querys.solicitudcita(FechaForm,HoraForm,Curp,(error,Cita)=>{
       if(Cita){
-        console.log('Tu cita fue enviada');
+        req.session.citaEnvi ='Tu cita fue enviada';
         res.redirect("/Glucky/Pacientes/Dashboard");
       }
-      else{
+      else if(error){
         console.log(error);
+        req.session.citaEnvi ='Tu no cita fue enviada';
+        res.redirect("/Glucky/Pacientes/Dashboard");
       }
     });
   }; 
 
-//Alerta de eliminacion de cita
+// Este ya esta al 100%
   Controllers.eliminaSolCita = (req,res,next)=>{    
     const{idCitaDel} = req.body;
     const Curp = req.session.curp;
     querys.eliminaSolicitudesDen(idCitaDel,Curp,(error,Cita)=>{
       if(Cita){
-        console.log('Tu cita fue enviada');
+        req.session.citaEli='citaeliminada';
         res.redirect("/Glucky/Pacientes/Dashboard");
       }
-      else{
+      else if(error){
         console.log(error);
+        req.session.citaEli='error al eliminar la cita';
+        res.redirect("/Glucky/Pacientes/Dashboard");
       }
     });
   }; 
-
+  // Este ya esta al 100%
   Controllers.registroNiveles = (req,res,next)=>{
     const{glucosa,sistolica,diastolica,medicion}=req.body
-    let regis;
     const Curp = req.session.curp;
     let fechaActual = new Date();
     let anio = fechaActual.getFullYear();
@@ -409,10 +440,15 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         req.session.regis='Tu registro de niveles fue agregado';
         res.redirect("/Glucky/Pacientes/Dashboard");
       }
+      else if(error){
+        console.log(error);
+        req.session.regis='No se pudo agregar el registro de niveles';
+        res.redirect("/Glucky/Pacientes/Dashboard"); 
+      }
     });
   };
-
-  Controllers.chatPacienteGet=(req,res,next)=>{
+  //Este ya esta al 100%
+   Controllers.chatPacienteGet=(req,res,next)=>{
     const curp = req.session.curp;
     querys.buscarChatPaciente(curp, (error, solicitud) => {
       if(solicitud.length!==0){
@@ -472,16 +508,18 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     });
   };
 
-
-  Controllers.AgregarMensaje=(req,res,next)=>{
-    const{IdChat,Emisor,Receptor,Mensaje,Fecha,Hora}=req.body;
-    querys.agregarMensaje(IdChat,Emisor,Receptor,Mensaje,Fecha,Hora,(error,mensaje)=>{
-      if(mensaje){
-       console.log('Mensaje agregado'); 
-      }
-      else{
-              console.log(error);
-            }
-    });
+  
+  //A este no le muevan es el api rest ya esta al 100%
+  Controllers.AgregarMensaje = async (req, res, next) => {
+    try {
+      const { IdChat, Emisor, Receptor, Mensaje, Fecha, Hora } = req.body;
+      await querys.agregarMensaje(IdChat, Emisor, Receptor, Mensaje, Fecha, Hora);
+      console.log('Mensaje agregado');
+      res.sendStatus(200);
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
   }
+  
   module.exports = Controllers;
