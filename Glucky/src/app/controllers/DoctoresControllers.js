@@ -33,7 +33,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     querys.VerDatoDoctor(cedula,(error,ver)=>{
       if(ver){
  
-        res.render('perfilDoctor',{datos:ver});
+        res.render('perfilDoctor',{cedula, datos:ver});
       }
       else{
         console.log(error);
@@ -110,7 +110,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         querys.VerDatoDoctor(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
             console.log(`ver las citas`);
-            res.render('peticionesDoctor',{datos:ver,dato:citasaceptadas});
+            res.render('peticionesDoctor',{Cedula,datos:ver,dato:citasaceptadas});
           }
           else if(error){
             console.log(error);
@@ -133,7 +133,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
             querys.VerDatoDoctor(Cedula,(error,dato)=>{
               if(dato){
             console.log(`Ver las citas`);
-            res.render('citasDoctor',{datos:ver,citasaceptadas,dato:dato});
+            res.render('citasDoctor',{Cedula,datos:ver,citasaceptadas,dato:dato});
               }  else if(error){
                 console.log(error);
               }
@@ -158,7 +158,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         querys.VerDatoDoctor(cedula,(error,dato)=>{
           if(dato){
         console.log(ver);
-        res.render('almacenDoctorIngredientes',{datos:ver, dato:dato});
+        res.render('almacenDoctorIngredientes',{cedula, datos:ver, dato:dato});
         } else if(error){
           console.log(error);
         }
@@ -178,7 +178,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
         querys.VerDatoDoctor(cedula,(error,dato)=>{
           if(dato){
         console.log(ver);
-        res.render('almacenDoctorMedicamentos',{datos:ver, dato:dato});
+        res.render('almacenDoctorMedicamentos',{cedula, datos:ver, dato:dato});
       } else if(error){
         console.log(error);
       }

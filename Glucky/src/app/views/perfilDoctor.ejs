@@ -1,3 +1,4 @@
+<%if(typeof cedula !== "undefined"){%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,6 +51,14 @@
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Citas</span>
                 </a></li>
+                <li><a href="/Glucky/Doctores/Alimentos">
+                  <i class="uil uil-restaurant"></i>
+                  <span class="link-name">Alimentos</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Medicamentos">
+                  <i class="uil uil-capsule"></i>
+                  <span class="link-name">Medicamentos</span>
+              </a></li>
             </ul>
             
             <ul class="logout-mode">
@@ -388,3 +397,18 @@
     
 </body>
 </html>
+<%}else{%>
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Error - Debes Iniciar Sesión</title>
+</head>
+<body>
+  <script src="/js/plantillaAlertas.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>
+    SesionCad()
+  </script>
+</body>
+</html>
+<%}%>

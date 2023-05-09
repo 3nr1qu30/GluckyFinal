@@ -127,7 +127,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
       if(pacdoc){
         console.log(ver);
         console.log(pacdoc);
-      res.render('perfilPaciente',{datos:ver, pacdoc:pacdoc});
+      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc});
       }else{
         console.log(error);
       }
@@ -292,7 +292,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             if(Doctores){
               querys.VerDatoPaciente(curp,(error,datpac)=>{
                 if(datpac){
-              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+              res.render('solicitudesPaciente',{curp, datos:Doctores, datopac:datpac});
                 } else {
                   console.log(error);
                 }
@@ -315,7 +315,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
             if(Doctores){
               querys.VerDatoPaciente(curp,(error,datpac)=>{
                 if(datpac){
-              res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac});
+              res.render('solicitudesPaciente',{curp, datos:Doctores, datopac:datpac});
                 } else {
                   console.log(error);
                 }
