@@ -1,3 +1,4 @@
+<%if(typeof Cedula !== "undefined"){%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -246,6 +247,8 @@
             <br>
 
          
+            <% if (datos && datos.length > 0) { %>
+
 
               
                     <div class="select-menu">
@@ -328,6 +331,7 @@
                             </tr>
 
                             <%}%>
+                            
 
                             
                             </table>
@@ -335,6 +339,11 @@
                             <div class="void">
                                 
                             </div>
+                            <%} else{%>
+
+                               <div style="text-align: center; margin:0 auto; margin-top: 10vh; font-size: 30px; font-weight: bold; color: rgba(0, 0, 0, 0.384);"> No tienes peticiones</div>
+
+                                <%}%>
 
 
                     <!--FIN DE LA TABLA DE PACIENTES-->
@@ -358,3 +367,18 @@
     
 </body>
 </html>
+<%}else{%>
+    <!DOCTYPE html>
+<html>
+  <head>
+    <title>Error - Debes Iniciar Sesión</title>
+  </head>
+  <body>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      SesionCad()
+    </script>
+  </body>
+</html>
+  <%}%>

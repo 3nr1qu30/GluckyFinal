@@ -1,6 +1,16 @@
 
 
 //Errores
+function SolicitudNoEnvi(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'La solicitud de enlace con el doctor no pudo ser eliminada, inténtalo más tarde',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
+  });
+};
+
 function DoctorSinRegistro(e) {
   swal({
     icon: 'error',
@@ -8,6 +18,32 @@ function DoctorSinRegistro(e) {
     text: 'El doctor no está registrado en el sistema',
   });
 };
+
+function NivelesNoRegi(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'Niveles no registrados en el sistema, intentalo más tarde',
+  });
+};
+
+function CitaNoEli(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'La cita no pudo ser eliminada, intentalo más tarde',
+  });
+};
+
+function CitaPetNoEnvi(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'La cita no pudo ser enviada, intentalo más tarde',
+  });
+};
+
+
 
 function SesionCad(e) {
   swal({
@@ -121,5 +157,31 @@ function NivelesRegistrados(e) {
     icon: 'success',
     title: 'Exito',
     text: 'Niveles registrados',
+  });
+};
+
+function CitaBorrada(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita ha sido eliminada',
+  });
+};
+
+function CitaPetEnvi(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La petición de cita ha sido enviada',
+  });
+};
+
+function SolicitudEnviada(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La solicitud de enlace con el doctor ha sido enviada',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
   });
 };

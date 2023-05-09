@@ -52,10 +52,6 @@
                       <i class="uil uil-plus-circle"></i>
                       <span class="link-name">Asignaciones</span>
                   </a></li>
-                  <li><a href="#">
-                    <i class="uil uil-user"></i>
-                    <span class="link-name">Personal</span>
-                  </a></li>
               </ul>
               
               <ul class="logout-mode">
@@ -678,9 +674,32 @@
       <script>
         NivelesRegistrados()
       </script>
+      <%}else if(regis === 'No se pudo agregar el registro de niveles'){%>
+        <script>
+          NivelesNoRegi()
+        </script>
       <%}%>
   <%}%>
-
+  <%if(typeof citaEli !== 'undefined'){%>
+    <%if(citaEli ==='citaeliminada')%>
+    <script>
+      CitaBorrada()
+    </script>
+    <%}else if(citaEli ==='error al eliminar la cita'){%>
+      <script>
+        CitaNoEli()
+      </script>
+    <%}%>
+    <%if(typeof citaEnvi !== 'undefined'){%>
+      <%if(citaEnvi ==='Tu cita fue enviada')%>
+      <script>
+        CitaPetEnvi()
+      </script>
+      <%}else if(citaEli ==='Tu no cita fue enviada'){%>
+        <script>
+          CitaPetNoEnvi()
+        </script>
+      <%}%>
   <br><br>
   <br><br>
   <br><br>

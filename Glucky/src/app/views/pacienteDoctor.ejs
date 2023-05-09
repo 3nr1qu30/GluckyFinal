@@ -178,7 +178,17 @@
                             <tr>
                                 <td scope="row" data-label="Nombre"><b> <%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%> </b></td>
                                 <td data-label="Estado"><div class="estadouno">Regular</div></td>
-                                <td data-label="Tipo-diabetes"><div class="Tipo-1"><%=datos[i].nom_tipdiabts%></div></td>
+                                <td data-label="Tipo-diabetes">
+                                  <div class="<% if (datos[i].nom_tipdiabts === 'tipo 1') { %>
+                                               Tipo-1
+                                             <% } else if (datos[i].nom_tipdiabts === 'tipo 2') { %>
+                                               Tipo-2
+                                             <% } else if (datos[i].nom_tipdiabts === 'gestacional') { %>
+                                               Gestacional
+                                             <% } %>">
+                                    <%=datos[i].nom_tipdiabts%>
+                                  </div>
+                              </td>
                                 <td data-label="CURP"><%=datos[i].curp_pacien%></td>
                                 <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
                                 <td data-label="Ver detalles y acciones paciente">
