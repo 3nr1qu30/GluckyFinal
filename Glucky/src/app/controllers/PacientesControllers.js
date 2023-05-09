@@ -11,9 +11,11 @@ Controllers.dashboardPacientes = (req, res, next) => {
   const regis = req.session.regis;
   const citaEli = req.session.citaEli;
   const citaEnvi = req.session.citaEnvi;
+  const enlace = req.session.enlaze;
   delete req.session.regis;
   delete req.session.citaEli;
   delete req.session.citaEnvi;
+  delete req.session.enlaze;
   let direccion;
   let solicituda;
   let glucosa = 0;
@@ -53,7 +55,9 @@ Controllers.dashboardPacientes = (req, res, next) => {
               sistolica,
               diastolica,
               regis,
-              citaEli
+              citaEli,
+              citaEnvi,
+              enlace
             });
           } else {
         //inicio de la segunda consulta de query 
@@ -97,7 +101,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
                 diastolica,
                 regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3,
                 citaEli,
-                citaEnvi
+                citaEnvi,
+                enlace
               });
                 console.log(citasverEdo3);
               }
@@ -127,13 +132,15 @@ Controllers.dashboardPacientes = (req, res, next) => {
 //Le falta la alerta de si estas seguro de desvincula al doctores
 Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
+  const passAct = req.session.passAct;
+  delete req.session.passAct;
   querys.VerDatoPaciente(curp,(error,ver)=>{
     if(ver){
       querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
       if(pacdoc){
         console.log(ver);
         console.log(pacdoc);
-      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc});
+      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc,passAct});
       }else{
         console.log(error);
       }
@@ -279,21 +286,25 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
  Controllers.ActualizarContraPaciente = (req,res,next)=>{
 const curp  = req.session.curp;
 const {NewPass} = req.body;
+
 querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
   if(act){
-    console.log(act);
+    req.session.passAct='contra actualizada';
     res.redirect('/Glucky/Pacientes/EditarCuenta');
-  } else{
+  } else if(error){
     console.log(error);
+    req.session.passAct='contra no actualizada';
+    res.redirect('/Glucky/Pacientes/EditarCuenta');
   }
 });
 };
-  //Alertas del estado de la solicitud
+  //Este ya no se mueve ya esta al 100%
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const soliciEnvi = req.session.EnvioSoli;
     delete req.session.EnvioSoli;
     const curp = req.session.curp;
-    const reenlaze = req.session.enlaze
+    const reenlaze = req.session.reenlaze;
+    delete req.session.reenlaze;
     if(soliciEnvi!==undefined){
       querys.desplegarDoctores((error,Doctores)=>{
         if(Doctores){
@@ -338,21 +349,9 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           res.redirect("/Glucky/Pacientes/Dashboard");
         }
         else if(solicitud[0].id_edosol===3){
-          console.log('su solicitud fue denegada');
-          querys.desplegarDoctores((error,Doctores)=>{
-            if(Doctores){
-              querys.VerDatoPaciente(curp,(error,datpac)=>{
-                if(datpac){
-              res.render('solicitudesPaciente',{curp, datos:Doctores, datopac:datpac});
-                } else {
-                  console.log(error);
-                }
-               });
-            }
-            else{
-              console.log(error);
-            }
-          });
+          req.session.enlaze='su solicitud fue denegada';
+          req.session.reenlaze='su solicitud fue denegada';
+          res.redirect("/Glucky/Pacientes/Dashboard");
         }  
       }
       else{
