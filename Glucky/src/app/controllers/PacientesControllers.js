@@ -182,7 +182,7 @@ Controllers.verAsignacionesPaciente = (req,res,next)=>{
                           //inicio de la séptima consulta de query 
                           querys.verTratamientoBase(curp,(error7,recetaver)=>{
                             if(recetaver){
-                              res.render('asignacionesPacientes',{citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
+                              res.render('asignacionesPacientes',{curp,citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
                             }
                             else{
                               console.log(error7);

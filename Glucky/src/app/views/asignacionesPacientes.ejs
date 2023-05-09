@@ -1,3 +1,4 @@
+<%if(typeof curp !== "undefined"){%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,20 +56,16 @@
                 <i class="uil uil-plus-circle"></i>
                 <span class="link-name">Asignaciones</span>
             </a></li>
-            <li><a href="#">
-              <i class="uil uil-user"></i>
-              <span class="link-name">Personal</span>
-            </a></li>
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+              <li><a href="/Glucky/IniciodeSesion">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Salir</span>
                 </a></li>
 
                 <li class="mode">
-                    <a href="#">
+                  <a href="/Glucky/Pacientes/EditarCuenta">
                         <i class="uil uil-x"></i>
                     <span class="link-name">Ajustes de cuenta</span>
                 </a>
@@ -384,3 +381,18 @@
     
 </body>
 </html>
+<%}else{%>
+  <!DOCTYPE html>
+<html>
+  <head>
+    <title>Error - Debes Iniciar Sesión</title>
+  </head>
+  <body>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      SesionCad()
+    </script>
+  </body>
+</html>
+<%}%>
