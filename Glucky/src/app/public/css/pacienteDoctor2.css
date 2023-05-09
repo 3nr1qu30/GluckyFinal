@@ -4269,6 +4269,7 @@ transition: all ease .2s;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(0px);
   }
 
   .kimkardashian:hover {
@@ -4297,6 +4298,8 @@ transition: all ease .2s;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(0px);
+
   }
 
   .KylieJenner:hover {
@@ -4327,6 +4330,7 @@ transition: all ease .2s;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: translateY(0px);
   }
   .NickiMinaj:hover {
     background-color: #c9a636;

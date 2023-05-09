@@ -195,13 +195,13 @@
                                       <input type="text" value="<%=datos[i].nom_ingred%>"  name="NomForm" class="textoSimple altoP" >
                                       <textarea class="textoSimple dopss" cols="10" name="DescForm" rows="1"><%=datos[i].desc_ingred%></textarea>
                                       <div class="botones-elemento" id="botonesAcci">
-                                      <button type="submit" class="btnEditarEle">Editar</button>
+                                      <button type="submit" class="btnEditarEle" style="width: 100%; font-weight: bold; "> Editar <i class="uil uil-pen"></i> </button>
                                     </form>
                                     <!--Fin del form de editar-->
                                     <!--Inicio del form de eliminar-->
                                     <form action="/Glucky/Doctores/AlimentosE" method="post" id="formulario3">                                       
                                       <input type="hidden" class="idElemento" name="idIngred" value="<%=datos[i].id_ingred%>">
-                                      <button type="submit" class="btnEliminarEle">Eliminar</button>
+                                      <button type="submit" class="btnEliminarEle" style="display: none">Eliminar</button>
                                     </form>
                                     <!--Fin del form de eliminar-->
                                     </div>

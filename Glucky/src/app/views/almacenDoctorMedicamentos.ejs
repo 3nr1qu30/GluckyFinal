@@ -189,13 +189,13 @@
                                       <input type="hidden" class="idElemento" name="idMed" value="<%=datos[i].id_medic%>">
                                       <input type="text" value="<%=datos[i].nom_medic%>" name="nomMed" class="textoSimple">
                                       <div class="botones-elemento" id="botonesAcci">
-                                      <button type="submit" class="btnEditarEle">Editar</button>
+                                      <button type="submit" class="btnEditarEle" style="width: 100%;">Editar <i class="uil uil-pen"></i></button>
                                     </form>
                                     <!--Fin del form de editar-->
                                     <!--Inicio del form de eliminar-->
                                     <form action="/Glucky/Doctores/MedicamentosE" method="post" id="formulario3">
                                       <input type="hidden" class="idElemento" name="idMed" value="<%=datos[i].id_medic%>">
-                                      <button type="submit" class="btnEliminarEle">Eliminar</button>
+                                      <button type="submit" class="btnEliminarEle" style="display: none; width: 100%;">Eliminar</button>
                                     </form>
                                     <!--Fin del form de eliminar-->
                                     </div>
