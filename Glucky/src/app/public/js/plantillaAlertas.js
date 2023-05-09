@@ -1,6 +1,14 @@
 
 
 //Errores
+function SolicitudNoEnvi(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'La solicitud de enlace con el doctor no pudo ser eliminada, inténtalo más tarde',
+  });
+};
+
 function DoctorSinRegistro(e) {
   swal({
     icon: 'error',
@@ -32,6 +40,8 @@ function CitaPetNoEnvi(e) {
     text: 'La cita no pudo ser enviada, intentalo más tarde',
   });
 };
+
+
 
 function SesionCad(e) {
   swal({
@@ -161,5 +171,13 @@ function CitaPetEnvi(e) {
     icon: 'success',
     title: 'Exito',
     text: 'La petición de cita ha sido enviada',
+  });
+};
+
+function SolicitudEnviada(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La solicitud de enlace con el doctor ha sido enviada',
   });
 };

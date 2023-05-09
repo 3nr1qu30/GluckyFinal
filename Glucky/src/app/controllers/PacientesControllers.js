@@ -296,7 +296,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         if(Doctores){
           querys.VerDatoPaciente(curp,(error,datpac)=>{
             if(datpac){
-          res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac, soliciEnvi});
+          res.render('solicitudesPaciente',{datos:Doctores, datopac:datpac, soliciEnvi,curp});
             } else {
               console.log(error);
             }
@@ -306,8 +306,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           console.log(error);
         }
       });
-    }
-    }
+    }else{
     querys.buscarSolicitud(curp,(error,solicitud)=>{
       if(solicitud){
         if(solicitud.length===0){
@@ -354,7 +353,8 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         console.log(error);
       }
     });
-  };
+  }
+};
   //post
   //Alerta de solicitud enviada
   Controllers.solicitudesPacientePost = (req,res,next)=>{

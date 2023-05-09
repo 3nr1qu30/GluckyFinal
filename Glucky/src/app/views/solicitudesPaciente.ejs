@@ -221,6 +221,19 @@
     
     <script src="/js/peticionesDoctor.js"></script>    
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <%if(typeof soliciEnvi !== 'undefined'){%>
+      <%if(soliciEnvi ==='solicitud de enlaze enviada'||soliciEnvi ==='solicitud de reenlaze enviada'){%>
+        <script>
+          SolicitudEnviada()
+        </script>
+        <%}else if(soliciEnvi ==='solicitud de enlaze no enviada'||soliciEnvi ==='solicitud de reenlaze no enviada'){%>
+          <script>
+            SolicitudNoEnvi()
+          </script>
+        <%}%>
+    <%}%>
 </body>
 </html>
 <%}else{%>
