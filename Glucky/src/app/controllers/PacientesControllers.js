@@ -52,7 +52,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
               glucosa,
               sistolica,
               diastolica,
-              regis
+              regis,
+              citaEli
             });
           } else {
         //inicio de la segunda consulta de query 
@@ -290,7 +291,9 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
   //Alertas del estado de la solicitud
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const soliciEnvi = req.session.EnvioSoli;
+    delete req.session.EnvioSoli;
     const curp = req.session.curp;
+    const reenlaze = req.session.enlaze
     if(soliciEnvi!==undefined){
       querys.desplegarDoctores((error,Doctores)=>{
         if(Doctores){
@@ -309,7 +312,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     }else{
     querys.buscarSolicitud(curp,(error,solicitud)=>{
       if(solicitud){
-        if(solicitud.length===0){
+        if(solicitud.length===0||reenlaze==='su solicitud fue denegada'){
           querys.desplegarDoctores((error,Doctores)=>{
             if(Doctores){
               querys.VerDatoPaciente(curp,(error,datpac)=>{
@@ -326,10 +329,13 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           });
         }
         else if(solicitud[0].id_edosol===1){
-          console.log('su solicitud sigue en espera');
+          req.session.enlaze='su solicitud sigue en espera';
+          res.redirect("/Glucky/Pacientes/Dashboard");
+
         } 
         else if(solicitud[0].id_edosol===2){
-          console.log('su solicitud fue aceptada');
+          req.session.enlaze='su solicitud fue aceptada';
+          res.redirect("/Glucky/Pacientes/Dashboard");
         }
         else if(solicitud[0].id_edosol===3){
           console.log('su solicitud fue denegada');
@@ -356,7 +362,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
   }
 };
   //post
-  //Alerta de solicitud enviada
+  //Este ya esta al 100%
   Controllers.solicitudesPacientePost = (req,res,next)=>{
     const{CedulaForm} = req.body;
     const curp = req.session.curp;

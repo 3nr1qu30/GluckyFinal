@@ -6,6 +6,8 @@ function SolicitudNoEnvi(e) {
     icon: 'error',
     title: 'Error',
     text: 'La solicitud de enlace con el doctor no pudo ser eliminada, inténtalo más tarde',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
   });
 };
 
@@ -179,5 +181,7 @@ function SolicitudEnviada(e) {
     icon: 'success',
     title: 'Exito',
     text: 'La solicitud de enlace con el doctor ha sido enviada',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
   });
 };
