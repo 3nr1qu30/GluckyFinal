@@ -72,7 +72,7 @@ db.DesvincularDoctor = (CurpForm,callback)=>{
       }else{
         callback(error,null);
       }
-});
+    });
   }else{ 
    console.log('Error al desvincular', error);
     callback(error,null);

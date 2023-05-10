@@ -307,7 +307,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         }
       });
     }
-    }
+    
     querys.buscarSolicitud(curp,(error,solicitud)=>{
       if(solicitud){
         if(solicitud.length===0){
@@ -354,7 +354,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         console.log(error);
       }
     });
-  };
+  }
   //post
   //Alerta de solicitud enviada
   Controllers.solicitudesPacientePost = (req,res,next)=>{
