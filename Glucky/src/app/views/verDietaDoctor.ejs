@@ -347,60 +347,52 @@
                                                 </form>
                                               </div>
                                               <% idIngredientes.push(alimentos[i].nom_ingred); %>
-                                            <% } %>
-                                          <% } %>
+                                              <% } %>
+                                              <% } %>
+                                              
+                                              <script>
+                                                var idIngredientes = <%- JSON.stringify(idIngredientes) %>;
+                                                window.onload = function() {
+                                                  console.log(`El array de derecha es ${idIngredientes}`);
+                                                }
+                                                </script>
 
-                                          <script>
-                                            var idIngredientes = <%- JSON.stringify(idIngredientes) %>;
-                                            window.onload = function() {
-                                                console.log(`El array de derecha es ${idIngredientes}`);
-                                              }
-                                              console.log(`El array de derecha 2 es ${idIngredientes}`);
-                                          </script>
-
-
-
-                                          
-                                          
-
-         
-                                            
-                                            
                                           </div>
-                                     </div>
-         
+                                        </div>
+                                        
                                         
                                         <div id="dietas-seleccionados" class="dietas-seleccionados">
-                                         Los alimentos que agregues son los siguientes, dale clic a uno usando <b> "<i class="uil uil-minus-circle"></i>"  </b>para eliminarlo.
-                                         <br>
-                                         <br>
-
-                                         <%if(verdietaalimento.length!==0 && typeof verdietaalimento !== 'undefined'){%>
-                                          <%for(let i =0;i<verdietaalimento.length;i++){%>
-                                            <form action="/Glucky/Doctores/EliminarIngredienteDieta" method="post" style="display: inline-block;">
-                                              <input type="hidden" name="id_dietingred" value="<%=verdietaalimento[i].id_dietingred%>">
-                                              <input type="hidden" name="id_dieta" value="<%= last_id %>">
-
-                                              <input type="hidden" name="CurpForm" value="<%= curpFormPacEd %>">
-                                              <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
-
-                                              <button class="elementop btn">  <i class="uil uil-minus-circle"></i> <%=verdietaalimento[i].nom_ingred%></button>
-                                              <input type="checkbox" id="<%= verdietaalimento[i].id_dietingred %>" name="dietingred" style="display:none" checked>                                              
-                                            </form>
-                                         <%}%>
-                                         
-                                         <%}%>
-
-                                            <script>
-                                              var ingredienteIzq;
-                                              const alimentosIzq = [];
-                                              const botones = document.querySelectorAll('.elementop');
-
-                                              botones.forEach(boton => {
+                                          Los alimentos que agregues son los siguientes, dale clic a uno usando <b> "<i class="uil uil-minus-circle"></i>"  </b>para eliminarlo.
+                                          <br>
+                                          <br>
+                                          
+                                          <% var enviarFinal = false; %>
+                                          <%if(verdietaalimento.length!==0 && typeof verdietaalimento !== 'undefined'){%>
+                                            <% var enviar = false; %>
+                                            <%for(let i =0;i<verdietaalimento.length;i++){%>
+                                              <form action="/Glucky/Doctores/EliminarIngredienteDieta" method="post" style="display: inline-block;">
+                                                <input type="hidden" name="id_dietingred" value="<%=verdietaalimento[i].id_dietingred%>">
+                                                <input type="hidden" name="id_dieta" value="<%= last_id %>">
+                                                
+                                                <input type="hidden" name="CurpForm" value="<%= curpFormPacEd %>">
+                                                <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
+                                                
+                                                <button class="elementop btn">  <i class="uil uil-minus-circle"></i> <%=verdietaalimento[i].nom_ingred%></button>
+                                                <input type="checkbox" id="<%= verdietaalimento[i].id_dietingred %>" name="dietingred" style="display:none" checked>                                              
+                                              </form>
+                                              <%}%>
+                                              
+                                              <script>
+                                                var enviar = false;
+                                                var ingredienteIzq;
+                                                const alimentosIzq = [];
+                                                const botones = document.querySelectorAll('.elementop');
+                                                
+                                                botones.forEach(boton => {
                                                 ingredienteIzq = boton.textContent.trim();
                                                 alimentosIzq.push(ingredienteIzq)
                                               });
-                                            
+
                                               var coincidencias = {};
                                             
                                               for (var i = 0; i < alimentosIzq.length; i++) {
@@ -418,26 +410,54 @@
                                               var coincidenciasArray = Object.keys(coincidencias);
                                             
                                               if (coincidenciasArray.length > 0) {
-                                                console.log(`El o los elementos ${coincidenciasArray.join(', ')} coinciden en ambos arrays.`);
+                                                console.log(`El o los elementos ${coincidenciasArray.join(', ')} coinciden en ambos arrays sin repetirse.`);
+                                                enviar = true;
+                                                console.log(`El operador es ${enviar}`);
                                                 for (var i = 0; i < coincidenciasArray.length; i++) {
                                                   var elemento = coincidenciasArray[i];
                                                   var contador = coincidencias[elemento];
                                                   if (contador > 1) {
                                                     console.log(`El elemento ${elemento} coincide ${contador} veces en ambos arrays.`);
+                                                    console.log(`Por lo tanto no se puede enviar esto`);
+                                                    enviar = false;
+                                                    console.log(`El operador es ${enviar}`);
                                                   }
                                                 }
                                               } else {
-                                                console.log('No hay coincidencias entre los elementos de ambos arrays.');
+                                                console.log('No hay coincidencias que se repitan entre los elementos de ambos arrays.');
+                                                enviar = true;
+                                                console.log(`El operador es ${enviar}`);
                                               }
-                                            
+                                              
+                                              if (ingredienteIzq !== undefined && enviar === true){
+                                                console.log(`Todo bien, se puede enviar`);
+                                                enviar = true;
+                                                console.log(`El operador final es ${enviar}`);
+                                              } else{
+                                                console.log(`tienes q agregar algo o se esta repitiendo un elemento`);
+                                                enviar = false;
+                                                console.log(`El operador final es ${enviar}`);
+                                              }
+
+                                              <% enviarFinal = enviar %>
+
+                                              //convertir variable de js (enviar) a ejs (para enviarFinal)
+
                                             </script>
+                                              <%}%>
+                                              
                                             
                                             
                                         </div>
 
 
                                     <div class="alabados">
-                                      <a class="asas lomins" href="/Glucky/Doctores/PacienteDoctor">Guardar <i class="uil uil-bag"></i> </a>
+                                      <!-- <a class="asas lomins" href="/Glucky/Doctores/PacienteDoctor">Guardar <i class="uil uil-bag"></i> </a> -->
+                                      <% if(enviarFinal){ %>
+                                        <a class="asas lomins" href="/Glucky/Doctores/PacienteDoctor">Guardar <i class="uil uil-bag"></i></a>
+                                      <% } else { %>
+                                        <a class="asas lomins" href="#">Guardar <i class="uil uil-bag"></i></a>
+                                      <% } %>
                                       <!--Form para eliminar los ingredientes de la dieta y luego la dieta-->
                                         <form action="/Glucky/Doctores/EliminarDieta" method="post" style="display: inline-block; margin-top: 3px;" id="formularioDietaNoVacio">
                                           <input type="hidden" name="id_dietaEl" value="<%= last_id %>">
