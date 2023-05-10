@@ -190,7 +190,7 @@
             </div>
             <div class="dispo2" id="fechaDiet">
             </div>
-            <div class="info"> Dieta escrita, para editarla dirijase al botón de acciones</div> 
+            <div class="info"> Dieta escrita:</div> 
             <div class="contenido" id="contenidoDiet">
             </div>
           </div>
@@ -294,7 +294,7 @@
             
             <% let listaMedicamentos = ""; %>
                 <% grupoDeRecetas.forEach((receta) => { %>
-                  <% listaMedicamentos += `${receta.nom_medic} (cantidad: ${receta.frec_recmed} tipo: ${receta.present_recmed}), `; %>
+                  <% listaMedicamentos += `<li> <b> ${receta.nom_medic} </b> cantidad: ${receta.frec_recmed} tipo: ${receta.present_recmed}</li> `; %>
                 <% }); %>
                 <p class="small-content arianagrenade"><%= listaMedicamentos.slice(0, -2) %></p>
 
@@ -344,7 +344,7 @@
                   
                   <% let listaIngredientes = ""; %>
                   <% grupoDeDietas.forEach((dieta) => { %>
-                    <% listaIngredientes += `${dieta.nom_ingred}: ${dieta.desc_ingred}, `; %>
+                    <% listaIngredientes += `<li> <b> ${dieta.nom_ingred}: </b> ${dieta.desc_ingred}</li> `; %>
                   <% }); %>
                   <p class="small-content arianagrenade"><%= listaIngredientes.slice(0, -2) %></p>
   
