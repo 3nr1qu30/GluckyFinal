@@ -320,12 +320,8 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           console.log(error);
         }
       });
-<<<<<<< HEAD
     }
     
-=======
-    }else{
->>>>>>> 476ac8b306b79c4ce91495c4399f19de21cad99f
     querys.buscarSolicitud(curp,(error,solicitud)=>{
       if(solicitud){
         if(solicitud.length===0||reenlaze==='su solicitud fue denegada'){
@@ -364,10 +360,6 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   }
-<<<<<<< HEAD
-=======
-};
->>>>>>> 476ac8b306b79c4ce91495c4399f19de21cad99f
   //post
   //Este ya esta al 100%
   Controllers.solicitudesPacientePost = (req,res,next)=>{
