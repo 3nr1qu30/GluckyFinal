@@ -289,7 +289,7 @@
                                                     </div>
                                                     <div class="buttonNUE">
                                                     <div class="button-layer4"></div>
-                                                    <form action="/Glucky/Doctores/Desvinculacion" method="post">
+                                                    <form action="/Glucky/Doctores/Desvinculacion" method="post" id="matarEspecimen">
                                                         <button type="submit" class="centrado">
                                                             <i class='bx bxs-skull' style="font-size:25px; margin-right: 10px; margin-top: 13px;"></i>
                                                             <h4 class="cent">Dar de baja a paciente</h4>
@@ -423,10 +423,10 @@
                                            paciente </span>
                                    </div>
                                </div>
-                               <form action="/Glucky/Doctores/PacienteDoctorCitas" method="post">
+                               <form action="/Glucky/Doctores/PacienteDoctorCitas" method="post" id="formularioNuevaCita">
                                    <input type="hidden" value="<%=datos[0].curp_pacien%>" name="CurpForm">
-                                   <input spellcheck="false" type="time" class="titulo" name="HoraForm" required>
-                                   <input type="date" spellcheck="false" type="text" class="titulo" name="FechaForm" required>
+                                   <input spellcheck="false" type="time" class="titulo" name="HoraForm" id="horaIngresada">
+                                   <input type="date" spellcheck="false" class="titulo" name="FechaForm" id="fechaIngresada">
                                    <div class="button">
                                        <button id="closem" class="cancel2">Cancelar</button>
                                        <button type="submit" class="send">¡Enviar!</button>
@@ -642,7 +642,7 @@
               var fechita = citas[i].date_cita;%>
             
            
-          <div class="card azulesC">
+          <!-- <div class="card azulesC"> -->
             <input type="hidden" value="<%=citas[i].curp_pacien%>" id="CURP_pacienForm">
             <input type="hidden" value="<%=citas[i].id_cita%>" id="id_citaForm">
            <b class="jajaamiga">Dia y hora de la cita n° <%=i+1%>:</b> 
@@ -716,7 +716,7 @@
 
           <%if(dietas.length!==0){%>
           <%} else{ %>
-            <button class="NickiMinaj"><i class="uil uil-plus-circle"></i> Agregar cita</button>
+            <button class="NickiMinaj"><i class="uil uil-plus-circle"></i> Agregar dieta</button>
           <%}%>
 
           <% if (dietasverTodas.length !== 0) {
@@ -826,6 +826,7 @@
 
 
     <script src="/js/pacienteDoctor.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     
 </body>

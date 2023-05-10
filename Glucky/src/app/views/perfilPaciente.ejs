@@ -404,7 +404,19 @@
 
 </div>
     <script src="/js/perfilPaciente.js"></script>    
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>  
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <%if(typeof passAct!=='undefined'){%>
+      <%if(passAct==='contra actualizada'){%>
+        <script>
+          PassAct()
+        </script>
+      <%}else if(passAct==='contra no actualizada'){%>
+        <script>
+          PassNoAct()
+        </script>
+      <%}%>
+    <%}%> 
     
 </body>
 </html>
@@ -415,8 +427,8 @@
     <title>Error - Debes Iniciar Sesión</title>
   </head>
   <body>
-    <script src="/js/plantillaAlertas.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/js/plantillaAlertas.js"></s>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></>
     <script>
       SesionCad()
     </script>

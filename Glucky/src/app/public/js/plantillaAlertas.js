@@ -1,6 +1,24 @@
 
-
 //Errores
+
+function PassNoAct(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'La contraseña no pudo ser actualizada, inténtalo más tarde',
+  });
+};
+
+function SolicitudNoEnvi(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'La solicitud de enlace con el doctor no pudo ser eliminada, inténtalo más tarde',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
+  });
+};
+
 function DoctorSinRegistro(e) {
   swal({
     icon: 'error',
@@ -32,6 +50,8 @@ function CitaPetNoEnvi(e) {
     text: 'La cita no pudo ser enviada, intentalo más tarde',
   });
 };
+
+
 
 function SesionCad(e) {
   swal({
@@ -71,7 +91,7 @@ function NoRegistroDoc(e) {
   swal({
     icon: 'error',
     title: 'Error',
-    text: 'No se pudo registrar al doctor en el sistema',
+    text: 'No se pudo registrar al doctor en el sistema, intentelo más tarde',
   });
 };
 
@@ -79,7 +99,7 @@ function NoRegistroPa(e) {
   swal({
     icon: 'error',
     title: 'Error',
-    text: 'No se pudo registrar al paciente en el sistema',
+    text: 'No se pudo registrar al paciente en el sistema, intentelo más tarde',
   });
 };
 
@@ -115,7 +135,7 @@ function NocargaChat(e){
   swal({
     icon: 'error',
             title: 'Error',
-            text: 'Hubo un error al cargar esta pagina intenta en unos instantes',
+            text: 'Hubo un error al cargar esta pagina, intentelo más tarde',
   })
 }
 
@@ -161,5 +181,46 @@ function CitaPetEnvi(e) {
     icon: 'success',
     title: 'Exito',
     text: 'La petición de cita ha sido enviada',
+  });
+};
+
+function PassAct(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La contraseña ha sido actualizada',
+  });
+};
+
+function SolicitudEnviada(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La solicitud de enlace con el doctor ha sido enviada',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Dashboard';
+  });
+};
+//Alertas informativas
+function SolicitudDene(e) {
+  swal({
+    title: 'Estado de solicitud',
+    text: 'La solicitud de enlace con el doctor, fue denegada',
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/Pacientes/Solicitudes';
+  });
+};
+
+function SolicitudEnProce(e) {
+  swal({
+    title: 'Estado de solicitud',
+    text: 'La solicitud de enlace con el doctor, sigue en proceso',
+  });
+};
+
+function SolicitudAcept(e) {
+  swal({
+    title: 'Estado de solicitud',
+    text: 'La solicitud de enlace con el doctor, fue aceptada',
   });
 };

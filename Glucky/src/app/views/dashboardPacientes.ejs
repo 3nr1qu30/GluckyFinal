@@ -700,6 +700,22 @@
           CitaPetNoEnvi()
         </script>
       <%}%>
+      <%if(typeof enlace !== 'undefined'){%>
+        <%if(enlace ==='su solicitud fue denegada'){%>
+        <script>
+          SolicitudDene()
+        </script>
+        <%}else if(enlace ==='su solicitud fue aceptada'){%>
+          <script>
+            SolicitudAcept()
+          </script>
+        <%}else if(enlace ==='su solicitud sigue en espera'){%>
+          <script>
+            SolicitudEnProce()
+          </script>
+        <%}%>
+        <%}%>
+
   <br><br>
   <br><br>
   <br><br>
