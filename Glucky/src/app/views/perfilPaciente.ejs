@@ -167,7 +167,7 @@
                Tu cuenta
             </div>
           
-            <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post">
+            <form action="/Glucky/Pacientes/ActualizacionPaciente" method="post" id="formularioEditarPerfil">
 
             <div class="Info">
                 <div class="infoEdit" id="grupo_nombre">
@@ -321,11 +321,11 @@
         var email;
         var tel;
         var visualizar;
-      if (idedo == 3 || idedo == 1){
+      if (idedo === 3 || idedo === 1){
       nombre = "No estás vinculado a ningún doctor";
       numcons, cedmed, direccion, email, tel = "";
       visualizar = "none";
-      }else if(idedo == 2){
+      }else if(idedo === 2){
        visualizar = "block"
        numcons = datos[i].num_cons;
        cedmed =datos[i].cedula_med;  
@@ -335,7 +335,7 @@
        tel = pacdoc[i].tel_pers;
      
      }%>
-            <div class="overview" style="display: <%=visualizar%>;">
+            <div class="overview" style="display: <%=visualizar%>">
                 <div class="title">
                     <i class="uil uil-bag"></i>
                     <span class="text">Doctor asignado</span>
@@ -344,7 +344,7 @@
             
               
             <form action="/Glucky/Pacientes/Desvinculacion" method="post" >
-            <div class="doctorC" style="display:  <%=visualizar%>;">
+            <div class="doctorC" style="display:  <%=visualizar%>">
                 <div class="flexos">
                     <div class="logos"> <i class="uil uil-user"></i></div>
                     <h5 class="TituloDoc">Información de tu doctor asignado</h5>
@@ -406,6 +406,7 @@
     <script src="/js/perfilPaciente.js"></script>    
     <script src="/js/plantillaAlertas.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <%if(typeof passAct!=='undefined'){%>
       <%if(passAct==='contra actualizada'){%>
         <script>
@@ -416,8 +417,21 @@
           PassNoAct()
         </script>
       <%}%>
-    <%}%> 
+    <%}%>
     
+    <%if(typeof datosAct!=='undefined'){%>
+      <%if(datosAct==='datos actualizados'){%>
+        <script>
+          DatosPerAct()
+        </script>
+      <%}else if(datosAct==='datos no actualizados'){%>
+        <script>
+          DatosPerNoAct()
+        </script>
+      <%}%>
+    <%}%>
+    
+
 </body>
 </html>
 <%}else{%>
@@ -427,8 +441,8 @@
     <title>Error - Debes Iniciar Sesión</title>
   </head>
   <body>
-    <script src="/js/plantillaAlertas.js"></s>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
       SesionCad()
     </script>

@@ -12,16 +12,17 @@ Controllers.dashboardPacientes = (req, res, next) => {
   const citaEli = req.session.citaEli;
   const citaEnvi = req.session.citaEnvi;
   const enlace = req.session.enlaze;
+  const conect = req.session.conectado;
   delete req.session.regis;
   delete req.session.citaEli;
   delete req.session.citaEnvi;
   delete req.session.enlaze;
+  delete req.session.conectado;
   let direccion;
   let solicituda;
   let glucosa = 0;
   let sistolica = 0;
   let diastolica = 0;
-
 
   querys.buscarDatosmedicos(curp, (error, datosmedicos) => {
     if (error) {
@@ -57,7 +58,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
               regis,
               citaEli,
               citaEnvi,
-              enlace
+              enlace,
+              conect
             });
           } else {
         //inicio de la segunda consulta de query 
@@ -102,7 +104,8 @@ Controllers.dashboardPacientes = (req, res, next) => {
                 regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3,
                 citaEli,
                 citaEnvi,
-                enlace
+                enlace,
+                conect
               });
                 console.log(citasverEdo3);
               }
@@ -129,10 +132,13 @@ Controllers.dashboardPacientes = (req, res, next) => {
     }
   });
 };
-//Le falta la alerta de si estas seguro de desvincula al doctores
+//Este ya esta al 100%
 Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   const passAct = req.session.passAct;
+  const datosAct = req.session.daActuali;
+  console.log(req.session.daActuali);
+  delete req.session.daActuali;
   delete req.session.passAct;
   querys.datosPaciente(curp,(error,ver)=>{
     if(ver){
@@ -140,7 +146,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
       if(pacdoc){
         console.log(ver);
         console.log(pacdoc);
-      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc,passAct});
+      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc,passAct,datosAct});
       }else{
         console.log(error);
       }
@@ -152,75 +158,81 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   }); 
 };
 
-//Le falta una alerta si no estas asignado a ningun paciente
+//Este ya esta al 100%
 Controllers.verAsignacionesPaciente = (req,res,next)=>{
   const curp = req.session.curp;
-  querys.verCitasPacienteIndividual(curp,(error,citas)=>{
-    if(citas){
-      querys.verDietasCompletas2(curp,(error,dietas)=>{
-      if(dietas){
-        querys.solicitudAceptadaDoctor(curp,(error,pacdoc)=>{
-          if(pacdoc){
-            querys.DatoPacienteDoctor(curp,(error,ver)=>{
-              if(ver){
+  querys.solicitudAceptadaDoctor(curp,(error,solicitud)=>{
+    if(solicitud.length!==0){
+      querys.verCitasPacienteIndividual(curp,(error,citas)=>{
+        if(citas){
+          querys.verDietasCompletas2(curp,(error,dietas)=>{
+          if(dietas){
+            querys.solicitudAceptadaDoctor(curp,(error,pacdoc)=>{
+              if(pacdoc){
+                querys.DatoPacienteDoctor(curp,(error,ver)=>{
+                  if(ver){
 
-                solicituda =
-                pacdoc[0].nom_pers + ' ' + pacdoc[0].apellidos_pers;
+                    solicituda =
+                    pacdoc[0].nom_pers + ' ' + pacdoc[0].apellidos_pers;
 
-                direccion =
-                'Calle:' +
-                pacdoc[0].calle_cons +
-                ' Num:' +
-                pacdoc[0].num_cons +
-                '\n' +
-                ' CP:' +
-                pacdoc[0].cp_cons +
-                '\n' +
-                ' Colonia:' +
-                pacdoc[0].col_cons +
-                '\n' +
-                ' Del o Mun:' +
-                pacdoc[0].del_cons +
-                '\n' +
-                ' Estado o Ciudad:' +
-                pacdoc[0].edo_cons;
-               //inicio de la cuarta consulta de query 
-               querys.verDietaBase(curp,(error4,dietaver)=>{
-                if(dietaver){
-                //inicio de la quinta consulta de query verTratamientoBase
-                querys.verDietasCompletas2(curp,(error5,dietasverTodas)=>{
-                  if(dietasverTodas){
-                     //inicio de la sexta consulta de query 
-                      querys.verTratamientosCompletas2(curp,(error6,recetaverTodas)=>{
-                        if(recetaverTodas){
-                          //inicio de la séptima consulta de query 
-                          querys.verTratamientoBase(curp,(error7,recetaver)=>{
-                            if(recetaver){
-                              res.render('asignacionesPacientes',{curp,citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
+                    direccion =
+                    'Calle:' +
+                    pacdoc[0].calle_cons +
+                    ' Num:' +
+                    pacdoc[0].num_cons +
+                    '\n' +
+                    ' CP:' +
+                    pacdoc[0].cp_cons +
+                    '\n' +
+                    ' Colonia:' +
+                    pacdoc[0].col_cons +
+                    '\n' +
+                    ' Del o Mun:' +
+                    pacdoc[0].del_cons +
+                    '\n' +
+                    ' Estado o Ciudad:' +
+                    pacdoc[0].edo_cons;
+                  //inicio de la cuarta consulta de query 
+                  querys.verDietaBase(curp,(error4,dietaver)=>{
+                    if(dietaver){
+                    //inicio de la quinta consulta de query verTratamientoBase
+                    querys.verDietasCompletas2(curp,(error5,dietasverTodas)=>{
+                      if(dietasverTodas){
+                        //inicio de la sexta consulta de query 
+                          querys.verTratamientosCompletas2(curp,(error6,recetaverTodas)=>{
+                            if(recetaverTodas){
+                              //inicio de la séptima consulta de query 
+                              querys.verTratamientoBase(curp,(error7,recetaver)=>{
+                                if(recetaver){
+                                  res.render('asignacionesPacientes',{curp,citas:citas, dietas:dietas, datos:ver, direccion:direccion, nombredoc:solicituda, dietas:dietaver, dietasverTodas:dietasverTodas , recetaver:recetaver, recetaverTodas:recetaverTodas});
+                                }
+                                else{
+                                  console.log(error7);
+                                }
+                              }); 
+                              //final de la séptima consulta de query
                             }
                             else{
-                              console.log(error7);
+                              console.log(error6);
                             }
                           }); 
-                          //final de la séptima consulta de query
-                        }
-                        else{
-                          console.log(error6);
-                        }
-                      }); 
-                      //final de la sexta consulta de query
+                          //final de la sexta consulta de query
+                      }
+                      else{
+                        console.log(error5);
+                      }
+                    }); 
+                    //final de la quinta consulta de query
+                    }
+                    else{
+                      console.log(error4);
+                    }
+                  }); 
+                  //final de la cuarta consulta de query
+                  }else{
+                    console.log(error);
                   }
-                  else{
-                    console.log(error5);
-                  }
-                }); 
-                //final de la quinta consulta de query
-                }
-                else{
-                  console.log(error4);
-                }
-              }); 
-              //final de la cuarta consulta de query
+                });
               }else{
                 console.log(error);
               }
@@ -229,18 +241,23 @@ Controllers.verAsignacionesPaciente = (req,res,next)=>{
             console.log(error);
           }
         });
-      }else{
-        console.log(error);
-      }
-    });
+        }
+        else{
+          console.log(error);
+        }
+      });
+    }else if(solicitud.length === 0){
+      req.session.conectado='no doctor';
+      res.redirect('/Glucky/Pacientes/Dashboard');
     }
-    else{
+    else if(error){
+      req.session.conectado='no';
       console.log(error);
-    }
+    } 
   }); 
 };
 
-//Alerta de datos cambiados
+//Este ya no se mueve ya esta al 100%
 Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   const CurpForm =req.session.curp;
   const{NombreForm} =req.body;
@@ -253,11 +270,15 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
 
   querys.ActualizarDatoPaciente(CurpForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,TDiabForm,(error,ver)=>{
     if(ver){
-      console.log(ver);
+      req.session.daActuali='datos actualizados';
+      console.log(req.session.daActuali);
       res.redirect('/Glucky/Pacientes/EditarCuenta');
     }
     else{
       console.log(error);
+      req.session.daActuali='datos no actualizados';
+      console.log(req.session.daActuali);
+      res.redirect('/Glucky/Pacientes/EditarCuenta');
     }
   }); 
  };
@@ -282,7 +303,8 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
     }
   }); 
  };
-//Contraseña actualizada alerta
+
+//Este ya no se mueve ya esta al 100%
  Controllers.ActualizarContraPaciente = (req,res,next)=>{
 const curp  = req.session.curp;
 const {NewPass} = req.body;
@@ -298,6 +320,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
   }
 });
 };
+
   //Este ya no se mueve ya esta al 100%
   Controllers.solicitudesPaciente = (req,res,next)=>{
     const soliciEnvi = req.session.EnvioSoli;
@@ -395,6 +418,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   };
+
 // Este ya esta al 100%
   Controllers.solicitudCita = (req,res,next)=>{    
     const{FechaForm} = req.body;
@@ -429,6 +453,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   }; 
+
   // Este ya esta al 100%
   Controllers.registroNiveles = (req,res,next)=>{
     const{glucosa,sistolica,diastolica,medicion}=req.body
@@ -452,6 +477,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   };
+
   //Este ya esta al 100%
    Controllers.chatPacienteGet=(req,res,next)=>{
     const curp = req.session.curp;
@@ -481,15 +507,13 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
               const year = date.getFullYear();
               return `${day} ${months[monthIndex]} ${year}`;
             }
-            error='undefined';
-            res.render('chatPaciente',{curp,solicitud,mensajes,format12HourTime,formatDate,error});
+            res.render('chatPaciente',{curp,solicitud,mensajes,format12HourTime,formatDate});
           }
           else if(mensajes.length===0){
             querys.VerDatoPaciente(curp,(error,datospac)=> {
               if(datospac){
-            error='undefined';
             mensajes='undefined';
-            res.render('chatPaciente',{curp,solicitud,mensajes,error, datopac:datospac});
+            res.render('chatPaciente',{curp,solicitud,mensajes,datopac:datospac});
               } else {
                 console.log(error);
               }
@@ -501,19 +525,18 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
         });
       }
       else if(solicitud.length===0){
-      error = "No te has en lazado a un doctor";
-      solicitud = 'undefined';
-      res.render('chatPaciente',{curp,solicitud,error});
+        req.session.conectado='no doctor';
+        res.redirect('/Glucky/Pacientes/Dashboard');
       }
       else if(error){
-        error='no se pudo cargar la pagina';
-        solicitud = 'undefined';
-        res.render('chatPaciente',{curp,solicitud,error});
+        console.log(error);
+        req.session.conectado='no';
+        res.redirect('/Glucky/Pacientes/Dashboard');
+      
       }
     });
   };
 
-  
   //A este no le muevan es el api rest ya esta al 100%
   Controllers.AgregarMensaje = async (req, res, next) => {
     try {

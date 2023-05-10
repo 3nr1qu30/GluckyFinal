@@ -380,12 +380,6 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
         buttons: ["Cancelar", "Modificar"]
       }).then((modificacionConfirmada) => {
         if(modificacionConfirmada){
-            swal({
-                icon: "success",
-                title: "Datos modificados"
-            }).then(() => {
-                formularioEditarPerfil.submit();
-            })
         } else{
             swal({
                 icon: "warning",
@@ -420,12 +414,6 @@ formularioEditarPassword.addEventListener("submit", (e) => {
             buttons: ["Cancelar", "Cambiar"]
           }).then((modificacionConfirmada) => {
             if(modificacionConfirmada){
-                swal({
-                    icon: "success",
-                    title: "Contraseña cambiada"
-                }).then(() => {
-                    formularioEditarPassword.submit();
-                })
             } else{
                 swal({
                     icon: "warning",
@@ -468,12 +456,6 @@ borrarCuenta.addEventListener("click", (e) => {
         dangerMode: true
       }).then((borrar) => {
         if(borrar){
-            swal({
-                icon: "success",
-                title: "Cuenta eliminada"
-            }).then(() => {
-                borrarCuenta.submit();
-            })
         }
       })
 })

@@ -317,12 +317,7 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
         buttons: ["Cancelar", "Modificar"]
       }).then((modificacionConfirmada) => {
         if(modificacionConfirmada){
-            swal({
-                icon: "success",
-                title: "Datos modificados"
-            }).then(() => {
                 formularioEditarPerfil.submit();
-            })
         } else{
             swal({
                 icon: "warning",
@@ -357,12 +352,7 @@ formularioEditarPassword.addEventListener("submit", (e) => {
             buttons: ["Cancelar", "Cambiar"]
           }).then((modificacionConfirmada) => {
             if(modificacionConfirmada){
-                swal({
-                    icon: "success",
-                    title: "Contraseña cambiada"
-                }).then(() => {
-                    formularioEditarPassword.submit();
-                })
+              formularioEditarPassword.submit();
             } else{
                 swal({
                     icon: "warning",
@@ -425,12 +415,7 @@ desvincularDoc.addEventListener("click", (e) => {
         dangerMode: true    
       }).then((desvincular) => {
         if(desvincular){
-            swal({
-                icon: "success",
-                title: "Doctor desvinculado"
-            }).then(() => {
-                desvincularDoc.submit();
-            })
+          desvincularDoc.submit();
         }
       })
 })

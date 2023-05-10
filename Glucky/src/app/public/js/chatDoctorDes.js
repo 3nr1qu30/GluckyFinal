@@ -112,6 +112,9 @@ fetch(url,{
     return `${day} ${months[monthIndex]} ${year}`;
   }
   const messagesContainer = document.getElementById('menssages-container');
+  const fecha = document.createElement('span');
+  fecha.textContent = formatDate(mensajes[0].date_mensaje);
+      messagesContainer.appendChild(fecha);
   for (let i = 0; i < mensajes.length;i++){
     const newMessage = document.createElement('div');
     const messageText = document.createElement('p');
@@ -122,9 +125,9 @@ fetch(url,{
     newMessage.appendChild(messageText);
     newMessage.appendChild(messageTime);
     if(i > 0 && formatDate(mensajes[i].date_mensaje) !== formatDate(mensajes[i-1].date_mensaje)){
-      const fecha = document.createElement('span');
-      fecha.textContent = formatDate(mensajes[i].date_mensaje);
-      messagesContainer.appendChild(fecha);
+      const fecha2 = document.createElement('span');
+      fecha2.textContent = formatDate(mensajes[i].date_mensaje);
+      messagesContainer.appendChild(fecha2);
       
       if (mensajes[i].id_emisor === emisor) {
         newMessage.className = 'message sent';

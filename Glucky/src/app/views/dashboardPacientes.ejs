@@ -5,7 +5,10 @@
       <meta charset="UTF-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+      <script>
+        const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
+        const datosmedicoso = <%- JSON.stringify(datosmedicos) %>;
+      </script>
       <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
       <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -601,71 +604,7 @@
                   <script src="/js/plantillaAlertas.js"></script>
                   <script src="/js/dashboardPacientesValidaciones.js"></script>
                   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-                  
-                  <script>
-                    const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
-                    const fechas = [];
-                    const datos = [];
-
-                    for (let i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
-                      const fechaHora = datosmedicos[i].date_datmed.slice(0, 10) + " " + datosmedicos[i].hpur_datmed;
-                      fechas.push(fechaHora.toLocaleString());
-                      datos.push(parseInt(datosmedicos[i].gluc_datmed));
-                    }
-
-                    const data = {
-                      labels: fechas,
-                      datasets: [{
-                        label: 'Glucosa',
-                        data: datos,
-                        backgroundColor: 'rgba(0, 255, 0, 0.2)', // verde transparente
-                        borderColor: 'rgba(0, 255, 0, 1)', // borde verde
-                        borderWidth: 1 // ancho del borde
-                      }]
-                    };
-
-                    new Chart('glucosagraf', {
-                      type: 'line',
-                      data: data
-                    });
-
-                  </script>
-                  <script>
-                  const datosmedicoso = <%- JSON.stringify(datosmedicos) %>;
-
-                  var fecha=[];
-                  var datosis=[];
-                  var datosdia=[];
-                  
-                  for (let i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
-                    const fechaHora = datosmedicoso[i].date_datmed.slice(0, 10) + " " + datosmedicoso[i].hpur_datmed;
-                      fecha.push(fechaHora.toLocaleString());
-                      datosis.push(parseInt(datosmedicoso[i].presis_datmed));
-                      datosdia.push(parseInt(datosmedicoso[i].predia_datmed));
-                  }
-                  
-                  const datao = {
-                    labels: fecha,
-                    datasets: [{
-                      label: 'Presion sistolica',
-                      data: datosis,
-                      backgroundColor: 'rgba(54, 162, 235, 0.2)', // azul transparente
-                      borderColor: 'rgba(54, 162, 235, 1)', // borde azul
-                      borderWidth: 1 // ancho del borde
-                    }, {
-                      label: 'Presion diastolica',
-                      data: datosdia,
-                      backgroundColor: 'rgba(255, 206, 86, 0.2)', // amarillo transparente
-                      borderColor: 'rgba(255, 206, 86, 1)', // borde amarillo
-                      borderWidth: 1 // ancho del borde
-                    }],
-                  };
-
-                  new Chart('presiongraf', {
-                    type: 'line',
-                    data: datao
-                  });                  
-                  </script>
+                  <script src="/js/graficas.js"></script>
                   
           </div>
   </div>
@@ -715,6 +654,18 @@
           </script>
         <%}%>
         <%}%>
+        <%if(typeof conect !== 'undefined'){%>
+          <%if(conect ==='no doctor'){%>
+          <script>
+            Noenlaze2()
+          </script>
+          <%}else if(conect ==='no'){%>
+            <script>
+              NocargaChat()
+            </script>
+          <%}%>
+        <%}%>
+  
 
   <br><br>
   <br><br>

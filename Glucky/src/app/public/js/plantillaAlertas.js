@@ -1,6 +1,14 @@
 
 //Errores
 
+  function DatosPerNoAct(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'Tu información personal no ha sido actualizada, inténtalo más tarde',
+  });
+};
+
 function PassNoAct(e) {
   swal({
     icon: 'error',
@@ -121,6 +129,14 @@ function Noenlaze(e) {
   });
 }
 
+function Noenlaze2(e) {
+  swal({
+    icon: 'error',
+        title: 'Error',
+        text: 'No puedes acceder a esta función, ya que no te has enlazado a ningún doctor',
+  });
+}
+
 function NoenlazeDoc(e) {
   swal({
     icon: 'error',
@@ -192,6 +208,14 @@ function PassAct(e) {
   });
 };
 
+function DatosPerAct(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'Tu información personal ha sido actualizada',
+  });
+};
+
 function SolicitudEnviada(e) {
   swal({
     icon: 'success',
@@ -205,7 +229,7 @@ function SolicitudEnviada(e) {
 function SolicitudDene(e) {
   swal({
     title: 'Estado de solicitud',
-    text: 'La solicitud de enlace con el doctor, fue denegada',
+    text: 'La solicitud de enlace con el doctor, fue denegada o se elimino el enlace',
   }).then((confirmar)=>{
     window.location.href='/Glucky/Pacientes/Solicitudes';
   });

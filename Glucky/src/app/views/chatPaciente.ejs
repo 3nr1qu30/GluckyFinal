@@ -214,6 +214,7 @@
                                     </div>
                                     <br>
                                     <%if(mensajes !== 'undefined'){%>
+                                        <span><%=formatDate(mensajes[0].date_mensaje)%></span>
                                         <%for(var i=0; i<mensajes.length;i++){%>
                                             <%if(i > 0 && formatDate(mensajes[i].date_mensaje) !== formatDate(mensajes[i-1].date_mensaje)){%>
                                                 <span><%=formatDate(mensajes[i].date_mensaje)%></span>  
@@ -282,15 +283,6 @@
 </div>
 <script src="/js/plantillaAlertas.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <%if(error==='No te has en lazado a un doctor'){%>
-        <script>
-            Noenlaze()
-        </script>
-    <%}else if(error==='No te has en lazado a un doctor'){%>
-        <script>
-            NocargaChat()
-        </script>
-    <%}%>
     <script src="/js/chatDoctor.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chatpaciente.js"></script>
