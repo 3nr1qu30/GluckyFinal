@@ -1,5 +1,6 @@
 const mysql=require('mysql2');
 const encrypt = require('../helpers/EncriptarContraseñas');
+
 //const { callback } = require('chart.js/dist/helpers/helpers.core');
 
 
@@ -61,24 +62,110 @@ db.buscarMensajes=(id_chat,callback) => {
         callback(null,mensajes);
       }
     });
-}
+};
+
+db.eliminarDatosDietas = (CurpForm,callback)=>{
+  con.query(`SELECT * FROM dieta  WHERE curp_pacien = '${CurpForm}'`,(error,iddieta)=>{
+    if(iddieta){
+      if(iddieta.length !==0){
+        for(var i=0; i<iddieta.length; i++){
+        const idiet = parseInt(iddieta[i].id_dieta);
+        con.query(`DELETE FROM dietaingrediente WHERE id_dieta = '${idiet}'`,(error,eldieting)=>{
+         if(eldieting){
+           con.query(`DELETE FROM dieta WHERE id_dieta = '${idiet}'`,(error,eldieta)=>{
+             if(eldieta){
+               console.log(iddieta)
+               callback(null,eldieting,eldieta);
+             } else {
+               callback(error,null);
+             } 
+           });
+        } else {
+          callback(error,null);
+        }
+      });
+    }
+      } else {
+        con.query(`DELETE FROM dieta WHERE curp_pacien = '${CurpForm}'`,(error,eldieta)=>{
+          if(eldieta){
+            callback(null,eldieta);
+         } else {
+           callback(error,null);
+         } 
+      });
+    }
+      } else {
+        callback(error,null);
+      }
+  });
+};
+
+db.eliminarDatosRecetas = (CurpForm,callback)=>{
+  con.query(`SELECT * FROM receta  WHERE curp_pacien = '${CurpForm}'`,(error,idreceta)=>{
+    if(idreceta){
+      if(idreceta.length !==0){
+        for(var i=0; i<idreceta.length; i++){
+        const idrec = parseInt(idreceta[i].id_receta);
+        con.query(`DELETE FROM recetamedicamento WHERE id_receta = '${idrec}'`,(error,elrecmed)=>{
+         if(elrecmed){
+           con.query(`DELETE FROM receta WHERE id_receta = '${idrec}'`,(error,elrec)=>{
+             if(elrec){
+               console.log(idreceta)
+               callback(null,elrecmed,elrec);
+             } else {
+               callback(error,null);
+             } 
+           });
+        } else {
+          callback(error,null);
+        }
+      });
+    }
+      } else {
+        con.query(`DELETE FROM receta WHERE curp_pacien = '${CurpForm}'`,(error,elrec)=>{
+         if(elrec){
+           callback(null,elrec);
+        } else {
+          callback(error,null);
+        } 
+      });
+    }
+      } else {
+        callback(error,null);
+      }
+  });
+};
+
 
 db.DesvincularDoctor = (CurpForm,callback)=>{
   con.query(`UPDATE pacientemedico SET id_edosol = 3 WHERE curp_pacien = '${CurpForm}'`,(error,desv)=>{
   if(desv){
     con.query(`DELETE FROM chat WHERE curp_pacien = '${CurpForm}'`,(error,elchat)=>{
       if(elchat){
-    callback(null, desv, elchat);
-      }else{
+        con.query(`DELETE FROM citamedica WHERE curp_pacien = '${CurpForm}'`,(error,elcitam)=>{
+          if(elcitam){
+                con.query(`DELETE FROM solicitarcita  WHERE curp_pacien = '${CurpForm}'`,(error,elsolcita)=>{
+                  if(elsolcita){
+                    callback(null, desv, elchat, elcitam, elsolcita);
+              } else {
+                callback(error,null);
+              }
+            }); 
+          } else {
+            callback(error,null);
+          }
+        });   
+      } else {
         callback(error,null);
       }
     });
-  }else{ 
-   console.log('Error al desvincular', error);
+  } else { 
+    console.log('Error al desvincular', error);
     callback(error,null);
   }
   });
  };
+ 
 
 db.VerDatoDoctor = (cedula,callback)=>{
 con.query(`SELECT * FROM persona NATURAL JOIN consultoriomedico NATURAL JOIN consultorio NATURAL JOIN medico Where cedula_med = '${cedula}'`,(error,datos)=>{
@@ -127,8 +214,20 @@ db.VerDatoPaciente = (curp,callback)=>{
   });
   };
 
+  db.datosPaciente= (curp,callback) => {
+    con.query(`SELECT * FROM persona NATURAL JOIN paciente WHERE curp_pacien= '${curp}'`,(error,datos)=>{
+      if(error){
+            console.error(error);
+            callback(error, null);
+          }
+      else if(datos){
+        callback(null, datos);
+      }
+    })
+  };
+
   db.DatoPacienteDoctor = (curp,callback)=>{
-    con.query(`SELECT * FROM medico NATURAL JOIN persona NATURAL JOIN pacientemedico Where curp_pacien = '${curp}'`,(error,datos)=>{
+    con.query(`SELECT * FROM medico NATURAL JOIN persona NATURAL JOIN pacientemedico NATURAL JOIN consultoriomedico NATURAL JOIN consultorio Where curp_pacien = '${curp}'`,(error,datos)=>{
       if(error){
         console.error('No existe pero se supone que si debia existir jeje', error);
         callback(error, null);
@@ -516,17 +615,6 @@ DelForm,EdoForm,callback) =>{
     });
 };
 
-db.datosPaciente= (curp,callback) => {
-  con.query(`SELECT * FROM persona NATURAL JOIN paciente WHERE curp_pacien= '${curp}'`,(error,datos)=>{
-    if(error){
-          console.error(error);
-          callback(error, null);
-        }
-    else if(datos){
-      callback(null, datos);
-    }
-  })
-};
 
 
 db.ActualizarDatoPaciente = async (CurpForm,NombreForm,ApellidosForm,EmailForm,

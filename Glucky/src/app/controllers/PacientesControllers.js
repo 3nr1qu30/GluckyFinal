@@ -266,16 +266,22 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   const CurpForm =req.session.curp;
   querys.DesvincularDoctor(CurpForm,(error,desv)=>{
     if(desv){
-      console.log(desv);
-      querys.eliminarChat(CurpForm,(error,eliminar)=>{
-        if(eliminar){
-          console.log(eliminar);
+      querys.eliminarDatosDietas(CurpForm,(error,eldiet)=>{
+        if(eldiet){
+          querys.eliminarDatosRecetas(CurpForm,(error,elrece)=>{
+            if(elrece){
+          console.log(eldiet);
+          console.log(desv);
+          console.log(elrece);
           res.redirect('/Glucky/Pacientes/EditarCuenta');
-        }
-        else{
+            } else {
+              console.log(error);
+            } 
+        });
+        } else{
           console.log(error);
         }
-      });
+        });
     }
     else{
       console.log(error);

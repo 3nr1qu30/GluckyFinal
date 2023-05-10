@@ -313,7 +313,7 @@
             <br>
       <% for(var i=0;i<pacdoc.length;i++){ %>
 
-        <% var idedo = datos[i].id_edosol;
+        <% var idedo = pacdoc[i].id_edosol;
         var numcons;
         var cedmed;
         var direccion;
@@ -327,9 +327,9 @@
       visualizar = "none";
       }else if(idedo == 2){
        visualizar = "block"
-       numcons = datos[i].num_cons;
-       cedmed =datos[i].cedula_med;  
-       direccion = datos[i].calle_cons + ", " + datos[i].col_cons+ ", " + datos[i].del_cons+ ", " + datos[i].cp_cons+ ", " + datos[i].edo_cons;
+       numcons = pacdoc[i].num_cons;
+       cedmed =pacdoc[i].cedula_med;  
+       direccion = pacdoc[i].calle_cons + ", " + pacdoc[i].col_cons+ ", " + pacdoc[i].del_cons+ ", " + pacdoc[i].cp_cons+ ", " + pacdoc[i].edo_cons;
        nombre = pacdoc[i].nom_pers + " " + pacdoc[i].apellidos_pers;
        email = pacdoc[i].email_pers;
        tel = pacdoc[i].tel_pers;
