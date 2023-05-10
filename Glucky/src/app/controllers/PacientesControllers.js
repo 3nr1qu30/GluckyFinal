@@ -134,7 +134,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   const passAct = req.session.passAct;
   delete req.session.passAct;
-  querys.VerDatoPaciente(curp,(error,ver)=>{
+  querys.datosPaciente(curp,(error,ver)=>{
     if(ver){
       querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
       if(pacdoc){

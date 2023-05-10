@@ -516,6 +516,19 @@ DelForm,EdoForm,callback) =>{
     });
 };
 
+db.datosPaciente= (curp,callback) => {
+  con.query(`SELECT * FROM persona NATURAL JOIN paciente WHERE curp_pacien= '${curp}'`,(error,datos)=>{
+    if(error){
+          console.error(error);
+          callback(error, null);
+        }
+    else if(datos){
+      callback(null, datos);
+    }
+  })
+};
+
+
 db.ActualizarDatoPaciente = async (CurpForm,NombreForm,ApellidosForm,EmailForm,
                                    EdadForm,GeneroForm,TelForm,TDiabForm,callback) =>{
   con.query(`CALL sp_actualizar_datos_paciente(?,?,?,?,?,?,?,?)`,
@@ -529,6 +542,7 @@ db.ActualizarDatoPaciente = async (CurpForm,NombreForm,ApellidosForm,EmailForm,
       }
     });
 };
+
 
 
 db.registrarPaciente =async (NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
