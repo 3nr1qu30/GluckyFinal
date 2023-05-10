@@ -5,10 +5,8 @@ const Controllers={};
 //Le falta lo de los estados
 Controllers.dashboardPacientes = (req, res, next) => {
   const curp = req.session.curp;
-  const nombre = req.session.nombre;
-  const correo = req.session.correo;
-  const tipodia = req.session.tipodia;
   const regis = req.session.regis;
+  const tipodia = req.session.tipodia
   const citaEli = req.session.citaEli;
   const citaEnvi = req.session.citaEnvi;
   const enlace = req.session.enlaze;
@@ -23,113 +21,120 @@ Controllers.dashboardPacientes = (req, res, next) => {
   let glucosa = 0;
   let sistolica = 0;
   let diastolica = 0;
-
-  querys.buscarDatosmedicos(curp, (error, datosmedicos) => {
-    if (error) {
-      console.log(error);
-    } else if (datosmedicos) {
-      for (var i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
-        glucosa += parseInt(datosmedicos[i].gluc_datmed);
-        sistolica += parseInt(datosmedicos[i].presis_datmed);
-        diastolica += parseInt(datosmedicos[i].predia_datmed);
-      }
-      glucosa = Math.floor(glucosa / datosmedicos.length);
-      sistolica = Math.floor(sistolica / datosmedicos.length);
-      diastolica = Math.floor(diastolica / datosmedicos.length);
-
-      querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
+  querys.datosPaciente(curp,(error,datosPa)=>{
+    if(datosPa){
+      querys.buscarDatosmedicos(curp, (error, datosmedicos) => {
         if (error) {
-          console.error(error);
-        } else {
-          if (solicitud.length === 0) {
-            solicituda = 'Aun no te has enlazado a un doctor';
-            direccion = 'Aun no te has enlazado a un doctor';
-            res.render('dashboardPacientes', {
-              curp,
-              nombre,
-              correo,
-              solicituda,
-              direccion,
-              tipodia,
-              datosmedicos,
-              glucosa,
-              sistolica,
-              diastolica,
-              regis,
-              citaEli,
-              citaEnvi,
-              enlace,
-              conect
-            });
-          } else {
-        //inicio de la segunda consulta de query 
-        querys.verCitasPacienteIndividual(curp,(error2,citasver)=>{
-          if(citasver){
-            //inicio de la tercera consulta de query 
-            querys.PeticionesCitaPaciente(curp,(error3,citasverEdo1)=>{
-            if(citasverEdo1){
-              //inicio de la cuarta consulta de query 
-              querys.PeticionesCitaPacienteDeclinadas(curp,(error4,citasverEdo3)=>{
-              if(citasverEdo3){
-                solicituda =
-                solicitud[0].nom_pers + ' ' + solicitud[0].apellidos_pers;
-              direccion =
-                'Calle:' +
-                solicitud[0].calle_cons +
-                ' Num:' +
-                solicitud[0].num_cons +
-                '\n' +
-                ' CP:' +
-                solicitud[0].cp_cons +
-                '\n' +
-                ' Colonia:' +
-                solicitud[0].col_cons +
-                '\n' +
-                ' Del o Mun:' +
-                solicitud[0].del_cons +
-                '\n' +
-                ' Estado o Ciudad:' +
-                solicitud[0].edo_cons;
-              res.render('dashboardPacientes', {
-                curp,
-                nombre,
-                correo,
-                solicituda, 
-                direccion,
-                tipodia,
-                datosmedicos,
-                glucosa,
-                sistolica,
-                diastolica,
-                regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3,
-                citaEli,
-                citaEnvi,
-                enlace,
-                conect
-              });
-                console.log(citasverEdo3);
+          console.log(error);
+        } else if (datosmedicos) {
+          for (var i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++) {
+            glucosa += parseInt(datosmedicos[i].gluc_datmed);
+            sistolica += parseInt(datosmedicos[i].presis_datmed);
+            diastolica += parseInt(datosmedicos[i].predia_datmed);
+          }
+          glucosa = Math.floor(glucosa / datosmedicos.length);
+          sistolica = Math.floor(sistolica / datosmedicos.length);
+          diastolica = Math.floor(diastolica / datosmedicos.length);
+
+          querys.solicitudAceptadaDoctor(curp, (error, solicitud) => {
+            if (error) {
+              console.error(error);
+            } else {
+              if (solicitud.length === 0) {
+                solicituda = 'Aun no te has enlazado a un doctor';
+                direccion = 'Aun no te has enlazado a un doctor';
+                res.render('dashboardPacientes', {
+                  curp,
+                  solicituda,
+                  direccion,
+                  datosmedicos,
+                  glucosa,
+                  sistolica,
+                  diastolica,
+                  regis,
+                  citaEli,
+                  citaEnvi,
+                  enlace,
+                  conect,
+                  datosPa,
+                  tipodia
+                });
+              } else {
+            //inicio de la segunda consulta de query 
+            querys.verCitasPacienteIndividual(curp,(error2,citasver)=>{
+              if(citasver){
+                //inicio de la tercera consulta de query 
+                querys.PeticionesCitaPaciente(curp,(error3,citasverEdo1)=>{
+                if(citasverEdo1){
+                  //inicio de la cuarta consulta de query 
+                  querys.PeticionesCitaPacienteDeclinadas(curp,(error4,citasverEdo3)=>{
+                  if(citasverEdo3){
+                    solicituda =
+                    solicitud[0].nom_pers + ' ' + solicitud[0].apellidos_pers;
+                  direccion =
+                    'Calle:' +
+                    solicitud[0].calle_cons +
+                    ' Num:' +
+                    solicitud[0].num_cons +
+                    '\n' +
+                    ' CP:' +
+                    solicitud[0].cp_cons +
+                    '\n' +
+                    ' Colonia:' +
+                    solicitud[0].col_cons +
+                    '\n' +
+                    ' Del o Mun:' +
+                    solicitud[0].del_cons +
+                    '\n' +
+                    ' Estado o Ciudad:' +
+                    solicitud[0].edo_cons;
+                  res.render('dashboardPacientes', {
+                    curp,
+                    nombre,
+                    correo,
+                    solicituda, 
+                    direccion,
+                    tipodia,
+                    datosmedicos,
+                    glucosa,
+                    sistolica,
+                    diastolica,
+                    regis, citas:citasver, citasP1:citasverEdo1, citasP3:citasverEdo3,
+                    citaEli,
+                    citaEnvi,
+                    enlace,
+                    conect,
+                    datosPa,
+                    tipodia
+                  });
+                    console.log(citasverEdo3);
+                  }
+                  else{
+                    console.log(error4);
+                  }
+                  }); 
+                  //Fin de la cuarta consulta de query 
+                }
+                else{
+                  console.log(error3);
+                }
+                }); 
+                //Fin de la tercera consulta de query 
               }
               else{
-                console.log(error4);
+                console.log(error2);
               }
               }); 
-              //Fin de la cuarta consulta de query 
+              //Fin de la segunda consulta de query 
+              }
             }
-            else{
-              console.log(error3);
-            }
-            }); 
-            //Fin de la tercera consulta de query 
-          }
-          else{
-            console.log(error2);
-          }
-          }); 
-          //Fin de la segunda consulta de query 
-          }
+          });
         }
       });
     }
+    else{
+          console.log(error);
+        }
   });
 };
 //Este ya esta al 100%
@@ -137,15 +142,12 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   const passAct = req.session.passAct;
   const datosAct = req.session.daActuali;
-  console.log(req.session.daActuali);
   delete req.session.daActuali;
   delete req.session.passAct;
   querys.datosPaciente(curp,(error,ver)=>{
     if(ver){
       querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
       if(pacdoc){
-        console.log(ver);
-        console.log(pacdoc);
       res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc,passAct,datosAct});
       }else{
         console.log(error);
@@ -271,13 +273,11 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
   querys.ActualizarDatoPaciente(CurpForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,TDiabForm,(error,ver)=>{
     if(ver){
       req.session.daActuali='datos actualizados';
-      console.log(req.session.daActuali);
       res.redirect('/Glucky/Pacientes/EditarCuenta');
     }
     else{
       console.log(error);
       req.session.daActuali='datos no actualizados';
-      console.log(req.session.daActuali);
       res.redirect('/Glucky/Pacientes/EditarCuenta');
     }
   }); 
@@ -291,9 +291,6 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
         if(eldiet){
           querys.eliminarDatosRecetas(CurpForm,(error,elrece)=>{
             if(elrece){
-          console.log(eldiet);
-          console.log(desv);
-          console.log(elrece);
           res.redirect('/Glucky/Pacientes/EditarCuenta');
             } else {
               console.log(error);
@@ -548,12 +545,45 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     try {
       const { IdChat, Emisor, Receptor, Mensaje, Fecha, Hora } = req.body;
       await querys.agregarMensaje(IdChat, Emisor, Receptor, Mensaje, Fecha, Hora);
-      console.log('Mensaje agregado');
       res.sendStatus(200);
     } catch (error) {
-      console.log(error);
+      console.log('Error al agregar mensaje ' +error);
       res.sendStatus(500);
     }
+  }
+
+  Controllers.niveles=(req,res,next)=>{
+    const curp = req.session.curp;
+    const format12HourTime = (time) => {
+      var splitTime = time.split(':');
+      var hours = parseInt(splitTime[0]);
+      var minutes = parseInt(splitTime[1]);
+      var amPm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12;
+      hours = hours ? hours : 12; // convert 0 to 12
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      var formattedTime = hours + ':' + minutes + ' ' + amPm;
+      return formattedTime;
+    }
+    const formatDate = (dates) => {
+      const date = new Date(dates);
+      const months = [
+        "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+      ];
+      const day = date.getDate();
+      const monthIndex = date.getMonth();
+      const year = date.getFullYear();
+      return `${day} ${months[monthIndex]} ${year}`;
+    }
+    querys.datosPaciente(curp, (error,datospacientes)=>{
+      if(datospacientes){
+        querys.buscarDatosmedicos(curp,(error,datosmedicos)=>{
+          if(datosmedicos){
+            res.render('nivelesPaciente',{datospacientes,curp,datosmedicos,format12HourTime,formatDate});
+          }
+        })
+      }
+    })
   }
   
   module.exports = Controllers;

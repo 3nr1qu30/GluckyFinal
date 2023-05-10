@@ -113,8 +113,6 @@ Controllers.iniciosesionPost=(req,res,next)=>{
       else if(paciente){
         if(await encriptar.compare(PassForm, paciente[0].pass_pacien)===true){
           req.session.curp=paciente[0].curp_pacien;
-          req.session.nombre=`${paciente[0].nom_pers} ${paciente[0].apellidos_pers}`;
-          req.session.correo=paciente[0].email_pers;
           req.session.tipodia=paciente[0].nom_tipdiabts;
           res.redirect('/Glucky/Pacientes/Dashboard');
         }

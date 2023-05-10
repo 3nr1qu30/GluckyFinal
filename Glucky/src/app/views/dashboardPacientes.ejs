@@ -44,7 +44,7 @@
                       <span class="link-name">Casa</span>
                   </a></li>
                   <li><a href="/Glucky/Pacientes/Solicitudes">
-                      <i class="uil uil-chart"></i>
+                      <i class="uil uil-user"></i>
                       <span class="link-name">Doctor</span>
                   </a></li>
                   <li><a href="/Glucky/Pacientes/Chat">
@@ -54,6 +54,10 @@
                   <li><a href="/Glucky/Pacientes/Asignaciones">
                       <i class="uil uil-plus-circle"></i>
                       <span class="link-name">Asignaciones</span>
+                  </a></li>
+                  <li><a href="/Glucky/Pacientes/Historial">
+                    <i class="uil uil-chart"></i>
+                    <span class="link-name">Historial de niveles</span>
                   </a></li>
               </ul>
               
@@ -112,9 +116,9 @@
                         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                       </div>
                       <div class="text-data">
-                        <span class="name"><%=nombre%></span>
+                        <span class="name"><%=datosPa[0].nom_pers%> <%=datosPa[0].apellidos_pers%></span>
                         <span class="job"><%=curp%></span>
-                        <span class="job"><%=correo%></span>
+                        <span class="job"><%=datosPa[0].email_pers%></span>
                         <span class="job">Paciente</span>
                       </div>
                 

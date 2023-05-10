@@ -7,6 +7,7 @@ router.get('/Solicitudes',PacienteControllers.solicitudesPaciente);
 router.get('/EditarCuenta',PacienteControllers.VerDatosPaciente);
 router.get('/Chat',PacienteControllers.chatPacienteGet);
 router.get('/Asignaciones',PacienteControllers.verAsignacionesPaciente);
+router.get('/Historial',PacienteControllers.niveles);
 //router.get('/CuentaPaciente', PacienteControllers.);
 
 router.post('/EliminaSolCita',PacienteControllers.eliminaSolCita);
