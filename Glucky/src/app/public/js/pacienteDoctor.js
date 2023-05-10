@@ -1,14 +1,32 @@
 const matarEspecimen = document.getElementById("matarEspecimen");
 const formularioNuevaCita = document.getElementById("formularioNuevaCita");
+const formularioActualizarCitas = document.getElementById("formularioActualizarCitas");
 const inputs = document.querySelectorAll('#formularioNuevaCita input');
+const inputs2 = document.querySelectorAll('#formularioActualizarCitas input');
 const fechaActual1 = new Date();
 const horaActual = fechaActual1.getHours();
 var fechaIngresada = document.getElementById('fechaIngresada').value;
 var horaIngresada = document.getElementById('horaIngresada').value;
+var tituloCITA = document.getElementById('tituloCITA').value; //hora
+var contenidoCITA = document.getElementById('contenidoCITA').value; //fecha
 const campos = {
   fecha: false, 
-  hora: false
+  hora: false,
+  fechaEditada: false, 
+  horaEditada: false
 }
+
+if(tituloCITA === tituloCITA){
+  campos.horaEditada = true;
+} else {
+  validarFechayHoraEditadas(e);
+}
+if(contenidoCITA === contenidoCITA){
+  campos.fechaEditada = true;
+} else {
+  validarFechayHoraEditadas(e);
+}
+
 var mes = (fechaActual1.getMonth() + 1).toString();
 if(mes.length <= 1) mes = "0" + mes;
 var dia = fechaActual1.getDate().toString();
@@ -477,6 +495,7 @@ closeBtn.addEventListener("click", () =>
         })
       });
 
+      
       const validarFechayHora = (e) => {
         switch(e.target.name){
           case "FechaForm":
@@ -518,20 +537,84 @@ closeBtn.addEventListener("click", () =>
                   title: "Horario inactivo",
                   text: "El doctor no está disponible en ese horario"
                 });
-            }
+              }
             break;
         }
       }
 
+      const validarFechayHoraEditadas = (e) => {
+        switch(e.target.name){
+          case "date_citaF":
+            contenidoCITA = e.target.value
+            if (fechaActual2 < contenidoCITA && contenidoCITA < fechaMaxima) {
+              campos.fechaEditada = true;
+            } else if (e.target.value === ""){
+              campos.fechaEditada = false;
+              swal({
+                icon: "error",
+                title: "Sin fecha",
+                text: "No has ingresado alguna fecha"
+              });
+            }else{
+              campos.fechaEditada = false;
+              swal({
+                icon: "error",
+                title: "Fecha extemporánea",
+                text: "La fecha no puede ser mayor a un año o anterior a la actual"
+              });
+            }
+            
+            break;
+            case "hour_citaF":
+              tituloCITA = e.target.value
+              if (tituloCITA > '07:00' && tituloCITA < '21:00') {
+                campos.horaEditada = true;
+              } else if (e.target.value === ""){
+                campos.horaEditada = false;
+                swal({
+                  icon: "error",
+                  title: "Sin hora",
+                  text: "No has ingresado una hora"
+                });
+              } else{
+                campos.horaEditada = false;
+                swal({
+                  icon: "error",
+                  title: "Horario inactivo",
+                  text: "El doctor no está disponible en ese horario"
+                });
+            }
+            break;
+        }
+      }
+      
       inputs.forEach((input) => {
         input.addEventListener('keyup', validarFechayHora);
         input.addEventListener('blur', validarFechayHora);
+      });
+
+      inputs2.forEach((input) => {
+        input.addEventListener('keyup', validarFechayHoraEditadas);
+        input.addEventListener('blur', validarFechayHoraEditadas);
       });
 
       formularioNuevaCita.addEventListener('submit', (e) => {
         e.preventDefault();
         if (campos.fecha && campos.hora) {
           formularioNuevaCita.submit()
+        } else {
+        swal({
+          icon: "error",
+          title: "Datos erroneos",
+          text: "Por favor, ingresa datos válidos"
+        });
+      }
+      });
+
+      formularioActualizarCitas.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (campos.fechaEditada && campos.horaEditada) {
+          formularioActualizarCitas.submit()
         } else {
         swal({
           icon: "error",

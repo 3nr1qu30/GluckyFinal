@@ -3851,3 +3851,7 @@ input[type=number]::-webkit-inner-spin-button {
 .alabados{
   margin-top: 10px;
 }
+
+.swal-text {
+  text-align: center;
+}

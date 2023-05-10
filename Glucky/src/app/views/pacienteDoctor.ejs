@@ -597,15 +597,15 @@
                   <div class="dispCerrar"><button id="overlay-closeCITA" class="overlay-closeCita">×</button></div>
                 </div>
               <!--Inicio del form de editar citas -->
-              <form action="/Glucky/Doctores/PacienteDoctorCitasEd" method="post">
+              <form action="/Glucky/Doctores/PacienteDoctorCitasEd" method="post" id="formularioActualizarCitas">
                 <div class="recuadrodatos">
                   <div class="contenido">
                     <b>Hora</b>
-                      <input type="time" value="" id="tituloCITA" name="hour_citaF" class="blanqui1">
+                      <input type="time" id="tituloCITA" name="hour_citaF" class="blanqui1">
                   </div>
                   <div class="contenido">
                     <b>Fecha</b>  
-                      <input type="date" value="" id="contenidoCITA" name="date_citaF" class="blanqui2">
+                      <input type="date" id="contenidoCITA" name="date_citaF" class="blanqui2">
                   </div>
                 </div>
                 <div class="formsElEd">
@@ -642,7 +642,7 @@
               var fechita = citas[i].date_cita;%>
             
            
-          <!-- <div class="card azulesC"> -->
+          <div class="card azulesC">
             <input type="hidden" value="<%=citas[i].curp_pacien%>" id="CURP_pacienForm">
             <input type="hidden" value="<%=citas[i].id_cita%>" id="id_citaForm">
            <b class="jajaamiga">Dia y hora de la cita n° <%=i+1%>:</b> 

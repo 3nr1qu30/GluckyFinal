@@ -3911,3 +3911,8 @@ input[type="number"] {
     font-size: 10px;
     margin-bottom: 2px;
   }
+
+  .swal-text {
+    text-align: center;
+  }
+  

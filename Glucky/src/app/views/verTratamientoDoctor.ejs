@@ -332,7 +332,7 @@
                                     </div>
                                 </div>
 
-                                <!--Inicio del formulario de dietas-->
+                                <!--Inicio del formulario de medicamentos-->
 
                                     
                                     <div class="tratamientodiv dops" style="box-shadow: #ffffff00 0px 0px 0px 3px;">
@@ -340,7 +340,7 @@
                                         <b class="infos">Da clic a un medicamento para agregarlo</b> 
                                         <input type="text" class="buscamedic" id="searchdietas" placeholder="Buscar medicamento...">
                                         <div id="listadietas" class="flexlistIngredientes">
-                   
+                                          <% var medicamentosDerecha = []; %>
                                             <%if(medicamentos.length!==0){%>
                                                 <%for(let i =0;i<medicamentos.length;i++){ %>
                                             
@@ -349,7 +349,7 @@
                                               <label for="<%=medicamentos[i].id_medic%>"><%=medicamentos[i].nom_medic%></label>
 
                                               <!--Inicio del form para agregar un alimento-->
-                                            <form action="/Glucky/Doctores/EnviarMedicamentoReceta" method="post">
+                                            <form action="/Glucky/Doctores/EnviarMedicamentoReceta" method="post" class="formularioAgregarMedicamento">
                                                 <select name="present_recmed" class="textsO">
                                                     <option value="sin tipo">Seleccione una presentación</option>
                                                     <option value="Aerosol">Aerosol</option>
@@ -386,6 +386,7 @@
                                             </form>
                                               <!--Fin del form para agregar un alimento-->
                                             </div>
+                                            <% medicamentosDerecha.push(medicamentos[i].nom_medic); %>
                                             <%}
                                         }%>
                                     
@@ -395,6 +396,43 @@
                                           </div>
                                      </div>
          
+                                     <script>
+                                        const formulariosAgregarMedicamento = document.querySelectorAll(".formularioAgregarMedicamento");
+
+                                        formulariosAgregarMedicamento.forEach(function(formularioAgregarMedicamento) {
+                                          formularioAgregarMedicamento.addEventListener("submit", function(event) {
+                                            const selectElement = formularioAgregarMedicamento.querySelector("select[name='present_recmed']");
+                                            const selectedValue = selectElement.value;
+
+                                            const cantidadInput = formularioAgregarMedicamento.querySelector("input[name='frec_recmed']");
+                                            const cantidadValue = parseInt(cantidadInput.value);
+
+                                            if (selectedValue === "sin tipo") {
+                                              event.preventDefault();
+                                              swal({
+                                              icon: "error",
+                                              title: "Medicamento sin presentación",
+                                              text: "No escogió la presentación del medicamento"
+                                            })
+                                            }
+
+                                            if (cantidadValue < 1 || isNaN(cantidadValue)) {
+                                              event.preventDefault();
+                                              swal({
+                                              icon: "error",
+                                              title: "Sin cantidad",
+                                              text: "Ingrese una cantidad de medicamentos mayor o igual a uno"
+                                            })
+                                            }
+                                          });
+                                        });
+                                                var medicamentosDerecha = <%- JSON.stringify(medicamentosDerecha) %>;
+                                                var primerasPalabras = medicamentosDerecha.map(function(elemento) {
+                                                  return elemento.split(' ')[0];
+                                                });
+                                                window.onload = function() {
+                                                }
+                                     </script>
                                         
                                         <div id="dietas-seleccionados" class="dietas-seleccionados">
                                          Los medicamentos que agregues son los siguientes, dale clic a uno usando <b> "<i class="uil uil-minus-circle"></i>"  </b>para eliminarlo.
@@ -411,10 +449,58 @@
                                               <input type="hidden" name="CurpForm" value="<%= curpFormPacEd %>">
                                               <input type="hidden" name="cedulaEdit" value="<%= cedulaEdit %>">
 
-                                              <button class="elementop btn">  <i class="uil uil-minus-circle"></i> <%=verrecetamedicamento[i].nom_medic%> <div class="cantip">cantidad: <%=verrecetamedicamento[i].frec_recmed%> </div> <div class="cantip"> tipo: <%=verrecetamedicamento[i].present_recmed%> </button>
+                                              <button class="elementop btn"> <i class="uil uil-minus-circle"></i> <%=verrecetamedicamento[i].nom_medic%> <div class="cantip">cantidad: <%=verrecetamedicamento[i].frec_recmed%> </div> <div class="cantip"> tipo: <%=verrecetamedicamento[i].present_recmed%> </button>
                                             </form>
                                           <!--Form para poder eliminar ingrediente de una dieta-->
-                                          <%}}%>
+                                          <%}%>
+                                          <%}%>
+                                          <script>
+                                            var enviar = false;
+                                            var medicamentosIzquierda;
+                                            const medicamentosArrayIzquierda = [];
+                                            const botones = document.querySelectorAll('.elementop');
+                                            
+                                            botones.forEach(boton => {
+                                              medicamentosIzquierda = boton.innerText.trim();
+                                              var valorMedicamento = medicamentosIzquierda.split(' ')[0];
+                                              medicamentosArrayIzquierda.push(valorMedicamento);
+                                          });
+                                          var coincidencias = {};
+                                        
+                                          for (var i = 0; i < medicamentosArrayIzquierda.length; i++) {
+                                            for (var j = 0; j < medicamentosDerecha.length; j++) {
+                                              if (medicamentosArrayIzquierda[i] === medicamentosDerecha[j]) {
+                                                if (coincidencias[medicamentosArrayIzquierda[i]]) {
+                                                  coincidencias[medicamentosArrayIzquierda[i]]++;
+                                                } else {
+                                                  coincidencias[medicamentosArrayIzquierda[i]] = 1;
+                                                }
+                                              }
+                                            }
+                                          }
+                                        
+                                          var coincidenciasArray = Object.keys(coincidencias);
+                                        
+                                          if (coincidenciasArray.length > 0) {
+                                            enviar = true;
+                                            for (var i = 0; i < coincidenciasArray.length; i++) {
+                                              var elemento = coincidenciasArray[i];
+                                              var contador = coincidencias[elemento];
+                                              if (contador > 1) {
+                                                enviar = false;
+                                              }
+                                            }
+                                          } else {
+                                            enviar = true;
+                                          }
+                                          
+                                          if (medicamentosArrayIzquierda.valueOf().length !== 0 && enviar === true){
+                                            enviar = true;
+                                          } else{
+                                            enviar = false;
+                                          }
+
+                                        </script>
 
 
                                         </div>
@@ -433,7 +519,21 @@
                                         </form>
                                       <!--Form para eliminar los ingredientes de la dieta y luego la dieta-->
                                     </div>
+                                    <script>
+                                      const link = document.querySelector('a.asas.lomins[href="/Glucky/Doctores/PacienteDoctor"]');
+                                          link.addEventListener('click', function(e) {
+                                            if (enviar) {
+                                            } else {
+                                              e.preventDefault();
+                                              swal({
+                                                icon: "error",
+                                                title: "Error",
+                                                text: "El tratamiento no puede estar vacio ni contener medicamentos repetidos."
+                                              });
+                                            }
+                                          });
 
+                                    </script>
                                 <!--Fin del formulario de dietas-->
                             </div>
                         </div>
@@ -798,7 +898,7 @@
 
 
     <script src="/js/verDietaDoctor.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
 </body>
 </html>
