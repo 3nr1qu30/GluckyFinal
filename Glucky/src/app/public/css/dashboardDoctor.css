@@ -2275,3 +2275,14 @@ section.active .show-modal {
 .sinDisplay{
   display: none;
 }
+
+
+.VerdeE{
+  background-color: #0ef19a;
+}
+.AmarilloE{
+  background-color: #f1ed0e;
+}
+.RojoE{
+  background-color: #F44336;
+}
