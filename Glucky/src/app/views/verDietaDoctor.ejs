@@ -379,18 +379,18 @@
                                                 <input type="checkbox" id="<%= verdietaalimento[i].id_dietingred %>" name="dietingred" style="display:none" checked>                                              
                                               </form>
                                               <%}%>
-                                              
+                                              <%}%>
                                               <script>
                                                 var enviar = false;
                                                 var ingredienteIzq;
-                                                const alimentosIzq = [];
+                                                var alimentosIzq = [];
                                                 const botones = document.querySelectorAll('.elementop');
                                                 
                                                 botones.forEach(boton => {
-                                                ingredienteIzq = boton.textContent.trim();
-                                                alimentosIzq.push(ingredienteIzq)
-                                              });
-
+                                                  ingredienteIzq = boton.textContent.trim();
+                                                  alimentosIzq.push(ingredienteIzq)
+                                                });
+                                                
                                               var coincidencias = {};
                                             
                                               for (var i = 0; i < alimentosIzq.length; i++) {
@@ -420,16 +420,15 @@
                                                 enviar = true;
                                               }
                                               
-                                              if (ingredienteIzq !== undefined && enviar === true){
+                                              if (alimentosIzq.valueOf().length !== 0 && enviar === true){
                                                 enviar = true;
                                               } else{
                                                 enviar = false;
                                               }
-
+                                              console.log(`Ingredientes izquierda: ${alimentosIzq}`);
+                                              console.log();
                                             </script>
-                                              <%}%>
-                                              
-                                            
+
                                             
                                         </div>
 
