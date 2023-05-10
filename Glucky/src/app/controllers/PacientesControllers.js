@@ -134,7 +134,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   const passAct = req.session.passAct;
   delete req.session.passAct;
-  querys.VerDatoPaciente(curp,(error,ver)=>{
+  querys.datosPaciente(curp,(error,ver)=>{
     if(ver){
       querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
       if(pacdoc){
@@ -320,7 +320,8 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
           console.log(error);
         }
       });
-    }else{
+    }
+    
     querys.buscarSolicitud(curp,(error,solicitud)=>{
       if(solicitud){
         if(solicitud.length===0||reenlaze==='su solicitud fue denegada'){
@@ -359,7 +360,6 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       }
     });
   }
-};
   //post
   //Este ya esta al 100%
   Controllers.solicitudesPacientePost = (req,res,next)=>{
