@@ -6,7 +6,7 @@ const Controllers={};
 Controllers.dashboardPacientes = (req, res, next) => {
   const curp = req.session.curp;
   const regis = req.session.regis;
-  const tipodia = req.session.tipodia
+  const tipodia = req.session.tipodia;
   const citaEli = req.session.citaEli;
   const citaEnvi = req.session.citaEnvi;
   const enlace = req.session.enlaze;
@@ -554,6 +554,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
 
   Controllers.niveles=(req,res,next)=>{
     const curp = req.session.curp;
+    const tipodia = req.session.tipodia;
     const format12HourTime = (time) => {
       var splitTime = time.split(':');
       var hours = parseInt(splitTime[0]);
@@ -579,7 +580,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       if(datospacientes){
         querys.buscarDatosmedicos(curp,(error,datosmedicos)=>{
           if(datosmedicos){
-            res.render('nivelesPaciente',{datospacientes,curp,datosmedicos,format12HourTime,formatDate});
+            res.render('nivelesPaciente',{datospacientes,curp,datosmedicos,format12HourTime,formatDate,tipodia});
           }
         })
       }

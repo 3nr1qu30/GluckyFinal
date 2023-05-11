@@ -5,7 +5,7 @@ const session = require('express-session');
 const Chart = require('chart.js');
 const app = express();
 
-//configuracion
+//configuración
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../app/views'));

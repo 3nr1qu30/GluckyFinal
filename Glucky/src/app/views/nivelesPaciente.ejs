@@ -163,7 +163,21 @@
                     <div class="lista">
                     <%if(datosmedicos.length!==0){%>
                         <%for(let i=0;i<datosmedicos.length;i++){%>
-                      
+                          <%if(tipodia==='tipo 1'){%>
+                            <%if(datosmedicos[i].gluc_datmed<190 && datosmedicos[i].gluc_datmed>120){%>
+                              <div class="fechas">
+                                <b> fecha: </b><%=formatDate(datosmedicos[i].date_datmed)%>
+                             </div>
+    
+                            <div class="elemento verdes">
+                                <div class="nivel">
+                                  nivel (<%=datosmedicos[i].gluc_datmed%>)
+                                </div>
+                                  <div class="nivelRe">
+                                    <i class="fa fa-circle verde"></i>
+                                  </div>
+                             </div>
+                            <%}%>
                         <div class="fechas">
                            <b> fecha: </b>(dd/mm/aaa)
                         </div>
@@ -206,18 +220,8 @@
 
                          
 
-                            <div class="fechas">
-                                <b> fecha: </b>(dd/mm/aaa)
-                             </div>
-    
-                            <div class="elemento verdes">
-                                <div class="nivel">
-                                  nivel (111)
-                                </div>
-                                  <div class="nivelRe">
-                                    <i class="fa fa-circle verde"></i>
-                                  </div>
-                             </div>
+                            
+                             <%}%>
                         <%}%>
                     <%}%>
                     </div>
