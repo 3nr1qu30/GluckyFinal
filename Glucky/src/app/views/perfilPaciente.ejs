@@ -293,17 +293,6 @@
 
           </form>
           
-          <div class="Info borderds">
-              <h5 class="infoDoc">Opciones</h5>
-              <h6 class="nomDoc borrarcuenta">
-                <input type="submit" value="Borrar cuenta" class="botonFormEdit" name="borrarcuenta">
-                <input type="submit" value="Cerrar sesión" class="botonFormEdit" name="cerrarSesion">
-              </h6>
-              
-           
-        </div>
-
-          
 
             <div class="Info2">
               <div class="recuadroInfo">
@@ -347,7 +336,7 @@
             </div>
             
               
-            <form action="/Glucky/Pacientes/Desvinculacion" method="post" >
+            <form action="/Glucky/Pacientes/Desvinculacion" method="post" id="formDesvincularDoctor">
             <div class="doctorC" style="display:  <%=visualizar%>">
                 <div class="flexos">
                     <div class="logos"> <i class="uil uil-user"></i></div>
@@ -431,6 +420,18 @@
       <%}else if(datosAct==='datos no actualizados'){%>
         <script>
           DatosPerNoAct()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof desvincu!=='undefined'){%>
+      <%if(desvincu==='si'){%>
+        <script>
+          NoDesvinPa()
+        </script>
+      <%}else if(desvincu==='no'){%>
+        <script>
+          DesvincuSi()
         </script>
       <%}%>
     <%}%>
