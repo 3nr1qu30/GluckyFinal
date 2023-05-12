@@ -143,6 +143,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const desvincu =  req.session.desvinculado
   delete req.session.daActuali;
   delete req.session.passAct;
+  delete req.session.desvinculado;
   querys.datosPaciente(curp,(error,ver)=>{
     if(ver){
       querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
