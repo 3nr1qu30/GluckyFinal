@@ -68,22 +68,40 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   }); 
  };
 //Poner alerta de desvinculacion exitosa
- Controllers.Desvincular = (req,res,next)=>{
+Controllers.Desvincular = (req,res,next)=>{
   const {CurpForm} =req.body;
   querys.DesvincularDoctor(CurpForm,(error,desv)=>{
     if(desv){
-      console.log(desv);
-      querys.eliminarChat(CurpForm,(error,eliminar)=>{
-        if(eliminar){
-          console.log(eliminar);
+      querys.eliminarDatosDietas(CurpForm,(error,eldiet)=>{
+        if(eldiet){
+          querys.eliminarDatosRecetas(CurpForm,(error,elrece)=>{
+            if(elrece){
+              querys.eliminarChat(CurpForm,(error,eliminar)=>{
+                if(eliminar){
+                   req.session.desvinculado='si';
+                   res.redirect('/Glucky/Doctores/Dashboard');
+                } else {
+                  req.session.desvinculado='no';
+                  res.redirect('/Glucky/Doctores/Dashboard');
+                  console.log(error);
+                }     
+            });
+            } else {
+              req.session.desvinculado='no';
+              res.redirect('/Glucky/Doctores/Dashboard');
+              console.log(error);
+            } 
+        });
+        } else{
+          req.session.desvinculado='no';
           res.redirect('/Glucky/Doctores/Dashboard');
-        }
-        else{
           console.log(error);
         }
-      });
+        });
     }
     else{
+      req.session.desvinculado='no';
+      res.redirect('/Glucky/Doctores/Dashboard');
       console.log(error);
     }
   }); 
