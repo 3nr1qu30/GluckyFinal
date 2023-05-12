@@ -40,7 +40,6 @@ router.post('/MedicamentosE',DoctoresControllers.eliminarMedicamento);
 router.post('/ActualizacionDoctor',DoctoresControllers.ActualizarDatosDoctor);
 router.post('/Password',DoctoresControllers.ActualizarContraDoctor);
 router.post('/Desvinculacion',DoctoresControllers.Desvincular);
-
 router.post('/Peticiones',DoctoresControllers.peticionesDoctorAcepta);
 router.post('/Peticion',DoctoresControllers.peticionesDoctorDeclina);
 router.post('/Mensajes',DoctoresControllers.desplegarMensajes);

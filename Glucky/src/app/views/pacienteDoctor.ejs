@@ -194,7 +194,7 @@
                                 <td data-label="Ver detalles y acciones paciente">
                                     <div class="botisimo">
                                         <div class="botver">
-                                            <button class="botonver"> Acciones </button>
+                                            <button class="botonver" id="diosayuda"> Acciones </button>
                                             <!-- #SECCIÓN PARA ACCIONES DEL PACIENTE -->
                                             <section>
                                             
@@ -428,7 +428,12 @@
                                    <input spellcheck="false" type="time" class="titulo" name="HoraForm" id="horaIngresada">
                                    <input type="date" spellcheck="false" class="titulo" name="FechaForm" id="fechaIngresada">
                                    <div class="button">
-                                       <button id="closem" class="cancel2">Cancelar</button>
+                                   <!--  <script>
+                                      var btn = document.getElementById("ayudadios");
+                                      btn.addEventListener("click", hacerclick);
+                                      btn.click();
+                                    </script> -->
+                                       <button id="closem" class="cancel2" onclick="">Cancelar</button>
                                        <button type="submit" class="send">¡Enviar!</button>
                                    </div>
                                </form>

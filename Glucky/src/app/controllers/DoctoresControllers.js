@@ -364,8 +364,6 @@ Controllers.Desvincular = (req,res,next)=>{
     const {last_id} = req.body;
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
-    /* const elimDiet = req.session.elimDiet;
-    delete req.session.elimDiet; */
     //inicio de la primera consulta de query para ver los campos de los alimentos
         querys.verAlimentos((error2, alimentosver) => {
           if (alimentosver) {
@@ -373,7 +371,7 @@ Controllers.Desvincular = (req,res,next)=>{
              querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
               if (alimentosver) {
                 req.session.paciente=curpFormPacEd;
-                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit/* , elimDiet:elimDiet */});
+                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -536,8 +534,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
         req.session.paciente=CurpForm;
 
         req.session.id_dieta=id_dieta;
-        res.redirect('/Glucky/Doctores/EditarDieta');
-        console.log('ha sido eliminado una dieta');
       } else {
         console.log(error);
       }
@@ -575,10 +571,13 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       if (eliminado) {
         req.session.cedula=cedulaEdit;
         req.session.paciente=CurpForm;
-        res.redirect('/Glucky/Doctores/PacienteDoctor');
-        console.log('ha sido eliminada una dieta');
+        req.session.elimDiet = 'dieta eliminada';
+        res.redirect('/Glucky/Doctores/PacienteDoctor')
+
       } else {
         console.log(error);
+        req.session.elimDiet = 'dieta no eliminada';
+        res.redirect('/Glucky/Doctores/PacienteDoctor')
       }
     });
   }; 
@@ -602,6 +601,8 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
   Controllers.PacienteDoctorGet = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const CURPform = req.session.paciente;
+    const elimDiet = req.session.elimDiet;
+    delete req.session.elimDiet;
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
       //inicio de la segunda consulta de query 
@@ -614,8 +615,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
               querys.verDietaBase(CURPform,(error4,dietaver)=>{
                 if(dietaver){
                 //inicio de la quinta consulta de query 
-                /* req.session.elimDiet = "dieta eliminada"
-                res.redirect('/Glucky/Doctores/PacienteDoctor') */
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
                     //inicio de la sexta consulta de query 
@@ -624,7 +623,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
                         //inicio de la séptima consulta de query 
                         querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
                           if(recetaverTodas){
-                            res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas});
+                            res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,elimDiet});
                           }
                           else{
                             console.log(error7);
@@ -647,8 +646,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
               }
               else{
                 console.log(error4);
-                /* req.session.elimDiet = "dieta no eliminada"
-                res.redirect('/Glucky/Doctores/PacienteDoctor') */
                 }
               }); 
               //final de la cuarta consulta de query

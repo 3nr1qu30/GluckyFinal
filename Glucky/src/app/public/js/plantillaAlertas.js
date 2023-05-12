@@ -279,14 +279,16 @@ function SolicitudCrasheo(e) {
 
 function SolicitudDeclinadaDoctor(e) {
   swal({
+    icon: "success",
     title: 'Estado de solicitud',
-    text: 'La solicitud fue declinada',
+    text: 'La solicitud fue declinada'
   });
 }
 
-/* function dietaEliminada(e){
+ function dietaEliminada(e){
   swal({
-    icon: "succes",
-    title: "Dieta eliminada",
+    icon: "success",
+    title: 'Exito',
+    text: 'La dieta ha sido eliminada',
   })
-} */
+}
