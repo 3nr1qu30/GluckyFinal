@@ -140,13 +140,14 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   const passAct = req.session.passAct;
   const datosAct = req.session.daActuali;
+  const desvincu =  req.session.desvinculado
   delete req.session.daActuali;
   delete req.session.passAct;
   querys.datosPaciente(curp,(error,ver)=>{
     if(ver){
       querys.DatoPacienteDoctor(curp,(error,pacdoc)=>{
       if(pacdoc){
-      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc,passAct,datosAct});
+      res.render('perfilPaciente',{curp, datos:ver, pacdoc:pacdoc,passAct,datosAct,desvincu});
       }else{
         console.log(error);
       }
@@ -289,17 +290,24 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
         if(eldiet){
           querys.eliminarDatosRecetas(CurpForm,(error,elrece)=>{
             if(elrece){
+          req.session.desvinculado='si';
           res.redirect('/Glucky/Pacientes/EditarCuenta');
             } else {
+              req.session.desvinculado='no';
+          res.redirect('/Glucky/Pacientes/EditarCuenta');
               console.log(error);
             } 
         });
         } else{
+          req.session.desvinculado='no';
+          res.redirect('/Glucky/Pacientes/EditarCuenta');
           console.log(error);
         }
         });
     }
     else{
+      req.session.desvinculado='no';
+      res.redirect('/Glucky/Pacientes/EditarCuenta');
       console.log(error);
     }
   }); 
