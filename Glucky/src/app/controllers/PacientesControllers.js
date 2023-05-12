@@ -298,11 +298,19 @@ Controllers.ActualizarDatosPaciente = (req,res,next)=>{
         if(eldiet){
           querys.eliminarDatosRecetas(CurpForm,(error,elrece)=>{
             if(elrece){
-          req.session.desvinculado='si';
-          res.redirect('/Glucky/Pacientes/EditarCuenta');
+              querys.eliminarChat(CurpForm,(error,eliminar)=>{
+                if(eliminar){
+                   req.session.desvinculado='si';
+                   res.redirect('/Glucky/Pacientes/EditarCuenta');
+                } else {
+                  req.session.desvinculado='no';
+                  res.redirect('/Glucky/Pacientes/EditarCuenta');
+                  console.log(error);
+                }     
+            });
             } else {
               req.session.desvinculado='no';
-          res.redirect('/Glucky/Pacientes/EditarCuenta');
+              res.redirect('/Glucky/Pacientes/EditarCuenta');
               console.log(error);
             } 
         });
