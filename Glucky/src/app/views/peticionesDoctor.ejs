@@ -362,9 +362,34 @@
 
   <br>
 
-    <script src="/js/dashboardDoctor.js"></script>
-    
-    
+  <script src="/js/dashboardDoctor.js"></script>
+  <script src="/js/plantillaAlertas.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  
+  <%if(typeof petiAceptada!=='undefined'){%>
+      <%if(petiAceptada==='peticion aceptada'){%>
+        <script>
+          SolicitudAceptDoctor()
+        </script>
+      <%}else if(petiAceptada==='peticion no aceptada'){%>
+        <script>
+          SolicitudCrasheo()
+        </script>
+      <%}%>
+    <%}%>
+
+  <%if(typeof petiDeclinada!=='undefined'){%>
+      <%if(petiDeclinada==='peticion declinada'){%>
+        <script>
+          SolicitudDeclinadaDoctor()
+        </script>
+      <%}else if(petiDeclinada==='peticion no declinada'){%>
+        <script>
+          SolicitudCrasheo()
+        </script>
+      <%}%>
+    <%}%>
+  
 </body>
 </html>
 <%}else{%>

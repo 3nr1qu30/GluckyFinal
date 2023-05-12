@@ -824,10 +824,21 @@
   
 </div>
 
-
+    <script src="/js/plantillaAlertas.js"></script>
     <script src="/js/pacienteDoctor.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+    <%if(typeof elimDiet!=='undefined'){%>
+      <%if(elimDiet==='dieta eliminada'){%>
+        <script>
+          dietaEliminada()
+        </script>
+      <%}else if(elimDiet==='dieta no eliminada'){%>
+        <script>
+          dietaEliminada()
+        </script>
+      <%}%>
+    <%}%>
     
 </body>
 </html>

@@ -44,7 +44,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     }); 
   };
-//Poner alerta de datos actualizados
+//ya esta al 100%
  Controllers.ActualizarDatosDoctor = (req,res,next)=>{
   const CedulaForm =req.session.cedula;
   const{NombreForm} =req.body;
@@ -73,7 +73,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }
   }); 
  };
-//Poner alerta de desvinculacion exitosa
+//Poner alerta de desvinculacion exitosa (esta no la hice porque wtf)
 Controllers.Desvincular = (req,res,next)=>{
   const {CurpForm} =req.body;
   querys.DesvincularDoctor(CurpForm,(error,desv)=>{
@@ -112,7 +112,7 @@ Controllers.Desvincular = (req,res,next)=>{
     }
   }); 
  };
-//Poner alerta de actualizacion de contraseña
+//ya esta al 100%
  Controllers.ActualizarContraDoctor = (req,res,next)=>{
   const cedula  = req.session.cedula;
   const {NewPass} = req.body;
@@ -131,12 +131,16 @@ Controllers.Desvincular = (req,res,next)=>{
   Controllers.peticionesDoctor = (req,res,next)=>{
     console.log(req.body);
     const Cedula = req.session.cedula;
+    const petiAceptada = req.session.petiAceptada;
+    const petiDeclinada = req.session.petiDeclinada;
+    delete req.session.petiAceptada;
+    delete req.session.petiDeclinada;
     querys.verPeticionesDoctor(Cedula,(error,ver)=>{
       if(ver){
         querys.VerDatoDoctor(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
             console.log(`ver las citas`);
-            res.render('peticionesDoctor',{Cedula,datos:ver,dato:citasaceptadas});
+            res.render('peticionesDoctor',{Cedula,datos:ver,dato:citasaceptadas,petiAceptada,petiDeclinada});
           }
           else if(error){
             console.log(error);
@@ -291,7 +295,6 @@ Controllers.Desvincular = (req,res,next)=>{
   Controllers.dietaVerDoctor = (req, res, next) => {
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
-
     const cedula_med = req.session.cedula;
     const { curp_pacien } = req.body;
     const date_dieta = new Date().toISOString().slice(0, 10);
@@ -361,6 +364,8 @@ Controllers.Desvincular = (req,res,next)=>{
     const {last_id} = req.body;
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
+    /* const elimDiet = req.session.elimDiet;
+    delete req.session.elimDiet; */
     //inicio de la primera consulta de query para ver los campos de los alimentos
         querys.verAlimentos((error2, alimentosver) => {
           if (alimentosver) {
@@ -368,7 +373,7 @@ Controllers.Desvincular = (req,res,next)=>{
              querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
               if (alimentosver) {
                 req.session.paciente=curpFormPacEd;
-                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit/* , elimDiet:elimDiet */});
               } else {
                 console.log(error3);
               }
@@ -516,7 +521,7 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
     });
   };
   
-  
+
 Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const {id_dieta} = req.body;
     const {id_dietingred} = req.body;
@@ -609,39 +614,41 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
               querys.verDietaBase(CURPform,(error4,dietaver)=>{
                 if(dietaver){
                 //inicio de la quinta consulta de query 
+                /* req.session.elimDiet = "dieta eliminada"
+                res.redirect('/Glucky/Doctores/PacienteDoctor') */
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                  
-                    
-                     //inicio de la sexta consulta de query 
-                     querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
+                    //inicio de la sexta consulta de query 
+                    querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
                       if(recetaver){
-                      //inicio de la séptima consulta de query 
-                      querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
-                        if(recetaverTodas){
-                          res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas});
-                        }
-                        else{
-                          console.log(error7);
-                        }
-                      }); 
-                      //final de la séptima consulta de query
+                        //inicio de la séptima consulta de query 
+                        querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
+                          if(recetaverTodas){
+                            res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas});
+                          }
+                          else{
+                            console.log(error7);
+                          }
+                        }); 
+                        //final de la séptima consulta de query
                       }
                       else{
                         console.log(error6);
                       }
                     }); 
                     //final de la sexta consulta de query
-
+                    
                   }
                   else{
                     console.log(error5);
                   }
                 }); 
                 //final de la quinta consulta de query
-                }
-                else{
-                  console.log(error4);
+              }
+              else{
+                console.log(error4);
+                /* req.session.elimDiet = "dieta no eliminada"
+                res.redirect('/Glucky/Doctores/PacienteDoctor') */
                 }
               }); 
               //final de la cuarta consulta de query
@@ -797,7 +804,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-  //Alerta de peticion apectada y redireccion a la pagina para aceptar mas paciente
+  //Alerta de peticion apectada y redireccion a la pagina para aceptar mas paciente 100%
   Controllers.peticionesDoctorAcepta = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CurpForm} = req.body;
@@ -807,10 +814,13 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
         const fechaFormateada = `${fecha.getFullYear()}-${(fecha.getMonth() + 1).toString().padStart(2, '0')}-${fecha.getDate().toString().padStart(2, '0')} ${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}:${fecha.getSeconds().toString().padStart(2, '0')}`;
         querys.crearChat(Cedula,CurpForm,fechaFormateada,(error,chat)=>{
           if(chat){
-            console.log('Petición aceptada');
+            req.session.petiAceptada = "peticion aceptada"
+            res.redirect('/Glucky/Doctores/Peticiones');
           }
           else{
             console.log(error);
+            req.session.petiAceptada = "peticion no aceptada"
+            res.redirect('/Glucky/Doctores/Peticiones');
           }
         })
       }
@@ -864,16 +874,19 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-//Alerta de peticion declinada y redireccion a la pagina para que siga agregando o declinado peticiones
+//Alerta de peticion declinada y redireccion a la pagina para que siga agregando o declinado peticiones 100%
   Controllers.peticionesDoctorDeclina = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CurpForm} = req.body;
     querys.declinarPeticiones(Cedula,CurpForm,(error,cambio)=>{
       if(cambio){
-        console.log('Petición declinada');
+        req.session.petiDeclinada = "peticion declinada"
+        res.redirect('/Glucky/Doctores/Peticiones');
       }
       else{
         console.log(error);
+        req.session.petiDeclinada = "peticion no declinada"
+        res.redirect('/Glucky/Doctores/Peticiones');
       }
     });
   };

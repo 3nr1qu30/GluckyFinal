@@ -1,6 +1,3 @@
-
-//Errores
-
   function DatosPerNoAct(e) {
   swal({
     icon: 'error',
@@ -264,3 +261,32 @@ function SolicitudAcept(e) {
     text: 'La solicitud de enlace con el doctor, fue aceptada',
   });
 };
+
+function SolicitudAceptDoctor(e) {
+  swal({
+    title: 'Estado de solicitud',
+    text: 'La solicitud fue aceptada',
+  });
+};
+
+function SolicitudCrasheo(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'Solicitud no registrada en el sistema, intentalo más tarde',
+  });
+};
+
+function SolicitudDeclinadaDoctor(e) {
+  swal({
+    title: 'Estado de solicitud',
+    text: 'La solicitud fue declinada',
+  });
+}
+
+/* function dietaEliminada(e){
+  swal({
+    icon: "succes",
+    title: "Dieta eliminada",
+  })
+} */

@@ -380,6 +380,7 @@ formularioEditarPerfil.addEventListener("submit", (e) => {
         buttons: ["Cancelar", "Modificar"]
       }).then((modificacionConfirmada) => {
         if(modificacionConfirmada){
+          formularioEditarPerfil.submit()
         } else{
             swal({
                 icon: "warning",

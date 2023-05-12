@@ -395,6 +395,18 @@
       <%}%>
     <%}%>
 
+    <%if(typeof datosAct!=='undefined'){%>
+      <%if(datosAct==='datos actualizados'){%>
+        <script>
+          DatosPerAct()
+        </script>
+      <%}else if(datosAct==='datos no actualizados'){%>
+        <script>
+          DatosPerNoAct()
+        </script>
+      <%}%>
+    <%}%>
+
 </body>
 </html>
 <%}else{%>
