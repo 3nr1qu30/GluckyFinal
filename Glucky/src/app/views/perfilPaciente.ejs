@@ -419,6 +419,18 @@
         </script>
       <%}%>
     <%}%>
+
+    <%if(typeof desvincu!=='undefined'){%>
+      <%if(desvincu==='si'){%>
+        <script>
+          NoDesvinPa()
+        </script>
+      <%}else if(desvincu==='no'){%>
+        <script>
+          DesvincuSi()
+        </script>
+      <%}%>
+    <%}%>
     
 
 </body>

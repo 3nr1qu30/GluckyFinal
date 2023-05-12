@@ -111,6 +111,14 @@ function NoRegistroPa(e) {
   });
 };
 
+function NoDesvinPa(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo desvincular del doctor, intentelo más tarde',
+  });
+};
+
 function PacienteRegistradoAnt(e) {
   swal({
     icon: 'error',
@@ -213,6 +221,14 @@ function DatosPerAct(e) {
     icon: 'success',
     title: 'Exito',
     text: 'Tu información personal ha sido actualizada',
+  });
+};
+
+function DesvincuSi(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'Se te ha desvinculado del doctor',
   });
 };
 
