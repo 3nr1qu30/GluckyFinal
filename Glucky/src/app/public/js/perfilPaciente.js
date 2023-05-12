@@ -372,41 +372,6 @@ formularioEditarPassword.addEventListener("submit", (e) => {
     };
 });
 
-cerrarSesion.addEventListener("click", (e) => {
-    e.preventDefault();
-    swal({
-        icon: "warning",
-        title: "Cerrar sesión",
-        text: "¿Estás seguro de que quieres cerrar sesión?",
-        buttons: ["Cancelar", "Cerrar"],
-        dangerMode: true
-    }).then((cerrar) => {
-        if(cerrar){
-            cerrarSesion.submit();
-        }
-    })
-})
-
-borrarCuenta.addEventListener("click", (e) => {
-    e.preventDefault()
-    swal({
-        icon: "warning",
-        title: "Borrar cuenta",
-        text: "¿Estás seguro de que deseas borrar tu cuenta?",
-        buttons: ["Cancelar", "Borrar"],
-        dangerMode: true
-      }).then((borrar) => {
-        if(borrar){
-            swal({
-                icon: "success",
-                title: "Cuenta eliminada"
-            }).then(() => {
-                borrarCuenta.submit();
-            })
-        }
-      })
-})
-
 formDesvincularDoctor.addEventListener("submit", (e) => {
     e.preventDefault()
     swal({
