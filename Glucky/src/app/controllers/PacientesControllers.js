@@ -90,8 +90,6 @@ Controllers.dashboardPacientes = (req, res, next) => {
                     solicitud[0].edo_cons;
                   res.render('dashboardPacientes', {
                     curp,
-                    nombre,
-                    correo,
                     solicituda, 
                     direccion,
                     tipodia,
@@ -551,7 +549,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
       res.sendStatus(500);
     }
   }
-
+  //A este no le muevan es el api rest ya esta al 100%
   Controllers.niveles=(req,res,next)=>{
     const curp = req.session.curp;
     const tipodia = req.session.tipodia;

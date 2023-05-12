@@ -1,3 +1,4 @@
+<%if(typeof curp !== "undefined"){%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-
+    <script>
+      const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
+      const datosmedicoso = <%- JSON.stringify(datosmedicos) %>;
+    </script>
       <!-- Swiper CSS -->
       <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
 
@@ -157,73 +161,26 @@
 
             <br>
             <div class="row">
-                <div class="columna1 colH col9">  </div>
+                <div class="columna1 colH col9"> 
+                  <canvas id="glucosagraf"></canvas>
+                 </div>
                 <div class="columna2 colH">
                     <div class="titulo"> <i class="uil uil-syringe cuoa"></i> Registros de glucosa</div>
                     <div class="lista">
-                    <%if(datosmedicos.length!==0){%>
+                      <%if(datosmedicos.length!==0){%>
                         <%for(let i=0;i<datosmedicos.length;i++){%>
-                          <%if(tipodia==='tipo 1'){%>
-                            <%if(datosmedicos[i].gluc_datmed<190 && datosmedicos[i].gluc_datmed>120){%>
-                              <div class="fechas">
-                                <b> fecha: </b><%=formatDate(datosmedicos[i].date_datmed)%>
-                             </div>
-    
-                            <div class="elemento verdes">
-                                <div class="nivel">
-                                  nivel (<%=datosmedicos[i].gluc_datmed%>)
-                                </div>
-                                  <div class="nivelRe">
-                                    <i class="fa fa-circle verde"></i>
-                                  </div>
-                             </div>
-                            <%}%>
-                        <div class="fechas">
-                           <b> fecha: </b>(dd/mm/aaa)
-                        </div>
-
-                        <div class="elemento rojos">
-                        <div class="nivel">
-                          nivel (111)
-                        </div>
-                          <div class="nivelRe">
-                            <i class="fa fa-circle rojo"></i>
-                          </div>
-                        </div>
-
-                        <div class="fechas">
-                          <b> fecha: </b>(dd/mm/aaa)
-                       </div>
-
-                      <div class="elemento naranjas">
-                          <div class="nivel">
-                            nivel (111)
-                          </div>
-                            <div class="nivelRe">
-                              <i class="fa fa-circle naranja"></i>
-                            </div>
-                       </div>
-
-                        <div class="fechas">
-                            <b> fecha: </b>(dd/mm/aaa)
+                          <div class="fechas">
+                            <b> fecha: </b><%=formatDate(datosmedicos[i].date_datmed)%>
                          </div>
-                         
-
-                        <div class="elemento amarillos">
+                          <div class="elemento verdes">
                             <div class="nivel">
-                              nivel (111)
+                              nivel (<%=datosmedicos[i].gluc_datmed%>)
                             </div>
-                              <div class="nivelRe">
-                                <i class="fa fa-circle amarillo"></i>
-                              </div>
+                              
                          </div>
-
-                         
-
-                            
-                             <%}%>
-                        <%}%>
-                    <%}%>
+                          <%}%>
+                      <%}%>
+              
                     </div>
                 </div>
               </div>
@@ -235,37 +192,25 @@
                     <div class="titulo"> <i class="uil uil-heart-alt cuoa2"></i> Registros de presión</div>
                     <div class="lista">
 
-                            <div class="fechas">
-                                <b> fecha: </b>(dd/mm/aaa)
-                             </div>
-    
-                            <div class="elemento verdes">
-                                <div class="nivel">
-                                  nivel (111)
-                                </div>
-                                  <div class="nivelRe">
-                                    <i class="fa fa-circle verde"></i>
-                                  </div>
-                             </div>
-
-                             <div class="fechas">
-                              <b> fecha: </b>(dd/mm/aaa)
-                           </div>
-  
-                          <div class="elemento naranjas">
-                              <div class="nivel">
-                                nivel (111)
-                              </div>
-                                <div class="nivelRe">
-                                  <i class="fa fa-circle naranja"></i>
-                                </div>
-                           </div>
+                      <%if(datosmedicos.length!==0){%>
+                        <%for(let i=0;i<datosmedicos.length;i++){%>
+                          <div class="fechas">
+                            <b> fecha: </b><%=formatDate(datosmedicos[i].date_datmed)%>
+                         </div>
+                          <div class="elemento verdes">
+                            <div class="nivel">
+                              nivel (<%=datosmedicos[i].presis_datmed%>/<%=datosmedicos[i].predia_datmed%>)
+                            </div>
+                              
+                         </div>
+                          <%}%>
+                      <%}%>
 
                     
                        
                     </div>
                 </div>
-                <div class="columna1 colH colG col9">  </div>
+                <div class="columna1 colH colG col9"><canvas id="presiongraf"></canvas>  </div>
                 
               </div>
               
@@ -289,7 +234,24 @@
 
     
     <script src="/js/peticionesDoctor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/graficas.js"></script>
   
     
 </body>
 </html>
+<%}else{%>
+  <!DOCTYPE html>
+<html>
+  <head>
+    <title>Error - Debes Iniciar Sesión</title>
+  </head>
+  <body>
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      SesionCad()
+    </script>
+  </body>
+</html>
+<%}%>
