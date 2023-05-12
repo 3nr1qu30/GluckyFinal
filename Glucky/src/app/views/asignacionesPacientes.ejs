@@ -39,43 +39,47 @@
         </div>
 
         <div class="menu-items">
-            <ul class="nav-links">
+          <ul class="nav-links">
               <li><a href="/Glucky/Pacientes/Dashboard">
-                <i class="uil uil-estate"></i>
-                <span class="link-name">Casa</span>
-            </a></li>
-            <li><a href="/Glucky/Pacientes/Solicitudes">
+                  <i class="uil uil-estate"></i>
+                  <span class="link-name">Casa</span>
+              </a></li>
+              <li><a href="/Glucky/Pacientes/Solicitudes">
+                  <i class="uil uil-user"></i>
+                  <span class="link-name">Doctor</span>
+              </a></li>
+              <li><a href="/Glucky/Pacientes/Chat">
+                  <i class="uil uil-chat"></i>
+                  <span class="link-name">Chats</span>
+              </a></li>
+              <li><a href="/Glucky/Pacientes/Asignaciones">
+                  <i class="uil uil-plus-circle"></i>
+                  <span class="link-name">Asignaciones</span>
+              </a></li>
+              <li><a href="/Glucky/Pacientes/Historial">
                 <i class="uil uil-chart"></i>
-                <span class="link-name">Doctor</span>
-            </a></li>
-            <li><a href="/Glucky/Pacientes/Chat">
-                <i class="uil uil-chat"></i>
-                <span class="link-name">Chats</span>
-            </a></li>
-            <li><a href="/Glucky/Pacientes/Asignaciones">
-                <i class="uil uil-plus-circle"></i>
-                <span class="link-name">Asignaciones</span>
-            </a></li>
-            </ul>
-            
-            <ul class="logout-mode">
+                <span class="link-name">Historial de niveles</span>
+              </a></li>
+          </ul>
+          
+          <ul class="logout-mode">
               <li><a href="/Glucky/IniciodeSesion">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Salir</span>
-                </a></li>
+                  <i class="uil uil-signout"></i>
+                  <span class="link-name">Salir</span>
+              </a></li>
 
-                <li class="mode">
+              <li class="mode">
                   <a href="/Glucky/Pacientes/EditarCuenta">
-                        <i class="uil uil-x"></i>
-                    <span class="link-name">Ajustes de cuenta</span>
-                </a>
+                      <i class="uil uil-x"></i>
+                  <span class="link-name">Ajustes de cuenta</span>
+              </a>
 
-                <div class="mode-toggle">
-                 
-                </div>
-            </li>
-            </ul>
-        </div>
+              <div class="mode-toggle">
+               
+              </div>
+          </li>
+          </ul>
+      </div>
     </nav>
 
     <section class="dashboard">
@@ -112,12 +116,16 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
-                    <div class="text-data">
-                      <span class="name">Nombre completito jeje</span>
-                      <span class="job">Email@cum.com</span>
+                    <%if(typeof datpac!=='undefined'){%>
+                      <% for(var i=0;i<datpac.length;i++){%>
+                        <div class="text-data">
+                          <span class="name"><%=datpac[i].nom_pers%> <%=datpac[i].apellidos_pers%></span>
+                      <span class="job"><%=datpac[i].curp_pacien%></span>
+                      <span class="job"><%=datpac[i].email_pers%></span>
                       <span class="job">Paciente</span>
-                    </div>
-              
+                      </div>
+                    <%}%>
+                    <%}%>
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
                         <i class="bx bx-plus-medical"></i>
@@ -127,12 +135,13 @@
               
                     <div class="buttons">
                       <button class="button" onclick="toggleNotifi2()"">Cerrar</button>
-                      <button class="button">Cuenta</>
+                      <button class="button"><a href="/Glucky/Pacientes/EditarCuenta" style="color:#ffffff; text-decoration:none;">Cuenta</a></button>
                     </div>
               
                     <div class="analytics">
                       <div class="data">
                         <i class="bx bx-circle"></i>
+                        <span class="number">Glucky</span>
                       </div>
                       <div class="data">
                         <i class="bx bx-heart"></i>

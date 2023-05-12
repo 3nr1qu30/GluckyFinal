@@ -4,8 +4,10 @@ sidebar = body.querySelector("nav");
 sidebarToggle = body.querySelector(".sidebar-toggle");
 const formularioEditarPerfil = document.getElementById("formularioEditarPerfil");
 const formularioEditarPassword = document.getElementById("formularioEditarPassword");
+const formDesvincularDoctor = document.getElementById("formDesvincularDoctor");
 const inputs = document.querySelectorAll("#formularioEditarPerfil input");
 const inputs2 = document.querySelectorAll("#formularioEditarPassword input");
+const inputs3 = document.querySelectorAll("#formDesvincularDoctor input");
 const curp = document.querySelector('input[name="CurpForm"]').value;
 const tipoDiabetes = document.querySelector('input[name="TDiabForm"]').value;
 const email = document.querySelector('input[name="EmailForm"]').value;
@@ -16,7 +18,7 @@ const telefono = document.querySelector('input[name="TelForm"]').value;
 const password = document.querySelector('input[name="NewPass"]').value;
 const borrarCuenta = document.querySelector('input[name="borrarcuenta"]');
 const cerrarSesion = document.querySelector('input[name="cerrarSesion"]');
-const desvincularDoc = document.querySelector('input[name="desvincularDoc"]');
+
 
 const expReg = {
     nombre: /^[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+(\s+[A-ZÁÉÍÓÚÜÑ][a-záéíóúüñÑ']+)*$/,
@@ -370,42 +372,7 @@ formularioEditarPassword.addEventListener("submit", (e) => {
     };
 });
 
-cerrarSesion.addEventListener("click", (e) => {
-    e.preventDefault();
-    swal({
-        icon: "warning",
-        title: "Cerrar sesión",
-        text: "¿Estás seguro de que quieres cerrar sesión?",
-        buttons: ["Cancelar", "Cerrar"],
-        dangerMode: true
-    }).then((cerrar) => {
-        if(cerrar){
-            cerrarSesion.submit();
-        }
-    })
-})
-
-borrarCuenta.addEventListener("click", (e) => {
-    e.preventDefault()
-    swal({
-        icon: "warning",
-        title: "Borrar cuenta",
-        text: "¿Estás seguro de que deseas borrar tu cuenta?",
-        buttons: ["Cancelar", "Borrar"],
-        dangerMode: true
-      }).then((borrar) => {
-        if(borrar){
-            swal({
-                icon: "success",
-                title: "Cuenta eliminada"
-            }).then(() => {
-                borrarCuenta.submit();
-            })
-        }
-      })
-})
-
-desvincularDoc.addEventListener("click", (e) => {
+formDesvincularDoctor.addEventListener("submit", (e) => {
     e.preventDefault()
     swal({
         icon: "warning",
@@ -415,7 +382,7 @@ desvincularDoc.addEventListener("click", (e) => {
         dangerMode: true    
       }).then((desvincular) => {
         if(desvincular){
-          desvincularDoc.submit();
+          formDesvincularDoctor.submit();
         }
       })
 })
