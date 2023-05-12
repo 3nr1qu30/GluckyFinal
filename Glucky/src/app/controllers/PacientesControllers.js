@@ -140,7 +140,7 @@ Controllers.VerDatosPaciente = (req,res,next)=>{
   const curp = req.session.curp;
   const passAct = req.session.passAct;
   const datosAct = req.session.daActuali;
-  const desvincu =  req.session.desvinculado
+  const desvincu =  req.session.desvinculado;
   delete req.session.daActuali;
   delete req.session.passAct;
   delete req.session.desvinculado;

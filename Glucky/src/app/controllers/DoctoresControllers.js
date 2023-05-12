@@ -40,7 +40,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
       }
     }); 
   };
-
+//Poner alerta de datos actualizados
  Controllers.ActualizarDatosDoctor = (req,res,next)=>{
   const CedulaForm =req.session.cedula;
   const{NombreForm} =req.body;
@@ -67,7 +67,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }
   }); 
  };
-
+//Poner alerta de desvinculacion exitosa
  Controllers.Desvincular = (req,res,next)=>{
   const {CurpForm} =req.body;
   querys.DesvincularDoctor(CurpForm,(error,desv)=>{
@@ -88,7 +88,7 @@ Controllers.dashboardDoctores=(req,res,next)=>{
     }
   }); 
  };
-
+//Poner alerta de actualizacion de contraseña
  Controllers.ActualizarContraDoctor = (req,res,next)=>{
   const cedula  = req.session.cedula;
   const {NewPass} = req.body;
@@ -490,7 +490,7 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
     });
   };
   
-
+//Alerta de ingrediente eliminado 
 Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const {id_dieta} = req.body;
     const {id_dietingred} = req.body;
@@ -512,7 +512,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }; 
-
+//Alerta de medicamento eliminado 
   Controllers.eliminarTratamientoBaseMedicamento = (req, res, next) => {
     const {id_recmed} = req.body;
     const {id_receta} = req.body;
@@ -535,7 +535,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     });
   }; 
 
-
+//Alerta de dieta eliminado 
   Controllers.eliminarDieta = (req, res, next) => {
     const {id_dietaEl} = req.body;
     const {CurpForm} = req.body;
@@ -551,7 +551,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }; 
-
+//Alerta de tratamiento eliminado 
   Controllers.eliminarTratamiento = (req, res, next) => {
     const {id_recetaEl} = req.body;
     const {CurpForm} = req.body;
@@ -637,7 +637,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     }); 
   };
-
+//Alerta de cita agregada
   Controllers.PacienteDoctorCitas = (req,res,next)=>{
     const{CurpForm} =req.body;
     const {HoraForm} = req.body;
@@ -655,7 +655,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     }); 
   };
 
-
+//Alerta de cita eliminada
   Controllers.PacienteDoctorCitasEl= (req,res,next)=>{
     const{id_citaEl} = req.body;
     const {curpFormPac} = req.body;
@@ -671,7 +671,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     });
   };
 
-
+//Alerta de cita editada
   Controllers.PacienteDoctorCitasEd= (req,res,next)=>{
     const {curp_pacienF} =req.body;
     const {id_citaF} =req.body;
@@ -771,7 +771,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-
+  //Alerta de peticion apectada y redireccion a la pagina para aceptar mas paciente
   Controllers.peticionesDoctorAcepta = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CurpForm} = req.body;
@@ -793,7 +793,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-
+//Alerta de cita aceptada
   Controllers.citasDoctorAcepta = (req,res,next)=>{   
     const{IdCita} = req.body;
     const{HoraForm} = req.body;
@@ -810,7 +810,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-
+//Alerta de cita declinada
   Controllers.citasDoctorDeclina = (req,res,next)=>{    
     const{IdCita} = req.body;
     const{IdConsmed} = req.body;
@@ -824,7 +824,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-
+//Alerta de cita finalizada
   Controllers.citasDoctorFinaliza= (req,res,next)=>{    
     const{IdCitaL} = req.body;
     const{CurpPacienL} = req.body;
@@ -838,7 +838,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-
+//Alerta de peticion declinada y redireccion a la pagina para que siga agregando o declinado peticiones
   Controllers.peticionesDoctorDeclina = (req,res,next)=>{
     const Cedula = req.session.cedula;
     const{CurpForm} = req.body;
