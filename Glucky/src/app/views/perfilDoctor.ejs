@@ -378,14 +378,23 @@
           </form>
 <br>
 
-            
-            <script>
-         
-            </script>
 </div>
     <script src="/js/perfilDoctor.js"></script>
+    <script src="/js/plantillaAlertas.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>    
     
+    <%if(typeof passAct!=='undefined'){%>
+      <%if(passAct==='contra actualizada'){%>
+        <script>
+          PassAct()
+        </script>
+      <%}else if(passAct==='contra no actualizada'){%>
+        <script>
+          PassNoAct()
+        </script>
+      <%}%>
+    <%}%>
+
 </body>
 </html>
 <%}else{%>

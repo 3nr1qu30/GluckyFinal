@@ -414,6 +414,7 @@ formularioEditarPassword.addEventListener("submit", (e) => {
             buttons: ["Cancelar", "Cambiar"]
           }).then((modificacionConfirmada) => {
             if(modificacionConfirmada){
+              formularioEditarPassword.submit();
             } else{
                 swal({
                     icon: "warning",

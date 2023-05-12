@@ -30,10 +30,14 @@ Controllers.dashboardDoctores=(req,res,next)=>{
 
   Controllers.VerDatosDoctor = (req,res,next)=>{
     const cedula = req.session.cedula;
+    const passAct = req.session.passAct;
+    const datosAct = req.session.daActuali;
+    delete req.session.daActuali;
+    delete req.session.passAct;
     querys.VerDatoDoctor(cedula,(error,ver)=>{
       if(ver){
- 
-        res.render('perfilDoctor',{cedula, datos:ver});
+
+        res.render('perfilDoctor',{cedula, datos:ver, passAct:passAct,datosAct});
       }
       else{
         console.log(error);
@@ -59,11 +63,13 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   querys.ActualizarDatoDoctor(CedulaForm,NombreForm,ApellidosForm,EmailForm,EdadForm,GeneroForm,TelForm,CalleForm,NumeroForm,CPForm,ColForm,
     DelForm,EdoForm,(error,ver)=>{
     if(ver){
-      console.log(ver);
+      req.session.daActuali='datos actualizados';
       res.redirect('/Glucky/Doctores/EditarCuenta');
     }
     else{
       console.log(error);
+      req.session.daActuali='datos no actualizados';
+      res.redirect('/Glucky/Doctores/EditarCuenta');
     }
   }); 
  };
@@ -94,10 +100,12 @@ Controllers.dashboardDoctores=(req,res,next)=>{
   const {NewPass} = req.body;
   querys.ActualizarContraDoctor(cedula, NewPass,(error,act)=>{
     if(act){
-      console.log(act);
+      req.session.passAct='contra actualizada';
       res.redirect('/Glucky/Doctores/EditarCuenta');
     } else{
       console.log(error);
+      req.session.passAct='contra no actualizada';
+      res.redirect('/Glucky/Doctores/EditarCuenta');
     }
   });
   };
@@ -490,7 +498,7 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
     });
   };
   
-//Alerta de ingrediente eliminado 
+  
 Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const {id_dieta} = req.body;
     const {id_dietingred} = req.body;
@@ -512,7 +520,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }; 
-//Alerta de medicamento eliminado 
+
   Controllers.eliminarTratamientoBaseMedicamento = (req, res, next) => {
     const {id_recmed} = req.body;
     const {id_receta} = req.body;
