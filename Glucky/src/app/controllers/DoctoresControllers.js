@@ -156,6 +156,12 @@ Controllers.Desvincular = (req,res,next)=>{
   Controllers.peticionesCita = (req,res,next)=>{
     console.log(req.body);
     const Cedula = req.session.cedula;
+    const citaAcepParaEliminar = req.session.citaAcepParaEliminar;
+    const citaDecli = req.session.citaDecli;
+    const citaFina = req.session.citaFina;
+    delete req.session.citaAcepParaEliminar;
+    delete req.session.citaDecli;
+    delete req.session.citaFina;
     querys.PeticionesCita(Cedula,(error,ver)=>{
       if(ver){
         querys.PeticionesCitaGenerales(Cedula,(error,citasaceptadas)=>{
@@ -163,7 +169,7 @@ Controllers.Desvincular = (req,res,next)=>{
             querys.VerDatoDoctor(Cedula,(error,dato)=>{
               if(dato){
             console.log(`Ver las citas`);
-            res.render('citasDoctor',{Cedula,datos:ver,citasaceptadas,dato:dato});
+            res.render('citasDoctor',{Cedula,datos:ver,citasaceptadas,citaAcepParaEliminar,citaDecli,citaFina,dato:dato});
               }  else if(error){
                 console.log(error);
               }
@@ -523,17 +529,15 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
 Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const {id_dieta} = req.body;
     const {id_dietingred} = req.body;
-
     const {CurpForm} = req.body;
     const {cedulaEdit} = req.body;
-
+    
     querys.eliminarIngrediente(id_dietingred,id_dieta,(error, eliminado) => {
       if (eliminado) {
-
         req.session.cedula=cedulaEdit;
         req.session.paciente=CurpForm;
-
         req.session.id_dieta=id_dieta;
+        redirect('/Glucky/Doctores/EditarDieta')
       } else {
         console.log(error);
       }
@@ -562,7 +566,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     });
   }; 
 
-//Alerta de dieta eliminado 
+//Alerta de dieta eliminado 100%
   Controllers.eliminarDieta = (req, res, next) => {
     const {id_dietaEl} = req.body;
     const {CurpForm} = req.body;
@@ -581,7 +585,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   }; 
-//Alerta de tratamiento eliminado 
+//Alerta de tratamiento eliminado 100%
   Controllers.eliminarTratamiento = (req, res, next) => {
     const {id_recetaEl} = req.body;
     const {CurpForm} = req.body;
@@ -590,10 +594,12 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       if (eliminado) {
         req.session.cedula=cedulaEdit;
         req.session.paciente=CurpForm;
+        req.session.elimTrat= 'tratamiento eliminado';
         res.redirect('/Glucky/Doctores/PacienteDoctor');
-        console.log('ha sido eliminada un tratamiento');
       } else {
         console.log(error);
+        req.session.elimTrat= 'tratamiento no eliminado';
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
     });
   };
@@ -602,7 +608,15 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const Cedula = req.session.cedula;
     const CURPform = req.session.paciente;
     const elimDiet = req.session.elimDiet;
+    const elimTrat = req.session.elimTrat;
+    const agregCita = req.session.agregCita;
+    const editCita = req.session.editCita;
+    const citaElim = req.session.citaElim;
     delete req.session.elimDiet;
+    delete req.session.elimTrat;
+    delete req.session.agregCita;
+    delete req.session.editCita;
+    delete req.session.citaElim;
     querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
       if(ver){
       //inicio de la segunda consulta de query 
@@ -623,7 +637,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
                         //inicio de la séptima consulta de query 
                         querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
                           if(recetaverTodas){
-                            res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,elimDiet});
+                            res.render('pacienteDoctor',{citas:citasver,agregCita,editCita,citaElim,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,elimDiet,elimTrat});
                           }
                           else{
                             console.log(error7);
@@ -667,7 +681,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     }); 
   };
-//Alerta de cita agregada
+//Alerta de cita agregada 100%
   Controllers.PacienteDoctorCitas = (req,res,next)=>{
     const{CurpForm} =req.body;
     const {HoraForm} = req.body;
@@ -676,32 +690,38 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     querys.agregarCitaPaciente(FechaForm,HoraForm,CurpForm,Cedula,(error,ver)=>{
       if(ver){
         req.session.paciente=CurpForm;
-        console.log(ver);
+        req.session.agregCita = 'Cita agregada';
         res.redirect('/Glucky/Doctores/PacienteDoctor');
+        console.log(ver);
       }
       else{
+        req.session.agregCita = 'Cita no agregada';
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
         console.log(error);
       }
     }); 
   };
 
-//Alerta de cita eliminada
+//Alerta de cita eliminada 100%
   Controllers.PacienteDoctorCitasEl= (req,res,next)=>{
     const{id_citaEl} = req.body;
     const {curpFormPac} = req.body;
     querys.eliminarCitaPaciente(id_citaEl,curpFormPac,(error,elimina)=>{
       if(elimina){
+        req.session.citaElim = 'Cita eliminada';
         req.session.paciente=curpFormPac;
         console.log('Eliminación lograda de cita');
         res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
       else{
         console.log(error);
+        req.session.citaElim = 'Cita no eliminada';
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
     });
   };
 
-//Alerta de cita editada
+//Alerta de cita editada 100%
   Controllers.PacienteDoctorCitasEd= (req,res,next)=>{
     const {curp_pacienF} =req.body;
     const {id_citaF} =req.body;
@@ -709,12 +729,14 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const {hour_citaF} =req.body;
     querys.editarCitaPaciente(curp_pacienF,id_citaF,date_citaF,hour_citaF,(error,elimina)=>{
       if(elimina){
+        req.session.editCita = 'cita editada';
         req.session.paciente=curp_pacienF;
-        console.log('Cita editada correctamente');
         res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
       else{
         console.log(error);
+        req.session.editCita = 'cita no editada';
+        res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
     });
   };
@@ -826,7 +848,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       }
     });
   };
-//Alerta de cita aceptada
+//Alerta de cita aceptada 100%
   Controllers.citasDoctorAcepta = (req,res,next)=>{   
     const{IdCita} = req.body;
     const{HoraForm} = req.body;
@@ -835,39 +857,45 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const{IdConsmed} = req.body;
     querys.aceptarcita(FechaForm,HoraForm,IdConsmed,CurpPacien,IdCita,(error,cambio)=>{
       if(cambio){
-        console.log('cita aceptada y eliminada de solicitudes');
+        req.session.citaAcepParaEliminar = 'cita aceptada para elimiar';
         res.redirect('/Glucky/Doctores/Citas');
       }
       else{
         console.log(error);
+        req.session.citaAcepParaEliminar = 'cita no aceptada para elimiar';
+        res.redirect('/Glucky/Doctores/Citas');
       }
     });
   };
-//Alerta de cita declinada
+//Alerta de cita declinada 100%
   Controllers.citasDoctorDeclina = (req,res,next)=>{    
     const{IdCita} = req.body;
     const{IdConsmed} = req.body;
     querys.declinarcita(IdCita,IdConsmed,(error,cambio)=>{
       if(cambio){
-        console.log('cita declinada');
+        req.session.citaDecli = 'cita declinada'
         res.redirect('/Glucky/Doctores/Citas');
       }
       else{
         console.log(error);
+        req.session.citaDecli = 'cita no declinada'
+        res.redirect('/Glucky/Doctores/Citas');
       }
     });
   };
-//Alerta de cita finalizada
+//Alerta de cita finalizada 100%
   Controllers.citasDoctorFinaliza= (req,res,next)=>{    
     const{IdCitaL} = req.body;
     const{CurpPacienL} = req.body;
     querys.finalizarCita(IdCitaL,CurpPacienL,(error,finaliza)=>{
       if(finaliza){
-        console.log('cita finalizada correctamente osea borrada xd');
+        req.session.citaFina = 'cita finalizada'
         res.redirect('/Glucky/Doctores/Citas');
       }
       else{
         console.log(error);
+        req.session.citaFina = 'cita no finalizada'
+        res.redirect('/Glucky/Doctores/Citas');
       }
     });
   };

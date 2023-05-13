@@ -839,6 +839,54 @@
         </script>
       <%}%>
     <%}%>
+
+    <%if(typeof elimTrat!=='undefined'){%>
+      <%if(elimTrat==='tratamiento eliminado'){%>
+        <script>
+          tratamientoEliminado()
+        </script>
+      <%}else if(elimTrat==='tratamiento no eliminado'){%>
+        <script>
+          tratamientoNoEliminado()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof agregCita!=='undefined'){%>
+      <%if(agregCita==='Cita agregada'){%>
+        <script>
+          citaAgreg()
+        </script>
+      <%}else if(agregCita==='Cita no agregada'){%>
+        <script>
+          citaNoAgreg()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof editCita!=='undefined'){%>
+      <%if(editCita==='cita editada'){%>
+        <script>
+          citaEdit()
+        </script>
+      <%}else if(editCita==='cita no editada'){%>
+        <script>
+          citaNoEdit()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof citaElim!=='undefined'){%>
+      <%if(citaElim==='Cita eliminada'){%>
+        <script>
+          citaElim()
+        </script>
+      <%}else if(citaElim==='Cita no eliminada'){%>
+        <script>
+          citaNoElim()
+        </script>
+      <%}%>
+    <%}%>
     
 </body>
 </html>

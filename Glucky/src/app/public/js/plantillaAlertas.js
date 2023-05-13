@@ -116,6 +116,62 @@ function NoDesvinPa(e) {
   });
 };
 
+function tratamientoNoEliminado(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo eliminar el tratamiento, intentelo más tarde',
+  });
+};
+
+function citaNoAgreg(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo agendar la cita, intentelo más tarde',
+  });
+};
+
+function citaNoEdit(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo editar la cita, intentelo más tarde',
+  });
+};
+
+function citaNoElim(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo eliminar la cita, intentelo más tarde',
+  });
+};
+
+function citaNoAcepElim(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo aceptar la cita, intentelo más tarde',
+  });
+};
+
+function citaNoDecli(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo declinar la cita, intentelo más tarde',
+  });
+};
+
+function citaNoFina(e) {
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo finalizar la cita, intentelo más tarde',
+  });
+};
+
 function PacienteRegistradoAnt(e) {
   swal({
     icon: 'error',
@@ -238,6 +294,63 @@ function SolicitudEnviada(e) {
     window.location.href='/Glucky/Pacientes/Dashboard';
   });
 };
+
+function tratamientoEliminado(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'El tratamiento ha sido eliminado'
+  })
+};
+
+function citaAgreg(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita ha sido agendada exitosamente'
+  })
+};
+
+function citaEdit(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita ha sido modificada exitosamente'
+  })
+};
+
+function citaElim(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita ha sido eliminada exitosamente'
+  })
+};
+
+function citaAcepElim(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita se ha aceptado exitosamente'
+  })
+};
+
+function citaDecli(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita se ha declinado exitosamente'
+  })
+};
+
+function citaFina(e) {
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'La cita ha sido finalizada exitosamente'
+  })
+};
+
 //Alertas informativas
 function SolicitudDene(e) {
   swal({
