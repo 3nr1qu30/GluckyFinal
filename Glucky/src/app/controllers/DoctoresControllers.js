@@ -537,7 +537,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
         req.session.cedula=cedulaEdit;
         req.session.paciente=CurpForm;
         req.session.id_dieta=id_dieta;
-        redirect('/Glucky/Doctores/EditarDieta')
+        res.redirect('/Glucky/Doctores/EditarDieta')
       } else {
         console.log(error);
       }

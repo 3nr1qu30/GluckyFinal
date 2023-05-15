@@ -10,8 +10,8 @@ const inputs = document.querySelectorAll('#formulario input');
 const inputs2 = document.querySelectorAll('#formulario2 input');
 
 const expReg = {
-  alimentoNombre: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,15}$/,
-  alimentoDescripcion: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s0-9]{2,15}.$/
+  alimentoNombre: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]{2,45}$/,
+  alimentoDescripcion: /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s0-9]{2,1000}.$/
 }
 const campos = {
   alimentoNombre: false,
