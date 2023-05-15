@@ -5,7 +5,7 @@ const inputs = document.querySelectorAll('#formulario input');
 const cedula = document.getElementById('cedula'), password = document.getElementById('password');
 const expReg = {
     cedula: /^\d[0-9]{7}$/,
-    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&.#])[A-Za-z\d$@$!%*?&.#]{8,35}$/,
+    password: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()+,-./:;<=>?@^_`{|}~])[A-Za-z\dÑñ!"#$%&'()+,-./:;<=>?@\[\]^_`{|}~]{8,35}$/,
     curp: /^([A-Z]{4})(\d{6})([A-Z]{7})(\d{1})$/
 }
 
