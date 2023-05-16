@@ -217,11 +217,7 @@ inputs.forEach((input) => {
 
 formulario.addEventListener('submit', (e) => {
   if (campos.alimentoDescripcion && campos.alimentoNombre) {
-/*     swal({
-      icon: "success",
-      title: "Alimento agregado",
-      text: "El alimento se ha agregado al almacén"
-    }); */
+
   } else {
   e.preventDefault();
 }
@@ -231,36 +227,10 @@ formulario2.addEventListener('submit', (e) => {
   e.preventDefault();
   
   if (validarFormulario2()) {
-    // swal({
-    //   icon: "success",
-    //   title: "Alimento modificado",
-    //   text: "El alimento ya está actualizado"
-    // }).then(() => {
+
       formulario2.submit();
-    // });
+    
   } else {    
-    // console.log(`Esta mal pa`);
+    
   }
 });
-
-// formulario3.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const id = e.target.querySelector('.idElemento').value;
-//   swal({
-//     title: "¿Estás seguro?",
-//     text: "Este elemento será eliminado permanentemente.",
-//     icon: "warning",
-//     buttons: ["Cancelar", "Eliminar"],
-//     dangerMode: true,
-//   })
-//   .then((willDelete) => {
-//     if (willDelete) {
-//       swal("El elemento ha sido eliminado.", {
-//         icon: "success",
-//       });
-//       formulario3.submit();
-//     } else {
-//       swal("La eliminación ha sido cancelada.");
-//     }
-//   });
-// });
