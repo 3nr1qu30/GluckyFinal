@@ -490,7 +490,136 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     let fecha = `${anio}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
     let horaActual = new Date();
     let hora = horaActual.toLocaleTimeString();
-    querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,(error,registro)=>{
+    const tipoDia = req.session.tipodia;
+    var Estado;
+    if(tipoDia==='tipo 1'){
+      if(sistolica>=80 && sistolica<=120 && diastolica>=60 && diastolica<=80){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Normal';
+        }else if(glucosa < 170){
+          Estado='Peligro glucosa baja';
+        }else if(glucosa > 220){
+          Estado='Peligro glucosa alta';
+        }else if(glucosa >=400){
+          Estado='Peligro glucosa muy alta';
+        } 
+      }else if(sistolica<80 || diastolica<60){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles bajos de Presion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles bajos de Presion y glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles bajos de Presion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles bajos de Presion y muy alta glucosa';
+        }
+      }else if(sistolica>120 && sistolica<=180 || diastolica>80 && diastolica<=110){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles hipertencion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles hipertencion y baja glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles hipertencion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles hipertencion y muy alta glucosa';
+        }
+      }else if(sistolica>180 || diastolica>110){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles hipertencion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles hipertencion y baja glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles hipertencion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles hipertencion y muy alta glucosa';
+        }
+      }
+    }else if(tipoDia==='tipo 2'){
+      if(sistolica>=80 && sistolica<=120 && diastolica>=60 && diastolica<=80){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Normal';
+        }else if(glucosa < 170){
+          Estado='Peligro glucosa baja';
+        }else if(glucosa > 220){
+          Estado='Peligro glucosa alta';
+        }else if(glucosa >=400){
+          Estado='Peligro glucosa muy alta';
+        } 
+      }else if(sistolica<80 || diastolica<60){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles bajos de Presion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles bajos de Presion y glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles bajos de Presion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles bajos de Presion y muy alta glucosa';
+        }
+      }else if(sistolica>120 && sistolica<=180 || diastolica>80 && diastolica<=110){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles hipertencion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles hipertencion y baja glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles hipertencion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles hipertencion y muy alta glucosa';
+        }
+      }else if(sistolica>180 || diastolica>110){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles hipertencion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles hipertencion y baja glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles hipertencion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles hipertencion y muy alta glucosa';
+        }
+      }
+    }else if(tipoDia==='gestacional'){
+      if(sistolica>=80 && sistolica<=120 && diastolica>=60 && diastolica<=80){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Normal';
+        }else if(glucosa < 170){
+          Estado='Peligro glucosa baja';
+        }else if(glucosa > 220){
+          Estado='Peligro glucosa alta';
+        }else if(glucosa >=400){
+          Estado='Peligro glucosa muy alta';
+        } 
+      }else if(sistolica<80 || diastolica<60){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles bajos de Presion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles bajos de Presion y glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles bajos de Presion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles bajos de Presion y muy alta glucosa';
+        }
+      }else if(sistolica>120 && sistolica<=180 || diastolica>80 && diastolica<=110){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles hipertencion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles hipertencion y baja glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles hipertencion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles hipertencion y muy alta glucosa';
+        }
+      }else if(sistolica>180 || diastolica>110){
+        if(glucosa>=170 && glucosa<=220){
+          Estado = 'Peligro niveles hipertencion';
+        }else if(glucosa < 170){
+          Estado='Peligro niveles hipertencion y baja glucosa';
+        }else if(glucosa > 220 && glucosa < 400 ){
+          Estado='Peligro niveles hipertencion y alta glucosa';
+        }else if(glucosa >= 400){
+          Estado ='Peligro niveles hipertencion y muy alta glucosa';
+        }
+      }
+    }
+    querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,Estado,(error,registro)=>{
       if(registro){
         req.session.regis='Tu registro de niveles fue agregado';
         res.redirect("/Glucky/Pacientes/Dashboard");

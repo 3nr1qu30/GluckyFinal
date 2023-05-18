@@ -750,8 +750,8 @@ db.editarMedicamento=(idMed,nomMed,callback)=>{
 }
 
 
-db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callback)=>{
-  con.query(`INSERT INTO datosmedicos VALUES(default,'${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}')`,(error,registro)=>{
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,Estado,callback)=>{
+  con.query(`CALL insertarDatosMedicos ('${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}','${Estado}')`,(error,registro)=>{
     if(error){
       console.log('Error al insertar meición: ',error);
       callback(error,null);
