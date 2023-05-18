@@ -243,8 +243,6 @@ Controllers.Desvincular = (req,res,next)=>{
                 //inicio de la quinta consulta de query 
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                   
-                    
                     //inicio de la sexta consulta de query 
                       querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
                         if(recetaver){
@@ -264,8 +262,6 @@ Controllers.Desvincular = (req,res,next)=>{
                         }
                       }); 
                       //final de la sexta consulta de query
-
-
                   }
                   else{
                     console.log(error5);
