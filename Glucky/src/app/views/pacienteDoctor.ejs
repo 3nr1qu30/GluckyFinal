@@ -52,6 +52,14 @@
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Citas</span>
                 </a></li>
+                <li><a href="/Glucky/Doctores/Alimentos">
+                    <i class="uil uil-restaurant"></i>
+                    <span class="link-name">Alimentos</span>
+                </a></li>
+                <li><a href="/Glucky/Doctores/Medicamentos">
+                    <i class="uil uil-capsule"></i>
+                    <span class="link-name">Medicamentos</span>
+                </a></li>
             </ul>
             
             <ul class="logout-mode">
@@ -61,9 +69,9 @@
                 </a></li>
 
                 <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-x"></i>
-                    <span class="link-name">Borrar cuenta</span>
+                    <a href="/Glucky/Doctores/EditarCuenta">
+                        <i class="uil uil-user-circle"></i>
+                    <span class="link-name">Ajustes de cuenta</span>
                 </a>
 
                 <div class="mode-toggle">
@@ -191,8 +199,9 @@
                               </td>
                                 <td data-label="CURP"><%=datos[i].curp_pacien%></td>
                                 <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
-                                <td data-label="Genero"><%=datos[i].genero_pers%>s</td>
-                                <td data-label="Edad"><%=datos[i].edad_pers%>s</td>
+                                <td data-label="Genero"><%=datos[i].genero_pers%></td>
+                                <td data-label="Edad"><%=datos[i].edad_pers%> años</td>
+                                <td data-label="Teléfono"><u><%=datos[i].tel_pers%></u></td>
                                 
                                 <td data-label="Ver detalles y acciones paciente">
                                     <div class="botisimo">

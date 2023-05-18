@@ -292,7 +292,7 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
 
  
  db.verPacienteIndividual = (Cedula,CURPform,callback)=>{
-  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
+  con.query(`SELECT * FROM vdoctorpaciente natural join persona where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
    if(error){
       console.error('No existe', error);
    }else{
