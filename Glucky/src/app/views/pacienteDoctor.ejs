@@ -106,14 +106,14 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
-                    <% for(var i=0;i<doctor.length;i++){%>
+                  
                     <div class="text-data">
-                      <span class="name"><%=doctor[i].nom_pers%> <%=doctor[i].apellidos_pers%></span>
-                      <span class="job"><%=doctor[i].cedula_med%></span>
-                      <span class="job"><%=doctor[i].email_pers%></span>
+                      <span class="name"><%=doctor[0].nom_pers%> <%=doctor[0].apellidos_pers%></span>
+                      <span class="job"><%=doctor[0].cedula_med%></span>
+                      <span class="job"><%=doctor[0].email_pers%></span>
                       <span class="job">Doctor</span>
                     </div>
-                    <%}%>
+                    
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
                         <i class="bx bx-plus-medical"></i>
@@ -191,6 +191,9 @@
                               </td>
                                 <td data-label="CURP"><%=datos[i].curp_pacien%></td>
                                 <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
+                                <td data-label="Genero"><%=datos[i].genero_pers%>s</td>
+                                <td data-label="Edad"><%=datos[i].edad_pers%>s</td>
+                                
                                 <td data-label="Ver detalles y acciones paciente">
                                     <div class="botisimo">
                                         <div class="botver">
@@ -215,7 +218,7 @@
                                                     <div class="shoe-details">
                                                     <span class="shoe_name" style="text-align:left;">Paciente Glucky</span>
                                                         <div class="nombrepaciente">
-                                                            Nombre paciente
+                                                            Nombre paciente: <%=datos[i].nom_pers%> <%=datos[i].apellidos_pers%>
                                                         </div>
                                                     
                                                     <p>Apartado para realizar acciones con tus pacientes,
@@ -329,7 +332,7 @@
                                 <div class="profile-text">
                                     <img src="https://i.ibb.co/YLddykt/731-sin-t-tulo-20230412145209.png" alt=""> 
                                     <div class="text">
-                                        <span class="name">Nombre del paciente</span>
+                                        <span class="name"><%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
                                          <span class="profession">En este formulario podrás agendar una nueva dieta para su
                                             paciente </span>
                                     </div>
@@ -454,7 +457,7 @@
                            <div class="profile-text">
                                <img src="https://i.ibb.co/vQQ72rh/731-sin-t-tulo-20230412145300.png" alt=""> 
                                <div class="text">
-                                   <span class="name">Nombre del paciente</span>
+                                   <span class="name"><%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
                                     <span class="profession">En este formulario podrás agendar un nuevo tratamiento para su
                                        paciente </span>
                                </div>
@@ -836,6 +839,54 @@
       <%}else if(elimDiet==='dieta no eliminada'){%>
         <script>
           dietaEliminada()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof elimTrat!=='undefined'){%>
+      <%if(elimTrat==='tratamiento eliminado'){%>
+        <script>
+          tratamientoEliminado()
+        </script>
+      <%}else if(elimTrat==='tratamiento no eliminado'){%>
+        <script>
+          tratamientoNoEliminado()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof agregCita!=='undefined'){%>
+      <%if(agregCita==='Cita agregada'){%>
+        <script>
+          citaAgreg()
+        </script>
+      <%}else if(agregCita==='Cita no agregada'){%>
+        <script>
+          citaNoAgreg()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof editCita!=='undefined'){%>
+      <%if(editCita==='cita editada'){%>
+        <script>
+          citaEdit()
+        </script>
+      <%}else if(editCita==='cita no editada'){%>
+        <script>
+          citaNoEdit()
+        </script>
+      <%}%>
+    <%}%>
+
+    <%if(typeof citaElim!=='undefined'){%>
+      <%if(citaElim==='Cita eliminada'){%>
+        <script>
+          citaElim()
+        </script>
+      <%}else if(citaElim==='Cita no eliminada'){%>
+        <script>
+          citaNoElim()
         </script>
       <%}%>
     <%}%>

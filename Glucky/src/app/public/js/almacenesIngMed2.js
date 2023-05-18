@@ -192,7 +192,7 @@ buscar.addEventListener("input", () => {
     const inputs = elemento.querySelectorAll(".textoSimple");
     let encontrado = false;
     inputs.forEach((input) => {
-      const valorInput = input.getAttribute("value").toLowerCase();
+      const valorInput = input.value.toLowerCase();
       if (valorInput.includes(valorBusqueda)) {
         encontrado = true;
       }

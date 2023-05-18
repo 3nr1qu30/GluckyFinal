@@ -270,64 +270,77 @@ let circle = document.querySelector(".color-option");
 
 
 ///inicio del script para los botones de listadietas
-      const listadietas = document.querySelector('#listadietas');
-      const listaSeleccionadosdietas = document.querySelector('#dietas-seleccionados');
-      const searchInputdietas = document.querySelector('#searchdietas');
-      
-      listadietas.addEventListener('change', (event) => {
-        const checkbox = event.target;
-        const descrip = checkbox.parentNode.querySelector('input[type="submit"]');
-        const texts = checkbox.parentNode.querySelectorAll('.textsO');
-        const cantidad = checkbox.parentNode.querySelectorAll('.cantidad');
-      
-        if (checkbox.checked) {
-          // Mostrar el input de tipo descrip
-          descrip.style.display = 'inline-block';
-          descrip.disabled = false; // Desbloquear el input
-        
-          // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
-          for (let i = 0; i < texts.length; i++) {
-            texts[i].style.display = 'block';
-            texts[i].disabled = false; // Desbloquear el texto
-          }
-        
-          // Agregar propiedades CSS al div con class .cantidad
-          for (let i = 0; i < cantidad.length; i++) {
-            cantidad[i].style.display = 'block';
-            cantidad[i].disabled = false; // Desbloquear el campo de cantidad
-            cantidad[i].style.border = '1px solid #ccc'; // Agregar borde al campo de cantidad
-            cantidad[i].style.borderRadius = '3px'; // Agregar borde redondeado al campo de cantidad
-            cantidad[i].style.padding = '5px'; // Agregar espaciado interno al campo de cantidad
-            cantidad[i].style.marginBottom = '10px'; // Agregar margen inferior al campo de cantidad
-          }
-        
-        } else {
-        
-          // Ocultar el input de tipo descrip
-          descrip.style.display = 'none';
-          descrip.disabled = true; // Bloquear el input
-        
-          // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
-          for (let i = 0; i < texts.length; i++) {
-            texts[i].style.display = 'none';
-            texts[i].disabled = true; // Bloquear el texto
-          }
-        
-          // Agregar propiedades CSS al div con class .cantidad
-          for (let i = 0; i < cantidad.length; i++) {
-            cantidad[i].style.display = 'none';
-            cantidad[i].disabled = true; // Bloquear el campo de cantidad
-          }
-        
-        }
-      });
+const listadietas = document.querySelector('#listadietas');
+const listaSeleccionadosdietas = document.querySelector('#dietas-seleccionados');
+const searchInputdietas = document.querySelector('#searchdietas');
 
+let isSelectClicked = false;
+let isInputClicked = false;
 
+listadietas.addEventListener('mousedown', (event) => {
+  const select = event.target.closest('.textsO');
+  const input = event.target.closest('.cantidad');
+  
+  isSelectClicked = select !== null;
+  isInputClicked = input !== null;
+});
 
+listadietas.addEventListener('change', (event) => {
+  const checkbox = event.target;
+  const descrip = checkbox.parentNode.querySelector('input[type="submit"]');
+  const texts = checkbox.parentNode.querySelectorAll('.textsO');
+  const cantidad = checkbox.parentNode.querySelectorAll('.cantidad');
 
+  if (checkbox.checked) {
+    // Mostrar el input de tipo descrip
+    descrip.style.display = 'inline-block';
+    descrip.disabled = false; // Desbloquear el input
 
+    // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
+    for (let i = 0; i < texts.length; i++) {
+      texts[i].style.display = 'block';
+      texts[i].disabled = false; // Desbloquear el texto
+    }
 
-      
+    // Agregar propiedades CSS al div con class .cantidad
+    for (let i = 0; i < cantidad.length; i++) {
+      cantidad[i].style.display = 'block';
+      cantidad[i].disabled = false; // Desbloquear el campo de cantidad
+      cantidad[i].style.border = '1px solid #ccc'; // Agregar borde al campo de cantidad
+      cantidad[i].style.borderRadius = '3px'; // Agregar borde redondeado al campo de cantidad
+      cantidad[i].style.padding = '5px'; // Agregar espaciado interno al campo de cantidad
+      cantidad[i].style.marginBottom = '10px'; // Agregar margen inferior al campo de cantidad
+    }
+  } else {
+    // Ocultar el input de tipo descrip
+    descrip.style.display = 'none';
+    descrip.disabled = true; // Bloquear el input
+
+    // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
+    for (let i = 0; i < texts.length; i++) {
+      texts[i].style.display = 'none';
+      texts[i].disabled = true; // Bloquear el texto
+    }
+
+    // Agregar propiedades CSS al div con class .cantidad
+    for (let i = 0; i < cantidad.length; i++) {
+      cantidad[i].style.display = 'none';
+      cantidad[i].disabled = true; // Bloquear el campo de cantidad
+    }
+  }
+});
+
+document.addEventListener('click', (event) => {
+  const select = event.target.closest('.textsO');
+  const input = event.target.closest('.cantidad');
+  
+  if ((select && !isSelectClicked) || (input && !isInputClicked)) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  isSelectClicked = false;
+  isInputClicked = false;
+});
       
       searchInputdietas.addEventListener('input', () => {
         const searchText =  searchInputdietas.value.toLowerCase();

@@ -319,7 +319,45 @@
 </div>
 
     <script src="/js/citasDoctor.js"></script>
-    
+    <script src="/js/plantillaAlertas.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <%if(typeof citaAcepParaEliminar!=='undefined'){%>
+        <%if(citaAcepParaEliminar==='cita aceptada para elimiar'){%>
+          <script>
+            citaAcepElim()
+          </script>
+        <%}else if(citaAcepParaEliminar==='cita no aceptada para elimiar'){%>
+          <script>
+            citaNoAcepElim()
+          </script>
+        <%}%>
+      <%}%>
+
+    <%if(typeof citaDecli!=='undefined'){%>
+        <%if(citaDecli==='cita declinada'){%>
+          <script>
+            citaDecli()
+          </script>
+        <%}else if(citaDecli==='cita no declinada'){%>
+          <script>
+            citaNoDecli()
+          </script>
+        <%}%>
+      <%}%>
+
+    <%if(typeof citaFina!=='undefined'){%>
+        <%if(citaFina==='cita finalizada'){%>
+          <script>
+            citaFina()
+          </script>
+        <%}else if(citaFina==='cita no finalizada'){%>
+          <script>
+            citaNoFina()
+          </script>
+        <%}%>
+      <%}%>
+
 </body>
 </html>
 <%}else{%>
