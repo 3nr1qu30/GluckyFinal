@@ -24,6 +24,10 @@ Controllers.iniciosesion=(req,res,next)=>{
   req.session.destroy();
   res.render('iniciosesion');
 }
+Controllers.recuperarContrasena=(req,res,next)=>{
+  req.session.destroy();
+  res.render('recuperarContrasena');
+}
 //rutas post
 Controllers.registroPaPost = (req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
