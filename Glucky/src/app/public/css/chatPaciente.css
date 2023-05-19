@@ -2640,6 +2640,7 @@ input::-webkit-inner-spin-button {
       display: block;
       font-size: 12px;
       margin-top: 5px;
+       background-color: white;
     }
 
 

@@ -1,6 +1,27 @@
 const Controllers={};
 const { query } = require('express');
 const querys = require('../sql/Querys');
+const format12HourTime = (time) => {
+  var splitTime = time.split(':');
+  var hours = parseInt(splitTime[0]);
+  var minutes = parseInt(splitTime[1]);
+  var amPm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // convert 0 to 12
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  var formattedTime = hours + ':' + minutes + ' ' + amPm;
+  return formattedTime;
+}
+const formatDate = (dates) => {
+  const date = new Date(dates);
+  const months = [
+    "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+  ];
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+  return `${day} ${months[monthIndex]} ${year}`;
+}
 Controllers.dashboardDoctores=(req,res,next)=>{
     const cedula = req.session.cedula;
     const nombre = req.session.nombre;
@@ -243,8 +264,6 @@ Controllers.Desvincular = (req,res,next)=>{
                 //inicio de la quinta consulta de query 
                 querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
                   if(dietasverTodas){
-                   
-                    
                     //inicio de la sexta consulta de query 
                       querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
                         if(recetaver){
@@ -264,8 +283,6 @@ Controllers.Desvincular = (req,res,next)=>{
                         }
                       }); 
                       //final de la sexta consulta de query
-
-
                   }
                   else{
                     console.log(error5);
@@ -637,7 +654,14 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
                         //inicio de la séptima consulta de query 
                         querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
                           if(recetaverTodas){
-                            res.render('pacienteDoctor',{citas:citasver,agregCita,editCita,citaElim,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,elimDiet,elimTrat});
+                            querys.buscarDatosmedicos(CURPform,(error,datosmedicos)=>{
+                              if(datosmedicos){
+                                res.render('pacienteDoctor',{citas:citasver,agregCita,editCita,citaElim,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,elimDiet,elimTrat,datosmedicos,format12HourTime,formatDate});
+                              }
+                              else{
+                                console.log(error);
+                              }
+                            });
                           }
                           else{
                             console.log(error7);

@@ -85,9 +85,9 @@
 
                 <li class="mode">
                     <a href="/Glucky/Doctores/EditarCuenta">
-                        <i class="uil uil-x"></i>
+                        <i class="uil uil-user-circle"></i>
                     <span class="link-name">Ajustes de cuenta</span>
-                </a>
+                  </a>
 
                 <div class="mode-toggle">
                  
@@ -175,7 +175,7 @@
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <i class="bx bxs-dashboard"></i>
                     <span class="text">Panel de control</span>
                 </div>
 
@@ -185,38 +185,41 @@
                     <div class="overview-boxes">
                         <div class="box">
                             <div class="right-side">
-                            <div class="box-topic">Solicitudes</div>
-                            <div class="number"><%=verpaci.length%>,00</div>
+                            <div class="box-topic">Solicitudes </div>
+                            <div class="number"><%=verpaci.length%></div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Solicitudes de doctor</span>
                             </div>
                             </div>
-                            <i class='bx bx-paper-plane plane plane'></i>
+                            <i class='bx bx-message-square-add plane plane'></i>
                         </div>
                         <div class="box">
                             <div class="right-side">
-                            <div class="box-topic">Citas</div>
-                            <div class="number"><%=vercitas.length%>,00</div>
+                            <div class="box-topic">Citas </div>
+                            <div class="number"><%=vercitas.length%></div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
                                 <span class="text">Citas pendientes</span>
                             </div>
                         </div>
-                            <i class='bx bxs-archive plane bomb' ></i>
+                            <i class='bx bx-calendar-minus plane bomb' ></i>
                         </div>
                         <div class="box">
                             <div class="right-side">
-                            <div class="box-topic minis">Sin tratamiento</div>
-                            <div class="number">4.00</div>
+                               
+                            <div class="box-topic minis">Pacientes</div>
+                            <div class="number">  
+                                <%=pacientes.length %>
+                            </div>
                             <div class="indicator">
                                 <i class='bx bx-up-arrow-alt'></i>
-                                <span class="text">Pacientes pendientes</span>
+                                <span class="text">Totales</span>
                             </div>
                             </div>
-                            <i class='bx bx-capsule plane capsule' ></i>
+                            <i class='bx bx-user-check plane capsule' ></i>
                         </div>
-                        <div class="box">
+                        <div class="box transparent" >
                             <div class="right-side">
                               <div class="box-topic">Urgente</div>
                               <div class="number">11.00</div>
@@ -250,17 +253,17 @@
                         <div class="box box1">
                             <i class="uil uil-heart-alt jaja "></i>
                             <span class="text">Pacientes tipo 1</span>
-                            <span class="number"><%= tipo1Count %>,00</span>
+                            <span class="number"><%= tipo1Count %></span>
                         </div>
                         <div class="box box2">
                             <i class="uil uil-syringe jaja "></i>
                             <span class="text">Pacientes tipo 2</span>
-                            <span class="number"><%= tipo2Count %>,00</span>
+                            <span class="number"><%= tipo2Count %></span>
                         </div>
                         <div class="box box3">
                             <i class="uil uil-annoyed jaja"></i>
                             <span class="text">Tipo gestacional</span>
-                            <span class="number"><%= tipoGestCount %>,00</span>
+                            <span class="number"><%= tipoGestCount %></span>
                         </div>
                     </div>
 
@@ -299,7 +302,6 @@
                                     <i class="fa fa-heart"></i>
                                 </div>
                             </div>   
-                            <!--neta que mamones-->
                             <div class="flexo">
                                 <input type="search" class="search-bar" id="myInput3" onkeyup="myFunction3()" placeholder="Busca por tipo de diabetes." title="Escribe" name="search">
                                 <div class="span2 ico3" >
@@ -310,12 +312,6 @@
                                 <input type="search" class="search-bar" id="myInput4" onkeyup="myFunction4()" placeholder="Busca por CURP." title="Escribe" name="search">
                                 <div class="span2 ico4" >
                                     <i class="fa fa-archive"></i>
-                                </div>
-                            </div>
-                            <div class="flexo">
-                                <input type="search" class="search-bar" id="myInput5" onkeyup="myFunction5()" placeholder="Busca por E-mail." title="Escribe" name="search">
-                                <div class="span2 ico5" >
-                                    <i class="fa fa-at"></i>
                                 </div>
                             </div>
                         </ul>
@@ -341,7 +337,25 @@
                                 <!--INICIO DE REDIRECCIÓN A DETALLES-->
                                 <form action="/Glucky/Doctores/PacienteDoctor" method="post">
                                 <td scope="row" data-label="Nombre"><b><%=pacientes[i].nom_pers%> <%=pacientes[i].apellidos_pers%></b></td>
-                                <td data-label="Estado"><div class="estadodos">Medio</div></td>
+                                <td data-label="Estado">
+
+                                    <!-- Crisis hipertensiva -->
+                                    <div class="estadodos" style="background-color: rgb(216, 18, 18);"">Crisis hipertensiva</div>
+                                    <!-- Crisis hipertensiva -->
+
+                                    <!--  Hipotensión -->
+                                    <div class="estadodos" style="background-color: rgb(225, 236, 126);">Hipotensión</div>
+                                    <!--  Hipotensión -->
+
+                                    <!-- Normal -->
+                                    <div class="estadodos" style="background-color: rgb(48, 214, 98);">Normal</div>
+                                     <!-- Normal -->
+
+                                     <!-- Prehipertensión -->
+                                    <div class="estadodos" style="background-color: rgb(250, 237, 62);">Prehipertensión</div>
+                                    <!-- Prehipertensión -->
+                                    
+                                </td>
                                 <td data-label="Tipo-diabetes">
                                     <div class="<% if (pacientes[i].nom_tipdiabts === 'tipo 1') { %>
                                                  Tipo-1
