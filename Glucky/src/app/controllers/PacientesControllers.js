@@ -492,6 +492,7 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
     let hora = horaActual.toLocaleTimeString();
     const tipoDia = req.session.tipodia;
     let Estado = '';
+    let Descripcion_Estado='';
 
 switch (tipoDia) {
   case 'tipo 1':
@@ -501,42 +502,58 @@ switch (tipoDia) {
     if (sistolica >= 80 && sistolica <= 120 && diastolica >= 60 && diastolica <= 80) {
       if (glucosa >= glucosaMinima && glucosa <= glucosaMaxima) {
         Estado = 'Normal';
+        Descripcion_Estado='Todos tus niveles se encuentran en rangos normales'
       } else if (glucosa < glucosaMinima) {
-        Estado = 'Peligro glucosa baja';
+        Estado = 'Alerta';
+        Descripcion_Estado='niveles bajos de glucosa';
       } else if (glucosa > glucosaMaxima && glucosa < 400) {
-        Estado = 'Peligro glucosa alta';
+        Estado = 'Alerta';
+        Descripcion_Estado='niveles altos de glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro glucosa muy alta';
+        Estado = 'Peligro';
+        Descripcion_Estado='niveles muy altos de glucosa';
       }
     } else if (sistolica < 80 || diastolica < 60) {
       if (glucosa >= glucosaMinima && glucosa <= glucosaMaxima) {
-        Estado = 'Peligro niveles bajos de Presion';
+        Estado = 'Alerta';
+        Descripcion_Estado = 'niveles bajos de presion';
       } else if (glucosa < glucosaMinima) {
-        Estado = 'Peligro niveles bajos de Presion y glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles bajos de Presion y glucosa';
       } else if (glucosa > glucosaMaxima && glucosa < 400) {
-        Estado = 'Peligro niveles bajos de Presion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles bajos de Presion y altos de glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles bajos de Presion y muy alta glucosa';
+        Estado = 'Peligro';
+        Estado = 'niveles bajos de Presion y muy altos de glucosa';
       }
     } else if ((sistolica > 120 && sistolica <= 180) || (diastolica > 80 && diastolica <= 110)) {
       if (glucosa >= glucosaMinima && glucosa <= glucosaMaxima) {
-        Estado = 'Peligro niveles altos de presion';
+        Estado = 'Alerta';
+        Descripcion_Estado = 'niveles altos de presion';
       } else if (glucosa < glucosaMinima) {
-        Estado = 'Peligro niveles altos de presion y baja glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y bajos de glucosa';
       } else if (glucosa > glucosaMaxima && glucosa < 400) {
-        Estado = 'Peligro niveles altos de presion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles altos de presion y muy alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y muy altos de glucosa';
       }
     } else if (sistolica > 180 || diastolica > 110) {
       if (glucosa >= glucosaMinima && glucosa <= glucosaMaxima) {
-        Estado = 'Peligro niveles hipertencion';
+        Estado = 'Alerta'
+        Descripcion_Estado = 'niveles muy altos de presion';
       } else if (glucosa < glucosaMinima) {
-        Estado = 'Peligro niveles hipertencion y baja glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles muy altos de Presion y bajos de glucosa';
       } else if (glucosa > glucosaMaxima && glucosa < 400) {
-        Estado = 'Peligro niveles hipertencion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles muy altos de Presion y glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles hipertencion y muy alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y muy altos de glucosa';
       }
     }
     break;
@@ -548,42 +565,58 @@ switch (tipoDia) {
     if (sistolica >= 80 && sistolica <= 120 && diastolica >= 60 && diastolica <= 80) {
       if (glucosa >= glucosaMinimaTipo2 && glucosa <= glucosaMaximaTipo2) {
         Estado = 'Normal';
+        Descripcion_Estado='Todos tus niveles se encuentran en rangos normales'
       } else if (glucosa < glucosaMinimaTipo2) {
-        Estado = 'Peligro glucosa baja';
+        Estado = 'Alerta';
+        Descripcion_Estado='niveles bajos de glucosa';
       } else if (glucosa > glucosaMaximaTipo2 && glucosa < 400) {
-        Estado = 'Peligro glucosa alta';
+        Estado = 'Alerta';
+        Descripcion_Estado='niveles altos de glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro glucosa muy alta';
+        Estado = 'Peligro';
+        Descripcion_Estado='niveles muy altos de glucosa';
       }
     } else if (sistolica < 80 || diastolica < 60) {
       if (glucosa >= glucosaMinimaTipo2 && glucosa <= glucosaMaximaTipo2) {
-        Estado = 'Peligro niveles bajos de Presion';
+        Estado = 'Alerta';
+        Descripcion_Estado = 'niveles bajos de presion';
       } else if (glucosa < glucosaMinimaTipo2) {
-        Estado = 'Peligro niveles bajos de Presion y glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles bajos de Presion y glucosa';
       } else if (glucosa > glucosaMaximaTipo2 && glucosa < 400) {
-        Estado = 'Peligro niveles bajos de Presion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles bajos de Presion y altos de glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles bajos de Presion y muy alta glucosa';
+        Estado = 'Peligro';
+        Estado = 'niveles bajos de Presion y muy altos de glucosa';
       }
     } else if ((sistolica > 120 && sistolica <= 180) || (diastolica > 80 && diastolica <= 110)) {
       if (glucosa >= glucosaMinimaTipo2 && glucosa <= glucosaMaximaTipo2) {
-        Estado = 'Peligro niveles altos de presion';
+        Estado = 'Alerta';
+        Descripcion_Estado = 'niveles altos de presion';
       } else if (glucosa < glucosaMinimaTipo2) {
-        Estado = 'Peligro niveles altos de presion y baja glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y bajos de glucosa';
       } else if (glucosa > glucosaMaximaTipo2 && glucosa < 400) {
-        Estado = 'Peligro niveles altos de presion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles hipertencion y muy alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y muy altos de glucosa';
       }
     } else if (sistolica > 180 || diastolica > 110) {
       if (glucosa >= glucosaMinimaTipo2 && glucosa <= glucosaMaximaTipo2) {
-        Estado = 'Peligro niveles hipertencion';
+        Estado = 'Alerta'
+        Descripcion_Estado = 'niveles muy altos de presion';
       } else if (glucosa < glucosaMinimaTipo2) {
-        Estado = 'Peligro niveles hipertencion y baja glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles muy altos de Presion y bajos de glucosa';
       } else if (glucosa > glucosaMaximaTipo2 && glucosa < 400) {
-        Estado = 'Peligro niveles hipertencion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles muy altos de Presion y glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles hipertencion y muy alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y muy altos de glucosa';
       }
     }
     break;
@@ -595,48 +628,64 @@ switch (tipoDia) {
     if (sistolica >= 80 && sistolica <= 120 && diastolica >= 60 && diastolica <= 80) {
       if (glucosa >= glucosaMinimaGestacional && glucosa <= glucosaMaximaGestacional) {
         Estado = 'Normal';
+        Descripcion_Estado='Todos tus niveles se encuentran en rangos normales'
       } else if (glucosa < glucosaMinimaGestacional) {
-        Estado = 'Peligro glucosa baja';
+        Estado = 'Alerta';
+        Descripcion_Estado='niveles bajos de glucosa';
       } else if (glucosa > glucosaMaximaGestacional && glucosa < 400) {
-        Estado = 'Peligro glucosa alta';
+        Estado = 'Alerta';
+        Descripcion_Estado='niveles altos de glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro glucosa muy alta';
+        Estado = 'Peligro';
+        Descripcion_Estado='niveles muy altos de glucosa';
       }
     } else if (sistolica < 80 || diastolica < 60) {
       if (glucosa >= glucosaMinimaGestacional && glucosa <= glucosaMaximaGestacional) {
-        Estado = 'Peligro niveles bajos de Presion';
+        Estado = 'Alerta';
+        Descripcion_Estado = 'niveles bajos de presion';
       } else if (glucosa < glucosaMinimaGestacional) {
-        Estado = 'Peligro niveles bajos de Presion y glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles bajos de Presion y glucosa';
       } else if (glucosa > glucosaMaximaGestacional && glucosa < 400) {
-        Estado = 'Peligro niveles bajos de Presion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles bajos de Presion y altos de glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles bajos de Presion y muy alta glucosa';
+        Estado = 'Peligro';
+        Estado = 'niveles bajos de Presion y muy altos de glucosa';
       }
     } else if ((sistolica > 120 && sistolica <= 180) || (diastolica > 80 && diastolica <= 110)) {
       if (glucosa >= glucosaMinimaGestacional && glucosa <= glucosaMaximaGestacional) {
-        Estado = 'Peligro niveles altos de presion';
+        Estado = 'Alerta';
+        Descripcion_Estado = 'niveles altos de presion';
       } else if (glucosa < glucosaMinimaGestacional) {
-        Estado = 'Peligro niveles altos de presion y baja glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y bajos de glucosa';
       } else if (glucosa > glucosaMaximaGestacional && glucosa < 400) {
-        Estado = 'Peligro niveles altos de presion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles altos de presion y muy alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y muy altos de glucosa';
       }
     } else if (sistolica > 180 || diastolica > 110) {
       if (glucosa >= glucosaMinimaGestacional && glucosa <= glucosaMaximaGestacional) {
-        Estado = 'Peligro niveles hipertencion';
+        Estado = 'Alerta'
+        Descripcion_Estado = 'niveles muy altos de presion';
       } else if (glucosa < glucosaMinimaGestacional) {
-        Estado = 'Peligro niveles hipertencion y baja glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles muy altos de Presion y bajos de glucosa';
       } else if (glucosa > glucosaMaximaGestacional && glucosa < 400) {
-        Estado = 'Peligro niveles hipertencion y alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles muy altos de Presion y glucosa';
       } else if (glucosa >= 400) {
-        Estado = 'Peligro niveles hipertencion y muy alta glucosa';
+        Estado = 'Peligro';
+        Descripcion_Estado = 'niveles altos de Presion y muy altos de glucosa';
       }
     }
     break;
 }
 
-    querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,Estado,(error,registro)=>{
+    querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,Estado,Descripcion_Estado,(error,registro)=>{
       if(registro){
         req.session.regis='Tu registro de niveles fue agregado';
         res.redirect("/Glucky/Pacientes/Dashboard");

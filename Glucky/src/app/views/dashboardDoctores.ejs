@@ -222,7 +222,16 @@
                         <div class="box transparent" >
                             <div class="right-side">
                               <div class="box-topic">Urgente</div>
-                              <div class="number">11.00</div>
+                              <%if(pacientes.length!==0){var urgente=0;%>
+                                <%for(let i =0;i<pacientes.length;i++){%>
+                                    <%if(pacientes[i].estado==='Peligro'){%>
+                                        <%urgente = urgente+1%>
+                                    <%}%>
+                                <%}%>
+                                <div class="number"><%=urgente%></div>
+                              <%}else{%>
+                              <div class="number">0</div>
+                              <%}%>
                               <div class="indicator">
                                 <i class='bx bx-down-arrow-alt down'></i>
                                 <span class="text">Pacientes urgentes</span>
@@ -338,22 +347,23 @@
                                 <form action="/Glucky/Doctores/PacienteDoctor" method="post">
                                 <td scope="row" data-label="Nombre"><b><%=pacientes[i].nom_pers%> <%=pacientes[i].apellidos_pers%></b></td>
                                 <td data-label="Estado">
-
+                                    <%if(pacientes[i].estado==='Peligro'){%>
                                     <!-- Crisis hipertensiva -->
-                                    <div class="estadodos" style="background-color: rgb(216, 18, 18);"">Crisis hipertensiva</div>
+                                    <div class="estadodos" style="background-color: rgb(216, 18, 18);"">Peligro</div>
                                     <!-- Crisis hipertensiva -->
-
-                                    <!--  Hipotensión -->
-                                    <div class="estadodos" style="background-color: rgb(225, 236, 126);">Hipotensión</div>
-                                    <!--  Hipotensión -->
-
+                                    <%}else if(pacientes[i].estado==='Normal'){%>
                                     <!-- Normal -->
                                     <div class="estadodos" style="background-color: rgb(48, 214, 98);">Normal</div>
                                      <!-- Normal -->
-
+                                    <%}else if(pacientes[i].estado==='Alerta'){%>
                                      <!-- Prehipertensión -->
-                                    <div class="estadodos" style="background-color: rgb(250, 237, 62);">Prehipertensión</div>
+                                    <div class="estadodos" style="background-color: rgb(250, 237, 62);">Alerta</div>
                                     <!-- Prehipertensión -->
+                                    <%}else{%>
+                                        <!--  Hipotensión -->
+                                    <div class="estadodos" style="background-color: rgb(225, 236, 126);">Sin registros</div>
+                                    <!--  Hipotensión -->
+                                    <%}%>
                                     
                                 </td>
                                 <td data-label="Tipo-diabetes">

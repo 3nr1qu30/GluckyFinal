@@ -446,6 +446,7 @@ db.buscarDatosmedicos=(curp,callback)=>{
     callback(error,null);
   }
   else{
+    console.log(datosmedicos)
     callback(null,datosmedicos);
   }
 });
@@ -750,8 +751,8 @@ db.editarMedicamento=(idMed,nomMed,callback)=>{
 }
 
 
-db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,Estado,callback)=>{
-  con.query(`CALL insertarDatosMedicos ('${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}','${Estado}')`,(error,registro)=>{
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,Estado,Estado_Descripcion,callback)=>{
+  con.query(`CALL insertarDatosMedicos ('${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}','${Estado}','${Estado_Descripcion}')`,(error,registro)=>{
     if(error){
       console.log('Error al insertar meición: ',error);
       callback(error,null);

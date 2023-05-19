@@ -270,8 +270,15 @@ Controllers.Desvincular = (req,res,next)=>{
                         //inicio de la séptima consulta de query 
                         querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
                           if(recetaverTodas){
-                            res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas});
-                          }
+                            querys.buscarDatosmedicos(CURPform,(error8,datosmedicos)=>{
+                              if(datosmedicos){
+                                res.render('pacienteDoctor',{citas:citasver,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,datosmedicos,format12HourTime,formatDate});
+                              }
+                              else{
+                                console.log(error8)
+                              }
+                            })
+                            }
                           else{
                             console.log(error7);
                           }
@@ -621,7 +628,7 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     });
   };
 
-  Controllers.PacienteDoctorGet = (req,res,next)=>{
+  Controllers.PacienteDoctorGet = (req, res, next) => {
     const Cedula = req.session.cedula;
     const CURPform = req.session.paciente;
     const elimDiet = req.session.elimDiet;
@@ -634,77 +641,87 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     delete req.session.agregCita;
     delete req.session.editCita;
     delete req.session.citaElim;
-    querys.verPacienteIndividual(Cedula,CURPform,(error,ver)=>{
-      if(ver){
-      //inicio de la segunda consulta de query 
-      querys.verCitasPacienteIndividual(CURPform,(error2,citasver)=>{
-        if(citasver){
-          //inicio de la tercera consulta de query 
-          querys.VerDatoDoctor(Cedula,(error3,doctorver)=>{
-            if(doctorver){
-              //inicio de la cuarta consulta de query 
-              querys.verDietaBase(CURPform,(error4,dietaver)=>{
-                if(dietaver){
-                //inicio de la quinta consulta de query 
-                querys.verDietasCompletas(CURPform,Cedula,(error5,dietasverTodas)=>{
-                  if(dietasverTodas){
-                    //inicio de la sexta consulta de query 
-                    querys.verTratamientoBase(CURPform,(error6,recetaver)=>{
-                      if(recetaver){
-                        //inicio de la séptima consulta de query 
-                        querys.verTratamientosCompletas(CURPform,Cedula,(error7,recetaverTodas)=>{
-                          if(recetaverTodas){
-                            querys.buscarDatosmedicos(CURPform,(error,datosmedicos)=>{
-                              if(datosmedicos){
-                                res.render('pacienteDoctor',{citas:citasver,agregCita,editCita,citaElim,datos:ver,doctor:doctorver, dietas:dietaver, dietasverTodas :dietasverTodas, Cedula:Cedula, recetaver:recetaver, recetaverTodas:recetaverTodas,elimDiet,elimTrat,datosmedicos,format12HourTime,formatDate});
-                              }
-                              else{
-                                console.log(error);
+    querys.verPacienteIndividual(Cedula, CURPform, (error, ver) => {
+      if (ver) {
+        //inicio de la segunda consulta de query 
+        querys.verCitasPacienteIndividual(CURPform, (error2, citasver) => {
+          if (citasver) {
+            //inicio de la tercera consulta de query 
+            querys.VerDatoDoctor(Cedula, (error3, doctorver) => {
+              if (doctorver) {
+                //inicio de la cuarta consulta de query 
+                querys.verDietaBase(CURPform, (error4, dietaver) => {
+                  if (dietaver) {
+                    //inicio de la quinta consulta de query 
+                    querys.verDietasCompletas(CURPform, Cedula, (error5, dietasverTodas) => {
+                      if (dietasverTodas) {
+                        //inicio de la sexta consulta de query 
+                        querys.verTratamientoBase(CURPform, (error6, recetaver) => {
+                          if (recetaver) {
+                            //inicio de la séptima consulta de query 
+                            querys.verTratamientosCompletas(CURPform, Cedula, (error7, recetaverTodas) => {
+                              if (recetaverTodas) {
+                                querys.buscarDatosmedicos(CURPform, (error8, datosmedicos) => {
+                                  if (datosmedicos) {
+
+                                    res.render('pacienteDoctor', {
+                                      datosmedicos,
+                                      citas: citasver,
+                                      agregCita,
+                                      editCita,
+                                      citaElim,
+                                      datos: ver,
+                                      doctor: doctorver,
+                                      dietas: dietaver,
+                                      dietasverTodas: dietasverTodas,
+                                      Cedula: Cedula,
+                                      recetaver: recetaver,
+                                      recetaverTodas: recetaverTodas,
+                                      elimDiet,
+                                      elimTrat,
+                                      format12HourTime,
+                                      formatDate
+                                    });
+                                  } else {
+                                    console.log(error8);
+                                  }
+                                });
+                              } else {
+                                console.log(error7);
                               }
                             });
+                            //final de la séptima consulta de query
+                          } else {
+                            console.log(error6);
                           }
-                          else{
-                            console.log(error7);
-                          }
-                        }); 
-                        //final de la séptima consulta de query
+                        });
+                        //final de la sexta consulta de query
+                      } else {
+                        console.log(error5);
                       }
-                      else{
-                        console.log(error6);
-                      }
-                    }); 
-                    //final de la sexta consulta de query
-                    
+                    });
+                    //final de la quinta consulta de query
+                  } else {
+                    console.log(error4);
                   }
-                  else{
-                    console.log(error5);
-                  }
-                }); 
-                //final de la quinta consulta de query
+                });
+                //final de la cuarta consulta de query
+              } else {
+                console.log(error3);
               }
-              else{
-                console.log(error4);
-                }
-              }); 
-              //final de la cuarta consulta de query
-            }
-            else{
-              console.log(error3);
-            }
-          }); 
-          //final de la tercera consulta de query
-        }
-        else{
-          console.log(error2);
-        }
-      }); 
-      //final de la segunda consulta de query
-      }
-      else{
+            });
+            //final de la tercera consulta de query
+          } else {
+            console.log(error2);
+          }
+        });
+        //final de la segunda consulta de query
+      } else {
         console.log(error);
       }
-    }); 
+    });
   };
+  
 //Alerta de cita agregada 100%
   Controllers.PacienteDoctorCitas = (req,res,next)=>{
     const{CurpForm} =req.body;
