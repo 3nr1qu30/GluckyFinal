@@ -290,40 +290,40 @@ listadietas.addEventListener('change', (event) => {
   const descrip = checkbox.parentNode.querySelector('input[type="submit"]');
   const texts = checkbox.parentNode.querySelectorAll('.textsO');
   const cantidad = checkbox.parentNode.querySelectorAll('.cantidad');
-  const closeButton = checkbox.parentNode.querySelector('.cerrar-seccion');
 
   if (checkbox.checked) {
     // Mostrar el input de tipo descrip
     descrip.style.display = 'inline-block';
     descrip.disabled = false; // Desbloquear el input
-    closeButton.style.display = 'inline-block'; // Mostrar el botón de cerrar
-  } else {
-    // Ocultar el input de tipo descrip
-    descrip.disabled = false; // Bloquear el input
-    closeButton.style.display = 'none'; // Ocultar el botón de cerrar
-  }
 
-  // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
-  for (let i = 0; i < texts.length; i++) {
-    if (checkbox.checked) {
+    // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
+    for (let i = 0; i < texts.length; i++) {
       texts[i].style.display = 'block';
       texts[i].disabled = false; // Desbloquear el texto
-    } else {
-      texts[i].style.display = 'none';
-      texts[i].disabled = true; // Bloquear el texto
     }
-  }
 
-  // Agregar propiedades CSS al div con class .cantidad
-  for (let i = 0; i < cantidad.length; i++) {
-    if (checkbox.checked) {
+    // Agregar propiedades CSS al div con class .cantidad
+    for (let i = 0; i < cantidad.length; i++) {
       cantidad[i].style.display = 'block';
       cantidad[i].disabled = false; // Desbloquear el campo de cantidad
       cantidad[i].style.border = '1px solid #ccc'; // Agregar borde al campo de cantidad
       cantidad[i].style.borderRadius = '3px'; // Agregar borde redondeado al campo de cantidad
       cantidad[i].style.padding = '5px'; // Agregar espaciado interno al campo de cantidad
       cantidad[i].style.marginBottom = '10px'; // Agregar margen inferior al campo de cantidad
-    } else {
+    }
+  } else {
+    // Ocultar el input de tipo descrip
+    descrip.style.display = 'none';
+    descrip.disabled = true; // Bloquear el input
+
+    // Iterar sobre la colección de nodos texts y aplicar las propiedades style y disabled a cada elemento
+    for (let i = 0; i < texts.length; i++) {
+      texts[i].style.display = 'none';
+      texts[i].disabled = true; // Bloquear el texto
+    }
+
+    // Agregar propiedades CSS al div con class .cantidad
+    for (let i = 0; i < cantidad.length; i++) {
       cantidad[i].style.display = 'none';
       cantidad[i].disabled = true; // Bloquear el campo de cantidad
     }
@@ -333,46 +333,21 @@ listadietas.addEventListener('change', (event) => {
 document.addEventListener('click', (event) => {
   const select = event.target.closest('.textsO');
   const input = event.target.closest('.cantidad');
-  const closeButton = event.target.closest('.cerrar-seccion');
   
-  if ((select && !isSelectClicked) || (input && !isInputClicked) || closeButton) {
-    const checkbox = closeButton.parentNode.querySelector('input[type="checkbox"]');
-    checkbox.checked = false; // Desactivar el checkbox
-    
-    const descrip = checkbox.parentNode.querySelector('input[type="submit"]');
-    const texts = checkbox.parentNode.querySelectorAll('.textsO');
-    const cantidad = checkbox.parentNode.querySelectorAll('.cantidad');
-    
-    // Ocultar el input de tipo descrip
-    descrip.style.display = 'none';
-    closeButton.style.display = 'none';
-    descrip.disabled = true; // Bloquear el input
-    
-    // Ocultar los elementos de select, input number y input submit
-    for (let i = 0; i < texts.length; i++) {
-      texts[i].style.display = 'none';
-      texts[i].disabled = true; // Bloquear el texto
-    }
-    
-    for (let i = 0; i < cantidad.length; i++) {
-      cantidad[i].style.display = 'none';
-      cantidad[i].disabled = true; // Bloquear el campo de cantidad
-    }
-    
+  if ((select && !isSelectClicked) || (input && !isInputClicked)) {
     event.preventDefault();
     event.stopPropagation();
   }
-  
   isSelectClicked = false;
   isInputClicked = false;
 });
-
-searchInputdietas.addEventListener('input', () => {
-  const searchText = searchInputdietas.value.toLowerCase();
-  listadietas.querySelectorAll('.checkbox').forEach((checkbox) => {
-    checkbox.style.display = checkbox.querySelector('label').innerText.toLowerCase().includes(searchText) ? 'block' : 'none';
-  });
-});
+      
+      searchInputdietas.addEventListener('input', () => {
+        const searchText =  searchInputdietas.value.toLowerCase();
+        listadietas.querySelectorAll('.checkbox').forEach((checkbox) => {
+          checkbox.style.display = checkbox.querySelector('label').innerText.toLowerCase().includes(searchText) ? 'block' : 'none';
+        });
+      });
 ///fin del script para los botones de listadietas
 
 
@@ -569,9 +544,3 @@ searchInputdietas.addEventListener('input', () => {
           
         });
       });
-
-    
-
-
-      
-     

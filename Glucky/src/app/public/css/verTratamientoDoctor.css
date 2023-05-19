@@ -3530,6 +3530,41 @@ label{
   vertical-align: top;
 }
 
+.cerrar-seccion {
+  display: none;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 2px rgb(214, 103, 103);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  transform: translateY(3px);
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: white;
+  margin-bottom: 7px;
+  width: 80%;
+  height: 55px;
+  font-size: 10px;
+  resize: vertical;
+  max-height: 50px;
+  vertical-align: top;
+  display: none; 
+  background-color: #F71652; 
+  width: 70px;
+  height: 27px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  width: 100%;
+  cursor:pointer;
+}
+
+
+
+
 
 .descrip:hover {
   cursor: pointer;
