@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+      const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
+      const datosmedicoso = <%- JSON.stringify(datosmedicos) %>;
+    </script>
     <title>Ver paciente</title> 
 
         <!--====== Favicon Icon ======-->
@@ -31,36 +35,36 @@
         </div>
 
         <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="/Glucky/Doctores/Dashboard">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dashboard</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Dashboard">
-                    <i class="uil uil-chart"></i>
-                    <span class="link-name">Pacientes</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Chat">
-                    <i class="uil uil-chat"></i>
-                    <span class="link-name">Chats</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Peticiones">
-                    <i class="uil uil-plus-circle"></i>
-                    <span class="link-name">Peticiones</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Citas">
-                    <i class="uil uil-schedule"></i>
-                    <span class="link-name">Citas</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Alimentos">
-                    <i class="uil uil-restaurant"></i>
-                    <span class="link-name">Alimentos</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Medicamentos">
-                    <i class="uil uil-capsule"></i>
-                    <span class="link-name">Medicamentos</span>
-                </a></li>
-            </ul>
+          <ul class="nav-links">
+              <li><a href="/Glucky/Doctores/Dashboard">
+                  <i class="uil uil-estate"></i>
+                  <span class="link-name">Dashboard</span>
+              </a></li>
+              <li><a href="#Pacientes">
+                  <i class="uil uil-chart"></i>
+                  <span class="link-name">Pacientes</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Chat">
+                  <i class="uil uil-chat"></i>
+                  <span class="link-name">Chats</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Peticiones">
+                  <i class="uil uil-plus-circle"></i>
+                  <span class="link-name">Peticiones</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Citas">
+                  <i class="uil uil-schedule"></i>
+                  <span class="link-name">Citas</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Alimentos">
+                  <i class="uil uil-restaurant"></i>
+                  <span class="link-name">Alimentos</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Medicamentos">
+                  <i class="uil uil-capsule"></i>
+                  <span class="link-name">Medicamentos</span>
+              </a></li>
+          </ul>
             
             <ul class="logout-mode">
                 <li><a href="/Glucky/IniciodeSesion">
@@ -791,15 +795,13 @@
                           <th class="nombrecoso1"> Glucosa</th>
                           <th style="font-size: small;">niveles registrados</th>
                         </tr>
-
+                        <%if(datosmedicos.length!==0){%>
+                          <%for(let i=0;i<datosmedicos.length;i++){%>
                         <tr class="day">
-                          <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
-                          <td data-label="Registro 1" >120/80 a las 19:31</td>
-                          <td data-label="Registro 2" >130/80 a las 18:32</td>
-                          <td data-label="Registro 3" >20/80 a las 17:32</td>
-                          <td data-label="Registro 4" >220/80 a las 16:45</td>
+                          <td data-label="Registro <%=i+1%>" > nivel(<%=datosmedicos[i].gluc_datmed%>) el día <%=formatDate(datosmedicos[i].date_datmed)%> a las <%=format12HourTime(datosmedicos[i].hpur_datmed)%></td>
                         </tr>
-                       
+                          <%}%>
+                        <%}%>
                       </table>
                   
                 </div>
@@ -809,13 +811,13 @@
                           <th class="nombrecoso2"> Presión</th>
                           <th style="font-size: small;">niveles registrados</th>
                         </tr>
+                        <%if(datosmedicos.length!==0){%>
+                          <%for(let i=0;i<datosmedicos.length;i++){%>
                         <tr class="day">
-                          <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
-                          <td data-label="Registro 1" >120/80 a las 19:31</td>
-                          <td data-label="Registro 2" >130/80 a las 18:32</td>
-                          <td data-label="Registro 3" >20/80 a las 17:32</td>
-                          <td data-label="Registro 4" >220/80 a las 16:45</td>
+                          <td data-label="Registro <%=i+1%>" > nivel(<%=datosmedicos[i].presis_datmed%>/<%=datosmedicos[i].predia_datmed%>) el día <%=formatDate(datosmedicos[i].date_datmed)%> a las <%=format12HourTime(datosmedicos[i].hpur_datmed)%></td>
                         </tr>
+                          <%}%>
+                        <%}%>
                         
                       </table>
                 </div>
