@@ -337,7 +337,25 @@
                                 <!--INICIO DE REDIRECCIÓN A DETALLES-->
                                 <form action="/Glucky/Doctores/PacienteDoctor" method="post">
                                 <td scope="row" data-label="Nombre"><b><%=pacientes[i].nom_pers%> <%=pacientes[i].apellidos_pers%></b></td>
-                                <td data-label="Estado"><div class="estadodos">Medio</div></td>
+                                <td data-label="Estado">
+
+                                    <!-- Crisis hipertensiva -->
+                                    <div class="estadodos" style="background-color: rgb(216, 18, 18);"">Crisis hipertensiva</div>
+                                    <!-- Crisis hipertensiva -->
+
+                                    <!--  Hipotensión -->
+                                    <div class="estadodos" style="background-color: rgb(225, 236, 126);">Hipotensión</div>
+                                    <!--  Hipotensión -->
+
+                                    <!-- Normal -->
+                                    <div class="estadodos" style="background-color: rgb(48, 214, 98);">Normal</div>
+                                     <!-- Normal -->
+
+                                     <!-- Prehipertensión -->
+                                    <div class="estadodos" style="background-color: rgb(250, 237, 62);">Prehipertensión</div>
+                                    <!-- Prehipertensión -->
+                                    
+                                </td>
                                 <td data-label="Tipo-diabetes">
                                     <div class="<% if (pacientes[i].nom_tipdiabts === 'tipo 1') { %>
                                                  Tipo-1
