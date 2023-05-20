@@ -2616,17 +2616,14 @@ input::-webkit-inner-spin-button {
       border-radius: 10px;
       font-size: 16px;
       line-height: 1.5;
-      
+      word-break: break-word;
     }
     
     .received {
-
       background-color: #5585b4;
       color: white;
       align-self: flex-start;
       border-top-left-radius: 0px;
-     
-     
     }
     
     .sent {
@@ -2634,8 +2631,10 @@ input::-webkit-inner-spin-button {
       color: black;
       align-self: flex-end;
       border-top-right-radius: 0px;
+      display: block;
+      max-width: 90%;
+      height: auto;
     }
-    
     .time {
       display: block;
       font-size: 12px;
@@ -2914,6 +2913,7 @@ input::-webkit-inner-spin-button {
   cursor:pointer;
   padding: 10px;
   border-radius: 123px !important;
+  background-color: #0b3cc1;
 }
 
 .Nombre{
@@ -2932,6 +2932,7 @@ input::-webkit-inner-spin-button {
   transition: background-color 0.3s ease-in-out;
   margin-top: 0px !important;
   height: auto !important;
+  z-index: 999999;
 }
 
 .personasEl.badbuny:hover,
@@ -2943,6 +2944,14 @@ input::-webkit-inner-spin-button {
   border-radius: 9px !important;
 }
 
+.personasEl.badbuny {
+  pointer-events: auto;
+}
+
+.personasEl.badbuny .cont h4,
+.personasEl.badbuny .cont .mensajesCant {
+  pointer-events: none;
+}
 
 .sss{
   color: #000000;

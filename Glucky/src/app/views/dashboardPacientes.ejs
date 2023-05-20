@@ -68,9 +68,9 @@
                   </a></li>
   
                   <li class="mode">
-                      <a href="/Glucky/Pacientes/EditarCuenta">
-                          <i class="uil uil-x"></i>
-                      <span class="link-name">Ajustes de cuenta</span>
+                    <a href="/Glucky/Pacientes/EditarCuenta">
+                        <i class="uil uil-user-circle"></i>
+                    <span class="link-name">Ajustes de cuenta</span>
                   </a>
   
                   <div class="mode-toggle">
@@ -433,17 +433,62 @@
                         <div class="Accion2">
                           <h3><i class="fas fa-circle"></i> Estado</h3>
                           <div class="estadoInfo">
-                           
-                            <!-- Contenido niveles del paciente -->
-                            <div class="cuadrado rojo">
+                            
+                           <%if(typeof datosPa !== 'undefined' && datosPa.length>0){%>
+                            <%if(datosPa[0].estado==='Normal'){%>
+                            <!-- Normal -->
+                            <div class="cuadrado" style="background-color: rgb(48, 214, 98);">
                               <i class="fas fa-exclamation"></i>
                               </div>
                               <div class="color">
-                              <p>Tu estado es de color Rojo</p>
-                              <p class="EST">Rojo es mal</p>
+                              <p>Tu estado es <%=datosPa[0].estado%></p>
+                              <p class="EST" style="font-size: 9px;">Cuentas con este estado debido a que tienes <%=datosPa[0].estado_descripcion%></p>
                               </div>
-                             <!--Fin Contenido niveles del paciente -->
-  
+                             <!-- Normal -->
+                            <%}else if(datosPa[0].estado==='Alerta'){%>
+                              <!-- Prehipertensión -->
+                            <div class="cuadrado" style="background-color: rgb(250, 237, 62);">
+                              <i class="fas fa-exclamation"></i>
+                              </div>
+                              <div class="color">
+                                <p>Tu estado es <%=datosPa[0].estado%></p>
+                                <p class="EST">Cuentas con este estado debido a que tienes <%=datosPa[0].estado_descripcion%></p>
+                                </div>
+                             <!-- Prehipertensión -->
+                            <%}else if(datosPa[0].estado==='Peligro'){%>
+                            <!--  Crisis hipertensiva -->
+                            <div class="cuadrado" style="background-color: rgb(216, 18, 18);">
+                              <i class="fas fa-exclamation"></i>
+                              </div>
+                              <div class="color">
+                                <p>Tu estado es <%=datosPa[0].estado%></p>
+                                <p class="EST" style="margin-bottom: 20px; background-color: rgba(127, 255, 212, 0); font-size: 9px;">Cuentas con este estado debido a que tienes <%=datosPa[0].estado_descripcion%></p>
+                                </div>
+                                <br>
+                             <!-- Crisis hipertensiva -->
+                            <%} else{%>
+
+                                  <!--  Hipotensión -->
+                            <div class="cuadrado" style="background-color: rgba(0, 0, 0, 0.89); box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;">
+                              <i class="fas fa-sad-cry"></i>
+                              </div>
+                              <div class="color">
+                              <p>Aún no tienes estado</p>
+                              <p class="EST">Debido a que no has registrado tus niveles de glucosa y presión</p>
+                              </div>
+                             <!-- Hipotensión -->
+                              <%}%>
+                              <%}else{%>
+                                <!--  Hipotensión -->
+                            <div class="cuadrado" style="background-color: rgb(255, 255, 255); color: black;">
+                              <i class="fas fa-exclamation"></i>
+                              </div>
+                              <div class="color">
+                              <p>Tu estado es indefinido</p>
+                              <p class="EST">Debido a que no has registrado tus niveles de glucosa y presión</p>
+                              </div>
+                             <!-- Hipotensión -->
+                              <%}%>
   
                           </div>
                           <div class="estadoInfo">

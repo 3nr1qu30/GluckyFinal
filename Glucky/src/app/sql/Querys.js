@@ -292,7 +292,7 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
 
  
  db.verPacienteIndividual = (Cedula,CURPform,callback)=>{
-  con.query(`SELECT * FROM vdoctorpaciente where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
+  con.query(`SELECT * FROM vdoctorpaciente natural join persona where cedula_med ='${Cedula}' AND curp_pacien = '${CURPform}'`, (error,ver)=>{
    if(error){
       console.error('No existe', error);
    }else{
@@ -446,6 +446,7 @@ db.buscarDatosmedicos=(curp,callback)=>{
     callback(error,null);
   }
   else{
+    console.log(datosmedicos)
     callback(null,datosmedicos);
   }
 });
@@ -750,8 +751,8 @@ db.editarMedicamento=(idMed,nomMed,callback)=>{
 }
 
 
-db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,callback)=>{
-  con.query(`INSERT INTO datosmedicos VALUES(default,'${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}')`,(error,registro)=>{
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,Estado,Estado_Descripcion,callback)=>{
+  con.query(`CALL insertarDatosMedicos ('${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}','${Estado}','${Estado_Descripcion}')`,(error,registro)=>{
     if(error){
       console.log('Error al insertar meición: ',error);
       callback(error,null);

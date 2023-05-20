@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Glucky recuperar contraseña</title>
+
+
+     <!-- Primary Meta Tags -->
+<meta name="title" content="Glucky Principal">
+<meta name="description" content="Gratuita - Aplicación para gestionar tu diabetes de manera inteligente">
+
+    <!--====== Favicon Icon ======-->
+      <!--====== Favicon Icon ======-->
+      <link
+      rel="shortcut icon"
+      href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
+      type="image/svg"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- ===== All CSS files ===== -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/animate.css" />
+    <link rel="stylesheet" href="/css/lineicons.css" />
+    <link rel="stylesheet" href="/css/ud-styles.css" />
+    <link rel="stylesheet" href="/css/registro.css" />
+  </head>
+  <body>
+  <!-- ====== Header Start ====== -->
+  <header class="ud-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="/Glucky/">
+              <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="Logo" />
+            </a>
+            <button class="navbar-toggler">
+              <span class="toggler-icon"> </span>
+              <span class="toggler-icon"> </span>
+              <span class="toggler-icon"> </span>
+            </button>
+
+            <div class="navbar-collapse">
+              <ul id="nav" class="navbar-nav mx-auto">
+                <li class="nav-item">
+                  <a class="ud-menu-scroll" href="/Glucky/">Principal</a>
+                </li>
+
+               
+               
+                <li class="nav-item nav-item-has-children">
+                  <a href="javascript:void(0)"> Páginas </a>
+                  <ul class="ud-submenu">
+                    <li class="ud-submenu-item">
+                      <a href="/Glucky/IniciodeSesion" class="ud-submenu-link">
+                        Inicio de sesión
+                      </a>
+                    </li>
+                    <li class="ud-submenu-item">
+                      <a href="/Glucky/Registros" class="ud-submenu-link">
+                        Registro
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="navbar-btn d-none d-sm-inline-block">
+              <a href="/Glucky/Registros" class="ud-main-btn ud-login-btn">
+                Registro
+              </a>
+              <a class="ud-main-btn ud-white-btn" href="/Glucky/IniciodeSesion">
+                Iniciar sesión
+              </a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ====== Header End ====== -->
+
+    <!-- ====== Banner Start ====== -->
+    <section class="ud-page-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-banner-content">
+              <h1>Recuperar contraseña</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Banner End ====== -->
+
+    <!-- ====== Login Start ====== -->
+    <section class="ud-login">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ud-login-wrapper">
+              <div class="ud-login-logo">
+                <img src="https://i.ibb.co/kQt7vqD/730-sin-t-tulo-20221215201908.png" alt="logo" />
+                
+              </div>
+              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
+                <div class="ud-form-group" id="grupo__cedula">
+                  <input
+                    type="text"
+                    placeholder="Ingrese su correo electrónico"
+                    name="UserForm" 
+                  />
+                  <p class="form_input_error1"> alerta </p>
+                </div>
+              
+                <div class="ud-form-group" id="grupo_enviar">
+                  <button type="submit" class="ud-main-btn w-100" onclick="rellenoDatos(), verificarDoctor()">Enviar correo electrónnico</button>
+                  <p class="form_input_error4"> Por favor, rellene bien el dato</p>
+                    </div>
+              </form>
+              <script src="/js/plantillaAlertas.js"></script>
+              <script src="/js/loginValidacion.js"></script>
+              <a class="forget-pass" href="javascript:void(0)">
+                
+              </a>
+              <p class="signup-option">
+                ¿Ya eres usuario? <a href="/Glucky/IniciodeSesion"> Inicia sesión</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ====== Login End ====== -->
+
+  <!-- ====== Footer Start ====== -->
+  <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
+    <div class="shape shape-1">
+      <img src="/images/footer/shape-1.svg" alt="shape" />
+    </div>
+    <div class="shape shape-2">
+      <img src="/images/footer/shape-2.svg" alt="shape" />
+    </div>
+    <div class="shape shape-3">
+      <img src="/images/footer/shape-3.svg" alt="shape" />
+    </div>
+    <div class="ud-footer-widgets">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="ud-widget">
+              <a href="/Glucky/" class="ud-footer-logo">
+                <img src="https://i.ibb.co/Jd8ZPmv/730-sin-t-tulo-20221215201853.png" alt="logo" />
+              </a>
+              <p class="ud-widget-desc">
+                Ofrecemos un servicio para todos los tipos de diabetes
+              </p>
+              <ul class="ud-widget-socials">
+                <li>
+                  <a href="">
+                    <i class="lni lni-facebook-filled"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <i class="lni lni-twitter-filled"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <i class="lni lni-instagram-filled"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="">
+                    <i class="lni lni-linkedin-original"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+            <div class="ud-widget">
+              <h5 class="ud-widget-title">Colaboradores</h5>
+              <ul class="ud-widget-links">
+                <li>
+                  <a href="">Montoya Rodriguez Isaac</a>
+                </li>
+                <li>
+                  <a href="">Negrete Gonzalez Roberto</a>
+                </li>
+                <li>
+                  <a href="">Varillas Figueroa Enrique Uriel</a>
+                </li>
+                <li>
+                  <a href="">Sandoval Vasquez Gonzalo</a>
+                </li>
+                <li>
+                  <a href="">Nieves Bartolo Marco Antonio</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+            <div class="ud-widget">
+              <h5 class="ud-widget-title">Características</h5>
+              <ul class="ud-widget-links">
+                <li>
+                  <a href="">Doctores</a>
+                </li>
+                <li>
+                  <a href="">Pacientes</a>
+                </li>
+                <li>
+                  <a href="">Agenda</a>
+                </li>
+                <li>
+                  <a href="">Monitoreo</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+         
+          </div>
+          <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ud-footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <ul class="ud-footer-bottom-left">
+              <li>
+                <a href="">Privacidad</a>
+              </li>
+              <li>
+                <a href="">Apoyanos</a>
+              </li>
+              <li>
+                <a href="">Terminos de servicio</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <p class="ud-footer-bottom-right">
+              Diseñado y desarrollado por
+              <a href="https://www.pornhub.com/view_video.php?viewkey=ph62b7ffa40a" rel="nofollow">ECLYS</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- ====== Footer End ====== -->
+
+  <!-- ====== Back To Top Start ====== -->
+  <a href="javascript:void(0)" class="back-to-top">
+    <i class="lni lni-chevron-up"> </i>
+  </a>
+  <!-- ====== Back To Top End ====== -->
+
+  <!-- ====== All Javascript Files ====== -->
+  <script src="/js/conectarsw.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/wow.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    // ==== for menu scroll
+    const pageLink = document.querySelectorAll(".ud-menu-scroll");
+
+    pageLink.forEach((elem) => {
+      elem.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.querySelector(elem.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+          offsetTop: 1 - 60,
+        });
+      });
+    });
+
+    // section menu active
+    function onScroll(event) {
+      const sections = document.querySelectorAll(".ud-menu-scroll");
+      const scrollPos =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+
+      for (let i = 0; i < sections.length; i++) {
+        const currLink = sections[i];
+        const val = currLink.getAttribute("href");
+        const refElement = document.querySelector(val);
+        const scrollTopMinus = scrollPos + 73;
+        if (
+          refElement.offsetTop <= scrollTopMinus &&
+          refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
+        ) {
+          document
+            .querySelector(".ud-menu-scroll")
+            .classList.remove("active");
+          currLink.classList.add("active");
+        } else {
+          currLink.classList.remove("active");
+        }
+      }
+    }
+
+    window.document.addEventListener("scroll", onScroll);
+  </script>
+</body>
+</html>

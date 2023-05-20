@@ -9,7 +9,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+      const datosmedicos = <%- JSON.stringify(datosmedicos) %>;
+      const datosmedicoso = <%- JSON.stringify(datosmedicos) %>;
+    </script>
     <title>Ver paciente</title> 
 
         <!--====== Favicon Icon ======-->
@@ -31,28 +34,36 @@
         </div>
 
         <div class="menu-items">
-            <ul class="nav-links">
-                <li><a href="/Glucky/Doctores/Dashboard">
-                    <i class="uil uil-estate"></i>
-                    <span class="link-name">Dashboard</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Dashboard">
-                    <i class="uil uil-chart"></i>
-                    <span class="link-name">Pacientes</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Chat">
-                    <i class="uil uil-chat"></i>
-                    <span class="link-name">Chats</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Peticiones">
-                    <i class="uil uil-plus-circle"></i>
-                    <span class="link-name">Peticiones</span>
-                </a></li>
-                <li><a href="/Glucky/Doctores/Citas">
-                    <i class="uil uil-schedule"></i>
-                    <span class="link-name">Citas</span>
-                </a></li>
-            </ul>
+          <ul class="nav-links">
+              <li><a href="/Glucky/Doctores/Dashboard">
+                  <i class="uil uil-estate"></i>
+                  <span class="link-name">Dashboard</span>
+              </a></li>
+              <li><a href="#Pacientes">
+                  <i class="uil uil-chart"></i>
+                  <span class="link-name">Pacientes</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Chat">
+                  <i class="uil uil-chat"></i>
+                  <span class="link-name">Chats</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Peticiones">
+                  <i class="uil uil-plus-circle"></i>
+                  <span class="link-name">Peticiones</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Citas">
+                  <i class="uil uil-schedule"></i>
+                  <span class="link-name">Citas</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Alimentos">
+                  <i class="uil uil-restaurant"></i>
+                  <span class="link-name">Alimentos</span>
+              </a></li>
+              <li><a href="/Glucky/Doctores/Medicamentos">
+                  <i class="uil uil-capsule"></i>
+                  <span class="link-name">Medicamentos</span>
+              </a></li>
+          </ul>
             
             <ul class="logout-mode">
                 <li><a href="/Glucky/IniciodeSesion">
@@ -61,9 +72,9 @@
                 </a></li>
 
                 <li class="mode">
-                    <a href="#">
-                        <i class="uil uil-x"></i>
-                    <span class="link-name">Borrar cuenta</span>
+                    <a href="/Glucky/Doctores/EditarCuenta">
+                        <i class="uil uil-user-circle"></i>
+                    <span class="link-name">Ajustes de cuenta</span>
                 </a>
 
                 <div class="mode-toggle">
@@ -106,14 +117,14 @@
                     <div class="image">
                       <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt="" class="profile-img" />
                     </div>
-                    <% for(var i=0;i<doctor.length;i++){%>
+                  
                     <div class="text-data">
-                      <span class="name"><%=doctor[i].nom_pers%> <%=doctor[i].apellidos_pers%></span>
-                      <span class="job"><%=doctor[i].cedula_med%></span>
-                      <span class="job"><%=doctor[i].email_pers%></span>
+                      <span class="name"><%=doctor[0].nom_pers%> <%=doctor[0].apellidos_pers%></span>
+                      <span class="job"><%=doctor[0].cedula_med%></span>
+                      <span class="job"><%=doctor[0].email_pers%></span>
                       <span class="job">Doctor</span>
                     </div>
-                    <%}%>
+                    
                     <div class="media-buttons">
                       <a href="#" style="background: #a1a1a136" class="link">
                         <i class="bx bx-plus-medical"></i>
@@ -191,6 +202,10 @@
                               </td>
                                 <td data-label="CURP"><%=datos[i].curp_pacien%></td>
                                 <td data-label="E-MAIL"><%=datos[i].email_pers%></td>
+                                <td data-label="Genero"><%=datos[i].genero_pers%></td>
+                                <td data-label="Edad"><%=datos[i].edad_pers%> años</td>
+                                <td data-label="Teléfono"><u><%=datos[i].tel_pers%></u></td>
+                                
                                 <td data-label="Ver detalles y acciones paciente">
                                     <div class="botisimo">
                                         <div class="botver">
@@ -329,7 +344,7 @@
                                 <div class="profile-text">
                                     <img src="https://i.ibb.co/YLddykt/731-sin-t-tulo-20230412145209.png" alt=""> 
                                     <div class="text">
-                                        <span class="name">Nombre del paciente</span>
+                                        <span class="name"><%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
                                          <span class="profession">En este formulario podrás agendar una nueva dieta para su
                                             paciente </span>
                                     </div>
@@ -454,7 +469,7 @@
                            <div class="profile-text">
                                <img src="https://i.ibb.co/vQQ72rh/731-sin-t-tulo-20230412145300.png" alt=""> 
                                <div class="text">
-                                   <span class="name">Nombre del paciente</span>
+                                   <span class="name"><%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%></span>
                                     <span class="profession">En este formulario podrás agendar un nuevo tratamiento para su
                                        paciente </span>
                                </div>
@@ -779,15 +794,13 @@
                           <th class="nombrecoso1"> Glucosa</th>
                           <th style="font-size: small;">niveles registrados</th>
                         </tr>
-
+                        <%if(datosmedicos.length!==0){%>
+                          <%for(let i=0;i<datosmedicos.length;i++){%>
                         <tr class="day">
-                          <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
-                          <td data-label="Registro 1" >120/80 a las 19:31</td>
-                          <td data-label="Registro 2" >130/80 a las 18:32</td>
-                          <td data-label="Registro 3" >20/80 a las 17:32</td>
-                          <td data-label="Registro 4" >220/80 a las 16:45</td>
+                          <td data-label="Registro <%=i+1%>" > nivel(<%=datosmedicos[i].gluc_datmed%>) el día <%=formatDate(datosmedicos[i].date_datmed)%> a las <%=format12HourTime(datosmedicos[i].hpur_datmed)%></td>
                         </tr>
-                       
+                          <%}%>
+                        <%}%>
                       </table>
                   
                 </div>
@@ -797,24 +810,24 @@
                           <th class="nombrecoso2"> Presión</th>
                           <th style="font-size: small;">niveles registrados</th>
                         </tr>
+                        <%if(datosmedicos.length!==0){%>
+                          <%for(let i=0;i<datosmedicos.length;i++){%>
                         <tr class="day">
-                          <td  data-label="Hoy" style="font-weight: bold;">20/12/2022 </td>
-                          <td data-label="Registro 1" >120/80 a las 19:31</td>
-                          <td data-label="Registro 2" >130/80 a las 18:32</td>
-                          <td data-label="Registro 3" >20/80 a las 17:32</td>
-                          <td data-label="Registro 4" >220/80 a las 16:45</td>
+                          <td data-label="Registro <%=i+1%>" > nivel(<%=datosmedicos[i].presis_datmed%>/<%=datosmedicos[i].predia_datmed%>) el día <%=formatDate(datosmedicos[i].date_datmed)%> a las <%=format12HourTime(datosmedicos[i].hpur_datmed)%></td>
                         </tr>
+                          <%}%>
+                        <%}%>
                         
                       </table>
                 </div>
               </div>
               <br>
               <div class="row">
-                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto;">
-                    Sin registros
+                <div class="column" style=" border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto;">
+                  <canvas id="glucosagraf"></canvas>
                 </div>
-                <div class="column" style="background-color:rgb(255, 255, 255); border-radius: 20px; height: auto; width: 50%; margin: 0 auto;">
-                    Sin registros
+                <div class="column" style=" border-radius: 20px; height: auto; width: 50%; margin: 0 auto;">
+                  <canvas id="presiongraf"></canvas>
               </div>
               </div>
 
@@ -827,6 +840,8 @@
     <script src="/js/plantillaAlertas.js"></script>
     <script src="/js/pacienteDoctor.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/graficas.js"></script>
 
     <%if(typeof elimDiet!=='undefined'){%>
       <%if(elimDiet==='dieta eliminada'){%>
