@@ -12,6 +12,9 @@ Controllers.recuperarContrasenaPost = (req, res, next) => {
   querys.datosPassword(correo, (error, datos) => {
     if(datos){
       res.render('Enlace',{datos:datos});
+      console.log(datos[0].nom_pers);
+      console.log(datos[0].apellidos_pers);
+      console.log(datos[0].email_pers);
     } else {
       console.log(error);
     }
