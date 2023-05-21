@@ -4,7 +4,7 @@ const expReg = { email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ };
 const campos = { email: false };
 const validarFormulario = (e) => {
   switch (e.target.name) {
-    case "UserForm":
+    case "correo":
       expReg.email.test(e.target.value)
         ? campos.email = true
         : campos.email = false

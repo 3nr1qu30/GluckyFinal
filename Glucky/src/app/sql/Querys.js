@@ -1031,6 +1031,17 @@ db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback
   });
  }; 
 
+ db.datosPassword = (correo,callback) => {
+  con.query(`select * from persona where email_pers = '${correo}'`, (error, datos) => {
+      if (error) {
+        console.log('Error al obtener los datos del paciente', error);
+        callback(error, null);
+      } else if (datos) {
+        callback(null, datos);
+      }
+    });
+ }
+
  module.exports= db;
 
 

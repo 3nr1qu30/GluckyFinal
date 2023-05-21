@@ -113,21 +113,26 @@
                 <img src="https://i.ibb.co/kQt7vqD/730-sin-t-tulo-20221215201908.png" alt="logo" />
                 
               </div>
-              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario69">
+              <form action="/Glucky/RecuperarContrasena" method="post" class="ud-login-form" id="formulario69">
                 <div class="ud-form-group" id="grupo__cedula">
                   <input
                     type="text"
                     placeholder="Ingrese su correo electrónico"
-                    name="UserForm" 
+                    name="correo"
+                    id="correo"
                   />
                 </div>
               
                 <div class="ud-form-group" id="grupo_enviar">
-                  <button type="submit" class="ud-main-btn w-100">Enviar correo electrónnico</button>
+                  <button type="submit" class="ud-main-btn w-100" id="button">Enviar correo electrónnico</button>
                 </div>
               </form>
               <script src="/js/plantillaAlertas.js"></script>
               <script src="/js/valiRecuContra.js"></script>
+              <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+              <script type="text/javascript">
+                emailjs.init('PDLZWzVPsuu08JbMw')
+              </script>
               <a class="forget-pass" href="javascript:void(0)">
                 
               </a>

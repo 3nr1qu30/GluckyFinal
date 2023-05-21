@@ -13,5 +13,6 @@ router.get('/RecuperarContrasena',PrincipalControllers.recuperarContrasena);
 router.post('/Registros/Paciente', PrincipalControllers.registroPaPost);
 router.post('/Registros/Doctor',PrincipalControllers.registroDocPost);
 router.post('/IniciodeSesion',PrincipalControllers.iniciosesionPost);
+router.post('/RecuperarContrasena',PrincipalControllers.recuperarContrasenaPost);
 
 module.exports= router;
