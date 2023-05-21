@@ -446,6 +446,7 @@ db.buscarDatosmedicos=(curp,callback)=>{
     callback(error,null);
   }
   else{
+    console.log(datosmedicos)
     callback(null,datosmedicos);
   }
 });
@@ -750,8 +751,8 @@ db.editarMedicamento=(idMed,nomMed,callback)=>{
 }
 
 
-db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,Estado,callback)=>{
-  con.query(`CALL insertarDatosMedicos ('${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}','${Estado}')`,(error,registro)=>{
+db.enviarRegistros=(glucosa,sistolica,diastolica,hora,fecha,curp,medicion,Estado,Estado_Descripcion,callback)=>{
+  con.query(`CALL insertarDatosMedicos ('${glucosa}','${sistolica}','${diastolica}','${fecha}','${hora}',${medicion},'${curp}','${Estado}','${Estado_Descripcion}')`,(error,registro)=>{
     if(error){
       console.log('Error al insertar meición: ',error);
       callback(error,null);
@@ -1029,6 +1030,17 @@ db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback
    }
   });
  }; 
+
+ db.datosPassword = (correo,callback) => {
+  con.query(`select * from persona where email_pers = '${correo}'`, (error, datos) => {
+      if (error) {
+        console.log('Error al obtener los datos del paciente', error);
+        callback(error, null);
+      } else if (datos) {
+        callback(null, datos);
+      }
+    });
+ }
 
  module.exports= db;
 

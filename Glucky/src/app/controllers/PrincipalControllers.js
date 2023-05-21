@@ -7,7 +7,18 @@ const session = require('express-session');
 Controllers.index = (req, res, next) => {
       res.render('index');
   };
-
+Controllers.recuperarContrasenaPost = (req, res, next) => {
+  const {correo} = req.body;
+  querys.datosPassword(correo, (error, datos) => {
+    if(datos){
+      console.log(datos[0].nom_pers);
+      console.log(datos[0].apellidos_pers);
+      console.log(correo);
+    } else {
+      console.log(error);
+    }
+  })
+}
 Controllers.registros = (req,res,next)=>{
   res.render('registros');
 };
@@ -23,6 +34,10 @@ Controllers.registroDocGet=(req,res,next)=>{
 Controllers.iniciosesion=(req,res,next)=>{
   req.session.destroy();
   res.render('iniciosesion');
+}
+Controllers.recuperarContrasena=(req,res,next)=>{
+  req.session.destroy();
+  res.render('recuperarContrasena');
 }
 //rutas post
 Controllers.registroPaPost = (req,res,next)=>{
