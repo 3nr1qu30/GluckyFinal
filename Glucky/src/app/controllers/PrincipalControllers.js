@@ -11,9 +11,7 @@ Controllers.recuperarContrasenaPost = (req, res, next) => {
   const {correo} = req.body;
   querys.datosPassword(correo, (error, datos) => {
     if(datos){
-      console.log(datos[0].nom_pers);
-      console.log(datos[0].apellidos_pers);
-      console.log(correo);
+      res.render('Enlace',{datos:datos});
     } else {
       console.log(error);
     }
