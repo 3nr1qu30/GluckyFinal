@@ -1042,6 +1042,17 @@ db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback
     });
  }
 
+ db.cambiarNuevaContrasena = async(correo,NewPass, callback)=>{
+  const PassEn = await encrypt.encrypt(NewPass);
+  con.query(`UPDATE paciente SET pass_pacien = '${PassEn}' WHERE email_pers = '${correo}'`,(error,cambio)=>{
+   if(error){
+     callback(error,null);
+   }else if(cambio){
+    callback(null,cambio);
+   }
+  });
+ };
+
  module.exports= db;
 
 
