@@ -216,6 +216,14 @@ function NocargaChat(e){
   })
 }
 
+function contraNoEnviada(e){
+  swal({
+    icon: 'error',
+            title: 'Error',
+            text: 'No se pudo enviar el correo, intentelo más tarde',
+  })
+}
+
 //Exitos
 function DoctorRegistrado(e) {
   swal({
@@ -403,5 +411,13 @@ function SolicitudDeclinadaDoctor(e) {
     icon: "success",
     title: 'Exito',
     text: 'La dieta ha sido eliminada',
+  })
+}
+
+ function contraEnviada(e){
+  swal({
+    icon: "success",
+    title: 'Exito',
+    text: 'El correo ha sido enviado, si no lo ha recibido, por favor vuelva a introducir su correo',
   })
 }

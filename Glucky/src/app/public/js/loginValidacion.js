@@ -76,12 +76,15 @@ inputs.forEach((input) => {
 })
 
 formulario.addEventListener('submit', (e) => {
+    e.preventDefault();
     if (campos.UserForm && campos.PassForm) {
-        
-    } else if(Usuario !== undefined && campos.PassForm){
-
+        formulario.submit()
     } else {
         e.preventDefault();
-        document.querySelector('#grupo_enviar .form_input_error4').classList.add('form_input_error4-activo');
+        swal({
+            icon: 'error',
+            title: 'Error',
+            text: 'Debes completar todos los campos'
+        })
     }
 });

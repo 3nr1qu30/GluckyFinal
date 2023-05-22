@@ -124,7 +124,7 @@
                 </div>
               
                 <div class="ud-form-group" id="grupo_enviar">
-                  <button type="submit" class="ud-main-btn w-100" id="button">Enviar correo electrónnico</button>
+                  <button type="submit" class="ud-main-btn w-100" id="button">Enviar correo electrónico</button>
                 </div>
               </form>
               <script src="/js/plantillaAlertas.js"></script>
@@ -273,11 +273,24 @@
   </a>
   <!-- ====== Back To Top End ====== -->
 
+  <% if (typeof error === 'undefined') { %>
+  <% } else if (error === 'contrasena no eviada') { %>
+    <script>
+      contraNoEnviada()
+      </script>
+  <% } else if (error === 'contrasena eviada') { %>
+    <script>
+      contraEnviada()
+    </script>
+  <%}%>
+  
+  
   <!-- ====== All Javascript Files ====== -->
   <script src="/js/conectarsw.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/wow.min.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/plantillaAlertas.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     // ==== for menu scroll

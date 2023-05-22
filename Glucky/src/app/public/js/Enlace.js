@@ -4,13 +4,12 @@
     const templateID = "template_z6cjnds";
     emailjs.sendForm(serviceID, templateID, form).then(
       () => {
-        alert("¡Enviado!");
+        console.log("¡Enviado!");
       },
       (err) => {
-        alert(JSON.stringify(err));
+        console.log(JSON.stringify(err));
       }
     );
     form.submit();
-    console.log("¡Enviado mamacita!");
   });
   

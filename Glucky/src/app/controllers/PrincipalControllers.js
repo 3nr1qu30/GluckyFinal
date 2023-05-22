@@ -11,12 +11,14 @@ Controllers.recuperarContrasenaPost = (req, res, next) => {
   const {correo} = req.body;
   querys.datosPassword(correo, (error, datos) => {
     if(datos){
-      res.render('Enlace',{datos:datos});
+      error = 'contrasena eviada'
+      res.render('Enlace',{datos:datos, error});
       console.log(datos[0].nom_pers);
       console.log(datos[0].apellidos_pers);
       console.log(datos[0].email_pers);
     } else {
       console.log(error);
+      error = 'contrasena no eviada'
     }
   })
 }
