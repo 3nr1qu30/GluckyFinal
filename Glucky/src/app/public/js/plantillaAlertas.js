@@ -88,7 +88,7 @@ function DoctorRegistradoAnt(e) {
   swal({
     icon: 'error',
     title: 'Error',
-    text: 'Ya existe una cuenta con esta cédula profesional',
+    text: 'Ya existe una cuenta con esta cédula profesional o correo electronico',
   });
 };
 
@@ -176,7 +176,7 @@ function PacienteRegistradoAnt(e) {
   swal({
     icon: 'error',
     title: 'Error',
-    text: 'Ya existe una cuenta con esta CURP',
+    text: 'Ya existe una cuenta con esta CURP o correo electronico',
   });
 };
 

@@ -32,7 +32,7 @@ Controllers.recuperarContrasena=(req,res,next)=>{
 Controllers.registroPaPost = (req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,
     TipoDiabetes,PassForm} = req.body;
-  querys.buscarPaciente(CurpForm, (error, resultado)=>{
+  querys.buscarPaciente(CurpForm,EmailForm, (error, resultado)=>{
     if(error){
       error='Paciente no registrado';
       console.log(error);
@@ -68,7 +68,7 @@ Controllers.registroDocPost=(req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,
     CedulaForm,sexo,CalleForm,NumeroConsForm,CodigoPostalForm,
     ColoniaForm,DelMunForm,EdoForm,PassForm}=req.body;
-    querys.buscarDoctor(CedulaForm, (error, resultado)=>{
+    querys.buscarDoctor(CedulaForm,EmailForm, (error, resultado)=>{
       if(error){
         error='Doctor no registrado';
         res.render('registroDoc',{error});

@@ -237,8 +237,8 @@ db.VerDatoPaciente = (curp,callback)=>{
     });
     };
 
-db.buscarPaciente = (CurpForm,callback)=>{
-  con.query(`SELECT * FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}'`,(error,fila)=>{
+db.buscarPaciente = (CurpForm,Correo,callback)=>{
+  con.query(`SELECT * FROM paciente natural join persona natural join tipodiabetes WHERE curp_pacien = '${CurpForm}' or email_pers='${Correo}'`,(error,fila)=>{
     if(error){
       console.error('Error al buscar en la base de datos', error);
       callback(error, null);
@@ -386,8 +386,8 @@ db.verPeticionesDoctor = (Cedula,callback)=>{
  };
 
 
-db.buscarDoctor =(CedulaForm,callback)=>{
-  con.query(`SELECT * FROM medico natural join persona WHERE cedula_med = '${CedulaForm}'`,(error,fila)=>{
+db.buscarDoctor =(CedulaForm,Correo,callback)=>{
+  con.query(`SELECT * FROM medico natural join persona WHERE cedula_med = '${CedulaForm}' or email_pers='${Correo}'`,(error,fila)=>{
     if(error){
       console.error('Error al buscar en la base de datos', error);
       callback('Error al buscar doctores en la base de datos', null);
