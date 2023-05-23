@@ -139,8 +139,9 @@ Controllers.registroDocPost=(req,res,next)=>{
 Controllers.iniciosesionPost=(req,res,next)=>{
   const{UserForm,PassForm} = req.body;
   let error;
+  let correo;
   if(UserForm.length===18){
-    querys.buscarPaciente(UserForm, async (error,paciente)=>{
+    querys.buscarPaciente(UserForm,correo, async (error,paciente)=>{
       if(error){
         console.log(error);
       }
@@ -162,7 +163,7 @@ Controllers.iniciosesionPost=(req,res,next)=>{
     });
   }
   else if(UserForm.length===8){
-    querys.buscarDoctor(UserForm, async (error,doctor)=>{
+    querys.buscarDoctor(UserForm,correo, async (error,doctor)=>{
       if(error){
         console.log(error);
       }
