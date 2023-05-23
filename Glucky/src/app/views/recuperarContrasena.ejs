@@ -113,23 +113,22 @@
                 <img src="https://i.ibb.co/kQt7vqD/730-sin-t-tulo-20221215201908.png" alt="logo" />
                 
               </div>
-              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
+              <form action="/Glucky/RecuperarContrasena" method="post" class="ud-login-form" id="formulario69">
                 <div class="ud-form-group" id="grupo__cedula">
                   <input
                     type="text"
                     placeholder="Ingrese su correo electrónico"
-                    name="UserForm" 
+                    name="correo"
+                    id="correo"
                   />
-                  <p class="form_input_error1"> alerta </p>
                 </div>
               
                 <div class="ud-form-group" id="grupo_enviar">
-                  <button type="submit" class="ud-main-btn w-100" onclick="rellenoDatos(), verificarDoctor()">Enviar correo electrónnico</button>
-                  <p class="form_input_error4"> Por favor, rellene bien el dato</p>
-                    </div>
+                  <button type="submit" class="ud-main-btn w-100" id="button">Enviar correo electrónico</button>
+                </div>
               </form>
               <script src="/js/plantillaAlertas.js"></script>
-              <script src="/js/loginValidacion.js"></script>
+              <script src="/js/valiRecuContra.js"></script>
               <a class="forget-pass" href="javascript:void(0)">
                 
               </a>
@@ -274,11 +273,25 @@
   </a>
   <!-- ====== Back To Top End ====== -->
 
+  <% if (typeof error === 'undefined') { %>
+  <% } else if (error === 'contrasena no eviada') { %>
+    <script>
+      contraNoEnviada()
+      </script>
+  <% } else if (error === 'contrasena eviada') { %>
+    <script>
+      contraEnviada()
+    </script>
+  <%}%>
+  
+  
   <!-- ====== All Javascript Files ====== -->
   <script src="/js/conectarsw.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
   <script src="/js/wow.min.js"></script>
   <script src="/js/main.js"></script>
+  <script src="/js/plantillaAlertas.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script>
     // ==== for menu scroll
     const pageLink = document.querySelectorAll(".ud-menu-scroll");

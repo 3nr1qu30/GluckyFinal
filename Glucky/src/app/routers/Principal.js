@@ -11,7 +11,9 @@ router.get('/IniciodeSesion',PrincipalControllers.iniciosesion);
 router.get('/RecuperarContrasena',PrincipalControllers.recuperarContrasena);
 //rutas post
 router.post('/Registros/Paciente', PrincipalControllers.registroPaPost);
+router.post('/CambiarContrasena', PrincipalControllers.cambiarContrasena);
 router.post('/Registros/Doctor',PrincipalControllers.registroDocPost);
 router.post('/IniciodeSesion',PrincipalControllers.iniciosesionPost);
+router.post('/RecuperarContrasena',PrincipalControllers.recuperarContrasenaPost);
 
 module.exports= router;

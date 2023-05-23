@@ -7,7 +7,21 @@ const session = require('express-session');
 Controllers.index = (req, res, next) => {
       res.render('index');
   };
-
+Controllers.recuperarContrasenaPost = (req, res, next) => {
+  const {correo} = req.body;
+  querys.datosPassword(correo, (error, datos) => {
+    if(datos){
+      error = 'contrasena eviada'
+      res.render('Enlace',{datos:datos, error});
+      console.log(datos[0].nom_pers);
+      console.log(datos[0].apellidos_pers);
+      console.log(datos[0].email_pers);
+    } else {
+      console.log(error);
+      error = 'contrasena no eviada'
+    }
+  })
+}
 Controllers.registros = (req,res,next)=>{
   res.render('registros');
 };
@@ -28,6 +42,27 @@ Controllers.recuperarContrasena=(req,res,next)=>{
   req.session.destroy();
   res.render('recuperarContrasena');
 }
+
+Controllers.cambiarContrasena=(req,res,next)=>{
+  req.session.destroy();
+  res.render('cambiarContrasena');
+}
+
+Controllers.cambiarContrasenaPost = (req, res, next) => {
+const correo = req.session.correo;
+const { NewPass } = req.body;
+
+querys.cambiarNuevaContrasena(correo, NewPass, (error, act) => {
+    if (act) {
+      req.session.passAct = "contra actualizada";
+      res.redirect("/Glucky/Pacientes/EditarCuenta");
+    } else if (error) {
+      console.log(error);
+      req.session.passAct = "contra no actualizada";
+      res.redirect("/Glucky/Pacientes/EditarCuenta");
+    }
+  });
+};
 //rutas post
 Controllers.registroPaPost = (req,res,next)=>{
   const{NombreForm,ApellidosForm,EmailForm,EdadForm,TelefonoForm,CurpForm,GeneroForm,

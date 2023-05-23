@@ -339,7 +339,7 @@ Controllers.Desvincular = (req,res,next)=>{
                 req.session.paciente=curpFormPacEd;
                 const ala = req.session.paciente;
                 console.log(ala)
-                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verDietaDoctor', { cedula_med, alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -374,7 +374,7 @@ Controllers.Desvincular = (req,res,next)=>{
                 req.session.paciente=curpFormPacEd;
                 const ala = req.session.paciente;
                 console.log(ala);
-                res.render('verTratamientoDoctor', { medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verTratamientoDoctor', { cedula_med, medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }

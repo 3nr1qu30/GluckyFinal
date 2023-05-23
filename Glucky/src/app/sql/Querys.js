@@ -1031,6 +1031,28 @@ db.aceptarcita = (date_cita,hour_cita,id_consmed,curp_pacien,id_solcita,callback
   });
  }; 
 
+ db.datosPassword = (correo,callback) => {
+  con.query(`select * from persona where email_pers = '${correo}'`, (error, datos) => {
+      if (error) {
+        console.log('Error al obtener los datos del paciente', error);
+        callback(error, null);
+      } else if (datos) {
+        callback(null, datos);
+      }
+    });
+ }
+
+ db.cambiarNuevaContrasena = async(correo,NewPass, callback)=>{
+  const PassEn = await encrypt.encrypt(NewPass);
+  con.query(`UPDATE paciente SET pass_pacien = '${PassEn}' WHERE email_pers = '${correo}'`,(error,cambio)=>{
+   if(error){
+     callback(error,null);
+   }else if(cambio){
+    callback(null,cambio);
+   }
+  });
+ };
+
  module.exports= db;
 
 

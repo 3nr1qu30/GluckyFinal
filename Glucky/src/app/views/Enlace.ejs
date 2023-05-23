@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <form action="" id="form" hidden>
+        <input type="text" id="nombre_aquien" name="nombre_aquien" value="<%=datos[0].nom_pers%> <%=datos[0].apellidos_pers%>">
+        <input type="text" id="message" name="message" value="Para cambiar su contraseña, haga click en el siguiente enlace: https://3000/Glucky/CambioDeContrasena">
+        <input type="text" id="correo" name="correo" value="<%=datos[0].email_pers%>">
+    </form>
+    <script src="/js/Enlace.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">emailjs.init('PDLZWzVPsuu08JbMw')</script>
+</body>
+</html>
