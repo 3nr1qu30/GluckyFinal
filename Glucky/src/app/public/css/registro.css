@@ -310,3 +310,6 @@ input[type=number] { -moz-appearance:textfield; }
   color: red;
   display: block;
 }
+.swal-text {
+  text-align: center;
+}

@@ -11,14 +11,14 @@ Controllers.recuperarContrasenaPost = (req, res, next) => {
   const {correo} = req.body;
   querys.datosPassword(correo, (error, datos) => {
     if(datos){
-      error = 'contrasena eviada'
+      req.session.alerta = 'contrasena eviada'
       res.render('Enlace',{datos:datos, error});
       console.log(datos[0].nom_pers);
       console.log(datos[0].apellidos_pers);
       console.log(datos[0].email_pers);
     } else {
       console.log(error);
-      error = 'contrasena no eviada'
+      req.session.alerta = 'contrasena no eviada'
     }
   })
 }
@@ -39,27 +39,27 @@ Controllers.iniciosesion=(req,res,next)=>{
   res.render('iniciosesion');
 }
 Controllers.recuperarContrasena=(req,res,next)=>{
-  req.session.destroy();
-  res.render('recuperarContrasena');
+  const alerta = req.session.alerta;
+  delete req.session.alerta;
+  res.render('recuperarContrasena',{alerta});
 }
 
-Controllers.cambiarContrasena=(req,res,next)=>{
-  req.session.destroy();
-  res.render('cambiarContrasena');
+Controllers.cambiarContrasenaGet=(req,res,next)=>{
+  const correo = req.query.correo;
+  res.render('cambiarContrasena',{correo});
 }
 
 Controllers.cambiarContrasenaPost = (req, res, next) => {
-const correo = req.session.correo;
+const correo = req.query.correo;
 const { NewPass } = req.body;
-
 querys.cambiarNuevaContrasena(correo, NewPass, (error, act) => {
     if (act) {
       req.session.passAct = "contra actualizada";
-      res.redirect("/Glucky/Pacientes/EditarCuenta");
+      res.redirect("/Glucky/CambiarContrasena");
     } else if (error) {
       console.log(error);
       req.session.passAct = "contra no actualizada";
-      res.redirect("/Glucky/Pacientes/EditarCuenta");
+      res.redirect("/Glucky/CambiarContrasena");
     }
   });
 };

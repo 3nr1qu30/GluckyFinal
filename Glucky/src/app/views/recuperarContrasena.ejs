@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Glucky recuperar contraseña</title>
-
+    
 
      <!-- Primary Meta Tags -->
 <meta name="title" content="Glucky Principal">
@@ -273,16 +273,6 @@
   </a>
   <!-- ====== Back To Top End ====== -->
 
-  <% if (typeof error === 'undefined') { %>
-  <% } else if (error === 'contrasena no eviada') { %>
-    <script>
-      contraNoEnviada()
-      </script>
-  <% } else if (error === 'contrasena eviada') { %>
-    <script>
-      contraEnviada()
-    </script>
-  <%}%>
   
   
   <!-- ====== All Javascript Files ====== -->
@@ -295,7 +285,7 @@
   <script>
     // ==== for menu scroll
     const pageLink = document.querySelectorAll(".ud-menu-scroll");
-
+    
     pageLink.forEach((elem) => {
       elem.addEventListener("click", (e) => {
         e.preventDefault();
@@ -305,15 +295,15 @@
         });
       });
     });
-
+    
     // section menu active
     function onScroll(event) {
       const sections = document.querySelectorAll(".ud-menu-scroll");
       const scrollPos =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop;
+      
       for (let i = 0; i < sections.length; i++) {
         const currLink = sections[i];
         const val = currLink.getAttribute("href");
@@ -322,18 +312,30 @@
         if (
           refElement.offsetTop <= scrollTopMinus &&
           refElement.offsetTop + refElement.offsetHeight > scrollTopMinus
-        ) {
-          document
+          ) {
+            document
             .querySelector(".ud-menu-scroll")
             .classList.remove("active");
-          currLink.classList.add("active");
-        } else {
-          currLink.classList.remove("active");
+            currLink.classList.add("active");
+          } else {
+            currLink.classList.remove("active");
+          }
         }
       }
-    }
 
-    window.document.addEventListener("scroll", onScroll);
+      window.document.addEventListener("scroll", onScroll);
+      </script>
+
+<% if (typeof alerta === 'undefined') { %>
+<% } else if (alerta === 'contrasena no eviada') { %>
+  <script>
+    contraNoEnviada()
+    </script>
+<% } else if (alerta === 'contrasena eviada') { %>
+  <script>
+    contraEnviada()
   </script>
+<%}%>
+
 </body>
 </html>

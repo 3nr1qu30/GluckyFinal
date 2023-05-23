@@ -11,8 +11,6 @@
 <meta name="title" content="Glucky Principal">
 <meta name="description" content="Gratuita - Aplicación para gestionar tu diabetes de manera inteligente">
 
-    <!--====== Favicon Icon ======-->
-      <!--====== Favicon Icon ======-->
       <link
       rel="shortcut icon"
       href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
@@ -24,7 +22,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     />
 
-    <!-- ===== All CSS files ===== -->
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/animate.css" />
     <link rel="stylesheet" href="/css/lineicons.css" />
@@ -32,7 +29,7 @@
     <link rel="stylesheet" href="/css/registro.css" />
   </head>
   <body>
-  <!-- ====== Header Start ====== -->
+  
   <header class="ud-header">
     <div class="container">
       <div class="row">
@@ -112,32 +109,29 @@
                 <img src="https://i.ibb.co/kQt7vqD/730-sin-t-tulo-20221215201908.png" alt="logo" />
                 
               </div>
-              <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
-                <div class="ud-form-group" id="grupo__cedula">
+              <form action="/Glucky/CambiarContrasena?correo=<%=correo%>" method="post" class="ud-login-form" id="formulario">
+                <div class="ud-form-group">
                   <input
                     type="text"
                     placeholder="Escriba su nueva contraseña"
                     name="NewPass" 
                   />
-                  <p class="form_input_error1"> </p>
                 </div>
 
-                <div class="ud-form-group" id="grupo__cedula">
+                <div class="ud-form-group">
                   <input
                     type="text"
                     placeholder="Reescibe la contraseña"
-                    name="ReNewPass" 
+                    name="ReNewPass"
                   />
-                  <p class="form_input_error1"> </p>
                 </div>
               
-                <div class="ud-form-group" id="grupo_enviar">
-                  <button type="submit" class="ud-main-btn w-100" onclick="rellenoDatos(), verificarDoctor()">Cambiar contraseña</button>
-                  <p class="form_input_error4"> Por favor, rellene bien el dato</p>
+                <div class="ud-form-group">
+                  <button type="submit" class="ud-main-btn w-100">Cambiar contraseña</button>
                     </div>
               </form>
               <script src="/js/plantillaAlertas.js"></script>
-              <script src="/js/loginValidacion.js"></script>
+              <!-- <script src="/js/loginValidacion.js"></script> -->
               <a class="forget-pass" href="javascript:void(0)">
                 
               </a>
