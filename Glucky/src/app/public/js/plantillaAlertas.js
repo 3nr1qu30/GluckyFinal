@@ -202,7 +202,7 @@ function NoenlazeDoc(e) {
   swal({
     icon: 'error',
         title: 'Error',
-        text: 'No puedes acceder a esta función, ya que no te has enlazado a ningún paciente',
+        text: 'No puedes acceder a esta función, ya que no te has enlazado a ningún paciente'
   }).then((confirmar)=>{
     window.location.href='/Glucky/Doctores/Dashboard';
   });
@@ -212,7 +212,7 @@ function NocargaChat(e){
   swal({
     icon: 'error',
             title: 'Error',
-            text: 'Hubo un error al cargar esta pagina, intentelo más tarde',
+            text: 'Hubo un error al cargar esta pagina, intentelo más tarde'
   })
 }
 
@@ -220,7 +220,15 @@ function contraNoEnviada(e){
   swal({
     icon: 'error',
             title: 'Error',
-            text: 'No se pudo enviar el correo, intentelo más tarde',
+            text: 'No se pudo enviar el correo, intentelo más tarde'
+  })
+}
+
+function contraNoCambiada(e){
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'No se pudo cambiar la contraseña, intentelo más tarde'
   })
 }
 
@@ -419,5 +427,13 @@ function SolicitudDeclinadaDoctor(e) {
     icon: "success",
     title: 'Exito',
     text: 'El correo ha sido enviado, si no lo ha recibido, por favor vuelva a introducir su correo',
+  })
+}
+
+function contraCambiada(e){
+  swal({
+    icon: 'success',
+    title: 'Exito',
+    text: 'Su contraseña ha sido cambiada'
   })
 }

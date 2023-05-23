@@ -1,6 +1,6 @@
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
-// const Usuario = request("Usuario");
+
 
 const cedula = document.getElementById('cedula'), password = document.getElementById('password');
 const expReg = {
