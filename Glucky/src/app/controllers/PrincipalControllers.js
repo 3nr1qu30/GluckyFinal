@@ -10,13 +10,13 @@ Controllers.index = (req, res, next) => {
 Controllers.recuperarContrasenaPost = (req, res, next) => {
   const {correo} = req.body;
   querys.datosPassword(correo, (error, datos) => {
-    if(datos){
-      req.session.alerta = 'contrasena eviada'
-      res.render('Enlace',{datos:datos, error});
-    } else if(datos.length === 0){
-      console.log(error);
+    if(datos.length === 0){
       req.session.alerta = 'correo no registrado'
       res.redirect("/Glucky/RecuperarContrasena")
+      console.log(error);
+    } else if(datos.length !== 0){
+      req.session.alerta = 'contrasena eviada'
+      res.render('Enlace',{datos:datos, error});
     }
     console.log(error);
     req.session.alerta = 'contrasena no eviada'
