@@ -46,7 +46,9 @@ Controllers.recuperarContrasena=(req,res,next)=>{
 
 Controllers.cambiarContrasenaGet=(req,res,next)=>{
   const correo = req.query.correo;
-  res.render('cambiarContrasena',{correo});
+  const alerta = req.session.passAct
+  delete req.session.passAct;
+  res.render('cambiarContrasena',{correo,alerta});
 }
 
 Controllers.cambiarContrasenaPost = (req, res, next) => {
