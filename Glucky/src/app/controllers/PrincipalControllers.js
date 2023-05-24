@@ -13,10 +13,13 @@ Controllers.recuperarContrasenaPost = (req, res, next) => {
     if(datos){
       req.session.alerta = 'contrasena eviada'
       res.render('Enlace',{datos:datos, error});
-    } else {
+    } else if(datos.length === 0){
       console.log(error);
-      req.session.alerta = 'contrasena no eviada'
+      req.session.alerta = 'correo no registrado'
+      res.redirect("/Glucky/RecuperarContrasena")
     }
+    console.log(error);
+    req.session.alerta = 'contrasena no eviada'
   })
 }
 Controllers.registros = (req,res,next)=>{

@@ -232,6 +232,14 @@ function contraNoCambiada(e){
   })
 }
 
+function correoNoRegistrado(e){
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'El correo que ha ingresado, no esta registrado'
+  })
+}
+
 //Exitos
 function DoctorRegistrado(e) {
   swal({
