@@ -13,9 +13,6 @@ Controllers.recuperarContrasenaPost = (req, res, next) => {
     if(datos){
       req.session.alerta = 'contrasena eviada'
       res.render('Enlace',{datos:datos, error});
-      console.log(datos[0].nom_pers);
-      console.log(datos[0].apellidos_pers);
-      console.log(datos[0].email_pers);
     } else {
       console.log(error);
       req.session.alerta = 'contrasena no eviada'
