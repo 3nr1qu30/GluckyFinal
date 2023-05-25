@@ -105,7 +105,6 @@ Controllers.dashboardPacientes = (req, res, next) => {
                     datosPa,
                     tipodia
                   });
-                    console.log(citasverEdo3);
                   }
                   else{
                     console.log(error4);

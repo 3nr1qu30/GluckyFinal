@@ -78,7 +78,6 @@ db.eliminarDatosDietas = (CurpForm,callback)=>{
          if(eldieting){
            con.query(`DELETE FROM dieta WHERE id_dieta = '${idiet}'`,(error,eldieta)=>{
              if(eldieta){
-               console.log(iddieta)
                callback(null,eldieting,eldieta);
              } else {
                callback(error,null);
@@ -114,7 +113,6 @@ db.eliminarDatosRecetas = (CurpForm,callback)=>{
          if(elrecmed){
            con.query(`DELETE FROM receta WHERE id_receta = '${idrec}'`,(error,elrec)=>{
              if(elrec){
-               console.log(idreceta)
                callback(null,elrecmed,elrec);
              } else {
                callback(error,null);
@@ -451,7 +449,6 @@ db.buscarDatosmedicos=(curp,callback)=>{
     callback(error,null);
   }
   else{
-    console.log(datosmedicos)
     callback(null,datosmedicos);
   }
 });
@@ -749,7 +746,6 @@ db.editarMedicamento=(idMed,nomMed,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('Modificación de medicamento realizada');
       callback(null,actualizacion);
     }
   });
@@ -781,10 +777,8 @@ db.enviarDietaBase = (curp_pacien, cedula_med, date_dieta, callback) => {
           callback(error, null);
         } else if (resultado.length > 0) {
           const last_id = resultado[0].last_id;
-          console.log('El último id generado es: ', last_id);
           callback(null, last_id);
         } else {
-          console.log('No se encontró ningún último id generado.');
           callback(null, null);
         }
       });
@@ -805,7 +799,6 @@ db.enviarTratamientoBase = (curp_pacien, cedula_med, date_receta,id_cons ,callba
           callback(error, null);
         } else if (resultado.length > 0) {
           const last_id = resultado[0].last_id;
-          console.log('El último id generado es: ', last_id);
           callback(null, last_id);
         } else {
           console.log('No se encontró ningún último id generado.');
@@ -850,7 +843,6 @@ db.reintentoenlazeDoctoresPacientes=(Curp,Cedula,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('actualizacion realizada');
       callback(null,actualizacion);
     }
   });
@@ -863,7 +855,6 @@ db.editarAlimento=(idIngred,NomForm,DescForm,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('Modificación de alimento realizado');
       callback(null,actualizacion);
     }
   });
@@ -877,7 +868,6 @@ db.editarCitaPaciente=(curp_pacien,id_cita,date_cita,hour_cita,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('Modificación de cita realizada');
       callback(null,actualizacion);
     }
   });
@@ -893,7 +883,6 @@ db.eliminaSolicitudesDen=(idCita,curpPacien,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('Solicitud eliminada limón');
       callback(null,elimina);
     }
   });
@@ -907,7 +896,6 @@ db.eliminarAlimento=(idIngred,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('Alimento eliminado limón');
       callback(null,elimina);
     }
   });
@@ -921,7 +909,6 @@ db.eliminarCitaPaciente=(id_citaEl,curpFormPac,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('Cita eliminada');
       callback(null,elimina);
     }
   });
@@ -947,7 +934,6 @@ db.eliminarIngrediente=(id_dietingred,id_dieta,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('ingrediente eliminado naranja');
       callback(null,elimina);
     }
   });
@@ -960,7 +946,6 @@ db.eliminarMedicamento=(id_recmed,id_receta,callback)=>{
       callback(error,null);
     }
     else{
-      console.log('medicamento eliminado verde');
       callback(null,elimina);
     }
   });
