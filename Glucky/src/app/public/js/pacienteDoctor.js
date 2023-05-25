@@ -16,6 +16,7 @@ const campos = {
   horaEditada: false
 }
 
+
 if(tituloCITA === tituloCITA){
   campos.horaEditada = true;
 } else {
@@ -504,11 +505,6 @@ closeBtn.addEventListener("click", () =>
               campos.fecha = true;
             } else if (e.target.value === ""){
               campos.fecha = false;
-              swal({
-                icon: "error",
-                title: "Sin fecha",
-                text: "No has ingresado alguna fecha"
-              });
             }else{
               campos.fecha = false;
               swal({
@@ -521,15 +517,10 @@ closeBtn.addEventListener("click", () =>
             break;
             case "HoraForm":
               horaIngresada = e.target.value
-              if (horaIngresada > '07:00' && horaIngresada < '21:00') {
+              if (horaIngresada >= '07:00' && horaIngresada <= '21:00') {
                 campos.hora = true;
               } else if (e.target.value === ""){
                 campos.hora = false;
-                swal({
-                  icon: "error",
-                  title: "Sin hora",
-                  text: "No has ingresado una hora"
-                });
               } else{
                 campos.hora = false;
                 swal({
@@ -603,13 +594,9 @@ closeBtn.addEventListener("click", () =>
         if (campos.fecha && campos.hora) {
           formularioNuevaCita.submit()
         } else {
-        swal({
-          icon: "error",
-          title: "Datos erroneos",
-          text: "Por favor, ingresa datos válidos"
-        });
       }
       });
+      
 
       formularioActualizarCitas.addEventListener('submit', (e) => {
         e.preventDefault();

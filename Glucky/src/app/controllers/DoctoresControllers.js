@@ -33,7 +33,6 @@ Controllers.dashboardDoctores=(req,res,next)=>{
             //nuevocoso
             querys.verPeticionesDoctor(cedula,(error3,pacientesSolici)=>{
               if(pacientesSolici){
-                console.log(`ver los super papus`);
                 res.render('dashboardDoctores',{cedula,nombre,correo,pacientes, vercitas:citasaceptadas, verpaci:pacientesSolici});
               }
               else{
@@ -150,7 +149,6 @@ Controllers.Desvincular = (req,res,next)=>{
   };
 
   Controllers.peticionesDoctor = (req,res,next)=>{
-    console.log(req.body);
     const Cedula = req.session.cedula;
     const petiAceptada = req.session.petiAceptada;
     const petiDeclinada = req.session.petiDeclinada;
@@ -160,7 +158,6 @@ Controllers.Desvincular = (req,res,next)=>{
       if(ver){
         querys.VerDatoDoctor(Cedula,(error,citasaceptadas)=>{
           if(citasaceptadas){
-            console.log(`ver las citas`);
             res.render('peticionesDoctor',{Cedula,datos:ver,dato:citasaceptadas,petiAceptada,petiDeclinada});
           }
           else if(error){
@@ -175,7 +172,6 @@ Controllers.Desvincular = (req,res,next)=>{
   };
 
   Controllers.peticionesCita = (req,res,next)=>{
-    console.log(req.body);
     const Cedula = req.session.cedula;
     const citaAcepParaEliminar = req.session.citaAcepParaEliminar;
     const citaDecli = req.session.citaDecli;
@@ -189,7 +185,6 @@ Controllers.Desvincular = (req,res,next)=>{
           if(citasaceptadas){
             querys.VerDatoDoctor(Cedula,(error,dato)=>{
               if(dato){
-            console.log(`Ver las citas`);
             res.render('citasDoctor',{Cedula,datos:ver,citasaceptadas,citaAcepParaEliminar,citaDecli,citaFina,dato:dato});
               }  else if(error){
                 console.log(error);
@@ -209,12 +204,10 @@ Controllers.Desvincular = (req,res,next)=>{
 
   Controllers.Alimentos = (req,res,next)=>{
     const cedula = req.session.cedula;
-    console.log(req.body);
     querys.verAlimentos((error,ver)=>{
       if(ver){
         querys.VerDatoDoctor(cedula,(error,dato)=>{
           if(dato){
-        console.log(ver);
         res.render('almacenDoctorIngredientes',{cedula, datos:ver, dato:dato});
         } else if(error){
           console.log(error);
@@ -229,12 +222,10 @@ Controllers.Desvincular = (req,res,next)=>{
 
   Controllers.Medicamentos = (req,res,next)=>{
     const cedula = req.session.cedula;
-    console.log(req.body);
     querys.verMedicamentos((error,ver)=>{
       if(ver){
         querys.VerDatoDoctor(cedula,(error,dato)=>{
           if(dato){
-        console.log(ver);
         res.render('almacenDoctorMedicamentos',{cedula, datos:ver, dato:dato});
       } else if(error){
         console.log(error);
@@ -323,6 +314,7 @@ Controllers.Desvincular = (req,res,next)=>{
   };
 
   Controllers.dietaVerDoctor = (req, res, next) => {
+    const Cedula = req.session.cedula;
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
     const cedula_med = req.session.cedula;
@@ -337,9 +329,7 @@ Controllers.Desvincular = (req,res,next)=>{
               if (alimentosver) {
                 req.session.cedula=cedulaEdit;
                 req.session.paciente=curpFormPacEd;
-                const ala = req.session.paciente;
-                console.log(ala)
-                res.render('verDietaDoctor', { cedula_med, alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verDietaDoctor', {Cedula, cedula_med, alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -372,8 +362,6 @@ Controllers.Desvincular = (req,res,next)=>{
               if (verrecetamedicamento) {
                 req.session.cedula=cedulaEdit;
                 req.session.paciente=curpFormPacEd;
-                const ala = req.session.paciente;
-                console.log(ala);
                 res.render('verTratamientoDoctor', { cedula_med, medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
@@ -493,7 +481,7 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
             if (alimentosver) {
               req.session.cedula=cedulaEdit;
               req.session.paciente=curpFormPacEd;
-              res.render('verDietaDoctor', {alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, Cedula:cedulaEdit});
+              res.render('verDietaDoctor', {alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit,Cedula:cedulaEdit});
             } else {
               console.log(error3);
             }
@@ -521,7 +509,6 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
         req.session.cedula=cedulaEdit;
         req.session.paciente=CurpForm;
         res.redirect('/Glucky/Doctores/EditarDieta');
-        console.log('ha sido agregado un alimento', cedula_med);
       } else {
         console.log(error);
       }
@@ -545,7 +532,6 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
         req.session.cedula=cedulaEdit;
         req.session.paciente=CurpForm;
         res.redirect('/Glucky/Doctores/EditarTratamiento');
-        console.log('ha sido agregado un medicamento', cedula_med);
       } else {
         console.log(error);
       }
@@ -586,7 +572,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
 
         req.session.id_receta=id_receta;
         res.redirect('/Glucky/Doctores/EditarTratamiento');
-        console.log('ha sido eliminado un medicamento');
       } else {
         console.log(error);
       }
@@ -736,7 +721,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
         req.session.paciente=CurpForm;
         req.session.agregCita = 'Cita agregada';
         res.redirect('/Glucky/Doctores/PacienteDoctor');
-        console.log(ver);
       }
       else{
         req.session.agregCita = 'Cita no agregada';
@@ -754,7 +738,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
       if(elimina){
         req.session.citaElim = 'Cita eliminada';
         req.session.paciente=curpFormPac;
-        console.log('Eliminación lograda de cita');
         res.redirect('/Glucky/Doctores/PacienteDoctor');
       }
       else{
@@ -789,7 +772,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const{medicamentoNombre} =req.body;
     querys.Medicamentos(medicamentoNombre, (error, medicamento) =>{
       if(medicamento) {
-        console.log('Medicamento agregado exitosamente');
         res.redirect('/Glucky/Doctores/Medicamentos');
       } else {
         console.log(error);
@@ -800,7 +782,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
   Controllers.editarMedicamentos = (req,res,next)=>{
     const{idMed} = req.body;
     const{nomMed} = req.body;
-    console.log(idMed);
     querys.editarMedicamento(idMed,nomMed,(error,editamami)=>{
       if(editamami){
         console.log('Modificacion realizada de medicamento');
@@ -817,7 +798,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const{alimentoDescripcion} =req.body;
     querys.Alimentos(alimentoNombre, alimentoDescripcion, (error, alimento) =>{
       if(alimento) {
-        console.log('Alimento agregado exitosamente');
         res.redirect('/Glucky/Doctores/Alimentos');
       } else {
         console.log(error);
@@ -843,7 +823,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const{idMed} = req.body;
     querys.eliminarMedicamento(idMed,(error,elimina)=>{
       if(elimina){
-        console.log('Eliminación lograda');
         res.redirect('/Glucky/Doctores/Medicamentos');
       }
       else{
@@ -859,7 +838,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
     const{DescForm} = req.body;
     querys.editarAlimento(idIngred,NomForm,DescForm,(error,editamami)=>{
       if(editamami){
-        console.log('pues va mami');
         res.redirect('/Glucky/Doctores/Alimentos');
       }
       else{
@@ -971,7 +949,6 @@ Controllers.eliminarDietaBaseIngrediente = (req, res, next) => {
 
     querys.buscarPaciente(Cedula, CurpForm, (error, consulta) => {
       if(consulta) {
-        console.log('Consultado exitosamente');
         res.render('pacienteDoctor');
       } else {
         console.log(error);
