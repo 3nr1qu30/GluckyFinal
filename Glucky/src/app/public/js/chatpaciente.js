@@ -67,7 +67,7 @@ const horaActualMexico = `${horaMexico}:${minutosMexico}:${segundosMexico}`;
 
 
     messagesContainer.appendChild(newMessage);
-    const url = 'https://gluckyfinal-production.up.railway.app//Glucky/Pacientes/MensajeNuevo';
+    const url = 'https://gluckyfinal-production.up.railway.app/Glucky/Pacientes/MensajeNuevo';
     const datams = {
       IdChat:chat,
       Emisor:emisor,
