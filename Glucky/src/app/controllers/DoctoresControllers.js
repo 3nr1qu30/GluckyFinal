@@ -417,6 +417,7 @@ Controllers.Desvincular = (req,res,next)=>{
 
 
   Controllers.recetaVerDoctorEdit = (req, res, next) => {
+    const Cedula = req.session.cedula;
     const {last_id} = req.body;
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
@@ -427,7 +428,7 @@ Controllers.Desvincular = (req,res,next)=>{
              querys.verMedicamentosBaseSele(last_id,(error3, verrecetamedicamento) => {
               if (verrecetamedicamento) {
                 req.session.paciente=curpFormPacEd;
-                res.render('verTratamientoDoctor', { medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verTratamientoDoctor', {Cedula, medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -447,7 +448,6 @@ Controllers.Desvincular = (req,res,next)=>{
       if (agregado) {
         req.session.id_dieta=id_dieta;
         res.redirect('/Glucky/Doctores/EditarDieta');
-        console.log('ha sido agregado un alimento');
       } else {
         console.log(error);
       }
@@ -457,6 +457,7 @@ Controllers.Desvincular = (req,res,next)=>{
  
 
   Controllers.tratamientoVerDoctorGet = (req, res, next) => {
+    const Cedula = req.session.cedula;
     const curpFormPacEd = req.session.paciente;
     const cedulaEdit = req.session.cedula;
     const last_id = req.session.id_receta;
@@ -467,7 +468,7 @@ Controllers.Desvincular = (req,res,next)=>{
               if (verrecetamedicamento) {
                 req.session.cedula=cedulaEdit;
                 req.session.paciente=curpFormPacEd;
-                res.render('verTratamientoDoctor', {  medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verTratamientoDoctor', {Cedula,  medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
@@ -481,6 +482,7 @@ Controllers.Desvincular = (req,res,next)=>{
 
 
 Controllers.dietaVerDoctorGet = (req, res, next) => {
+  const Cedula = req.session.cedula;
   const curpFormPacEd = req.session.paciente;
   const cedulaEdit = req.session.cedula;
   const last_id = req.session.id_dieta;
@@ -491,7 +493,7 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
             if (alimentosver) {
               req.session.cedula=cedulaEdit;
               req.session.paciente=curpFormPacEd;
-              res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+              res.render('verDietaDoctor', {alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, Cedula:cedulaEdit});
             } else {
               console.log(error3);
             }
