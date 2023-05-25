@@ -493,7 +493,7 @@ Controllers.dietaVerDoctorGet = (req, res, next) => {
             if (alimentosver) {
               req.session.cedula=cedulaEdit;
               req.session.paciente=curpFormPacEd;
-              res.render('verDietaDoctor', {alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedula_med:cedulaEdit});
+              res.render('verDietaDoctor', {alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, Cedula:cedulaEdit});
             } else {
               console.log(error3);
             }
