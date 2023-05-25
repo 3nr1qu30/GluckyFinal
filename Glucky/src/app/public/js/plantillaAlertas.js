@@ -436,7 +436,7 @@ function SolicitudDeclinadaDoctor(e) {
     title: 'Exito',
     text: 'El correo ha sido enviado, si no lo ha recibido, por favor vuelva a introducir su correo',
   }).then((confirmar)=>{
-    window.location.href='/Glucky';
+    window.location.href='/Glucky/RecuperarContrasena';
   });
 }
 
