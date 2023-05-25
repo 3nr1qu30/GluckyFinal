@@ -504,11 +504,6 @@ closeBtn.addEventListener("click", () =>
               campos.fecha = true;
             } else if (e.target.value === ""){
               campos.fecha = false;
-              /* swal({
-                icon: "error",
-                title: "Sin fecha",
-                text: "No has ingresado alguna fecha"
-              }); */
             }else{
               campos.fecha = false;
               swal({
@@ -525,11 +520,6 @@ closeBtn.addEventListener("click", () =>
                 campos.hora = true;
               } else if (e.target.value === ""){
                 campos.hora = false;
-                /* swal({
-                  icon: "error",
-                  title: "Sin hora",
-                  text: "No has ingresado una hora"
-                }); */
               } else{
                 campos.hora = false;
                 swal({
@@ -588,10 +578,10 @@ closeBtn.addEventListener("click", () =>
         }
       }
       
-      inputs.forEach((input) => {
+      /* inputs.forEach((input) => {
         input.addEventListener('keyup', validarFechayHora);
         input.addEventListener('blur', validarFechayHora);
-      });
+      }); */
 
       inputs2.forEach((input) => {
         input.addEventListener('keyup', validarFechayHoraEditadas);
@@ -609,9 +599,6 @@ closeBtn.addEventListener("click", () =>
           text: "Por favor, ingresa datos válidos"
         });
       }
-      });
-      document.getElementById("closem").addEventListener('click', () => {
-        window.close();
       });
       
 
