@@ -483,13 +483,38 @@ querys.ActualizarContraPaciente(curp, NewPass,(error,act)=>{
   Controllers.registroNiveles = (req,res,next)=>{
     const{glucosa,sistolica,diastolica,medicion}=req.body
     const Curp = req.session.curp;
-    let fechaActual = new Date();
-    let anio = fechaActual.getFullYear();
-    let mes = fechaActual.getMonth() + 1;
-    let dia = fechaActual.getDate();
-    let fecha = `${anio}-${mes < 10 ? '0' + mes : mes}-${dia < 10 ? '0' + dia : dia}`;
-    let horaActual = new Date();
-    let hora = horaActual.toLocaleTimeString();
+// Obtener la fecha y hora actual
+const fechaActual = new Date();
+
+// Obtener el desplazamiento de la zona horaria en minutos
+const offset = fechaActual.getTimezoneOffset();
+
+// Ajustar la fecha y hora al horario de México (UTC-6 para la mayoría del país)
+const fechaMexico = new Date(fechaActual.getTime() - (offset + 360) * 60000);
+
+// Obtener los componentes de la fecha
+const dia = fechaMexico.getDate();
+const mes = fechaMexico.getMonth() + 1; // Los meses van de 0 a 11, se suma 1 para mostrar el mes correcto
+const año = fechaMexico.getFullYear();
+
+// Crear una cadena de texto con la fecha en formato "dd/mm/yyyy"
+const fechaFormateada = `${dia}/${mes}/${año}`;
+    // Obtener la hora actual
+const horaActual = new Date();
+
+// Obtener el desplazamiento de la zona horaria en minutos
+const offsete = horaActual.getTimezoneOffset();
+
+// Ajustar la hora al horario de México (UTC-6 para la mayoría del país)
+const horaMexico = new Date(horaActual.getTime() - (offsete + 360) * 60000);
+
+// Obtener los componentes de la hora
+const horas = horaMexico.getHours();
+const minutos = horaMexico.getMinutes();
+const segundos = horaMexico.getSeconds();
+
+// Crear una cadena de texto con la hora en formato "hh:mm:ss"
+const horaFormateada = `${horas}:${minutos}:${segundos}`;
     const tipoDia = req.session.tipodia;
     let Estado = '';
     let Descripcion_Estado='';
@@ -685,7 +710,7 @@ switch (tipoDia) {
     break;
 }
 
-    querys.enviarRegistros(glucosa,sistolica,diastolica,hora,fecha,Curp,medicion,Estado,Descripcion_Estado,(error,registro)=>{
+    querys.enviarRegistros(glucosa,sistolica,diastolica,horaFormateada,fechaFormateada,Curp,medicion,Estado,Descripcion_Estado,(error,registro)=>{
       if(registro){
         req.session.regis='Tu registro de niveles fue agregado';
         res.redirect("/Glucky/Pacientes/Dashboard");
