@@ -29,17 +29,12 @@ const validarFechayHora = (e) => {
         campos.fecha = true;
       } else if (e.target.value === ""){
         campos.fecha = false;
-/*         swal({
-          icon: "error",
-          title: "Sin fecha",
-          text: "No has ingresado alguna fecha"
-        }); */
       }else{
         campos.fecha = false;
         swal({
           icon: "error",
           title: "Fecha extemporánea",
-          text: "La fecha no puede ser mayor a un año ni menor a la fecha actual"
+          text: "La fecha no puede ser mayor a un año ni menor a la fecha actual, asi como debe de haber al menos un día de anticipación para esta"
         });
       }
       
@@ -51,11 +46,6 @@ const validarFechayHora = (e) => {
         } else if (e.target.value === ""){
           console.log(`No hay hora we`);
           campos.hora = false;
-/*           swal({
-            icon: "error",
-            title: "Sin hora",
-            text: "No has ingresado una hora"
-          }); */
         } else{
           campos.hora = false;
           swal({
