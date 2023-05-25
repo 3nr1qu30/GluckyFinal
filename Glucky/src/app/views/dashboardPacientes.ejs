@@ -26,11 +26,35 @@
           type="image/svg"
         />
         <style>
-          @media only screen and (max-width: 7000px){
+          .modal-content{
+            transition: all 0.5s ease-in-out;
+          }
+          .modal-content2{
+            transition: all 0.5s ease-in-out;
+          }
+          @media only screen and (max-width: 20000px){
+          .modal-content{
+            width: 40%;
+          }
+          .modal-content2{
+            width: 40%;
+          }
+          }
+          @media only screen and (max-width: 750px){
+          .modal-content{
+            width: 50%;
+          }
+          .modal-content2{
+            width: 50%;
+          }
+          }
+          @media only screen and (max-width: 500px){
           .modal-content{
             width: 97%;
           }
-
+          .modal-content2{
+            width: 97%;
+          }
           }
 
         </style>
@@ -174,7 +198,6 @@
                       <div class="dashboardPac" >
   
                       <!--CALENDARIO-->
-                      <h3><i class="fas fa-circle"></i> Calendario</h3>
                       <div class="base">
                         <div class="vistaCitas">
                           <div class="mesC"><%= new Date().toLocaleString('es-ES', { month: 'long' }).charAt(0).toUpperCase() + new Date().toLocaleString('es-ES', { month: 'long' }).slice(1).toLowerCase() %></div>
@@ -403,8 +426,8 @@
                       </div>
                       <%}else{%>
                         <div class="base base2">
-                          <div class="vistaCitas vistaGrafica">
-                      <!-- Contenido niveles de glucosa -->
+                          <div class="vistaCitas vistaGrafica" style="background-color: #ffffff00; align-items: center; justify-content: center; text-align: center; box-shadow: none !important; font-size: 20px; color: rgba(0, 0, 0, 0.63); padding-top: 115px;" >
+                            Sin registros
                           </div>
                           <div class="otro3 otroA">
                             <i class="fa fa-certificate iconoBase dosic unC"></i>
@@ -425,8 +448,8 @@
                         </div>
   
                         <div class="base base2">
-                          <div class="vistaCitas vistaGrafica vistaGrafica2">
-                      <!-- Contenido niveles de presión -->
+                          <div class="vistaCitas vistaGrafica vistaGrafica2" style="background-color: #ffffff00; align-items: center; justify-content: center; text-align: center; box-shadow: none !important; font-size: 20px; color: rgba(0, 0, 0, 0.63); padding-top: 115px;">
+                      Sin registros
                           </div>
                           <div class="otro3 otroA otroC">
                             <i class="fa fa-heart  iconoBase dosic caC2"></i>
