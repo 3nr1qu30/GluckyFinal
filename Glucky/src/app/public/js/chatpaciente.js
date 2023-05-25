@@ -41,24 +41,40 @@ socket.on('nuevoMensaje', (data) => {
     newMessage.className = 'message sent';
     const fecha = new Date();
 
-    const anio = fecha.getFullYear();
-    const mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
-    const dia = fecha.getDate();
-    const hora = fecha.getHours();
-    const minutos = fecha.getMinutes();
-    const segundos = fecha.getSeconds();
-    const fechaActual = `${anio}-${mes}-${dia}`;
-    const horaActual = `${hora}:${minutos}:${segundos}`;
+const anio = fecha.getFullYear();
+const mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
+const dia = fecha.getDate();
+const hora = fecha.getHours();
+const minutos = fecha.getMinutes();
+const segundos = fecha.getSeconds();
+
+// Establece la diferencia horaria entre tu zona horaria y México
+const diferenciaHoraria = -6; // GMT-6 (horario estándar de México)
+
+// Aplica la diferencia horaria para obtener la fecha y hora en México
+const fechaMexico = new Date(fecha.getTime() + (diferenciaHoraria * 60 * 60 * 1000));
+
+const anioMexico = fechaMexico.getFullYear();
+const mesMexico = fechaMexico.getMonth() + 1; // Los meses en JavaScript empiezan en 0
+const diaMexico = fechaMexico.getDate();
+const horaMexico = fechaMexico.getHours();
+const minutosMexico = fechaMexico.getMinutes();
+const segundosMexico = fechaMexico.getSeconds();
+
+const fechaActualMexico = `${anioMexico}-${mesMexico}-${diaMexico}`;
+const horaActualMexico = `${horaMexico}:${minutosMexico}:${segundosMexico}`;
+
+
 
     messagesContainer.appendChild(newMessage);
-    const url = 'http://localhost:3000/Glucky/Pacientes/MensajeNuevo';
+    const url = 'https://gluckyfinal-production.up.railway.app/Glucky/Pacientes/MensajeNuevo';
     const datams = {
       IdChat:chat,
       Emisor:emisor,
       Receptor:receptor,
       Mensaje:data.message,
-      Fecha:fechaActual,
-      Hora:horaActual
+      Fecha:fechaActualMexico,
+      Hora:horaActualMexico
     };
     fetch(url,{
       method: 'POST',

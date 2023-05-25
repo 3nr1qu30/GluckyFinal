@@ -391,6 +391,7 @@ Controllers.Desvincular = (req,res,next)=>{
   };
 
   Controllers.dietaVerDoctorEdit = (req, res, next) => {
+    const Cedula = req.session.cedula;
     const {last_id} = req.body;
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
@@ -401,7 +402,7 @@ Controllers.Desvincular = (req,res,next)=>{
              querys.verIngredientesBaseSele(last_id,(error3, verdietaalimento) => {
               if (alimentosver) {
                 req.session.paciente=curpFormPacEd;
-                res.render('verDietaDoctor', { alimentos: alimentosver, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verDietaDoctor', { alimentos: alimentosver,Cedula, last_id : last_id, verdietaalimento :verdietaalimento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
