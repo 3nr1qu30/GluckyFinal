@@ -548,17 +548,12 @@ closeBtn.addEventListener("click", () =>
               });
             }else{
               campos.fechaEditada = false;
-              swal({
-                icon: "error",
-                title: "Fecha extemporánea",
-                text: "La fecha no puede ser mayor a un año o anterior a la actual"
-              });
             }
             
             break;
             case "hour_citaF":
               tituloCITA = e.target.value
-              if (tituloCITA > '07:00' && tituloCITA < '21:00') {
+              if (tituloCITA >= '07:00' && tituloCITA <= '21:00') {
                 campos.horaEditada = true;
               } else if (e.target.value === ""){
                 campos.horaEditada = false;
@@ -569,11 +564,6 @@ closeBtn.addEventListener("click", () =>
                 });
               } else{
                 campos.horaEditada = false;
-                swal({
-                  icon: "error",
-                  title: "Horario inactivo",
-                  text: "El doctor no está disponible en ese horario"
-                });
             }
             break;
         }
