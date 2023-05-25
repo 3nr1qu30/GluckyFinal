@@ -127,6 +127,7 @@ fetch(url,{
     newMessage.appendChild(messageTime);
     if(i > 0 && formatDate(mensajes[i].date_mensaje) !== formatDate(mensajes[i-1].date_mensaje)){
       const fecha2 = document.createElement('span');
+      fecha2.classList.add('msjdate');
       fecha2.textContent = formatDate(mensajes[i].date_mensaje);
       messagesContainer.appendChild(fecha2);
       
