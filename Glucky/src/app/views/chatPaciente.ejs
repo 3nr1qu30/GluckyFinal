@@ -22,6 +22,23 @@
         href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
         type="image/svg"
       />
+
+      <style>
+        .time{
+            background-color: none;
+        }
+
+        .msjdate{
+            background-color: #ffffff;
+            width: 90%;
+            display: block;
+            align-items: center;
+            text-align: center;
+            font-weight: 800;
+            color: rgba(0, 0, 0, 0.87);
+            border-radius: 6px;
+        }
+      </style>
   
 </head>
 <body>
@@ -220,7 +237,7 @@
                                     </div>
                                     <br>
                                     <%if(mensajes !== 'undefined'){%>
-                                        <span><%=formatDate(mensajes[0].date_mensaje)%></span>
+                                        <span class="msjdate"><%=formatDate(mensajes[0].date_mensaje)%></span>
                                         <%for(var i=0; i<mensajes.length;i++){%>
                                             <%if(i > 0 && formatDate(mensajes[i].date_mensaje) !== formatDate(mensajes[i-1].date_mensaje)){%>
                                                 <span><%=formatDate(mensajes[i].date_mensaje)%></span>  
