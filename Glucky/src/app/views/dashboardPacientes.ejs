@@ -25,6 +25,15 @@
           href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
           type="image/svg"
         />
+        <style>
+          @media only screen and (max-width: 7000px){
+          .modal-content{
+            width: 97%;
+          }
+
+          }
+
+        </style>
     
   </head>
   <body>
@@ -71,9 +80,11 @@
                     <a href="/Glucky/Pacientes/EditarCuenta">
                         <i class="uil uil-user-circle"></i>
                     <span class="link-name">Ajustes de cuenta</span>
+                    
                   </a>
+                  </li>
   
-                  <div class="mode-toggle">
+                  <div class="mode-toggle" style="display: none; pointer-events: none;">
                    
                   </div>
               </li>
@@ -163,6 +174,7 @@
                       <div class="dashboardPac" >
   
                       <!--CALENDARIO-->
+                      <h3><i class="fas fa-circle"></i> Calendario</h3>
                       <div class="base">
                         <div class="vistaCitas">
                           <div class="mesC"><%= new Date().toLocaleString('es-ES', { month: 'long' }).charAt(0).toUpperCase() + new Date().toLocaleString('es-ES', { month: 'long' }).slice(1).toLowerCase() %></div>
@@ -290,7 +302,7 @@
                     <!--FORM GLUCOSA-->
                       
                     <div id="glucosa-modal" class="modal">
-                      <div class="modal-content">
+                      <div class="modal-content" >
                         <div class="modal-header">
                           <h2>Ingresa el valor de glucosa y presión</h2>
                         
@@ -530,11 +542,11 @@
                         <h3 class="contexto"> <h3>Detalles y citas</h3></h3>
                       <h2 id="seccion1"></h2>
                       <!--CONSULTORIO --> 
-                        <div class="asignacion asignacion-1">
+                      <div class="asignacion asignacion-1" style="height: auto !important;  word-break: break-all; overflow-y: auto;">
                           <div class="clase">
                             Consultorio
                           </div> 
-                          <div class="titulo">
+                          <div class="titulo" style="overflow: hidden; ">
                             Dirección del consultorio de tu doctor
                             <br>
                             <%=direccion%>

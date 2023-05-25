@@ -69,23 +69,26 @@
               </a></li>
           </ul>
             
-            <ul class="logout-mode">
-                <li><a href="/Glucky/IniciodeSesion">
-                    <i class="uil uil-signout"></i>
-                    <span class="link-name">Salir</span>
-                </a></li>
+          <ul class="logout-mode">
+            <li><a href="/Glucky/IniciodeSesion">
+                <i class="uil uil-signout"></i>
+                <span class="link-name">Salir</span>
+            </a></li>
 
-                <li class="mode">
-                    <a href="/Glucky/Doctores/EditarCuenta">
-                        <i class="uil uil-user-circle"></i>
-                    <span class="link-name">Ajustes de cuenta</span>
-                </a>
-
-                <div class="mode-toggle">
-                 
-                </div>
+            <li class="mode">
+              <a href="/Glucky/Doctores/EditarCuenta">
+                  <i class="uil uil-user-circle"></i>
+              <span class="link-name">Ajustes de cuenta</span>
+              
+            </a>
             </li>
-            </ul>
+
+            <div class="mode-toggle" style="display: none; pointer-events: none;">
+             
+            </div>
+          </li>
+        </ul>
+
         </div>
     </nav>
 
@@ -827,10 +830,10 @@
               </div>
               <br>
               <div class="row">
-                <div class="column" style=" border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto;">
+                <div class="column" style=" border-radius: 20px; margin-right: 10px; height: auto; width: 50%; margin: 0 auto; width: 100%; background-color: white;">
                   <canvas id="glucosagraf"></canvas>
                 </div>
-                <div class="column" style=" border-radius: 20px; height: auto; width: 50%; margin: 0 auto;">
+                <div class="column" style=" border-radius: 20px; height: auto; width: 50%; margin: 0 auto; width: 100%; background-color: white;" >
                   <canvas id="presiongraf"></canvas>
               </div>
               </div>

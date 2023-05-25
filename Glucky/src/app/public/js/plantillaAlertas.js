@@ -232,6 +232,14 @@ function contraNoCambiada(e){
   })
 }
 
+function correoNoRegistrado(e){
+  swal({
+    icon: 'error',
+    title: 'Error',
+    text: 'El correo que ha ingresado, no esta registrado'
+  })
+}
+
 //Exitos
 function DoctorRegistrado(e) {
   swal({
@@ -427,7 +435,9 @@ function SolicitudDeclinadaDoctor(e) {
     icon: "success",
     title: 'Exito',
     text: 'El correo ha sido enviado, si no lo ha recibido, por favor vuelva a introducir su correo',
-  })
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/RecuperarContrasena';
+  });
 }
 
 function contraCambiada(e){
@@ -435,5 +445,7 @@ function contraCambiada(e){
     icon: 'success',
     title: 'Exito',
     text: 'Su contraseña ha sido cambiada'
-  })
+  }).then((confirmar)=>{
+    window.location.href='/Glucky/IniciodeSesion';
+  });
 }
