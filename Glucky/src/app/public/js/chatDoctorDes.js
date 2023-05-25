@@ -113,6 +113,7 @@ fetch(url,{
   }
   const messagesContainer = document.getElementById('menssages-container');
   const fecha = document.createElement('span');
+  fecha.classList.add('msjdate');
   fecha.textContent = formatDate(mensajes[0].date_mensaje);
       messagesContainer.appendChild(fecha);
   for (let i = 0; i < mensajes.length;i++){
