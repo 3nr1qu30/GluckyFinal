@@ -27,7 +27,15 @@
     <link rel="stylesheet" href="/css/lineicons.css" />
     <link rel="stylesheet" href="/css/ud-styles.css" />
     <link rel="stylesheet" href="/css/registro.css" />
+    <style>
+      .tuesday{
+        color: black;
+        font-weight: 800;
+      }
+    </style>
+
   </head>
+  
   <body>
   
   <header class="ud-header">
@@ -111,7 +119,7 @@
               </div>
               <form action="/Glucky/CambiarContrasena?correo=<%=correo%>" method="post" class="ud-login-form" id="formularioCambioContra">
                 <div class="ud-form-group">
-                  <input
+                  <input class="tuesday"
                     type="text"
                     placeholder="Escriba su nueva contraseña"
                     name="NewPass" 
@@ -119,7 +127,7 @@
                 </div>
 
                 <div class="ud-form-group">
-                  <input
+                  <input class="tuesday"
                     type="text"
                     placeholder="Reescibe la contraseña"
                     name="ReNewPass"
