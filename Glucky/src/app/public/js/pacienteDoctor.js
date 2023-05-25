@@ -487,26 +487,23 @@ closeBtn.addEventListener("click", () =>
         }).then((matar) => {
           if(matar){
             swal({
-              icon: "success",
-              title: "Paciente eliminado"
+                icon: "success",
+                title: "Paciente eliminado"
             }).then(() => {
               matarEspecimen.submit();
             })
-          }
+        }
         })
       });
-      
+
       
       const validarFechayHora = (e) => {
         switch(e.target.name){
           case "FechaForm":
-            console.log(`Luego luego la hora`);
             fechaIngresada = e.target.value
             if (fechaActual2 < fechaIngresada && fechaIngresada < fechaMaxima) {
-              console.log(`Marco bien`);
               campos.fecha = true;
             } else if (e.target.value === ""){
-              console.log(`Directo se fue a fecha vacia`);
               campos.fecha = false;
             }else{
               campos.fecha = false;
@@ -519,13 +516,10 @@ closeBtn.addEventListener("click", () =>
             
             break;
             case "HoraForm":
-              console.log(`Luego luego la fecha`);
               horaIngresada = e.target.value
               if (horaIngresada >= '07:00' && horaIngresada <= '21:00') {
-                console.log(`Marco bien`);
                 campos.hora = true;
               } else if (e.target.value === ""){
-                console.log(`Directo se fue a hora vacia`);
                 campos.hora = false;
               } else{
                 campos.hora = false;
@@ -599,9 +593,7 @@ closeBtn.addEventListener("click", () =>
         e.preventDefault();
         if (campos.fecha && campos.hora) {
           formularioNuevaCita.submit()
-          console.log(`Esta validando en bien ya`);
         } else {
-          console.log(`Esta validando directo a mal ya`);
         /* swal({
           icon: "error",
           title: "Datos erroneos",
