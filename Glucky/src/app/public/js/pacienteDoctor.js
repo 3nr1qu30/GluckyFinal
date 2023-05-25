@@ -15,10 +15,7 @@ const campos = {
   fechaEditada: false, 
   horaEditada: false
 }
-const camposTocados = {
-  fecha: false,
-  hora: false
-};
+
 
 if(tituloCITA === tituloCITA){
   campos.horaEditada = true;
@@ -503,7 +500,6 @@ closeBtn.addEventListener("click", () =>
       const validarFechayHora = (e) => {
         switch(e.target.name){
           case "FechaForm":
-            camposTocados.fecha = true;
             fechaIngresada = e.target.value
             if (fechaActual2 < fechaIngresada && fechaIngresada < fechaMaxima) {
               campos.fecha = true;
@@ -520,7 +516,6 @@ closeBtn.addEventListener("click", () =>
             
             break;
             case "HoraForm":
-              camposTocados.hora = true;
               horaIngresada = e.target.value
               if (horaIngresada >= '07:00' && horaIngresada <= '21:00') {
                 campos.hora = true;
@@ -596,17 +591,15 @@ closeBtn.addEventListener("click", () =>
 
       formularioNuevaCita.addEventListener('submit', (e) => {
         e.preventDefault();
-        if(camposTocados.fecha || camposTocados.hora){
-          if (campos.fecha && campos.hora) {
-            formularioNuevaCita.submit()
-          } else {
-          swal({
-            icon: "error",
-            title: "Datos erroneos",
-            text: "Por favor, ingresa datos válidos"
-          });
-        }
-        }
+        if (campos.fecha && campos.hora) {
+          formularioNuevaCita.submit()
+        } else {
+        /* swal({
+          icon: "error",
+          title: "Datos erroneos",
+          text: "Por favor, ingresa datos válidos"
+        }); */
+      }
       });
       
 
