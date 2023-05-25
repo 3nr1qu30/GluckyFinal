@@ -594,11 +594,6 @@ closeBtn.addEventListener("click", () =>
         if (campos.fecha && campos.hora) {
           formularioNuevaCita.submit()
         } else {
-        /* swal({
-          icon: "error",
-          title: "Datos erroneos",
-          text: "Por favor, ingresa datos válidos"
-        }); */
       }
       });
       
