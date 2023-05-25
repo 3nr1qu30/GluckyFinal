@@ -4410,7 +4410,3 @@ transition: all ease .2s;
     .send:hover .opcionesdos{
       display: block;
     }
-
-    .accionAsignacionEl:hover .opcionesdos{
-      display: block;
-    }
