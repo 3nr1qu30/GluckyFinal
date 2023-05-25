@@ -346,6 +346,7 @@ Controllers.Desvincular = (req,res,next)=>{
   };
 
   Controllers.tratamientoVerDoctor = (req, res, next) => {
+    const Cedula = req.session.cedula;
     const {curpFormPacEd} = req.body;
     const {cedulaEdit} = req.body;
 
@@ -362,7 +363,7 @@ Controllers.Desvincular = (req,res,next)=>{
               if (verrecetamedicamento) {
                 req.session.cedula=cedulaEdit;
                 req.session.paciente=curpFormPacEd;
-                res.render('verTratamientoDoctor', { cedula_med, medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
+                res.render('verTratamientoDoctor', {Cedula, cedula_med, medicamentos: medicamentosver, last_id : last_id, verrecetamedicamento :verrecetamedicamento, curpFormPacEd:curpFormPacEd, cedulaEdit:cedulaEdit});
               } else {
                 console.log(error3);
               }
