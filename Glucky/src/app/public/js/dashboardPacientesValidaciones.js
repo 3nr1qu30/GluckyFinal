@@ -29,39 +29,29 @@ const validarFechayHora = (e) => {
         campos.fecha = true;
       } else if (e.target.value === ""){
         campos.fecha = false;
-        swal({
-          icon: "error",
-          title: "Sin fecha",
-          text: "No has ingresado alguna fecha"
-        });
       }else{
         campos.fecha = false;
         swal({
           icon: "error",
           title: "Fecha extemporánea",
-          text: "La fecha no puede ser mayor a un año"
+          text: "La fecha no puede ser mayor a un año ni menor a la fecha actual, asi como debe de haber al menos un día de anticipación para esta"
         });
       }
       
       break;
       case "HoraForm":
         horaIngresada = e.target.value
-        if (horaIngresada > '07:00' && horaIngresada < '21:00') {
+        if (horaIngresada >= '07:00' && horaIngresada <= '21:00') {
           campos.hora = true;
         } else if (e.target.value === ""){
           console.log(`No hay hora we`);
           campos.hora = false;
-          swal({
-            icon: "error",
-            title: "Sin hora",
-            text: "No has ingresado una hora"
-          });
         } else{
           campos.hora = false;
           swal({
             icon: "error",
             title: "Horario inactivo",
-            text: "El doctor no está disponible en ese horario"
+            text: "El doctor no está disponible en ese horario, su horario disponible es de 7:00 am - 9:00 pm"
           });
       }
       break;
@@ -120,7 +110,7 @@ formularioNuevaCita.addEventListener('submit', (e) => {
   swal({
     icon: "error",
     title: "Datos erroneos",
-    text: "Por favor, ingresa datos válidos"
+    text: "Por favor, ingresa fecha y hora válidos"
   });
 }
 });

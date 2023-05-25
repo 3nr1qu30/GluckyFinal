@@ -25,6 +25,39 @@
           href="https://i.ibb.co/2qbH6y4/730-sin-t-tulo-20221221143952.png"
           type="image/svg"
         />
+        <style>
+          .modal-content{
+            transition: all 0.5s ease-in-out;
+          }
+          .modal-content2{
+            transition: all 0.5s ease-in-out;
+          }
+          @media only screen and (max-width: 20000px){
+          .modal-content{
+            width: 40%;
+          }
+          .modal-content2{
+            width: 40%;
+          }
+          }
+          @media only screen and (max-width: 750px){
+          .modal-content{
+            width: 50%;
+          }
+          .modal-content2{
+            width: 50%;
+          }
+          }
+          @media only screen and (max-width: 500px){
+          .modal-content{
+            width: 97%;
+          }
+          .modal-content2{
+            width: 97%;
+          }
+          }
+
+        </style>
     
   </head>
   <body>
@@ -71,9 +104,11 @@
                     <a href="/Glucky/Pacientes/EditarCuenta">
                         <i class="uil uil-user-circle"></i>
                     <span class="link-name">Ajustes de cuenta</span>
+                    
                   </a>
+                  </li>
   
-                  <div class="mode-toggle">
+                  <div class="mode-toggle" style="display: none; pointer-events: none;">
                    
                   </div>
               </li>
@@ -290,7 +325,7 @@
                     <!--FORM GLUCOSA-->
                       
                     <div id="glucosa-modal" class="modal">
-                      <div class="modal-content">
+                      <div class="modal-content" >
                         <div class="modal-header">
                           <h2>Ingresa el valor de glucosa y presión</h2>
                         
@@ -391,8 +426,8 @@
                       </div>
                       <%}else{%>
                         <div class="base base2">
-                          <div class="vistaCitas vistaGrafica">
-                      <!-- Contenido niveles de glucosa -->
+                          <div class="vistaCitas vistaGrafica" style="background-color: #ffffff00; align-items: center; justify-content: center; text-align: center; box-shadow: none !important; font-size: 20px; color: rgba(0, 0, 0, 0.63); padding-top: 115px;" >
+                            Sin registros
                           </div>
                           <div class="otro3 otroA">
                             <i class="fa fa-certificate iconoBase dosic unC"></i>
@@ -413,8 +448,8 @@
                         </div>
   
                         <div class="base base2">
-                          <div class="vistaCitas vistaGrafica vistaGrafica2">
-                      <!-- Contenido niveles de presión -->
+                          <div class="vistaCitas vistaGrafica vistaGrafica2" style="background-color: #ffffff00; align-items: center; justify-content: center; text-align: center; box-shadow: none !important; font-size: 20px; color: rgba(0, 0, 0, 0.63); padding-top: 115px;">
+                      Sin registros
                           </div>
                           <div class="otro3 otroA otroC">
                             <i class="fa fa-heart  iconoBase dosic caC2"></i>
@@ -530,11 +565,11 @@
                         <h3 class="contexto"> <h3>Detalles y citas</h3></h3>
                       <h2 id="seccion1"></h2>
                       <!--CONSULTORIO --> 
-                        <div class="asignacion asignacion-1">
+                      <div class="asignacion asignacion-1" style="height: auto !important;  word-break: break-all; overflow-y: auto;">
                           <div class="clase">
                             Consultorio
                           </div> 
-                          <div class="titulo">
+                          <div class="titulo" style="overflow: hidden; ">
                             Dirección del consultorio de tu doctor
                             <br>
                             <%=direccion%>
