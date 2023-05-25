@@ -40,14 +40,6 @@ socket.on('nuevoMensaje', (data) => {
   if (data.emisor === emisor) {
     newMessage.className = 'message sent';
     const fecha = new Date();
-
-const anio = fecha.getFullYear();
-const mes = fecha.getMonth() + 1; // Los meses en JavaScript empiezan en 0
-const dia = fecha.getDate();
-const hora = fecha.getHours();
-const minutos = fecha.getMinutes();
-const segundos = fecha.getSeconds();
-
 // Establece la diferencia horaria entre tu zona horaria y México
 const diferenciaHoraria = -6; // GMT-6 (horario estándar de México)
 
