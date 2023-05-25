@@ -31,6 +31,13 @@
     <link rel="stylesheet" href="/css/lineicons.css" />
     <link rel="stylesheet" href="/css/ud-styles.css" />
     <link rel="stylesheet" href="/css/registro.css" />
+    <style>
+      .tuesday{
+        color: black;
+        font-weight: 800;
+      }
+    </style>
+
   </head>
   <body>
     
@@ -417,7 +424,7 @@
               </div>
               <form action="/Glucky/IniciodeSesion" method="post" class="ud-login-form" id="formulario">
                 <div class="ud-form-group" id="grupo__cedula">
-                  <input
+                  <input class="tuesday"
                     type="text"
                     placeholder="Usuario (Cédula o CURP)"
                     name="UserForm" 
@@ -426,7 +433,7 @@
                   <p class="form_input_error2"> El CURP debe tener 18 carácteres </p>
                 </div>
                 <div class="ud-form-group" id="grupo__password">
-                  <input
+                  <input class="tuesday"
                   type="password"
                   name="PassForm"
                   placeholder="Contraseña"
