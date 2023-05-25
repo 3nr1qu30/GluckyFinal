@@ -16,6 +16,7 @@ const campos = {
   horaEditada: false
 }
 
+
 if(tituloCITA === tituloCITA){
   campos.horaEditada = true;
 } else {
@@ -578,10 +579,10 @@ closeBtn.addEventListener("click", () =>
         }
       }
       
-      /* inputs.forEach((input) => {
+      inputs.forEach((input) => {
         input.addEventListener('keyup', validarFechayHora);
         input.addEventListener('blur', validarFechayHora);
-      }); */
+      });
 
       inputs2.forEach((input) => {
         input.addEventListener('keyup', validarFechayHoraEditadas);
@@ -593,11 +594,11 @@ closeBtn.addEventListener("click", () =>
         if (campos.fecha && campos.hora) {
           formularioNuevaCita.submit()
         } else {
-        swal({
+        /* swal({
           icon: "error",
           title: "Datos erroneos",
           text: "Por favor, ingresa datos válidos"
-        });
+        }); */
       }
       });
       
