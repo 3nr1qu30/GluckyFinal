@@ -504,11 +504,11 @@ closeBtn.addEventListener("click", () =>
               campos.fecha = true;
             } else if (e.target.value === ""){
               campos.fecha = false;
-              swal({
+              /* swal({
                 icon: "error",
                 title: "Sin fecha",
                 text: "No has ingresado alguna fecha"
-              });
+              }); */
             }else{
               campos.fecha = false;
               swal({
@@ -521,15 +521,15 @@ closeBtn.addEventListener("click", () =>
             break;
             case "HoraForm":
               horaIngresada = e.target.value
-              if (horaIngresada > '07:00' && horaIngresada < '21:00') {
+              if (horaIngresada >= '07:00' && horaIngresada <= '21:00') {
                 campos.hora = true;
               } else if (e.target.value === ""){
                 campos.hora = false;
-                swal({
+                /* swal({
                   icon: "error",
                   title: "Sin hora",
                   text: "No has ingresado una hora"
-                });
+                }); */
               } else{
                 campos.hora = false;
                 swal({
@@ -610,6 +610,10 @@ closeBtn.addEventListener("click", () =>
         });
       }
       });
+      document.getElementById("closem").addEventListener('click', () => {
+        window.close();
+      });
+      
 
       formularioActualizarCitas.addEventListener('submit', (e) => {
         e.preventDefault();
