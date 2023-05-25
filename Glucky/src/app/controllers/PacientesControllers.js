@@ -498,7 +498,7 @@ const mes = fechaMexico.getMonth() + 1; // Los meses van de 0 a 11, se suma 1 pa
 const año = fechaMexico.getFullYear();
 
 // Crear una cadena de texto con la fecha en formato "dd/mm/yyyy"
-const fechaFormateada = `${dia}/${mes}/${año}`;
+const fechaFormateada = `${año}/${mes}/${dia}`;
     // Obtener la hora actual
 const horaActual = new Date();
 
