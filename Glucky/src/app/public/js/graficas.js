@@ -36,13 +36,13 @@ for (let i = Math.max(datosmedicos.length - 10, 0); i < datosmedicos.length; i++
 const datao = {
   labels: fecha,
   datasets: [{
-    label: 'Presion sistolica',
+    label: 'Presión sistólica',
     data: datosis,
     backgroundColor: 'rgba(54, 162, 235, 0.2)', // azul transparente
     borderColor: 'rgba(54, 162, 235, 1)', // borde azul
     borderWidth: 1 // ancho del borde
   }, {
-    label: 'Presion diastolica',
+    label: 'Presión diastólica',
     data: datosdia,
     backgroundColor: 'rgba(255, 206, 86, 0.2)', // amarillo transparente
     borderColor: 'rgba(255, 206, 86, 1)', // borde amarillo
